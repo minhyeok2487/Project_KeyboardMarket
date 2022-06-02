@@ -51,9 +51,10 @@ request.setCharacterEncoding("UTF-8");
 				<tr>
 					<th scope="row" style="text-align: center;">가격대</th>
 					<td colspan="4">
-						<button type="button" class="btn btn-outline-dark activity">전체</button>
-						<c:forEach var="name" items="${priceLange }" varStatus="i">
-							<button type="button" class="btn btn-outline-dark">${name}</button>
+						<button type="button" id="pricebtn"
+							class="btn btn-outline-dark active">전체</button> <c:forEach
+							var="name" items="${priceLange }" varStatus="i">
+							<button type="button" id="pricebtn" class="btn btn-outline-dark">${name}</button>
 						</c:forEach>
 					</td>
 				</tr>
@@ -61,9 +62,43 @@ request.setCharacterEncoding("UTF-8");
 					<th style="text-align: center;">스마트필터</th>
 					<td colspan="4" id="res"></td>
 				</tr>
-
 			</tbody>
 		</table>
+	</div>
+	<div class="container">
+		<div class="table-striped">
+			<table class="table">
+				<c:forEach var="name" items="${dto }" varStatus="i">
+					<tr>
+						<th><img
+							src="<c:url value="/source/${name.item_imgthumb }"/>" alt=""
+							width=150 height=150 /></th>
+						<td>
+							<p>[상품번호:${name.itemNo }]</p>
+							<p>[${name.manufacture}] ${name.item_name}</p>
+						</td>
+						<td>
+							<p>${name.price}원</p>
+							<p>[재고:${name.stock }]</p>
+						</td>
+					</tr>
+					<tr>
+						<th><img
+							src="<c:url value="/source/${name.item_imgthumb }"/>" alt=""
+							width=150 height=150 /></th>
+						<td>
+							<p>[상품번호:${name.itemNo }]</p>
+							<p>[${name.manufacture}] ${name.item_name}</p>
+						</td>
+						<td>
+							<p>${name.price}원</p>
+							<p>[재고:${name.stock }]</p>
+						</td>
+					</tr>
+				</c:forEach>
+				</tbody>
+			</table>
+		</div>
 	</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -88,27 +123,26 @@ request.setCharacterEncoding("UTF-8");
 					swlist.push(event.target.value);
 				}
 			} else {
-
 				if (event.target.name === "manufactor") {
-					for(var i = 0; i < mflist.length; i++){
-						if(mflist[i] === event.target.value){
-							mflist.splice(i,1);
+					for (var i = 0; i < mflist.length; i++) {
+						if (mflist[i] === event.target.value) {
+							mflist.splice(i, 1);
 							i--;
 						}
 					}
 				}
 				if (event.target.name === "type") {
-					for(var i = 0; i < typelist.length; i++){
-						if(typelist[i] === event.target.value){
-							typelist.splice(i,1);
+					for (var i = 0; i < typelist.length; i++) {
+						if (typelist[i] === event.target.value) {
+							typelist.splice(i, 1);
 							i--;
 						}
 					}
 				}
 				if (event.target.name === "sw") {
-					for(var i = 0; i < swlist.length; i++){
-						if(swlist[i] === event.target.value){
-							swlist.splice(i,1);
+					for (var i = 0; i < swlist.length; i++) {
+						if (swlist[i] === event.target.value) {
+							swlist.splice(i, 1);
 							i--;
 						}
 					}
@@ -124,7 +158,6 @@ request.setCharacterEncoding("UTF-8");
 			swlist.forEach(function(item, index, array) {
 				result += item + ", ";
 			});
-
 			document.getElementById('res').innerText = result;
 		}
 	</script>

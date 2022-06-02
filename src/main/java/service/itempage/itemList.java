@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Service;
+import model.item.itemDAO;
+import model.item.itemDTO;
 
 public class itemList implements Service{
 	
@@ -34,10 +36,14 @@ public class itemList implements Service{
 		priceLange.add("10~20만원");
 		priceLange.add("20만원~");
 		
+		itemDAO dao = new itemDAO();
+		ArrayList<itemDTO> dto = dao.list();
+		
 		request.setAttribute("manufactor", manufactor);
 		request.setAttribute("type", type);
 		request.setAttribute("sw", sw);
 		request.setAttribute("priceLange", priceLange);
+		request.setAttribute("dto", dto);
 
 		
 	}
