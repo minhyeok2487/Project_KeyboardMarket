@@ -20,7 +20,7 @@ public class itemDAO {
 	public itemDAO() {
 		try {
 			Context context = new InitialContext();
-			DataSource ds = (DataSource)context.lookup("java:comp/env/qawsed");
+			DataSource ds = (DataSource)context.lookup("java:comp/env/qazxsw");
 			con = ds.getConnection();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
