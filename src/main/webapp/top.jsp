@@ -37,7 +37,7 @@
       </ul>
        <nav id="topmenu">
           <ul id="topmenu_list">
-              <li><a href="member/login">LOGIN</a></li>
+              <li><a href="member/Login">LOGIN</a></li>
               <li><a href="member/Join">JOIN</a></li>
               <li><a href="member/QnA">Q&A</a></li>
           </ul>
