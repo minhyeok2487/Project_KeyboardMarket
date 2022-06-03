@@ -11,11 +11,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class F_Controller
+ * Servlet implementation class M_Controller
  */
+
 @WebServlet("/member/*")
 public class M_Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	    
+	 /**
+	  * @see HttpServlet#HttpServlet()
+	  */
 	
 	ArrayList<String> nonClass;
 	
@@ -25,11 +31,6 @@ public class M_Controller extends HttpServlet {
         System.out.println("들어옴");
 	}
 	
-	
-	
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
