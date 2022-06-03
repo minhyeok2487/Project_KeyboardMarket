@@ -53,7 +53,7 @@ public class M_Controller extends HttpServlet {
 			request.setAttribute("mainUrl", serviceStr);
 		}else {
 			try {
-				Service service = (Service) Class.forName("model.member.Member"+serviceStr).newInstance();
+				Service service = (Service) Class.forName("model.memberService.Member"+serviceStr).newInstance();
 				service.execute(request, response);
 				
 			} catch (Exception e) {
