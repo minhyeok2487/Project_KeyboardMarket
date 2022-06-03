@@ -1,4 +1,4 @@
-package model.member;
+package model.memberService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
