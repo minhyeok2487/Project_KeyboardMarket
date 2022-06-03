@@ -3,6 +3,7 @@ package member_p.model_p;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -21,6 +22,32 @@ public class memberDAO {
 			con = ds.getConnection();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public memberDTO memberLogin() {
+		return null;
+	}
+	
+	
+	public void close() {
+		if (rs != null) {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+			}
+		}
+		if (ptmt != null) {
+			try {
+				ptmt.close();
+			} catch (SQLException e) {
+			}
+		}
+		if (con != null) {
+			try {
+				con.close();
+			} catch (SQLException e) {
+			}
 		}
 	}
 }

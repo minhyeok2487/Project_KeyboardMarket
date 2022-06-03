@@ -1,4 +1,4 @@
-package member_p;
+package controller.member;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,6 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import controller.Service;
 
 /**
  * Servlet implementation class M_Controller
@@ -39,18 +41,19 @@ public class M_Controller extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		System.out.println(request.getRequestURI());
-		System.out.println(request.getContextPath());
+//		System.out.println(request.getRequestURI());
+//		System.out.println(request.getContextPath());
 		
 		String serviceStr = request.getRequestURI().substring(
 				(request.getContextPath()+"/member/").length()
 				);
+		System.out.println(serviceStr);
 		
 		if(nonClass.contains(serviceStr)) {
 			request.setAttribute("mainUrl", serviceStr);
 		}else {
 			try {
-				MemberService service = (MemberService) Class.forName("member_p.service_p.Member"+serviceStr).newInstance();
+				Service service = (Service) Class.forName("model.member.Member"+serviceStr).newInstance();
 				service.execute(request, response);
 				
 			} catch (Exception e) {
