@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 request.setCharacterEncoding("UTF-8");
+String[] SeletMF = request.getParameterValues("manufactor");
 %>
 <!DOCTYPE html>
 <html>
@@ -13,12 +14,13 @@ request.setCharacterEncoding("UTF-8");
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
+	crossorigin="anonymous" >
 <title>Insert title here</title>
 </head>
 <body>
 	<jsp:include page="../top.jsp" />
 	<div class="container">
+	<form name="frm" action="awsedrgrg" method="get">
 		<table class="table">
 			<thead>
 				<tr>
@@ -64,6 +66,7 @@ request.setCharacterEncoding("UTF-8");
 				</tr>
 			</tbody>
 		</table>
+		</form>
 	</div>
 	<div class="container">
 		<div class="table-striped">
@@ -159,7 +162,12 @@ request.setCharacterEncoding("UTF-8");
 				result += item + ", ";
 			});
 			document.getElementById('res').innerText = result;
+			console.log(mflist);
+			
+			document.frm.submit();
 		}
+		
+		
 	</script>
 </body>
 </html>
