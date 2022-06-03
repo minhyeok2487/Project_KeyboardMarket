@@ -1,12 +1,10 @@
-package member_p;
+package controller;
 
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-public interface MemberService {
-
+public interface Service {
+	
 	void execute(HttpServletRequest request, HttpServletResponse response);
 	
 }
