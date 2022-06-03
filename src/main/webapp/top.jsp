@@ -34,6 +34,9 @@
         <li class="nav-item">
           <a class="nav-link disabled">Disabled</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="notice/notice.jsp">공지사항</a>
+        </li>
       </ul>
        <nav id="topmenu">
           <ul id="topmenu_list">
