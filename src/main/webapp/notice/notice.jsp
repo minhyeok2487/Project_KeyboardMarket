@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>메인페이지</title>
+<title>공지사항</title>
 </head>
 <body>
-<h1>메인페이지 이야요 ㅋㅋㅋ</h1>
+<h1>공지사항이오~~</h1>
+
 </body>
 </html>
