@@ -30,8 +30,14 @@ public class itempageController extends HttpServlet {
 			Service service = (Service) Class.forName("service.itempage."+serviceStr).newInstance();
 			service.execute(request, response);
 			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/items/itempage.jsp");
-			dispatcher.forward(request, response);
+			if(serviceStr.equals("itemList")) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/items/itempage.jsp");
+				dispatcher.forward(request, response);
+			}else if(serviceStr.equals("itemdetail")) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/items/detailpage.jsp");
+				dispatcher.forward(request, response);
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
