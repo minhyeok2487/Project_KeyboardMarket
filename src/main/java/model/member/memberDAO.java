@@ -25,8 +25,22 @@ public class memberDAO {
 		}
 	}
 	
-	public memberDTO memberLogin() {
-		return null;
+	public memberDTO memberLogin(memberDTO dto) {
+		memberDTO dto = new memberDTO();
+		sql = "SELECT * FROM mts_keyboard WHERE user_id = ? user_pw = ? ";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setString(1, dto.get);
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return dto;
 	}
 	
 	
