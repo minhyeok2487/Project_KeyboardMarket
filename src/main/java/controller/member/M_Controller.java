@@ -30,7 +30,6 @@ public class M_Controller extends HttpServlet {
 	public M_Controller() {
 		super();
         nonClass = new ArrayList<String>();
-        System.out.println("들어옴");
 	}
 	
 
@@ -41,13 +40,12 @@ public class M_Controller extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-//		System.out.println(request.getRequestURI());
-//		System.out.println(request.getContextPath());
 		
 		String serviceStr = request.getRequestURI().substring(
 				(request.getContextPath()+"/member/").length()
 				);
-		System.out.println(serviceStr);
+		
+		
 		
 		if(nonClass.contains(serviceStr)) {
 			request.setAttribute("mainUrl", serviceStr);
@@ -60,12 +58,14 @@ public class M_Controller extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} 
-	
-			//System.out.println("doGet() 들어옴");
-			// 포워딩의 액션태그 기능을 쓰기위한 사전작업 앞에 / 안붙이면 무한루프돌음
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/member_view/template.jsp");
-			dispatcher.forward(request, response);
+
 		}
+		
+		
+		
+		// 포워딩의 액션태그 기능을 쓰기위한 사전작업 앞에 / 안붙이면 무한루프돌음
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/member_view/template.jsp");
+		dispatcher.forward(request, response);
 	}
 	
 	@Override
