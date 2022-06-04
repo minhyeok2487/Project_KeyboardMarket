@@ -28,15 +28,15 @@ public class NoticeDAO {
 		}
 	}
 
-	public ArrayList<NoticeDTO> list() {
+	public ArrayList<NoticeDTO> list(int start, int limit) {
 		ArrayList<NoticeDTO> res = new ArrayList<NoticeDTO>();
 
 		sql = "select * from notice order by noticeNo desc";
 
 		try {
 			ptmt = con.prepareStatement(sql);
-//			ptmt.setInt(1, start);
-//			ptmt.setInt(2, limit);
+			ptmt.setInt(1, start);
+			ptmt.setInt(2, limit);
 			rs = ptmt.executeQuery();
 
 			while (rs.next()) {
@@ -44,10 +44,10 @@ public class NoticeDAO {
 
 				dto.setNoticeNo(rs.getInt("noticeNo"));
 				dto.setSubject(rs.getString("subject"));
+				dto.setContent(rs.getString("content"));
 				dto.setReg_date(rs.getTimestamp("reg_date"));
 				dto.setHits(rs.getInt("hits"));
 				System.out.println(dto);
-
 				res.add(dto);
 			}
 
@@ -59,6 +59,38 @@ public class NoticeDAO {
 
 		return res;
 
+	}
+	
+	public NoticeDTO detail(int no) {
+
+		NoticeDTO dto = null;
+		
+		sql = "select * from notice where noticeNo = ?";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setInt(1, no);
+			rs = ptmt.executeQuery();
+			
+			while (rs.next()) {
+				dto = new NoticeDTO();
+				
+				dto.setNoticeNo(rs.getInt("noticeNo"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setContent(rs.getString("content"));
+				dto.setReg_date(rs.getTimestamp("reg_date"));
+				dto.setHits(rs.getInt("hits"));
+				System.out.println(dto);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return dto;
+		
 	}
 
 	public void close() {
