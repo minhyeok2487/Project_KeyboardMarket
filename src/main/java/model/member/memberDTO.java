@@ -3,46 +3,32 @@ package model.member;
 import java.util.Date;
 
 public class memberDTO {
-	int no, tel;
-	String id, pw, name, gender, email, addr1, addr2;
-	Date  birthday, reg_date;
-	
-	
-	public int getNo() {
-		return no;
+	int memberNo;
+	String user_id, user_pw, name, gender, email, addr1, addr2, tel;
+	Date  birthdate, reg_date;
+	public int getMemberNo() {
+		return memberNo;
 	}
-	public void setNo(int no) {
-		this.no = no;
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
-	public int getTel() {
-		return tel;
+	public String getUser_id() {
+		return user_id;
 	}
-	public void setTel(int tel) {
-		this.tel = tel;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
-	public String getId() {
-		return id;
+	public String getUser_pw() {
+		return user_pw;
 	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public String getPw() {
-		return pw;
-	}
-	public void setPw(String pw) {
-		this.pw = pw;
+	public void setUser_pw(String user_pw) {
+		this.user_pw = user_pw;
 	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public Date getBirthday() {
-		return birthday;
-	}
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
 	}
 	public String getGender() {
 		return gender;
@@ -68,17 +54,30 @@ public class memberDTO {
 	public void setAddr2(String addr2) {
 		this.addr2 = addr2;
 	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	public Date getBirthdate() {
+		return birthdate;
+	}
+	public void setBirthdate(Date birthdate) {
+		this.birthdate = birthdate;
+	}
 	public Date getReg_date() {
 		return reg_date;
 	}
 	public void setReg_date(Date reg_date) {
 		this.reg_date = reg_date;
 	}
-	
 	@Override
 	public String toString() {
-		return "memberDTO [no=" + no + ", tel=" + tel + ", id=" + id + ", pw=" + pw + ", name=" + name + ", birthday="
-				+ birthday + ", gender=" + gender + ", email=" + email + ", addr1=" + addr1 + ", addr2=" + addr2
-				+ ", reg_date=" + reg_date + "]";
+		return "memberDTO [memberNo=" + memberNo + ", user_id=" + user_id + ", user_pw=" + user_pw + ", name=" + name
+				+ ", gender=" + gender + ", email=" + email + ", addr1=" + addr1 + ", addr2=" + addr2 + ", tel=" + tel
+				+ ", birthdate=" + birthdate + ", reg_date=" + reg_date + "]";
 	}
+	
+	
 }
