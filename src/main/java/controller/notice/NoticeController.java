@@ -30,7 +30,7 @@ public class NoticeController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		String serviceStr = request.getRequestURI().substring((request.getContextPath() + "/notice/").length());
-		System.out.println(serviceStr);
+//		System.out.println(serviceStr);
 
 		if (nonClass.contains(serviceStr)) {
 			request.setAttribute("noticeUrl", serviceStr);
@@ -44,8 +44,13 @@ public class NoticeController extends HttpServlet {
 			}
 		}
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/notices/noticeListpage.jsp");
-		dispatcher.forward(request, response);
+		if (serviceStr.equals("noticeListpage")) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/notices/noticeListpage.jsp");
+			dispatcher.forward(request, response);
+		} else if (serviceStr.equals("noticeDetail")) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/notices/noticeDetail.jsp");
+			dispatcher.forward(request, response);
+		}
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
