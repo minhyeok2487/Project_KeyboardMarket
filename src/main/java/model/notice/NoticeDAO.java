@@ -21,7 +21,7 @@ public class NoticeDAO {
 	public NoticeDAO() {
 		try {
 			Context context = new InitialContext();
-			DataSource ds = (DataSource) context.lookup("java:comp/env/unKnown");
+			DataSource ds = (DataSource) context.lookup("java:comp/env/qazxsw");
 			con = ds.getConnection();
 		} catch (Exception e) {
 			e.printStackTrace();

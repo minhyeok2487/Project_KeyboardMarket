@@ -3,6 +3,7 @@ package controller.notice;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,15 +36,17 @@ public class NoticeController extends HttpServlet {
 			request.setAttribute("noticeUrl", serviceStr);
 		} else {
 			try {
-				Service service = (Service) Class.forName("service.noticePage.Notice" + serviceStr).newInstance();
 
+				Service service = (Service) Class.forName("service.noticePage." + serviceStr).newInstance();
 				service.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-	}
 
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/notices/noticeListpage.jsp");
+		dispatcher.forward(request, response);
+	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doGet(req, resp);
