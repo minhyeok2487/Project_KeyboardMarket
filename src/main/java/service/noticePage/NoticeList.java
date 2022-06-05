@@ -14,12 +14,12 @@ public class NoticeList implements Service {
 		int start = 1;
 		int limit = 3;
 
-		Object data = new NoticeDAO().list(start, limit);
+		Object dataList = new NoticeDAO().list();
 
-		request.setAttribute("noticeData", data);
+		request.setAttribute("noticeData", dataList);
 		request.setAttribute("noticeUrl", "Notice");
 
-//		System.out.println("NoticeList execute 실행!!" + data);
+//		System.out.println("NoticeList execute 실행!!" + dataList);
 
 	}
 

@@ -35,7 +35,7 @@
           <a class="nav-link disabled">Disabled</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/Project_KeyboardMarket/notice/NoticeList">공지사항</a>
+          <a class="nav-link active" aria-current="page" href="notice/NoticeList">공지사항</a>
         </li>
         <li class="nav-item">
           <a href="/Project_KeyboardMarket/itemPages/itemList#">스마트 검색</a>

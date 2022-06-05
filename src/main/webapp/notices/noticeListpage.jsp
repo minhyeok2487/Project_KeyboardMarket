@@ -3,11 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>공지사항</title>
+<title>Insert title here</title>
 </head>
 <body>
 	<h1>공지사항이다아~~~~~</h1>
@@ -22,15 +18,22 @@
 
 		<c:forEach var="dto" items="${noticeData }" varStatus="no">
 			<tr>
-				<td>${no.index + 1 }</td>
-				<td><a href="<c:url value="noticeDetail?id=${dto.noticeNo }"/>">${dto.subject }</a></td>
-				<td>관리자</td>
+				<td>${dto.noticeNo + 1}</td>
+				<td><a
+					href="<c:url value="NoticeDetail?noticeNo=${dto.noticeNo }"/>">${dto.subject }</a></td>
+				<td>${dto.pname }</td>
 				<td><fmt:formatDate value="${dto.reg_date }"
 						pattern="yyyy-MM-dd HH:mm" /></td>
 				<td>${dto.hits }</td>
 			</tr>
 		</c:forEach>
+		<tr>
+			<td colspan="5" align="right"><a href="NoticeInsertReg">글쓰기</a></td>
+		</tr>
 	</table>
-
+		<tr>
+			<td colspan="5" align="center">[이전] 1 2 3 4 5 [다음]</td>
+		</tr>
+		<c:url value=""/>
 </body>
 </html>
