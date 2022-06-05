@@ -21,7 +21,6 @@ public class MemberLoginReg implements Service {
 		user.setUser_pw(request.getParameter("member_pw"));
 		
 		memberDTO dto = new memberDAO().memberLogin(user);
-		System.out.println("logReg 123 :"+dto);
 		
 		if(dto != null){
 			session.setAttribute("inUser", dto);
