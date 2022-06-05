@@ -9,6 +9,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+
 public class memberDAO {
 	Connection con;
 	PreparedStatement ptmt; // 보안적용
@@ -44,9 +45,19 @@ public class memberDAO {
 				res.setBirthdate(rs.getTimestamp("birthdate"));
 				res.setGender(rs.getString("gender"));
 				res.setEmail(rs.getString("email"));
-				res.setAddr1(rs.getString("addr1"));
-				res.setAddr2(rs.getString("addr2"));
-				res.setTel(rs.getString("tel"));
+				
+				if(rs.getString("addr1")!=null) {				
+					res.setAddr1(rs.getString("addr1"));
+				}
+				
+				if(rs.getString("addr2")!=null) {
+					res.setAddr2(rs.getString("addr2"));
+				}
+				
+				if(rs.getString("tel")!=null) {
+					res.setTel(rs.getString("tel"));
+				}
+				
 				res.setReg_date(rs.getTimestamp("reg_date"));
 			}
 			
@@ -59,6 +70,49 @@ public class memberDAO {
 		
 		
 		return res;
+	}
+	
+	public memberDTO detail(int id){
+		memberDTO dto = null;
+		sql = "select * from member where memberNo = ?";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setInt(1, id);
+			
+			rs = ptmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				dto = new memberDTO();
+				
+				dto.setMemberNo(rs.getInt("memberNo"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setName(rs.getString("name"));
+				dto.setBirthdate(rs.getTimestamp("birthdate"));
+				dto.setGender(rs.getString("gender"));
+				dto.setEmail(rs.getString("email"));
+				
+				if(rs.getString("addr1")!=null) {				
+					dto.setAddr1(rs.getString("addr1"));
+				}
+				if(rs.getString("addr2")!=null) {
+					dto.setAddr2(rs.getString("addr2"));
+				}
+				if(rs.getString("tel")!=null) {
+					dto.setTel(rs.getString("tel"));
+				}
+				dto.setReg_date(rs.getTimestamp("reg_date"));
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		
+		return dto;
 	}
 	
 	
