@@ -58,10 +58,7 @@ public class M_Controller extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} 
-
 		}
-		
-		
 		
 		// 포워딩의 액션태그 기능을 쓰기위한 사전작업 앞에 / 안붙이면 무한루프돌음
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/member_view/template.jsp");
@@ -69,9 +66,32 @@ public class M_Controller extends HttpServlet {
 	}
 	
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		
+		
+		String serviceStr = request.getRequestURI().substring(
+				(request.getContextPath()+"/member/").length()
+				);
+		
+		
+		
+		if(nonClass.contains(serviceStr)) {
+			request.setAttribute("mainUrl", serviceStr);
+		}else {
+			try {
+				Service service = (Service) Class.forName("model.memberService.Member"+serviceStr).newInstance();
+				service.execute(request, response);
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+		}
+		
+		// 포워딩의 액션태그 기능을 쓰기위한 사전작업 앞에 / 안붙이면 무한루프돌음
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/member_view/template.jsp");
+		dispatcher.forward(request, response);
 	}
 	
 }

@@ -28,7 +28,7 @@ public class memberDAO {
 	public memberDTO memberLogin(memberDTO dto) {
 		memberDTO res = new memberDTO();
 		
-		sql = "SELECT * FROM mts_keyboard WHERE user_id = ? user_pw = ? ";
+		sql = "SELECT * FROM member WHERE user_id = ? and user_pw = ?";
 		
 		try {
 			ptmt = con.prepareStatement(sql);

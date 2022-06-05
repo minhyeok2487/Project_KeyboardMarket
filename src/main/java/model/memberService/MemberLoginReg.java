@@ -21,13 +21,16 @@ public class MemberLoginReg implements Service {
 		user.setUser_pw(request.getParameter("member_pw"));
 		
 		memberDTO dto = new memberDAO().memberLogin(user);
-		System.out.println("logReg:"+dto);
+		System.out.println("logReg 123 :"+dto);
 		
 		if(dto != null){
 			session.setAttribute("inUser", dto);
 		}
 		
-		request.setAttribute("mainUrl", "loginForm");
+
+		System.out.println(dto.getName()+"님 로그인");
+		
+		request.setAttribute("mainUrl", "../top");
 		
 	}
 }
