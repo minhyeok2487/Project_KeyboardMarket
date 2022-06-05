@@ -35,13 +35,12 @@
 						<p>[재고 : ${dto.getStock() }]</p></td>
 					<td>
 						<p>
-							<select onchange="showValue(this.value)" class="form-select"
+							수량 <select onchange="showValue(this.value)" class="form-select"
 								aria-label="Default select example">
-								<option selected>수량을 선택하세요.</option>
-								<c:forEach var="i" begin="1" end="${dto.getStock() }">    
+								<c:forEach var="i" begin="1" end="${dto.getStock() }">
 									<option value="${i }">${i }</option>
 								</c:forEach>
-							</select> <input type="hidden" id="count" />
+							</select> <input type="hidden" name="count" value=1 />
 						</p>
 						<p>
 							<input type="submit" value="장바구니로" />
@@ -65,8 +64,7 @@
 		</script>
 	<script>
 		var showValue = function (value) {
-			document.getElementById("count").name="count";  
-			document.getElementById("count").value=value;  
+			document.getElementByName("count").value=value;  
 		}
 	</script>
 </body>

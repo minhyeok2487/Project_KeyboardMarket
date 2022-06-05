@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Service;
 
 @WebServlet("/cart/*")
-public class cartpageController extends HttpServlet {
+public class cartController extends HttpServlet {
 
 	ArrayList<String> nonClass;
 
-	public cartpageController() {
+	public cartController() {
 		super();
 	}
 
@@ -35,6 +35,12 @@ public class cartpageController extends HttpServlet {
 				dispatcher.forward(request, response);
 			}else if(serviceStr.equals("DeleteCart")) {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/carts/deletecartpage.jsp");
+				dispatcher.forward(request, response);
+			}else if(serviceStr.equals("RemoveItem")) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/carts/removeItempage.jsp");
+				dispatcher.forward(request, response);
+			}else if(serviceStr.equals("OrderCart")) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/carts/orderpage.jsp");
 				dispatcher.forward(request, response);
 			}
 		} catch (Exception e) {

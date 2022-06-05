@@ -16,13 +16,13 @@
 <%
 String memberNo = "1";
 %>
-<title>장바구니</title>
+<title>주문페이지</title>
 </head>
 <body>
 	<jsp:include page="../top.jsp" />
 	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display-3">장바구니</h1>
+			<h1 class="display-3">주문내역서 작성</h1>
 		</div>
 	</div>
 	<div class="container">
@@ -30,14 +30,12 @@ String memberNo = "1";
 			<table width="100%">
 				<tr>
 					<td align="left"><a
-						href="./DeleteCart?memberNo=<%=memberNo%>"
-						class="btn btn-danger">장바구니 비우기</a></td>
-					<td align="right"><a href="javascript:goOrder();" class="btn btn-success">주문하기</a></td>
+						href="#"
+						class="btn btn-danger">장바구니 돌아가기</a></td>
 				</tr>
 			</table>
 		</div>
 		<div style="padding-top: 50px">
-			<form name="frm" action="../cart/OrderCart?" method="get">
 			<table class="table">
 				<tr>
 					<th></th>
@@ -47,7 +45,6 @@ String memberNo = "1";
 					<th>소계</th>
 					<th>비고</th>
 				</tr>
-				
 				<%
 				int sum = 0;
 				ArrayList<CartDTO> cartList = (ArrayList<CartDTO>) request.getAttribute("cartList");
@@ -66,9 +63,9 @@ String memberNo = "1";
 							src="<c:url value="/source/${imgthumb }"/>" alt=""
 							width=150 height=150 />
 					</td>
-					<td name="Item_name"><%=item.getItem_name()%></td>
+					<td><%=item.getItem_name()%></td>
 					<td><%=item.getPrice()%></td>
-					<td name="Selected_count"><%=item.getSelected_count()%></td>
+					<td><%=item.getSelected_count()%></td>
 					<td><%=total%></td>
 					<td><a href="./RemoveItem?itemNo=<%=item.getItemNo() %>&memberNo=<%=memberNo%>">삭제</a></td>
 				</tr>
@@ -84,7 +81,6 @@ String memberNo = "1";
 					<th></th>
 				</tr>
 			</table>
-			</form>
 			<a href="../itemPages/itemList#" class="btn btn-secondary">&laquo; 쇼핑 계속하기</a>
 		</div>
 		<hr>
@@ -93,11 +89,5 @@ String memberNo = "1";
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 		crossorigin="anonymous"></script>
-		
-	<script type="text/javascript">
-		function goOrder(){
-			document.frm.submit();
-		}
-	</script>
 </body>
 </html>

@@ -158,6 +158,25 @@ public class CartDAO {
 		}
 		return false;
 	}
+	
+	public boolean removeitem(int memberNo, int itemNo) {
+		sql = "DELETE FROM cart WHERE memberNo = ? AND itemNo = ?";
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setInt(1, memberNo);
+			ptmt.setInt(2, itemNo);
+			rs = ptmt.executeQuery();
+			while (rs.next()) {
+				return true;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return false;
+	}
 
 	public void close() {
 		if (rs != null)

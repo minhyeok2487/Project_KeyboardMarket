@@ -18,7 +18,7 @@ public class Cartview implements Service {
 		CartDAO dao = new CartDAO();
 		String reg = request.getParameter("reg");
 		int memberNo = 1; // 멤버 기본키 로그인시 받아올 예정
-		
+
 		// 장바구니 추가일때
 		if (reg.equals("addCart")) {
 			int itemNo = Integer.parseInt(request.getParameter("itemNo"));
@@ -36,8 +36,13 @@ public class Cartview implements Service {
 			}
 		}
 
-		//장바구니 비우기일때
+		// 장바구니 비우기일때
 		if (reg.equals("delCart")) {
+
+		}
+
+		// 아이템 삭제일때
+		if (reg.equals("removeItem")) {
 
 		}
 
