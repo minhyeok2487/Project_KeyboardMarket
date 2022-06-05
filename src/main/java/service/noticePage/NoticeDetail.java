@@ -15,11 +15,11 @@ public class NoticeDetail implements Service {
 		
 		NoticeDAO dao = new NoticeDAO();
 		
-		Object data = dao.detail(id);
+		Object dataDetail = dao.detail(id);
 		
-		request.setAttribute("dto", data);
-		request.setAttribute("noticeUrl", "noticeDetail");
-		System.out.println("NoticeDetail execute 실행!!" + data);
+		request.setAttribute("dto", dataDetail);
+		request.setAttribute("noticeUrl", "NoticeDetail");
+		System.out.println("NoticeDetail execute 실행!!" + dataDetail);
 		
 	}
 

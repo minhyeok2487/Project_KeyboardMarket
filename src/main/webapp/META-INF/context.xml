@@ -6,7 +6,7 @@
 		type="javax.sql.DataSource"
 		driverClassName="org.mariadb.jdbc.Driver"
 		url="jdbc:mariadb://34.64.103.198:3306/mts_keyboard"
-		username="root"
-		password="1234"
+		username="Green503"
+		password="Green!"
 	/>
 </Context>
