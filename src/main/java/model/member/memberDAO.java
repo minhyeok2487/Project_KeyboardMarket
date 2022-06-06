@@ -4,12 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import board_p.model_p.BoardDTO;
 
 
 
@@ -30,22 +31,55 @@ public class memberDAO {
 	}
 	
 	public void signUp(memberDTO dto){
-		sql = "insert into board (title, pname, pw, content, upfile, cnt, reg_date) values "
-				+ "(?, ?, ?, ?, ?, 0, sysdate())";
+		memberDTO res = new memberDTO();
+		Date date = new Date();
+		Object birthDay;
 		
+		sql = "insert into member (user_id, user_pw, name, birthdate, gender, email, addr1, addr2, tel, reg_date) values "
+				+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate())";
 		try {
 			ptmt = con.prepareStatement(sql);
-			ptmt.setString(1, dto.title);
-			ptmt.setString(2, dto.pname);
-			ptmt.setString(3, dto.pw);
-			ptmt.setString(4, dto.content);
-			ptmt.setString(5, dto.upfile);
+			ptmt.setString(1, dto.getUser_id());
+			ptmt.setString(2, dto.getUser_pw());
+			ptmt.setString(3, dto.getName());
 			
-			ptmt.executeUpdate();
+			date = dto.getBirthdate();
+			birthDay = new Timestamp(date.getTime());
+			ptmt.setObject(4, birthDay);
+			
+			ptmt.setString(5, dto.getGender());
+			ptmt.setString(6, dto.getEmail());
+			ptmt.setString(7, dto.getAddr1());
+			ptmt.setString(8, dto.getAddr2());
+			ptmt.setString(9, dto.getTel());
+			
+			rs = ptmt.executeQuery();
+			
+			if (rs.next()) {
+				res.setUser_id(rs.getString("user_id"));
+				res.setUser_pw(rs.getString("user_pw"));
+				res.setName(rs.getString("name"));
+				res.setBirthdate(rs.getTimestamp("birthdate"));
+				res.setGender(rs.getString("gender"));
+				res.setEmail(rs.getString("email"));
+				
+				if(rs.getString("addr1")!=null) {				
+					res.setAddr1(rs.getString("addr1"));
+				}
+				
+				if(rs.getString("addr2")!=null) {
+					res.setAddr2(rs.getString("addr2"));
+				}
+				
+				if(rs.getString("tel")!=null) {
+					res.setTel(rs.getString("tel"));
+				}
+			}
 			
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close();
 		}
 	}

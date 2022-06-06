@@ -1,6 +1,5 @@
 package model.memberService;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -29,21 +28,26 @@ public class MemberSignUpReg implements Service{
 			
 			dto.setGender(request.getParameter("gender"));
 			dto.setEmail(request.getParameter("email"));
-			dto.setAddr1(request.getParameter("addr1"));
-			dto.setAddr2(request.getParameter("addr2"));
 			
+			if(request.getParameter("addr1") != null) {
+				dto.setAddr1(request.getParameter("addr1"));
+			}
+			if(request.getParameter("addr2") != null) {
+				dto.setAddr2(request.getParameter("addr2"));
+			}
+			if(request.getParameter("addr1") != null) {
+				dto.setTel(request.getParameter("tel"));
+			}
 			
-			
+			new memberDAO().signUp(dto);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		
-		
-		
-		
-		request.setAttribute("mainUrl", "SignUp");
+		request.setAttribute("msg", "회원가입 성공");
+		request.setAttribute("goUrl", "SignUpReg");
+		request.setAttribute("mainUrl", "alert");
 	}
 }
