@@ -45,7 +45,7 @@
           <ul id="topmenu_list">
               <li><a href="member/Login">LOGIN</a></li>
               <li><a href="member/Join">JOIN</a></li>
-              <li><a href="Detail">Detail</a></li>
+              <li><a href="member/Detail">Detail</a></li>
               <li><a href="member/QnA">Q&A</a></li>
               <li><a href="member/Logout">Logout</a></li>
           </ul>

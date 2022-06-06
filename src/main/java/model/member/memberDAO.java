@@ -115,6 +115,35 @@ public class memberDAO {
 		return dto;
 	}
 	
+	public int modify(memberDTO dto){
+		
+		int res = 0;
+		sql = "update member set user_id = ?, user_pw = ?, name = ?, email = ?, addr1 = ?, addr2 = ?, tel = ? "
+				+ "where memberNo =? ";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			
+			ptmt.setString(1, dto.user_id);
+			ptmt.setString(2, dto.user_pw);
+			ptmt.setString(3, dto.name);
+			ptmt.setString(4, dto.email);
+			ptmt.setString(5, dto.addr1);
+			ptmt.setString(6, dto.addr2);
+			ptmt.setString(7, dto.tel);
+			ptmt.setInt(8, dto.memberNo);
+			
+			// 실행된 갯수만
+			res = ptmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return res;
+	}
+	
 	
 	public void close() {
 		if (rs != null) {
