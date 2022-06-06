@@ -49,7 +49,7 @@
 			<td></td>
 				<td colspan="2" align="center">
 					<input type="reset" value="취소" />
-					<input type="submit" value="수정" />
+					<input type="submit" value="가입" />
 			</td>
 		</tr>
 	</table>
