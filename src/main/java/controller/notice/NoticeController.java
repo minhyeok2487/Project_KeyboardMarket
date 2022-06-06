@@ -51,7 +51,7 @@ public class NoticeController extends HttpServlet {
 		} else if (serviceStr.equals("NoticeDetail")) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/notices/noticeDetail.jsp");
 			dispatcher.forward(request, response);
-		} else if(serviceStr.equals("NoticeInsertReg")) {
+		} else if(serviceStr.equals("noticeInsertForm")) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/notices/noticeInsertForm.jsp");
 			dispatcher.forward(request, response);
 		}

@@ -19,7 +19,7 @@ public class NoticeDetail implements Service {
 		
 		request.setAttribute("dto", dataDetail);
 		request.setAttribute("noticeUrl", "NoticeDetail");
-		System.out.println("NoticeDetail execute 실행!!" + dataDetail);
+//		System.out.println("NoticeDetail execute 실행!!" + dataDetail);
 		
 	}
 

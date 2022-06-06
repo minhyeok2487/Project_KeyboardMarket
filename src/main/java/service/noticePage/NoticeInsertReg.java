@@ -22,7 +22,6 @@ public class NoticeInsertReg implements Service {
 		path = "/Users/shk/Downloads/Web_Project/4th_Project/Project_KeyboardMarket/src/main/webapp/uploadFiles";
 		int size = 10 * 1024 * 1024;
 		MultipartRequest mr = null;
-//		System.out.println("request getContentType : " + request.getContentType());
 		
 		try {
 			mr = new MultipartRequest(request, path, size, "UTF-8", new DefaultFileRenamePolicy());

@@ -4,8 +4,9 @@
 
 <h2>공지사항 작성페이지</h2>
 
-<form action="NoticeInsertReg" method="post" enctype="multipart/form-data">
-
+<form action="NoticeInsertReg" method="post"
+	enctype="multipart/form-data">
+	<input type="hidden" name="pname" value="관리자" />
 	<table border="">
 		<tr>
 			<td>제목</td>
@@ -13,11 +14,12 @@
 		</tr>
 		<tr>
 			<td>작성자</td>
-			<td><input type="text" name="pname" value="관리자" disabled="disabled" /></td>
+			<td><input type="text" value="관리자" disabled="disabled" /></td>
 		</tr>
 		<tr>
 			<td>내용</td>
-			<td><textarea name="content" cols="30" rows="20" placeholder="내용을 입력하세요."></textarea></td>
+			<td><textarea name="content" cols="30" rows="20"
+					placeholder="내용을 입력하세요."></textarea></td>
 		</tr>
 		<tr>
 			<td>파일</td>
