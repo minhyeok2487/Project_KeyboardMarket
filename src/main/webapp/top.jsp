@@ -45,9 +45,15 @@
           <ul id="topmenu_list">
               <li><a href="member/Login">LOGIN</a></li>
               <li><a href="member/Join">JOIN</a></li>
+<<<<<<< Updated upstream
               <li><a href="Detail">Detail</a></li>
               <li><a href="member/QnA">Q&A</a></li>
               <li><a href="Logout">Logout</a></li>
+=======
+              <li><a href="member/SignUp">SignUp</a></li>
+              <li><a href="member/Detail">Detail</a></li>
+              <li><a href="member/Logout">Logout</a></li>
+>>>>>>> Stashed changes
           </ul>
         </nav>
       <form class="d-flex">
