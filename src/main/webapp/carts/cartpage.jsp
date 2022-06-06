@@ -60,7 +60,7 @@ String memberNo = "1";
 					int total = item.getPrice() * item.getSelected_count();
 					sum = sum + total;
 				%>
-				<c:set var="imgthumb" value="<%=item.getItem_imgthumb()%>"/>
+				<c:set var="imgthumb" value="<%=item.getItem_img1()%>"/>
 				<tr>
 					<td><img
 							src="<c:url value="/source/${imgthumb }"/>" alt=""
