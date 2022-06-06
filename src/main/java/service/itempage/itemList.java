@@ -39,7 +39,7 @@ public class itemList implements Service {
 				category.add(item);
 		}
 
-		// 2. 스위치 중복제거
+		// 3. 스위치 중복제거
 		ArrayList<String> BeforeSW = new ArrayList<String>();
 		for (itemDTO item : dto) {
 			if(item.getSwitchs() != null) {
