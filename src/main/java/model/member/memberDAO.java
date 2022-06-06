@@ -119,17 +119,13 @@ public class memberDAO {
 	public int modify(memberDTO dto){
 		
 		int res = 0;
-<<<<<<< Updated upstream
 		sql = "update member set user_id = ?, user_pw = ?, name = ?, email = ?, addr1 = ?, addr2 = ?, tel = ? "
-=======
-		sql = "update board set user_id = ?, user_pw = ?, name = ?, email = ?, addr1 = ?, addr2 = ?, tel = ?  "
->>>>>>> Stashed changes
+
 				+ "where memberNo =? ";
 		
 		try {
 			ptmt = con.prepareStatement(sql);
 			
-<<<<<<< Updated upstream
 			ptmt.setString(1, dto.user_id);
 			ptmt.setString(2, dto.user_pw);
 			ptmt.setString(3, dto.name);
@@ -138,24 +134,7 @@ public class memberDAO {
 			ptmt.setString(6, dto.addr2);
 			ptmt.setString(7, dto.tel);
 			ptmt.setInt(8, dto.memberNo);
-=======
-			ptmt.setString(1, dto.getUser_id());
-			ptmt.setString(2, dto.getUser_pw());
-			ptmt.setString(3, dto.getName());
-			ptmt.setString(4, dto.getEmail());
-			if(dto.getAddr1()!=null) {
-				ptmt.setString(5, dto.getAddr1());
-			}else {
-				ptmt.setString(5, "");
-			}
-			if(dto.getAddr1()!=null) {
-				ptmt.setString(6, dto.getAddr2());
-			}else {
-				ptmt.setString(6, "");
-			}
-			ptmt.setString(7, dto.getTel());
-			ptmt.setInt(8, dto.getMemberNo());
->>>>>>> Stashed changes
+
 			
 			// 실행된 갯수만
 			res = ptmt.executeUpdate();
@@ -167,12 +146,6 @@ public class memberDAO {
 		}
 		return res;
 	}
-	
-<<<<<<< Updated upstream
-=======
-	
-	
->>>>>>> Stashed changes
 	
 	public void close() {
 		if (rs != null) {

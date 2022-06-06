@@ -18,11 +18,6 @@ public class MemberLogout implements Service {
 		
 		session.removeAttribute("inUser");
 		
-<<<<<<< Updated upstream
-		request.setAttribute("mainUrl", "LogoutReg");
-=======
->>>>>>> Stashed changes
-		
 		request.setAttribute("msg", "로그아웃 성공");
 		request.setAttribute("goUrl", "LogoutReg");
 		request.setAttribute("mainUrl", "alert");
