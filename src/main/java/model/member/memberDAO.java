@@ -9,6 +9,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import board_p.model_p.BoardDTO;
+
 
 
 public class memberDAO {
@@ -26,6 +28,28 @@ public class memberDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public void signUp(memberDTO dto){
+		sql = "insert into board (title, pname, pw, content, upfile, cnt, reg_date) values "
+				+ "(?, ?, ?, ?, ?, 0, sysdate())";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setString(1, dto.title);
+			ptmt.setString(2, dto.pname);
+			ptmt.setString(3, dto.pw);
+			ptmt.setString(4, dto.content);
+			ptmt.setString(5, dto.upfile);
+			
+			ptmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+	}
+	
 	
 	public memberDTO memberLogin(memberDTO dto) {
 		memberDTO res = new memberDTO();
