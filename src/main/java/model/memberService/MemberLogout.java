@@ -19,7 +19,7 @@ public class MemberLogout implements Service {
 		
 		session.removeAttribute("inUser");
 		
-		request.setAttribute("mainUrl", "LoginForm");
+		request.setAttribute("mainUrl", "LogoutReg");
 	}
 
 }
