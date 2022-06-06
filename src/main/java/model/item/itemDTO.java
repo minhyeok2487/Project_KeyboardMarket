@@ -7,7 +7,7 @@ public class itemDTO {
 	String item_name, manufacture, category, switchs, spec;
 	Date reg_date;
 	int price, stock, item_sold;
-	String item_img1, item_img2, item_imgthumb;
+	String item_img1, item_img2;
 	
 	public itemDTO() {
 		super();
@@ -88,12 +88,16 @@ public class itemDTO {
 	public void setItem_img2(String item_img2) {
 		this.item_img2 = item_img2;
 	}
-	public String getItem_imgthumb() {
-		return item_imgthumb;
+
+	@Override
+	public String toString() {
+		return "itemDTO [itemNo=" + itemNo + ", item_name=" + item_name + ", manufacture=" + manufacture + ", category="
+				+ category + ", switchs=" + switchs + ", spec=" + spec + ", reg_date=" + reg_date + ", price=" + price
+				+ ", stock=" + stock + ", item_sold=" + item_sold + ", item_img1=" + item_img1 + ", item_img2="
+				+ item_img2 + "]";
 	}
-	public void setItem_imgthumb(String item_imgthumb) {
-		this.item_imgthumb = item_imgthumb;
-	}
+	
+	
 	
 	
 }

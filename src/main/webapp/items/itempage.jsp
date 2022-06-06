@@ -75,8 +75,8 @@
 					</tr>
 					<tr>
 						<th scope="row" style="text-align: center;">종류</th>
-						<c:forEach var="name" items="${type }" varStatus="i">
-							<td><input type="checkbox" name="type" value="${name}"
+						<c:forEach var="name" items="${category }" varStatus="i">
+							<td><input type="checkbox" name="category" value="${name}"
 								onclick='getCheckboxValue(event)'> ${name}</td>
 						</c:forEach>
 					</tr>
@@ -122,7 +122,7 @@
 					<c:if test="${name.item_name != null}">
 						<tr>
 							<th><a href="itemdetail?id=${name.itemNo}"><img
-								src="<c:url value="/source/${name.item_imgthumb }"/>" alt=""
+								src="<c:url value="/source/${name.item_img1 }"/>" alt=""
 								width=150 height=150 /></a></th>
 							<td>
 								<p>[상품번호:${name.itemNo }]</p>
@@ -147,7 +147,7 @@
 	</script>
 	<script>
 		var mflist = [];
-		var typelist = [];
+		var categorylist = [];
 		var swlist = [];
 		var result = "";
 		function getCheckboxValue(event) {
@@ -155,8 +155,8 @@
 				if (event.target.name === "manufactor") {
 					mflist.push(event.target.value);
 				}
-				if (event.target.name === "type") {
-					typelist.push(event.target.value);
+				if (event.target.name === "category") {
+					categorylist.push(event.target.value);
 				}
 				if (event.target.name === "sw") {
 					swlist.push(event.target.value);
@@ -170,10 +170,10 @@
 						}
 					}
 				}
-				if (event.target.name === "type") {
+				if (event.target.name === "category") {
 					for (var i = 0; i < typelist.length; i++) {
-						if (typelist[i] === event.target.value) {
-							typelist.splice(i, 1);
+						if (categorylist[i] === event.target.value) {
+							categorylist.splice(i, 1);
 							i--;
 						}
 					}
@@ -191,7 +191,7 @@
 			mflist.forEach(function(item, index, array) {
 				result += item + ", ";
 			});
-			typelist.forEach(function(item, index, array) {
+			categorylist.forEach(function(item, index, array) {
 				result += item + ", ";
 			});
 			swlist.forEach(function(item, index, array) {

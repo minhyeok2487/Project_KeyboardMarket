@@ -48,7 +48,6 @@ public class itemDAO {
 				dto.setReg_date(rs.getDate("reg_date"));
 				dto.setItem_img1(rs.getString("item_img1"));
 				dto.setItem_img2(rs.getString("item_img2"));
-				dto.setItem_imgthumb(rs.getString("item_imgthumb"));
 				dto.setItem_sold(rs.getInt("item_sold"));
 				res.add(dto);
 			}
@@ -79,7 +78,6 @@ public class itemDAO {
 				dto.setReg_date(rs.getDate("reg_date"));
 				dto.setItem_img1(rs.getString("item_img1"));
 				dto.setItem_img2(rs.getString("item_img2"));
-				dto.setItem_imgthumb(rs.getString("item_imgthumb"));
 				dto.setItem_sold(rs.getInt("item_sold"));
 			}
 		} catch (Exception e) {

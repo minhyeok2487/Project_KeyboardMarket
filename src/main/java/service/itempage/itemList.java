@@ -9,43 +9,63 @@ import controller.Service;
 import model.item.itemDAO;
 import model.item.itemDTO;
 
-public class itemList implements Service{
-	
+public class itemList implements Service {
+
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
+		itemDAO dao = new itemDAO();
+		ArrayList<itemDTO> dto = dao.list();
+
+		// 1. 제조사 리스트 중복제거
+		ArrayList<String> BeforeMF = new ArrayList<String>();
+		for (itemDTO item : dto) {
+			BeforeMF.add(item.getManufacture());
+		}
+
 		ArrayList<String> manufactor = new ArrayList<String>();
-		manufactor.add("CJ ENM");
-		manufactor.add("LEOPOLD");
-		manufactor.add("CORSAIR");
-		
-		ArrayList<String> type = new ArrayList<String>();
-		type.add("기계식");
-		type.add("멤브레인");
-		type.add("펜터그래프");
-		type.add("플런저");
+		for (String item : BeforeMF) {
+			if (!manufactor.contains(item))
+				manufactor.add(item);
+		}
+
+		// 2. 카테고리 중복제거
+		ArrayList<String> BeforeCG = new ArrayList<String>();
+		for (itemDTO item : dto) {
+			BeforeCG.add(item.getCategory());
+		}
+		ArrayList<String> category = new ArrayList<String>();
+		for (String item : BeforeCG) {
+			if (!category.contains(item))
+				category.add(item);
+		}
+
+		// 2. 스위치 중복제거
+		ArrayList<String> BeforeSW = new ArrayList<String>();
+		for (itemDTO item : dto) {
+			if(item.getSwitchs() != null) {
+				BeforeSW.add(item.getSwitchs());
+			}
+		}
 		
 		ArrayList<String> sw = new ArrayList<String>();
-		sw.add("카일");
-		sw.add("체리");
-		sw.add("오테뮤");
-		sw.add("게이트론");
+		for (String item : BeforeSW) {
+			if (!sw.contains(item))
+				sw.add(item);
+		}
+
 		
+
 		ArrayList<String> priceLange = new ArrayList<String>();
 		priceLange.add("1~5만원");
 		priceLange.add("5~10만원");
 		priceLange.add("10~20만원");
 		priceLange.add("20만원~");
-		
-		itemDAO dao = new itemDAO();
-		ArrayList<itemDTO> dto = dao.list();
-		
+
 		request.setAttribute("manufactor", manufactor);
-		request.setAttribute("type", type);
+		request.setAttribute("category", category);
 		request.setAttribute("sw", sw);
 		request.setAttribute("priceLange", priceLange);
 		request.setAttribute("dto", dto);
 
-		
 	}
 }
-
