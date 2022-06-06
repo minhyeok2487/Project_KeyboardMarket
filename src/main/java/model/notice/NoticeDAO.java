@@ -98,11 +98,12 @@ public class NoticeDAO {
 
 	public void insert(NoticeDTO dto) {
 
-		sql = "insert into notice(subject, pname, content, upfile, hits, reg_date) values (?, '관리자', ?, ?, 0, NOW())";
+		sql = "insert into notice(subject, pname, content, upfile, hits, reg_date) values (?, ?, ?, ?, 0, now())";
 
 		try {
 			ptmt = con.prepareStatement(sql);
 			ptmt.setString(1, dto.subject);
+			ptmt.setString(2, dto.pname);
 			ptmt.setString(3, dto.content);
 			ptmt.setString(4, dto.upfile);
 			ptmt.executeUpdate();

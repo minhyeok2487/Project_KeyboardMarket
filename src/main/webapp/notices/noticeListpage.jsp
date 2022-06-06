@@ -28,7 +28,7 @@
 			</tr>
 		</c:forEach>
 		<tr>
-			<td colspan="5" align="right"><a href="NoticeInsertReg">글쓰기</a></td>
+			<td colspan="5" align="right"><a href="noticeInsertForm">글쓰기</a></td>
 		</tr>
 	</table>
 		<tr>
