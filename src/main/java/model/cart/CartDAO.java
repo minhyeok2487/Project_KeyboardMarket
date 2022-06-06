@@ -134,9 +134,7 @@ public class CartDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			close();
-		}
+		} 
 		return res;
 	}
 

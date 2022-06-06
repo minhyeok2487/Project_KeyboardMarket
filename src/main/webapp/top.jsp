@@ -40,6 +40,9 @@
         <li class="nav-item">
           <a href="/Project_KeyboardMarket/itemPages/itemList#">스마트 검색</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="cart/Cartview?reg=view">장바구니</a>
+        </li>
       </ul>
        <nav id="topmenu">
           <ul id="topmenu_list">

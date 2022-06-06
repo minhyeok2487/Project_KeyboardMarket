@@ -23,7 +23,7 @@ public class RemoveItem implements Service{
 		
 		// 장바구니에 데이터가 있는지 확인(있으면 true)
 		if(dao.CheckMemberCart(memberNo)) { //있으면 장바구니 비우기
-			dao.delCart(memberNo);
+			dao.removeitem(memberNo,itemNo);
 		} else { //없으면 넘어감
 			
 		}

@@ -14,7 +14,8 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 <%
-String memberNo = "1";
+	String memberNo = "1";
+	request.setCharacterEncoding("UTF-8");
 %>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"
 	integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
@@ -89,32 +90,39 @@ String memberNo = "1";
 	</div>
 
 	<div class="container">
-		<div class="form-group row">
-			<label class="col-sm-2">주문자 이름</label>
-			<div class="col-sm-3">${memberNo.name }</div>
-		</div>
-		<div class="form-group row">
-			<label class="col-sm-2">주문자 전화번호</label>
-			<div class="col-sm-3">${memberNo.tel }</div>
-		</div>
-		<div>
-			<label class="col-sm-2">주문자 주소</label><br> <input type="text"
-				id="sample4_postcode" placeholder="우편번호"> <input
-				type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-			<input type="text" id="sample4_roadAddress" placeholder="도로명주소">
-			<input type="text" id="sample4_jibunAddress" placeholder="지번주소"><br>
-			<span id="guide" style="color: #999; display: none"></span> <input
-				type="text" id="sample4_detailAddress" placeholder="상세주소"> <input
-				type="text" id="sample4_extraAddress" placeholder="참고항목">
-		</div>
+		<form name="frm" action="../cart/OrderEnd" method="post">
+			<input type="hidden" name="memberNo" value="${memberNo.memberNo }">
+			<input type="hidden" name="ordered_num" value="${order_num}">
+			<div class="form-group row">
+				<label class="col-sm-2">주문자 이름</label>
+				<div class="col-sm-3">${memberNo.name }</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2">주문자 전화번호</label>
+				<div class="col-sm-3">${memberNo.tel }</div>
+			</div>
+			<div>
+				<label class="col-sm-2">주문자 주소</label><br> <input type="text"
+					id="sample4_postcode" disabled="disabled" placeholder="우편번호">
+				<input type="button" onclick="sample4_execDaumPostcode()"
+					value="우편번호 찾기"><br> <input type="text"
+					id="sample4_roadAddress" name="addr1" placeholder="도로명주소">
+				<input type="text" id="sample4_jibunAddress" placeholder="지번주소"><br>
+				<input type="text" id="sample4_detailAddress" name="addr2"
+					placeholder="상세주소"> <input type="text"
+					id="sample4_extraAddress" placeholder="참고항목">
+			</div>
+		</form>
 		<div class="form-group row">
 			<div class="col-sm-offset-2 col-sm-10 ">
 				<a href="./cart.jsp?memberNo=<%=request.getParameter("memberNo")%>"
-					class="btn btn-secondary" role="button">이전</a> 
+					class="btn btn-secondary" role="button">이전</a>
 				<button onclick="requestPay()" class="btn btn_primary">결제하기</button>
-				<a href="./checkOutCancelled.jsp" class="btn btn-secondary" role="button">취소</a>
+				<a href="./checkOutCancelled.jsp" class="btn btn-secondary"
+					role="button">취소</a>
 			</div>
 		</div>
+
 	</div>
 
 
@@ -190,28 +198,34 @@ String memberNo = "1";
 		}
 	</script>
 	<script>
+		var order_num = "MTS"+${merchant };
 		function requestPay() {
-			IMP.init('imp49092937');
-			IMP.request_pay({ // param
-				pg : "inicis",
-				pay_method : "card",
-				merchant_uid : "MTS"+${order_num},//주문번호
-				name : "상품명",
-				amount : 100,//금액
-				buyer_email : "gildong@gmail.com",
-				buyer_name : "홍길동",
-				buyer_tel : "010-4242-4242",
-				buyer_addr : "서울특별시 강남구 신사동",
-				buyer_postcode : "01181"
-			}, function(rsp) { // callback
-				if (rsp.success) {
-					// 결제 성공 시 로직
-					alert("완료");
-				} else {
-					// 결제 실패 시 로직,
-					alert("실패");
-				}
-			});
+			if(document.getElementById('sample4_postcode').value != ""){
+				IMP.init('imp49092937');
+				IMP.request_pay({ // param
+						pg : "inicis",
+						pay_method : "card",
+						merchant_uid : order_num,//주문번호
+						name : "상품명",
+						amount : 100,//금액 일단 고정
+						buyer_email : "gildong@gmail.com",
+						buyer_name : "홍길동",
+						buyer_tel : "010-4242-4242",
+						buyer_addr : document.getElementById("sample4_roadAddress").value,
+						buyer_postcode : "01181"
+					}, function(rsp) { // callback
+						if (rsp.success) {
+							// 결제 성공 시 로직
+							document.frm.submit();
+						} else {
+							// 결제 실패 시 로직,
+							alert("실패");
+						}
+					});
+			} else {
+				alert("우편번호를 입력해주십시오");
+			}
+			
 		}
 	</script>
 
