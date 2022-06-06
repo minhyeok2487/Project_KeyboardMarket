@@ -20,7 +20,7 @@ public class MemberModifyForm implements Service {
 
 		
 		memberDTO dto = new memberDTO();
-
+		
 		dto.setMemberNo(Integer.parseInt(request.getParameter("memberNo")));
 		dto.setUser_id(request.getParameter("user_id"));
 		dto.setUser_pw(request.getParameter("user_pw"));
@@ -38,6 +38,7 @@ public class MemberModifyForm implements Service {
 		if(res>0) {
 			msg = "수정성공";
 			goUrl = "ModifyForm";
+
 		}
 		
 		request.setAttribute("msg", msg);
