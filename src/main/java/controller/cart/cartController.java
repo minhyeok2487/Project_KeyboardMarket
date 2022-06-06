@@ -42,6 +42,9 @@ public class cartController extends HttpServlet {
 			}else if(serviceStr.equals("OrderCart")) {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/carts/orderpage.jsp");
 				dispatcher.forward(request, response);
+			}else if(serviceStr.equals("OrderEnd")) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/carts/orderendpage.jsp");
+				dispatcher.forward(request, response);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

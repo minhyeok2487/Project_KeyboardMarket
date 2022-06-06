@@ -22,13 +22,15 @@ public class OrderCart implements Service {
 		
 		Date nowDate = new Date();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyMMddHHmmss");
-		String order_num = simpleDateFormat.format(nowDate);
+		String merchant = simpleDateFormat.format(nowDate);
+		String order_num = "MTS"+merchant;
 		
 		ArrayList<CartDTO> cartList = dao.list(memberNo);
 		memberDTO member = new memberDAO().detail(memberNo);
 		request.setAttribute("cartList", cartList);
 		request.setAttribute("memberNo", member);
 		request.setAttribute("order_num", order_num);
+		request.setAttribute("merchant", merchant);
 
 	}
 }
