@@ -19,6 +19,11 @@ public class Cartview implements Service {
 		String reg = request.getParameter("reg");
 		int memberNo = 1; // 멤버 기본키 로그인시 받아올 예정
 
+		// 장바구니 보기
+		if (reg.equals("view")) {
+
+		}
+
 		// 장바구니 추가일때
 		if (reg.equals("addCart")) {
 			int itemNo = Integer.parseInt(request.getParameter("itemNo"));

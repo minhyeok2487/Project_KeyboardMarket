@@ -7,7 +7,7 @@ public class CartDTO {
 	String item_name, manufacture, category, switchs, spec;
 	String reg_date;
 	int price, stock;
-	String item_img1, item_img2, item_imgthumb;
+	String item_img1, item_img2;
 	int memberNo, itemNo;
 	
 	public int getCartNo() {
@@ -107,22 +107,15 @@ public class CartDTO {
 	public void setItem_img2(String item_img2) {
 		this.item_img2 = item_img2;
 	}
-	public String getItem_imgthumb() {
-		return item_imgthumb;
-	}
-	public void setItem_imgthumb(String item_imgthumb) {
-		this.item_imgthumb = item_imgthumb;
-	}
 
 	@Override
 	public String toString() {
 		return "CartDTO [cartNo=" + cartNo + ", selected_count=" + selected_count + ", item_name=" + item_name
 				+ ", manufacture=" + manufacture + ", category=" + category + ", switchs=" + switchs + ", spec=" + spec
 				+ ", reg_date=" + reg_date + ", price=" + price + ", stock=" + stock + ", item_img1=" + item_img1
-				+ ", item_img2=" + item_img2 + ", item_imgthumb=" + item_imgthumb + ", memberNo=" + memberNo
-				+ ", itemNo=" + itemNo + "]";
+				+ ", item_img2=" + item_img2 + ", memberNo=" + memberNo + ", itemNo=" + itemNo + "]";
 	}
-
+	
 	
 	
 }

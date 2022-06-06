@@ -28,15 +28,15 @@ public class NoticeDAO {
 		}
 	}
 
-	public ArrayList<NoticeDTO> list(int start, int limit) {
+	public ArrayList<NoticeDTO> list() {
 		ArrayList<NoticeDTO> res = new ArrayList<NoticeDTO>();
 
 		sql = "select * from notice order by noticeNo desc";
 
 		try {
 			ptmt = con.prepareStatement(sql);
-			ptmt.setInt(1, start);
-			ptmt.setInt(2, limit);
+//			ptmt.setInt(1, start);
+//			ptmt.setInt(2, limit);
 			rs = ptmt.executeQuery();
 
 			while (rs.next()) {
@@ -44,10 +44,11 @@ public class NoticeDAO {
 
 				dto.setNoticeNo(rs.getInt("noticeNo"));
 				dto.setSubject(rs.getString("subject"));
+				dto.setPname(rs.getString("pname"));
 				dto.setContent(rs.getString("content"));
 				dto.setReg_date(rs.getTimestamp("reg_date"));
 				dto.setHits(rs.getInt("hits"));
-				System.out.println(dto);
+//				System.out.println(dto);
 				res.add(dto);
 			}
 
@@ -60,37 +61,58 @@ public class NoticeDAO {
 		return res;
 
 	}
-	
+
 	public NoticeDTO detail(int no) {
 
 		NoticeDTO dto = null;
-		
+
 		sql = "select * from notice where noticeNo = ?";
-		
+
 		try {
 			ptmt = con.prepareStatement(sql);
 			ptmt.setInt(1, no);
 			rs = ptmt.executeQuery();
-			
+
 			while (rs.next()) {
 				dto = new NoticeDTO();
-				
+
 				dto.setNoticeNo(rs.getInt("noticeNo"));
 				dto.setSubject(rs.getString("subject"));
+				dto.setPname(rs.getString("pname"));
 				dto.setContent(rs.getString("content"));
 				dto.setReg_date(rs.getTimestamp("reg_date"));
 				dto.setHits(rs.getInt("hits"));
-				System.out.println(dto);
+				dto.setUpfile(rs.getString("upfile"));
+//				System.out.println(dto);
 			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+
+		return dto;
+
+	}
+
+	public void insert(NoticeDTO dto) {
+
+		sql = "insert into notice(subject, pname, content, upfile, hits, reg_date) values (?, ?, ?, ?, 0, now())";
+
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setString(1, dto.subject);
+			ptmt.setString(2, dto.pname);
+			ptmt.setString(3, dto.content);
+			ptmt.setString(4, dto.upfile);
+			ptmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close();
 		}
-		
-		return dto;
-		
 	}
 
 	public void close() {

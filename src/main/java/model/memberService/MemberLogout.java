@@ -15,11 +15,12 @@ public class MemberLogout implements Service {
 		
 		memberDTO user = (memberDTO) session.getAttribute("inUser");
 		
-		System.out.println(user.getName()+"님 로그아웃");
 		
 		session.removeAttribute("inUser");
 		
-		request.setAttribute("mainUrl", "LoginForm");
+		request.setAttribute("msg", "로그아웃 성공");
+		request.setAttribute("goUrl", "LogoutReg");
+		request.setAttribute("mainUrl", "alert");
 	}
 
 }

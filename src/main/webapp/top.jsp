@@ -35,25 +35,23 @@
           <a class="nav-link disabled">Disabled</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/Project_KeyboardMarket/notice/NoticeList">공지사항</a>
+          <a class="nav-link active" aria-current="page" href="notice/NoticeList">공지사항</a>
         </li>
         <li class="nav-item">
           <a href="/Project_KeyboardMarket/itemPages/itemList#">스마트 검색</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="cart/Cartview?reg=view">장바구니</a>
         </li>
       </ul>
        <nav id="topmenu">
           <ul id="topmenu_list">
               <li><a href="member/Login">LOGIN</a></li>
               <li><a href="member/Join">JOIN</a></li>
-<<<<<<< Updated upstream
-              <li><a href="Detail">Detail</a></li>
-              <li><a href="member/QnA">Q&A</a></li>
-              <li><a href="Logout">Logout</a></li>
-=======
               <li><a href="member/SignUp">SignUp</a></li>
               <li><a href="member/Detail">Detail</a></li>
               <li><a href="member/Logout">Logout</a></li>
->>>>>>> Stashed changes
+
           </ul>
         </nav>
       <form class="d-flex">

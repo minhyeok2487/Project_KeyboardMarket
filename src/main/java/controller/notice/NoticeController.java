@@ -22,6 +22,7 @@ public class NoticeController extends HttpServlet {
 	public NoticeController() {
 		super();
 		nonClass = new ArrayList<String>();
+		nonClass.add("noticeInsertForm");
 	}
 
 	@Override
@@ -30,7 +31,7 @@ public class NoticeController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		String serviceStr = request.getRequestURI().substring((request.getContextPath() + "/notice/").length());
-//		System.out.println(serviceStr);
+		System.out.println(serviceStr);
 
 		if (nonClass.contains(serviceStr)) {
 			request.setAttribute("noticeUrl", serviceStr);
@@ -44,13 +45,17 @@ public class NoticeController extends HttpServlet {
 			}
 		}
 
-		if (serviceStr.equals("noticeListpage")) {
+		if (serviceStr.equals("NoticeList")) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/notices/noticeListpage.jsp");
 			dispatcher.forward(request, response);
-		} else if (serviceStr.equals("noticeDetail")) {
+		} else if (serviceStr.equals("NoticeDetail")) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/notices/noticeDetail.jsp");
 			dispatcher.forward(request, response);
+		} else if(serviceStr.equals("noticeInsertForm")) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/notices/noticeInsertForm.jsp");
+			dispatcher.forward(request, response);
 		}
+		
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

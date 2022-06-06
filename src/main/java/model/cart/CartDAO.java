@@ -74,7 +74,6 @@ public class CartDAO {
 				cartDTO.setStock(rs.getInt("stock"));
 				cartDTO.setItem_img1(rs.getString("item_img1"));
 				cartDTO.setItem_img2(rs.getString("item_img2"));
-				cartDTO.setItem_imgthumb(rs.getString("item_imgthumb"));
 				cartDTO.setItemNo(index);
 			}
 		} catch (Exception e) {
@@ -85,8 +84,8 @@ public class CartDAO {
 
 	public void insert(CartDTO dto) {
 		sql = "insert into cart (selected_count, item_name, manufacture, category,"
-				+ " switchs, spec,price,stock,reg_date,item_img1,item_img2,item_imgthumb," + "memberNo,itemNo) values "
-				+ "(?, ?, ?, ?, ?,?, ?, ?, ?, ?,?, ?, ?, ? )";
+				+ " switchs, spec,price,stock,reg_date,item_img1,item_img2," + "memberNo,itemNo) values "
+				+ "(?, ?, ?, ?, ?,?, ?, ?, ?, ?,?, ?, ? )";
 		try {
 			ptmt = con.prepareStatement(sql);
 			ptmt.setInt(1, dto.selected_count);
@@ -100,9 +99,8 @@ public class CartDAO {
 			ptmt.setString(9, dto.reg_date);
 			ptmt.setString(10, dto.item_img1);
 			ptmt.setString(11, dto.item_img2);
-			ptmt.setString(12, dto.item_imgthumb);
-			ptmt.setInt(13, dto.memberNo);
-			ptmt.setInt(14, dto.itemNo);
+			ptmt.setInt(12, dto.memberNo);
+			ptmt.setInt(13, dto.itemNo);
 			ptmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -130,16 +128,13 @@ public class CartDAO {
 				dto.setReg_date(rs.getString("reg_date"));
 				dto.setItem_img1(rs.getString("item_img1"));
 				dto.setItem_img2(rs.getString("item_img2"));
-				dto.setItem_imgthumb(rs.getString("item_imgthumb"));
 				dto.setMemberNo(rs.getInt("memberNo"));
 				dto.setItemNo(rs.getInt("itemNo"));
 				res.add(dto);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			close();
-		}
+		} 
 		return res;
 	}
 

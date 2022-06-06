@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class NoticeDTO {
 	int noticeNo, hits;
-	String subject, content;
+	String subject, content, upfile, pname;
 	Date reg_date;
 
 	public int getNoticeNo() {
@@ -47,10 +47,30 @@ public class NoticeDTO {
 		this.reg_date = reg_date;
 	}
 
+
+	public String getPname() {
+		return pname;
+	}
+
+	public void setPname(String pname) {
+		this.pname = pname;
+	}
+
+	public String getUpfile() {
+		if (upfile == null || upfile.trim().equals("") || upfile.trim().equals("null")) {
+			return null;
+		}
+		return upfile;
+	}
+
+	public void setUpfile(String upfile) {
+		this.upfile = upfile;
+	}
+
 	@Override
 	public String toString() {
 		return "NoticeDTO [noticeNo=" + noticeNo + ", hits=" + hits + ", subject=" + subject + ", content=" + content
-				+ ", reg_date=" + reg_date + "]";
+				+ ", upfile=" + upfile + ", pname=" + pname + ", reg_date=" + reg_date + "]";
 	}
 
 }
