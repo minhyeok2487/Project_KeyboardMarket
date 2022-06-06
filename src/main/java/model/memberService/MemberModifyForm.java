@@ -29,16 +29,14 @@ public class MemberModifyForm implements Service {
 		dto.setAddr1(request.getParameter("addr1"));
 		dto.setAddr2(request.getParameter("addr2"));
 		dto.setTel(request.getParameter("tel"));
-
 		
 		int res = new memberDAO().modify(dto);
 		
-		String msg = "수정실패", goUrl = "ModifyForm";
+		String msg = "수정실패", goUrl = "ModifyForm321";
 		
 		if(res>0) {
 			msg = "수정성공";
-			goUrl = "ModifyForm";
-
+			goUrl = "ModifyForm123";
 		}
 		
 		request.setAttribute("msg", msg);

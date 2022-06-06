@@ -4,6 +4,6 @@
 
 <script>
 alert("${msg}");
-location.href = "<c:url value="/member_view/${ goUrl }.jsp"/>";
+location.href = "<c:url value="/member/${ goUrl }.jsp"/>";
 
 </script>
