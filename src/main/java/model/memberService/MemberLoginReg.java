@@ -25,11 +25,10 @@ public class MemberLoginReg implements Service {
 		if(dto != null){
 			session.setAttribute("inUser", dto);
 		}
-		
 
-		System.out.println(dto.getName()+"님 로그인");
-		
-		request.setAttribute("mainUrl", "LoginReg");
+		request.setAttribute("msg", "로그인 성공");
+		request.setAttribute("goUrl", "LoginReg");
+		request.setAttribute("mainUrl", "alert");
 		
 	}
 }

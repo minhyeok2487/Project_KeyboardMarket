@@ -5,22 +5,27 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.Service;
+import model.member.memberDAO;
 import model.member.memberDTO;
 
-public class MemberLogout implements Service {
+public class MemberModifyReg implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		
+
 		memberDTO user = (memberDTO) session.getAttribute("inUser");
 		
+		memberDAO dao = new memberDAO();
 		
-		session.removeAttribute("inUser");
+		int id = user.getMemberNo();
 		
-		request.setAttribute("msg", "로그아웃 성공");
-		request.setAttribute("goUrl", "LogoutReg");
-		request.setAttribute("mainUrl", "alert");
+		// close 하면 detail 에서 접속이안된다.
+		
+		Object data = dao.detail(id);
+		
+		request.setAttribute("dto", data);
+		request.setAttribute("mainUrl", "DetailForm");
 	}
 
 }
