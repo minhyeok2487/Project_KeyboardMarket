@@ -29,7 +29,7 @@ public class MemberLoginReg implements Service {
 
 		System.out.println(dto.getName()+"님 로그인");
 		
-		request.setAttribute("mainUrl", "../top");
+		request.setAttribute("mainUrl", "LoginReg");
 		
 	}
 }
