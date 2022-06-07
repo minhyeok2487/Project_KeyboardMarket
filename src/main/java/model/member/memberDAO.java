@@ -118,6 +118,7 @@ public class memberDAO {
 				}
 				
 				res.setReg_date(rs.getTimestamp("reg_date"));
+				res.setStatus(rs.getString("status"));
 			}
 			
 		} catch (Exception e) {
