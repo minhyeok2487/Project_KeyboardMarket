@@ -26,6 +26,11 @@
 			value="<fmt:formatDate value="${dto.reg_date }" pattern="yyyy-MM-dd HH:mm" />" disabled="disabled">
 	</div>
 	<div class="mb-3">
+		<label for="exampleFormControlInput1" class="form-label">파일</label> <input
+			type="text" class="form-control" id="exampleFormControlInput1"
+			value="${dto.upfile }" disabled="disabled">
+	</div>
+	<div class="mb-3">
 		<label for="exampleFormControlTextarea1" class="form-label">내용</label>
 		<textarea class="form-control" id="exampleFormControlTextarea1"
 			rows="3" disabled="disabled">${dto.content }</textarea>
