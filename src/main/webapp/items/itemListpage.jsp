@@ -153,8 +153,14 @@
 								<p><a href="./itemdetail?id=${name.itemNo}">[${name.manufacture}] ${name.item_name}</a></p>
 							</td>
 							<td>
-								<p>${name.price}원</p>
-								<p>[재고:${name.stock }]</p>
+								<p>${name.price}원</p> <c:choose>
+									<c:when test="${name.stock == 0 }">
+										<p>재고없음</p>
+									</c:when>
+									<c:otherwise>
+										<p>[재고:${name.stock }]</p>
+									</c:otherwise>
+								</c:choose>
 							</td>
 						</tr>
 					</c:if>

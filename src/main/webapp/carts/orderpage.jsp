@@ -101,15 +101,13 @@
 				<div class="col-sm-3">${memberNo.tel }</div>
 			</div>
 			<div>
-				<label class="col-sm-2">주문자 주소</label><br> <input type="text"
-					id="sample4_postcode" disabled="disabled" placeholder="우편번호">
-				<input type="button" onclick="sample4_execDaumPostcode()"
-					value="우편번호 찾기"><br> <input type="text"
-					id="sample4_roadAddress" name="addr1" placeholder="도로명주소">
-				<input type="text" id="sample4_jibunAddress" placeholder="지번주소"><br>
-				<input type="text" id="sample4_detailAddress" name="addr2"
-					placeholder="상세주소"> <input type="text"
-					id="sample4_extraAddress" placeholder="참고항목">
+				<label class="col-sm-2">주문자 주소</label><br> 
+				<input type="text" id="sample4_postcode" disabled="disabled" placeholder="우편번호">
+				<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br> 
+				<input type="text" id="sample4_roadAddress" disabled="disabled" name="addr1" placeholder="도로명주소">
+				<input type="text" id="sample4_jibunAddress" disabled="disabled" placeholder="지번주소"><br>
+				<input type="text" id="sample4_detailAddress" name="addr2" placeholder="상세주소 입력"> 
+				<input type="text" id="sample4_extraAddress" disabled="disabled" placeholder="참고항목">
 			</div>
 		</form>
 		<div class="form-group row">
@@ -173,28 +171,12 @@
 							} else {
 								document.getElementById("sample4_extraAddress").value = '';
 							}
-
-							var guideTextBox = document.getElementById("guide");
-							// 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-							if (data.autoRoadAddress) {
-								var expRoadAddr = data.autoRoadAddress
-										+ extraRoadAddr;
-								guideTextBox.innerHTML = '(예상 도로명 주소 : '
-										+ expRoadAddr + ')';
-								guideTextBox.style.display = 'block';
-
-							} else if (data.autoJibunAddress) {
-								var expJibunAddr = data.autoJibunAddress;
-								guideTextBox.innerHTML = '(예상 지번 주소 : '
-										+ expJibunAddr + ')';
-								guideTextBox.style.display = 'block';
-							} else {
-								guideTextBox.innerHTML = '';
-								guideTextBox.style.display = 'none';
-							}
 						}
-					}).open();
+					}).open({
+						autoClose: true
+					});
 		}
+		
 	</script>
 	<script>
 		Date.prototype.YYYYMMDDHHMMSS = function(){
@@ -219,7 +201,8 @@
 		function requestPay() {
 			var nowDate = new Date();
 			var order_num = "MTS"+ nowDate.YYYYMMDDHHMMSS();
-			if(document.getElementById('sample4_postcode').value != ""){
+			if(document.getElementById('sample4_postcode').value != ""
+					& document.getElementById('sample4_detailAddress').value != ""){
 				IMP.init('imp49092937');
 				IMP.request_pay({ // param
 						pg : "inicis",
