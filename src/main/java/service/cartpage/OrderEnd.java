@@ -45,6 +45,6 @@ public class OrderEnd implements Service {
 		dao.delCart(memberNo); //장바구니 비우기
 		
 		request.setAttribute("cartList", cartList);
-
+		request.setAttribute("mainUrl", "./carts/orderendpage");
 	}
 }

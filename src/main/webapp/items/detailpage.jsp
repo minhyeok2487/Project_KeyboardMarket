@@ -13,7 +13,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="../top.jsp" />
 	<div class="container">
 		<form action="../cart/Cartview?" method="post">
 			<input type="hidden" name="reg"

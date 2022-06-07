@@ -19,7 +19,7 @@ public class itemdetail implements Service{
 		itemDTO dto = dao.Detail(Integer.parseInt(request.getParameter("id")));
 		
 		request.setAttribute("dto", dto);
-
+		request.setAttribute("mainUrl", "./items/detailpage");
 		
 	}
 }

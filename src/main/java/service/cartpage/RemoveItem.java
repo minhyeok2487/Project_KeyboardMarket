@@ -30,6 +30,6 @@ public class RemoveItem implements Service{
 		
 		request.setAttribute("itemNo", itemNo);
 		request.setAttribute("memberNo", memberNo);
-
+		request.setAttribute("mainUrl", "./carts/cartpage");
 	}
 }

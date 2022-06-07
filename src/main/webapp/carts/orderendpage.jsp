@@ -24,7 +24,6 @@ String memberNo = "1";
 <title>주문완료</title>
 </head>
 <body>
-	<jsp:include page="../top.jsp" />
 	<div class="jumbotron">
 		<div class="container">
 			<h1 class="display-3">주문해주셔서 감사합니다</h1>

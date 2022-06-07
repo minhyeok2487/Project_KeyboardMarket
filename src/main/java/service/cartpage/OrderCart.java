@@ -31,6 +31,6 @@ public class OrderCart implements Service {
 		request.setAttribute("memberNo", member);
 		request.setAttribute("order_num", order_num);
 		request.setAttribute("merchant", merchant);
-
+		request.setAttribute("mainUrl", "./carts/orderpage");
 	}
 }

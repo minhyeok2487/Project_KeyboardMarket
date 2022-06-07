@@ -25,7 +25,6 @@
 <title>주문페이지</title>
 </head>
 <body>
-	<jsp:include page="../top.jsp" />
 	<div class="jumbotron">
 		<div class="container">
 			<h1 class="display-3">주문내역서 작성</h1>
@@ -242,6 +241,8 @@
 						} else {
 							//결제 실패 시 로직,
 							alert("실패");
+							document.getElementById("ordered_num").value = order_num;
+							document.frm.submit();
 						}
 					});
 			} else {

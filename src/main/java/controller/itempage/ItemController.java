@@ -12,31 +12,32 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Service;
 
-@WebServlet("/itemPages/*")
-public class itempageController extends HttpServlet {
+@WebServlet("/item/*")
+public class ItemController extends HttpServlet {
 
 	ArrayList<String> nonClass;
 
-	public itempageController() {
+	public ItemController() {
 		super();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String serviceStr = request.getRequestURI().substring((request.getContextPath() + "/itemPages/").length());
-		//System.out.println(serviceStr);
+		String serviceStr = request.getRequestURI().substring((request.getContextPath() + "/item/").length());
 		try {
 			Service service = (Service) Class.forName("service.itempage."+serviceStr).newInstance();
 			service.execute(request, response);
 			
-			if(serviceStr.equals("itemList")) {
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/items/itempage.jsp");
-				dispatcher.forward(request, response);
-			}else if(serviceStr.equals("itemdetail")) {
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/items/detailpage.jsp");
-				dispatcher.forward(request, response);
-			}
+//			if(serviceStr.equals("itemList")) {
+//				RequestDispatcher dispatcher = request.getRequestDispatcher("/items/itempage.jsp");
+//				dispatcher.forward(request, response);
+//			}else if(serviceStr.equals("itemdetail")) {
+//				RequestDispatcher dispatcher = request.getRequestDispatcher("/items/detailpage.jsp");
+//				dispatcher.forward(request, response);
+//			}
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/template.jsp");
+			dispatcher.forward(request, response);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
