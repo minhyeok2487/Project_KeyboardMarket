@@ -46,11 +46,19 @@
       </ul>
        <nav id="topmenu">
           <ul id="topmenu_list">
-              <li><a href="member/Login">LOGIN</a></li>
-              <li><a href="member/Join">JOIN</a></li>
-              <li><a href="member/SignUp">SignUp</a></li>
-              <li><a href="member/Detail">Detail</a></li>
-              <li><a href="member/Logout">Logout</a></li>
+
+          	<%
+          		HttpSession user = request.getSession();
+          		if(user.getAttribute("inUser") == null){ %>
+	              <li><a href="member/Login">LOGIN</a></li>
+	              <li><a href="member/Join">JOIN</a></li>
+	              <li><a href="member/SignUp">SignUp</a></li>
+             	<%}else{ %>
+	              <li><a href="member/Detail">Detail</a></li>
+	              <li><a href="member/Logout">Logout</a></li>
+	              <li><a href="member/Order">Order</a></li>
+				<%} %>
+
 
           </ul>
         </nav>
