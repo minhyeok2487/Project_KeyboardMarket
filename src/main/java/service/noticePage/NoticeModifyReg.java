@@ -27,7 +27,7 @@ public class NoticeModifyReg implements Service {
 
 		int res = new NoticeDAO().modify(dto);
 
-		String msg = "수정이 되지 않았어요 ㅠㅠ", goUrl = "noticeModifyForm?noticeNo=" + dto.getNoticeNo();
+		String msg = "수정 되지 않았어요 ㅠㅠ", goUrl = "noticeModifyForm?noticeNo=" + dto.getNoticeNo();
 
 		if (res > 0) {
 			msg = "수정이 완료되었어요.";
