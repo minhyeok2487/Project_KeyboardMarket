@@ -10,10 +10,31 @@ public class OrderDTO {
 	String name, addr1, addr2, tel;
 	Date reg_date;
 	int itemNo;
+	int select_count;
 	String item_name, manufacture, category, switchs, spec;
 	int price;
 	String item_img1, item_img2;
 	String status;
+	String refund;
+	public String getRefund() {
+		return refund;
+	}
+	public void setRefund(String refund) {
+		this.refund = refund;
+	}
+	public Date getRefund_date() {
+		return refund_date;
+	}
+	public void setRefund_date(Date refund_date) {
+		this.refund_date = refund_date;
+	}
+	public int getSelect_count() {
+		return select_count;
+	}
+	public void setSelect_count(int select_count) {
+		this.select_count = select_count;
+	}
+	Date refund_date;
 	public int getOrderNo() {
 		return orderNo;
 	}
@@ -132,9 +153,13 @@ public class OrderDTO {
 	public String toString() {
 		return "OrderDTO [orderNo=" + orderNo + ", ordered_num=" + ordered_num + ", ordered_date=" + ordered_date
 				+ ", memberNo=" + memberNo + ", name=" + name + ", addr1=" + addr1 + ", addr2=" + addr2 + ", tel=" + tel
-				+ ", reg_date=" + reg_date + ", itemNo=" + itemNo + ", item_name=" + item_name + ", manufacture="
-				+ manufacture + ", category=" + category + ", switchs=" + switchs + ", spec=" + spec + ", price="
-				+ price + ", item_img1=" + item_img1 + ", item_img2=" + item_img2 + ", status=" + status + "]";
+				+ ", reg_date=" + reg_date + ", itemNo=" + itemNo + ", select_count=" + select_count + ", item_name="
+				+ item_name + ", manufacture=" + manufacture + ", category=" + category + ", switchs=" + switchs
+				+ ", spec=" + spec + ", price=" + price + ", item_img1=" + item_img1 + ", item_img2=" + item_img2
+				+ ", status=" + status + ", refund=" + refund + ", refund_date=" + refund_date + "]";
 	}
+	
+
+
 	
 }

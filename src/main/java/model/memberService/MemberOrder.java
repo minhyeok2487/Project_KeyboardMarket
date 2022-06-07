@@ -47,7 +47,6 @@ public class MemberOrder implements Service {
 		
 		request.setAttribute("mainData", data);
 		request.setAttribute("mainUrl", "OrderForm");
-		
 
 		request.setAttribute("start", start);
 		request.setAttribute("pageTotal", pageTotal);

@@ -12,6 +12,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import model.item.itemDTO;
 import model.order.OrderDTO;
 
 
@@ -241,11 +242,33 @@ public class memberDAO {
 				
 				OrderDTO dto = new OrderDTO();
 				
-				dto.setMemberNo(memberNo);
 				dto.setOrderNo(rs.getInt("orderNo"));
 				dto.setOrdered_num(rs.getString("ordered_num"));
+				dto.setOrdered_date(rs.getTimestamp("ordered_date"));
+				dto.setManufacture(rs.getString("manufacture"));
+				dto.setCategory(rs.getString("category"));
+				if(rs.getString("switchs")!=null) {
+					dto.setSwitchs(rs.getString("switchs"));
+				}
+				dto.setSpec(rs.getString("spec"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setSelect_count(rs.getInt("select_count"));
+				dto.setItem_name(rs.getString("item_name"));
+				dto.setReg_date(rs.getTimestamp("reg_date"));
+				dto.setItem_img1(rs.getString("item_img1"));
+				dto.setItem_img2(rs.getString("item_img2"));
+				dto.setMemberNo(memberNo);
 				dto.setName(rs.getString("name"));
-				
+				dto.setAddr1(rs.getString("addr1"));
+				dto.setAddr2(rs.getString("addr2"));
+				dto.setItemNo(rs.getInt("itemNo"));
+				dto.setStatus(rs.getString("status"));
+				if(rs.getString("refund") != null) {
+					dto.setRefund(rs.getString("refund"));
+				}
+				if(rs.getTimestamp("refund_date") != null) {
+					dto.setRefund_date(rs.getTimestamp("refund_date"));
+				}
 				
 				res.add(dto);
 			}
@@ -260,6 +283,7 @@ public class memberDAO {
 		return res;
 	}
 	
+
 	
 	
 	public void close() {
