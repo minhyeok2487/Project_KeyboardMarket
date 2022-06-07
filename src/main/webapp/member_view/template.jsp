@@ -10,7 +10,7 @@
 
 <%-- <jsp:include page="../top.jsp" /> --%>
 <!-- el은 Attribute 에 있는 내용을 가져올 수 있다 -->
-<jsp:include page="${mainUrl }.jsp" />
+<%-- <jsp:include page="${mainUrl }.jsp" /> --%>
 
 <%-- <jsp:include page="../bottom.jsp" /> --%>
 
