@@ -36,7 +36,7 @@ public class NoticeModifyReg implements Service {
 
 		request.setAttribute("msg", msg);
 		request.setAttribute("goUrl", goUrl);
-		request.setAttribute("NoticeUrl", "alert");
+//		request.setAttribute("NoticeUrl", "alert");
 
 	}
 

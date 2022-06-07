@@ -39,3 +39,6 @@
 		<td>${dto.upfile }</td>
 	</tr>
 </table>
+<tr>
+	<td align="right"><a href="NoticeModifyForm?noticeNo=${dto.noticeNo }">수정</a></td>
+</tr>

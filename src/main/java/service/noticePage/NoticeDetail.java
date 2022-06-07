@@ -18,7 +18,7 @@ public class NoticeDetail implements Service {
 		Object dataDetail = dao.detail(id);
 		
 		request.setAttribute("dto", dataDetail);
-		request.setAttribute("noticeUrl", "NoticeDetail");
+//		request.setAttribute("noticeUrl", "NoticeDetail");
 //		System.out.println("NoticeDetail execute 실행!!" + dataDetail);
 		
 	}
