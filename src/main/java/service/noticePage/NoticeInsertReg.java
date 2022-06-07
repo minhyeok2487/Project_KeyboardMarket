@@ -18,8 +18,8 @@ public class NoticeInsertReg implements Service {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		String msg = null;
-		String path = request.getRealPath("items");
-		//path = "/Users/shk/Downloads/Web_Project/4th_Project/Project_KeyboardMarket/src/main/webapp/uploadFiles";
+		String path = request.getRealPath("uploadFiles");
+		path = "/Users/shk/Downloads/Web_Project/4th_Project/Project_KeyboardMarket/src/main/webapp/uploadFiles";
 		int size = 10 * 1024 * 1024;
 		MultipartRequest mr = null;
 		
@@ -30,7 +30,7 @@ public class NoticeInsertReg implements Service {
 			dto.setPname(mr.getParameter("pname"));
 			dto.setContent(mr.getParameter("content"));
 			dto.setUpfile(mr.getFilesystemName("upfile"));
-			msg = "게시글올리기 성공";
+			msg = "공지사항을 작성했어요 :)";
 			new NoticeDAO().insert(dto);
 			System.out.println(dto);
 			
