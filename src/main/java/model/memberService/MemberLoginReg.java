@@ -27,7 +27,7 @@ public class MemberLoginReg implements Service {
 		}
 
 		request.setAttribute("msg", "로그인 성공");
-		request.setAttribute("goUrl", "LoginReg");
+		request.setAttribute("goUrl", "member_view/LoginReg");
 		request.setAttribute("mainUrl", "alert");
 		
 	}
