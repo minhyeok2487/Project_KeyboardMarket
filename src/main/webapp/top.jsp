@@ -1,6 +1,15 @@
+<%@page import="javax.websocket.Session"%>
+<%@page import="model.member.memberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%
+	String userStatus = null;
+	memberDTO dto = (memberDTO) session.getAttribute("inUser");
+	if (dto != null) {
+		userStatus = dto.getStatus();
+	}
+	System.out.println(userStatus);
+%>    
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -43,6 +52,16 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="cart/Cartview?reg=view">장바구니</a>
         </li>
+        <% if(dto != null){
+        	if(userStatus.equals("관리자")){
+        %>
+        	<li class="nav-item">
+          	  <a class="nav-link active" aria-current="page" href="admin/AdMain">관리자 기능</a>
+        	</li>
+        <%}%>
+        <%}%>
+        
+       
       </ul>
        <nav id="topmenu">
           <ul id="topmenu_list">

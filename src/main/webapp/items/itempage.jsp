@@ -11,7 +11,7 @@
 	ArrayList<itemDTO> dtos = (ArrayList<itemDTO>) request.getAttribute("dto");
 	if (request.getParameterValues("manufactor") != null) {
 		SelectMF = request.getParameterValues("manufactor");
-		SelectTY = request.getParameterValues("type");
+		SelectTY = request.getParameterValues("category");
 		for (int i = 0; i < dtos.size(); i++) {
 			boolean res = true;
 			for (String val : SelectMF) {
@@ -26,8 +26,8 @@
 			}
 		}
 	}
-	if (request.getParameterValues("type") != null) {
-		SelectTY = request.getParameterValues("type");
+	if (request.getParameterValues("category") != null) {
+		SelectTY = request.getParameterValues("category");
 		for (int i = 0; i < dtos.size(); i++) {
 			boolean res = true;
 			for (String val : SelectTY) {
@@ -181,7 +181,7 @@
 					}
 				}
 				if (event.target.name === "category") {
-					for (var i = 0; i < typelist.length; i++) {
+					for (var i = 0; i < categorylist.length; i++) {
 						if (categorylist[i] === event.target.value) {
 							categorylist.splice(i, 1);
 							i--;
@@ -214,7 +214,7 @@
 		var mflist = new Array();
 		var typelist = new Array();
 		j = document.getElementsByName("manufactor").length;
-		k = document.getElementsByName("type").length;
+		k = document.getElementsByName("category").length;
 		function check() {
 			for (var i = 0; i < j; i++) {
 				if (document.getElementsByName("manufactor")[i].checked == true) {
@@ -222,8 +222,8 @@
 				}
 			}
 			for (var i = 0; i < k; i++) {
-				if (document.getElementsByName("type")[i].checked == true) {
-					typelist.push(document.getElementsByName("type")[i].value);
+				if (document.getElementsByName("category")[i].checked == true) {
+					categorylist.push(document.getElementsByName("category")[i].value);
 				}
 			}
 			document.frm.submit();

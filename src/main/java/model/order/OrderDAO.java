@@ -31,6 +31,33 @@ public class OrderDAO {
 		}
 	}
 	
+	ArrayList<OrderDTO> res = new ArrayList<OrderDTO>();
+	sql = "select * from order";
+	try {
+		ptmt = con.prepareStatement(sql);
+		rs = ptmt.executeQuery();
+		while(rs.next()) {
+			itemDTO dto = new itemDTO();
+			dto.setItemNo(rs.getInt("itemNo"));
+			dto.setItem_name(rs.getString("item_name"));
+			dto.setManufacture(rs.getString("manufacture"));
+			dto.setCategory(rs.getString("category"));
+			dto.setSwitchs(rs.getString("switchs"));
+			dto.setSpec(rs.getString("spec"));
+			dto.setPrice(rs.getInt("price"));
+			dto.setStock(rs.getInt("stock"));
+			dto.setReg_date(rs.getDate("reg_date"));
+			dto.setItem_img1(rs.getString("item_img1"));
+			dto.setItem_img2(rs.getString("item_img2"));
+			dto.setItem_sold(rs.getInt("item_sold"));
+			res.add(dto);
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		close();
+	}
+	return res;
 	
 	public void addOrder(String ordered_num, String merchant, memberDTO member,  String addr1, String addr2, CartDTO cartDTO){
 		sql = "insert into orders (ordered_num, ordered_date, category, switchs, "
@@ -84,4 +111,7 @@ public class OrderDAO {
 			}
 		}
 	}
+
+
+	
 }
