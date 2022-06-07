@@ -19,7 +19,6 @@ String memberNo = "1";
 <title>장바구니</title>
 </head>
 <body>
-	<jsp:include page="../top.jsp" />
 	<div class="jumbotron">
 		<div class="container">
 			<h1 class="display-3">장바구니</h1>
@@ -85,7 +84,7 @@ String memberNo = "1";
 				</tr>
 			</table>
 			</form>
-			<a href="../itemPages/itemList#" class="btn btn-secondary">&laquo; 쇼핑 계속하기</a>
+			<a href="../item/itemList" class="btn btn-secondary">&laquo; 쇼핑 계속하기</a>
 		</div>
 		<hr>
 	</div>

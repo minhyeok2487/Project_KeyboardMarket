@@ -24,10 +24,10 @@
           <a class="nav-link active" aria-current="page" href="../notice/NoticeList">공지사항</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/Project_KeyboardMarket/itemPages/itemList#">스마트 검색</a>
+          <a class="nav-link active" aria-current="page" href="../item/itemList">스마트 검색</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="cart/Cartview?reg=view">장바구니</a>
+          <a class="nav-link active" aria-current="page" href="../cart/Cartview?reg=view">장바구니</a>
         </li>
         <% if(dto != null){
         	if(userStatus.equals("관리자")){

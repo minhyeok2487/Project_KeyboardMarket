@@ -87,6 +87,6 @@ public class itemList implements Service {
 		request.setAttribute("priceLange", priceLange);
 		request.setAttribute("dto", dto);
 		request.setAttribute("Count", Count);
-
+		request.setAttribute("mainUrl", "./items/itemListpage");
 	}
 }

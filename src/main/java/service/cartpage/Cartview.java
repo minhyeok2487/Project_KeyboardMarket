@@ -54,6 +54,6 @@ public class Cartview implements Service {
 		ArrayList<CartDTO> cartList = dao.list(memberNo);
 		// System.out.println(cartList.size());
 		request.setAttribute("cartList", cartList);
-
+		request.setAttribute("mainUrl", "./carts/cartpage");
 	}
 }

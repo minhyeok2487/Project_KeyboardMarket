@@ -57,7 +57,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="../top.jsp" />
 	<div class="container">
 		<form name="frm" action="?" method="get">
 			<table class="table">
@@ -131,12 +130,12 @@
 				<c:forEach var="name" items="${dto }" varStatus="i">
 					<c:if test="${name.item_name != null}">
 						<tr>
-							<th><a href="itemdetail?id=${name.itemNo}"><img
+							<th><a href="./itemdetail?id=${name.itemNo}"><img
 								src="<c:url value="/source/${name.item_img1 }"/>" alt=""
 								width=150 height=150 /></a></th>
 							<td>
 								<p>[상품번호:${name.itemNo }]</p>
-								<p><a href="itemdetail?id=${name.itemNo}">[${name.manufacture}] ${name.item_name}</a></p>
+								<p><a href="./itemdetail?id=${name.itemNo}">[${name.manufacture}] ${name.item_name}</a></p>
 							</td>
 							<td>
 								<p>${name.price}원</p>

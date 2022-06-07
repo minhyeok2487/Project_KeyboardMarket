@@ -30,6 +30,6 @@ public class DeleteCart implements Service{
 		
 		request.setAttribute("msg", msg);
 		request.setAttribute("memberNo", memberNo);
-
+		request.setAttribute("mainUrl", "./carts/cartpage");
 	}
 }
