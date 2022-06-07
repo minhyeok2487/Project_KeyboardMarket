@@ -20,7 +20,7 @@
 			<tr>
 				<td>${dto.noticeNo + 1}</td>
 				<td><a
-					href="<c:url value="NoticeDetail?noticeNo=${dto.noticeNo }"/>">${dto.subject }</a></td>
+					href="<c:url value="./NoticeDetail?noticeNo=${dto.noticeNo }"/>">${dto.subject }</a></td>
 				<td>${dto.pname }</td>
 				<td><fmt:formatDate value="${dto.reg_date }"
 						pattern="yyyy-MM-dd HH:mm" /></td>
@@ -28,7 +28,7 @@
 			</tr>
 		</c:forEach>
 		<tr>
-			<td colspan="5" align="right"><a href="noticeInsertForm">글쓰기</a></td>
+			<td colspan="5" align="right"><a href="./noticeInsertpage">글쓰기</a></td>
 		</tr>
 	</table>
 		<tr>

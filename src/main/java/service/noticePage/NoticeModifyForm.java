@@ -17,7 +17,7 @@ public class NoticeModifyForm implements Service{
 		Object dataDetail = dao.detail(no);
 		
 		request.setAttribute("dto", dataDetail);
-		request.setAttribute("noticeUrl", "NoticeModifyForm");
+		request.setAttribute("mainUrl", "./notices/noticeModifypage");
 		
 	}
 

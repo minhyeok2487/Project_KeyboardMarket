@@ -19,79 +19,70 @@ import controller.Service;
 @WebServlet("/member/*")
 public class M_Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	    
-	 /**
-	  * @see HttpServlet#HttpServlet()
-	  */
-	
-	ArrayList<String> nonClass;
-	
-	public M_Controller() {
-		super();
-        nonClass = new ArrayList<String>();
-	}
-	
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
+	 */
+
+	ArrayList<String> nonClass;
+
+	public M_Controller() {
+		super();
+		nonClass = new ArrayList<String>();
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		
-		
-		String serviceStr = request.getRequestURI().substring(
-				(request.getContextPath()+"/member/").length()
-				);
-		
-		
-		
-		if(nonClass.contains(serviceStr)) {
+
+		String serviceStr = request.getRequestURI().substring((request.getContextPath() + "/member/").length());
+
+		if (nonClass.contains(serviceStr)) {
 			request.setAttribute("mainUrl", serviceStr);
-		}else {
+		} else {
 			try {
-				Service service = (Service) Class.forName("model.memberService.Member"+serviceStr).newInstance();
+				Service service = (Service) Class.forName("model.memberService.Member" + serviceStr).newInstance();
 				service.execute(request, response);
-				
+
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} 
+			}
 		}
-		
+
 		// 포워딩의 액션태그 기능을 쓰기위한 사전작업 앞에 / 안붙이면 무한루프돌음
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/member_view/template.jsp");
 		dispatcher.forward(request, response);
 	}
-	
+
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		
-		
-		String serviceStr = request.getRequestURI().substring(
-				(request.getContextPath()+"/member/").length()
-				);
-		
-		
-		
-		if(nonClass.contains(serviceStr)) {
+
+		String serviceStr = request.getRequestURI().substring((request.getContextPath() + "/member/").length());
+
+		if (nonClass.contains(serviceStr)) {
 			request.setAttribute("mainUrl", serviceStr);
-		}else {
+		} else {
 			try {
-				Service service = (Service) Class.forName("model.memberService.Member"+serviceStr).newInstance();
+				Service service = (Service) Class.forName("model.memberService.Member" + serviceStr).newInstance();
 				service.execute(request, response);
-				
+
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} 
+			}
 		}
-		
+
 		// 포워딩의 액션태그 기능을 쓰기위한 사전작업 앞에 / 안붙이면 무한루프돌음
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/member_view/template.jsp");
 		dispatcher.forward(request, response);
 	}
-	
+
 }

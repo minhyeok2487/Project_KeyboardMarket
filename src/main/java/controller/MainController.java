@@ -1,4 +1,4 @@
-package controller.notice;
+package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,20 +10,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controller.Service;
-
-@WebServlet("/notice/*")
-public class NoticeController extends HttpServlet {
-
+@WebServlet("/mainpage/*")
+public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	ArrayList<String> nonClass;
 
-	public NoticeController() {
+	public MainController() {
 		super();
 		nonClass = new ArrayList<String>();
-		nonClass.add("noticeInsertpage");
-//		nonClass.add("noticeModifyForm");
+		nonClass.add("pages");
 	}
 
 	@Override
@@ -31,26 +27,28 @@ public class NoticeController extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 
-		String serviceStr = request.getRequestURI().substring((request.getContextPath() + "/notice/").length());
-
+		String serviceStr = request.getRequestURI().substring((request.getContextPath() + "/mainpage/").length());
+		System.out.println(serviceStr);
 		if (nonClass.contains(serviceStr)) {
-			request.setAttribute("mainUrl", "./notices/"+serviceStr);
+			request.setAttribute("mainUrl", "/main/"+serviceStr);
 		} else {
 			try {
-				Service service = (Service) Class.forName("service.noticePage." + serviceStr).newInstance();
+				Service service = (Service) Class.forName("model.mainService.Main" + serviceStr).newInstance();
 				service.execute(request, response);
 			} catch (Exception e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/template.jsp");
 		dispatcher.forward(request, response);
-		
 	}
+
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		doGet(req, resp);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
 	}
 
 }
