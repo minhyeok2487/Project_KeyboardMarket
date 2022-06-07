@@ -5,66 +5,64 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-	request.setCharacterEncoding("UTF-8");
-	String prices = request.getParameter("price");
-	pageContext.setAttribute("prices", prices);
-	System.out.println(prices);
-	String[] SelectMF = null;
-	String[] SelectTY = null;
-	String[] SelectSW = null;
-	ArrayList<itemDTO> dtos = (ArrayList<itemDTO>) request.getAttribute("dto");
-	if (request.getParameterValues("manufactor") != null) {
-		SelectMF = request.getParameterValues("manufactor");
-		for (int i = 0; i < dtos.size(); i++) {
-			boolean res = true;
-			for (String val : SelectMF) {
-				val = val.toUpperCase();
-				if (val.equals(dtos.get(i).getManufacture().toUpperCase())) {
-					res = false;
-					break;
-				}
-			}
-			if(res){
-				dtos.get(i).setItem_name(null);
-			}
+request.setCharacterEncoding("UTF-8");
+String prices = request.getParameter("price");
+pageContext.setAttribute("prices", prices);
+System.out.println(prices);
+String[] SelectMF = null;
+String[] SelectTY = null;
+String[] SelectSW = null;
+ArrayList<itemDTO> dtos = (ArrayList<itemDTO>) request.getAttribute("dto");
+if (request.getParameterValues("manufactor") != null) {
+	SelectMF = request.getParameterValues("manufactor");
+	for (int i = 0; i < dtos.size(); i++) {
+		boolean res = true;
+		for (String val : SelectMF) {
+	val = val.toUpperCase();
+	if (val.equals(dtos.get(i).getManufacture().toUpperCase())) {
+		res = false;
+		break;
+	}
+		}
+		if (res) {
+	dtos.get(i).setItem_name(null);
 		}
 	}
-	if (request.getParameterValues("category") != null) {
-		SelectTY = request.getParameterValues("category");
-		for (int i = 0; i < dtos.size(); i++) {
-			boolean res = true;
-			for (String val : SelectTY) {
-				val = val.toUpperCase();
-				if (val.equals(dtos.get(i).getCategory().toUpperCase())) {
-					res = false;
-					break;
-				}
-			}
-			if(res){
-				dtos.get(i).setItem_name(null);
-			}
+}
+if (request.getParameterValues("category") != null) {
+	SelectTY = request.getParameterValues("category");
+	for (int i = 0; i < dtos.size(); i++) {
+		boolean res = true;
+		for (String val : SelectTY) {
+	val = val.toUpperCase();
+	if (val.equals(dtos.get(i).getCategory().toUpperCase())) {
+		res = false;
+		break;
+	}
+		}
+		if (res) {
+	dtos.get(i).setItem_name(null);
 		}
 	}
-	if (request.getParameterValues("sw") != null) {
-		SelectSW = request.getParameterValues("sw");
-		for (int i = 0; i < dtos.size(); i++) {
-			boolean res = true;
-			for (String val : SelectSW) {
-				val = val.toUpperCase();
-				if(dtos.get(i).getSwitchs() != null){
-					if (val.equals(dtos.get(i).getSwitchs().toUpperCase())) {
-						res = false;
-						break;
-					}
-				}
-			}
-			if(res){
-				dtos.get(i).setItem_name(null);
-			}
+}
+if (request.getParameterValues("sw") != null) {
+	SelectSW = request.getParameterValues("sw");
+	for (int i = 0; i < dtos.size(); i++) {
+		boolean res = true;
+		for (String val : SelectSW) {
+	val = val.toUpperCase();
+	if (dtos.get(i).getSwitchs() != null) {
+		if (val.equals(dtos.get(i).getSwitchs().toUpperCase())) {
+			res = false;
+			break;
 		}
 	}
-	
-	
+		}
+		if (res) {
+	dtos.get(i).setItem_name(null);
+		}
+	}
+}
 %>
 <!DOCTYPE html>
 <html>
@@ -91,48 +89,48 @@
 					<tr>
 						<th scope="row" style="text-align: center;">제조사</th>
 						<c:forEach var="name" items="${manufactor }" varStatus="i">
-							<td>
-							<c:set target="${Count}" property="name" value="${name }"/>
-							<input type="checkbox" name="manufactor" value="${name}"
-								onclick='getCheckboxValue(event)'> ${name} (${Count.get(name) })
-							</td>
+							<td><c:set target="${Count}" property="name"
+									value="${name }" /> <input type="checkbox" name="manufactor"
+								value="${name}" onclick='getCheckboxValue(event)'>
+								${name} (${Count.get(name) })</td>
 						</c:forEach>
 						<td></td>
 					</tr>
 					<tr>
 						<th scope="row" style="text-align: center;">종류</th>
 						<c:forEach var="name" items="${category }" varStatus="i">
-							<td> <c:set target="${Count}" property="name" value="${name }"/>
-							<input type="checkbox" name="category" value="${name}"
-								onclick='getCheckboxValue(event)'> ${name} (${Count.get(name) })
-							</td>
+							<td><c:set target="${Count}" property="name"
+									value="${name }" /> <input type="checkbox" name="category"
+								value="${name}" onclick='getCheckboxValue(event)'>
+								${name} (${Count.get(name) })</td>
 						</c:forEach>
 					</tr>
 					<tr>
 						<th scope="row" style="text-align: center;">스위치</th>
 						<c:forEach var="name" items="${sw }" varStatus="i">
-							<td> <c:set target="${Count}" property="name" value="${name }"/>
-							<input type="checkbox" name="sw" value="${name}"
-								onclick='getCheckboxValue(event)'> ${name} (${Count.get(name) })
-							</td>
+							<td><c:set target="${Count}" property="name"
+									value="${name }" /> <input type="checkbox" name="sw"
+								value="${name}" onclick='getCheckboxValue(event)'>
+								${name} (${Count.get(name) })</td>
 						</c:forEach>
 					</tr>
 					<tr>
 						<th scope="row" style="text-align: center;">가격대</th>
 						<td colspan="4">
-							<button type="button" id="pricebtn"
-								class="btn btn-outline-dark">전체</button>
+							<button type="button" id="pricebtn" class="btn btn-outline-dark">전체</button>
 							<c:forEach var="name" items="${priceLange }" varStatus="i">
 								<c:choose>
 									<c:when test="${name == prices }">
-										<button type="button" id="pricebtn" class="btn btn-outline-dark active">${name}</button>
+										<button type="button" id="pricebtn"
+											class="btn btn-outline-dark active">${name}</button>
 									</c:when>
 									<c:otherwise>
-										<button type="button" id="pricebtn" class="btn btn-outline-dark" 
-										onclick='location.href="../item/itemDetailList?price=${name}";'>${name}</button>
+										<button type="button" id="pricebtn"
+											class="btn btn-outline-dark"
+											onclick='location.href="../item/itemDetailList?price=${name}";'>${name}</button>
 									</c:otherwise>
 								</c:choose>
-								
+
 							</c:forEach>
 						</td>
 					</tr>
@@ -142,9 +140,8 @@
 						<td><button type="button" id="Submit"
 								class="btn btn-outline-primary" onclick='check()'>상세검색</button>
 						</td>
-						<td><button type="button"
-								class="btn btn-outline-primary" onclick='location.href="../item/itemList";'>필터 초기화</button>
-						</td>
+						<td><button type="button" class="btn btn-outline-primary"
+								onclick='location.href="../item/itemList";'>필터 초기화</button></td>
 					</tr>
 				</tbody>
 			</table>
@@ -157,16 +154,26 @@
 					<c:if test="${name.item_name != null}">
 						<tr>
 							<th><a href="./itemdetail?id=${name.itemNo}"><img
-								src="<c:url value="/source/${name.item_img1 }"/>" alt=""
-								width=150 height=150 /></a></th>
+									src="<c:url value="/source/${name.item_img1 }"/>" alt=""
+									width=150 height=150 /></a></th>
 							<td>
 								<p>[상품번호:${name.itemNo }]</p>
-								<p><a href="./itemdetail?id=${name.itemNo}">[${name.manufacture}] ${name.item_name}</a></p>
+								<p>
+									<a href="./itemdetail?id=${name.itemNo}">[${name.manufacture}]
+										${name.item_name}</a>
+								</p>
 							</td>
 							<td>
-								<p>${name.price}원</p>
-								<p>[재고:${name.stock }]</p>
+								<p>${name.price}원</p> <c:choose>
+									<c:when test="${name.stock == 0 }">
+										<p>재고없음</p>
+									</c:when>
+									<c:otherwise>
+										<p>[재고:${name.stock }]</p>
+									</c:otherwise>
+								</c:choose>
 							</td>
+
 						</tr>
 					</c:if>
 				</c:forEach>
@@ -245,12 +252,14 @@
 		function check() {
 			for (var i = 0; i < j; i++) {
 				if (document.getElementsByName("manufactor")[i].checked == true) {
-					mflist.push(document.getElementsByName("manufactor")[i].value);
+					mflist
+							.push(document.getElementsByName("manufactor")[i].value);
 				}
 			}
 			for (var i = 0; i < k; i++) {
 				if (document.getElementsByName("category")[i].checked == true) {
-					categorylist.push(document.getElementsByName("category")[i].value);
+					categorylist
+							.push(document.getElementsByName("category")[i].value);
 				}
 			}
 			for (var i = 0; i < s; i++) {
