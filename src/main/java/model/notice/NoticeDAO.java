@@ -115,14 +115,13 @@ public class NoticeDAO {
 
 		int res = 0;
 
-		sql = "update notice set subject = ?, pname = ?, content = ? where noticeNo = ?";
+		sql = "update notice set subject = ?, content = ? where noticeNo = ?";
 
 		try {
 			ptmt = con.prepareStatement(sql);
 			ptmt.setString(1, dto.subject);
-			ptmt.setString(2, dto.pname);
-			ptmt.setString(3, dto.content);
-			ptmt.setInt(4, dto.noticeNo);
+			ptmt.setString(2, dto.content);
+			ptmt.setInt(3, dto.noticeNo);
 
 			res = ptmt.executeUpdate();
 
