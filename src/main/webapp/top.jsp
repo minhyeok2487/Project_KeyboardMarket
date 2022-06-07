@@ -56,6 +56,7 @@
              	<%}else{ %>
 	              <li><a href="member/Detail">Detail</a></li>
 	              <li><a href="member/Logout">Logout</a></li>
+	              <li><a href="member/Order">Order</a></li>
 				<%} %>
 
           </ul>

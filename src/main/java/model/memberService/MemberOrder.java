@@ -5,10 +5,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Service;
 
-public class MemberLogin implements Service {
+public class MemberOrder implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		request.setAttribute("mainUrl", "LoginForm");
+		request.setAttribute("mainUrl", "OrderForm");
 	}
+
 }
