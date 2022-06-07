@@ -1,9 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="model.member.memberDTO"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<%
+	HttpSession user = request.getSession();
+	String userStatus = null;
+	memberDTO dto = (memberDTO) user.getAttribute("inUser");
+	if (dto != null) {
+		userStatus = dto.getStatus();
+	}
+%>    
 <title>메인페이지</title>
 </head>
 <body>

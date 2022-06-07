@@ -26,9 +26,11 @@ public class MemberLoginReg implements Service {
 			session.setAttribute("inUser", dto);
 		}
 
-		request.setAttribute("msg", "로그인 성공");
-		request.setAttribute("goUrl", "member_view/LoginReg");
-		request.setAttribute("mainUrl", "alert");
+//		request.setAttribute("msg", "로그인 성공");
+//		request.setAttribute("goUrl", "template");
+//		request.setAttribute("mainUrl", "alert");
+//		request.setAttribute("saveUrl", "main/pages");
+		request.setAttribute("mainUrl", "main/pages");
 		
 	}
 }

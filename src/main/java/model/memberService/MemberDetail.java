@@ -25,7 +25,7 @@ public class MemberDetail implements Service {
 		Object data = dao.detail(id);
 		
 		request.setAttribute("dto", data);
-		request.setAttribute("mainUrl", "DetailForm");
+		request.setAttribute("mainUrl", "member_view/DetailForm");
 	}
 
 }
