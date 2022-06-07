@@ -37,7 +37,7 @@ public class NoticeInsertReg implements Service {
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("예외가 출력~");
-			msg = "게시글올리기 실패";
+			msg = "공지사항을 작성하지 못했어요 ㅠㅠ";
 		}
 		
 		request.setAttribute("msg", msg);
