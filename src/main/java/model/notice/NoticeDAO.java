@@ -31,10 +31,11 @@ public class NoticeDAO {
 	public ArrayList<NoticeDTO> list() {
 		ArrayList<NoticeDTO> res = new ArrayList<NoticeDTO>();
 
-		sql = "select * from notice order by noticeNo desc";
+		sql = "select * from notice where status = ? order by noticeNo desc";
 
 		try {
 			ptmt = con.prepareStatement(sql);
+			ptmt.setString(1, "게시");
 			rs = ptmt.executeQuery();
 
 			while (rs.next()) {
@@ -115,7 +116,7 @@ public class NoticeDAO {
 
 		int res = 0;
 
-		sql = "update notice set subject = ?, content = ? where noticeNo = ?";
+		sql = "update notice set subject = ?, content = ?, reg_date = now() where noticeNo = ?";
 
 		try {
 			ptmt = con.prepareStatement(sql);
