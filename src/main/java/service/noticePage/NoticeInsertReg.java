@@ -17,9 +17,9 @@ public class NoticeInsertReg implements Service {
 	@SuppressWarnings("deprecation")
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		
-		String path = request.getRealPath("uploadFiles");
-		path = "/Users/shk/Downloads/Web_Project/4th_Project/Project_KeyboardMarket/src/main/webapp/uploadFiles";
+		String msg = null;
+		String path = request.getRealPath("items");
+		//path = "/Users/shk/Downloads/Web_Project/4th_Project/Project_KeyboardMarket/src/main/webapp/uploadFiles";
 		int size = 10 * 1024 * 1024;
 		MultipartRequest mr = null;
 		
@@ -30,18 +30,18 @@ public class NoticeInsertReg implements Service {
 			dto.setPname(mr.getParameter("pname"));
 			dto.setContent(mr.getParameter("content"));
 			dto.setUpfile(mr.getFilesystemName("upfile"));
-			
+			msg = "게시글올리기 성공";
 			new NoticeDAO().insert(dto);
 			System.out.println(dto);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.println("예외가 출력~");
+			msg = "게시글올리기 실패";
 		}
 		
-
-		request.setAttribute("goNoticeUrl", "List");
-		request.setAttribute("NoticeUrl", "alert");
-		System.out.println("NoticeInsertReg 실행!!");
+		request.setAttribute("msg", msg);
+		request.setAttribute("mainUrl", "./notices/noticeAlert");
+		request.setAttribute("goUrl", "NoticeList");
 	}
 }

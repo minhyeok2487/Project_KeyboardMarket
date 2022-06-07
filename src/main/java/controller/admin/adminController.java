@@ -27,7 +27,7 @@ public class adminController extends HttpServlet {
 		String serviceStr = request.getRequestURI().substring((request.getContextPath()+ "/admin/").length());
 		System.out.println(serviceStr);
 		try {
-			Service service = (Service) Class.forName("service.cartpage."+serviceStr).newInstance();
+			Service service = (Service) Class.forName("service.adminpage."+serviceStr).newInstance();
 			service.execute(request, response);
 			
 			if(serviceStr.equals("AdMain")) {

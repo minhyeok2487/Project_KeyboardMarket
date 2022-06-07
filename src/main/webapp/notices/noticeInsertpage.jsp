@@ -4,7 +4,7 @@
 
 <h2>공지사항 작성페이지</h2>
 
-<form action="NoticeInsertReg" method="post"
+<form action="./NoticeInsertReg" method="post"
 	enctype="multipart/form-data">
 	<input type="hidden" name="pname" value="관리자" />
 	<table border="">

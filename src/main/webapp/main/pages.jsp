@@ -8,8 +8,6 @@
 </head>
 <body>
 <hr>
-	<h1>메인페이지 이야요 ㅋㅋㅋ</h1>
-
 	<div class="container">
 		<div class="row">
 			<div class="col">

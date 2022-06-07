@@ -13,6 +13,7 @@ import model.cart.CartDTO;
 import model.member.memberDAO;
 import model.member.memberDTO;
 import model.order.OrderDAO;
+import model.order.OrderDTO;
 
 public class AdMain implements Service {
 
@@ -28,7 +29,7 @@ public class AdMain implements Service {
 		OrderDAO orderdao = new OrderDAO();
 		ArrayList<OrderDTO> orderList = orderdao.getlist();
 		
-		request.setAttribute("cartList", cartList);
+		request.setAttribute("orderList", orderList);
 
 	}
 }

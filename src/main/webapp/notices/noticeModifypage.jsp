@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <h2>글 수정 페이지</h2>
 
-<form action="NoticeModifyReg" method="post">
+<form action="./NoticeModifyReg" method="post">
 <input type="hidden" name="noticeNo" value="${dto.noticeNo }"/>
 <input type="hidden" name="pname" value="관리자" />
 <table border="">

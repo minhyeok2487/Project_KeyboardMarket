@@ -17,10 +17,7 @@ public class NoticeList implements Service {
 		Object dataList = new NoticeDAO().list();
 
 		request.setAttribute("noticeData", dataList);
-		request.setAttribute("noticeUrl", "Notice");
-
-//		System.out.println("NoticeList execute 실행!!" + dataList);
-
+		request.setAttribute("mainUrl", "./notices/noticeListpage");
 	}
 
 }
