@@ -1,6 +1,5 @@
 package model.memberService;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -31,6 +30,9 @@ public class MemberSignUpReg implements Service{
 			dto.setEmail(request.getParameter("email"));
 			dto.setAddr1(request.getParameter("addr1"));
 			dto.setAddr2(request.getParameter("addr2"));
+			dto.setTel(request.getParameter("tel"));
+			
+			new memberDAO().signUp(dto);
 			
 			
 			
@@ -44,6 +46,6 @@ public class MemberSignUpReg implements Service{
 		
 		
 		
-		request.setAttribute("mainUrl", "SignUp");
+		request.setAttribute("mainUrl", "main/pages");
 	}
 }

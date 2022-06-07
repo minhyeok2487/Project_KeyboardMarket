@@ -29,14 +29,7 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="../cart/Cartview?reg=view">장바구니</a>
         </li>
-        <% if(dto != null){
-        	if(userStatus.equals("관리자")){
-        %>
-        	<li class="nav-item">
-          	  <a class="nav-link active" aria-current="page" href="admin/AdMain">관리자 기능</a>
-        	</li>
-        <%}%>
-        <%}%>
+
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             회원관리
@@ -44,13 +37,13 @@
           <ul id="topmenu_list" class="dropdown-menu" aria-labelledby="navbarDropdown" >
           	<%
           		if(user.getAttribute("inUser") == null){ %>
-	              <li><a class="dropdown-item" href="member/Login">LOGIN</a></li>
-	              <li><a class="dropdown-item" href="member/Join">JOIN</a></li>
-	              <li><a class="dropdown-item" href="member/SignUp">SignUp</a></li>
+	              <li><a class="dropdown-item" href="../member/Login">LOGIN</a></li>
+	              <li><a class="dropdown-item" href="../member/Join">JOIN</a></li>
+	              <li><a class="dropdown-item" href="../member/SignUp">SignUp</a></li>
              	<%}else{ %>
-	              <li><a class="dropdown-item" href="member/Detail">Detail</a></li>
-	              <li><a class="dropdown-item" href="member/Logout">Logout</a></li>
-	              <li><a class="dropdown-item" href="member/Order">Order</a></li>
+	              <li><a class="dropdown-item" href="../member/Detail">Detail</a></li>
+	              <li><a class="dropdown-item" href="../member/Logout">Logout</a></li>
+	              <li><a class="dropdown-item" href="../member/Order">Order</a></li>
 				<%} %>
 
           </ul>

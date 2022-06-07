@@ -9,6 +9,6 @@ public class MemberLogin implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		request.setAttribute("mainUrl", "member_view/LoginForm");
+		request.setAttribute("mainUrl", "./member_view/LoginForm");
 	}
 }

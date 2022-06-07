@@ -77,8 +77,9 @@ public class memberDAO {
 				if(rs.getString("tel")!=null) {
 					res.setTel(rs.getString("tel"));
 				}
+				
+				
 			}
-			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -18,9 +18,10 @@ public class MemberLogout implements Service {
 		
 		session.removeAttribute("inUser");
 		
-		request.setAttribute("msg", "로그아웃 성공");
-		request.setAttribute("goUrl", "LogoutReg");
-		request.setAttribute("mainUrl", "alert");
+//		request.setAttribute("msg", "로그아웃 성공");
+//		request.setAttribute("goUrl", "LogoutReg");
+//		request.setAttribute("mainUrl", "alert");
+		request.setAttribute("mainUrl", "main/pages");
 	}
 
 }

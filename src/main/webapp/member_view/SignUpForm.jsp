@@ -7,10 +7,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>개인 정보</title>
+<title>회원 가입</title>
 </head>
 <body>
-<h1>개인 정보</h1>
+<h1>회원 가입</h1>
 <form action="SignUpReg" method="post">
 	<table border="">
 		<tr>
@@ -49,7 +49,7 @@
 			<td></td>
 				<td colspan="2" align="center">
 					<input type="reset" value="취소" />
-					<input type="submit" value="수정" />
+					<input type="submit" value="가입" />
 			</td>
 		</tr>
 	</table>

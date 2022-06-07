@@ -4,6 +4,11 @@
 
 <script>
 alert("${msg}");
-location.href = "<c:url value="/member_view/${ goUrl }.jsp"/>";
+</script>
+
+<%	request.setAttribute("mainUrl", "${saveUrl }"); %>
+
+<script>
+location.href = "<c:url value="${ goUrl }.jsp"/>";
 
 </script>
