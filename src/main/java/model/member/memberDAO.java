@@ -5,12 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import model.order.OrderDTO;
 
 
 
@@ -204,6 +206,61 @@ public class memberDAO {
 		}
 		return res;
 	}
+	
+	public int totalCnt(int no){
+		sql = "SELECT COUNT(*) FROM order WHERE memberNo = ?";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			
+			rs = ptmt.executeQuery();
+			
+			rs.next();
+			
+			return rs.getInt(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+	
+	public ArrayList<OrderDTO> orderList(int start, int limit, int memberNo){
+		ArrayList<OrderDTO> res = new ArrayList<OrderDTO>();
+		sql = "SELECT * FROM orders WHERE memberNo = ? order by ordered_date desc limit ?, ?";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setInt(1, memberNo);
+			ptmt.setInt(2,  start);
+			ptmt.setInt(3,  limit);
+			
+			rs = ptmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				OrderDTO dto = new OrderDTO();
+				
+				dto.setMemberNo(memberNo);
+				dto.setOrderNo(rs.getInt("orderNo"));
+				dto.setOrdered_num(rs.getString("ordered_num"));
+				dto.setName(rs.getString("name"));
+				
+				
+				res.add(dto);
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		
+		return res;
+	}
+	
+	
 	
 	public void close() {
 		if (rs != null) {
