@@ -6,6 +6,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	request.setCharacterEncoding("UTF-8");
+	String prices = request.getParameter("price");
+	pageContext.setAttribute("prices", prices);
+	System.out.println(prices);
 	String[] SelectMF = null;
 	String[] SelectTY = null;
 	String[] SelectSW = null;
@@ -118,10 +121,18 @@
 						<th scope="row" style="text-align: center;">가격대</th>
 						<td colspan="4">
 							<button type="button" id="pricebtn"
-								class="btn btn-outline-dark active">전체</button> <c:forEach
-								var="name" items="${priceLange }" varStatus="i">
-								<button type="button" id="pricebtn" class="btn btn-outline-dark" 
-								onclick='location.href="../item/itemDetailList?price=${name}";'>${name}</button>
+								class="btn btn-outline-dark">전체</button>
+							<c:forEach var="name" items="${priceLange }" varStatus="i">
+								<c:choose>
+									<c:when test="${name == prices }">
+										<button type="button" id="pricebtn" class="btn btn-outline-dark active">${name}</button>
+									</c:when>
+									<c:otherwise>
+										<button type="button" id="pricebtn" class="btn btn-outline-dark" 
+										onclick='location.href="../item/itemDetailList?price=${name}";'>${name}</button>
+									</c:otherwise>
+								</c:choose>
+								
 							</c:forEach>
 						</td>
 					</tr>
