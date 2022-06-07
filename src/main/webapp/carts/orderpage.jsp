@@ -92,7 +92,7 @@
 	<div class="container">
 		<form name="frm" action="../cart/OrderEnd" method="post">
 			<input type="hidden" name="memberNo" value="${memberNo.memberNo }">
-			<input type="hidden" name="ordered_num" value="${order_num}">
+			<input type="hidden" id="ordered_num" name="ordered_num">
 			<div class="form-group row">
 				<label class="col-sm-2">주문자 이름</label>
 				<div class="col-sm-3">${memberNo.name }</div>
@@ -198,8 +198,28 @@
 		}
 	</script>
 	<script>
-		var order_num = "MTS"+${merchant };
+		Date.prototype.YYYYMMDDHHMMSS = function(){
+			var yyyy = this.getFullYear().toString();
+			var MM = pad(this.getMonth() + 1,2);
+			var dd = pad(this.getDate() + 2);
+			var hh = pad(this.getHours() + 2);
+			var mm = pad(this.getMinutes() + 2);
+			var ss = pad(this.getSeconds() + 2);
+			return yyyy + MM + dd + hh + mm + ss;
+		}
+		
+		function pad(number, length){
+			var str = ''+ number;
+			while(str.length < length){
+				str = '0' + str;
+			}
+			return str;
+		}
+		
+	
 		function requestPay() {
+			var nowDate = new Date();
+			var order_num = "MTS"+ nowDate.YYYYMMDDHHMMSS();
 			if(document.getElementById('sample4_postcode').value != ""){
 				IMP.init('imp49092937');
 				IMP.request_pay({ // param
@@ -216,9 +236,11 @@
 					}, function(rsp) { // callback
 						if (rsp.success) {
 							// 결제 성공 시 로직
+							document.getElementById("ordered_num").value = order_num;
 							document.frm.submit();
+							
 						} else {
-							// 결제 실패 시 로직,
+							//결제 실패 시 로직,
 							alert("실패");
 						}
 					});
