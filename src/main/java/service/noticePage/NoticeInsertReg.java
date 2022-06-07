@@ -40,9 +40,8 @@ public class NoticeInsertReg implements Service {
 		}
 		
 
-		request.setAttribute("msg", "작성되었어요 :)");
-		request.setAttribute("goUrl", "noticeListpage");
+		request.setAttribute("goNoticeUrl", "List");
 		request.setAttribute("NoticeUrl", "alert");
-//		System.out.println("NoticeInsertReg 실행!!");
+		System.out.println("NoticeInsertReg 실행!!");
 	}
 }
