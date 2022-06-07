@@ -42,6 +42,8 @@
 			}
 		}
 	}
+	
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -62,29 +64,37 @@
 				<thead>
 					<tr>
 						<th>스마트 검색</th>
+						<td>검색 결과 : ${dto.size() }개</td>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<th scope="row" style="text-align: center;">제조사</th>
 						<c:forEach var="name" items="${manufactor }" varStatus="i">
-							<td><input type="checkbox" name="manufactor" value="${name}"
-								onclick='getCheckboxValue(event)'> ${name}</td>
+							<td>
+							<c:set target="${Count}" property="name" value="${name }"/>
+							<input type="checkbox" name="manufactor" value="${name}"
+								onclick='getCheckboxValue(event)'> ${name} (${Count.get(name) })
+							</td>
 						</c:forEach>
 						<td></td>
 					</tr>
 					<tr>
 						<th scope="row" style="text-align: center;">종류</th>
 						<c:forEach var="name" items="${category }" varStatus="i">
-							<td><input type="checkbox" name="category" value="${name}"
-								onclick='getCheckboxValue(event)'> ${name}</td>
+							<td> <c:set target="${Count}" property="name" value="${name }"/>
+							<input type="checkbox" name="category" value="${name}"
+								onclick='getCheckboxValue(event)'> ${name} (${Count.get(name) })
+							</td>
 						</c:forEach>
 					</tr>
 					<tr>
 						<th scope="row" style="text-align: center;">스위치</th>
 						<c:forEach var="name" items="${sw }" varStatus="i">
-							<td><input type="checkbox" name="sw" value="${name}"
-								onclick='getCheckboxValue(event)'> ${name}</td>
+							<td> <c:set target="${Count}" property="name" value="${name }"/>
+							<input type="checkbox" name="sw" value="${name}"
+								onclick='getCheckboxValue(event)'> ${name} (${Count.get(name) })
+							</td>
 						</c:forEach>
 					</tr>
 					<tr>

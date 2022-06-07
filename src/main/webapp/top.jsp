@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
@@ -47,16 +46,11 @@
       </ul>
        <nav id="topmenu">
           <ul id="topmenu_list">
-          	<%
-          		HttpSession user = request.getSession();
-          		if(user.getAttribute("inUser") == null){ %>
-	              <li><a href="member/Login">LOGIN</a></li>
-	              <li><a href="member/Join">JOIN</a></li>
-	              <li><a href="member/SignUp">SignUp</a></li>
-             	<%}else{ %>
-	              <li><a href="member/Detail">Detail</a></li>
-	              <li><a href="member/Logout">Logout</a></li>
-				<%} %>
+              <li><a href="member/Login">LOGIN</a></li>
+              <li><a href="member/Join">JOIN</a></li>
+              <li><a href="member/SignUp">SignUp</a></li>
+              <li><a href="member/Detail">Detail</a></li>
+              <li><a href="member/Logout">Logout</a></li>
 
           </ul>
         </nav>

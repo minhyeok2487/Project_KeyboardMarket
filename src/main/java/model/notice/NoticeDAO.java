@@ -35,6 +35,8 @@ public class NoticeDAO {
 
 		try {
 			ptmt = con.prepareStatement(sql);
+//			ptmt.setInt(1, start);
+//			ptmt.setInt(2, limit);
 			rs = ptmt.executeQuery();
 
 			while (rs.next()) {
@@ -46,6 +48,7 @@ public class NoticeDAO {
 				dto.setContent(rs.getString("content"));
 				dto.setReg_date(rs.getTimestamp("reg_date"));
 				dto.setHits(rs.getInt("hits"));
+//				System.out.println(dto);
 				res.add(dto);
 			}
 
@@ -80,6 +83,7 @@ public class NoticeDAO {
 				dto.setReg_date(rs.getTimestamp("reg_date"));
 				dto.setHits(rs.getInt("hits"));
 				dto.setUpfile(rs.getString("upfile"));
+//				System.out.println(dto);
 			}
 
 		} catch (SQLException e) {
@@ -103,37 +107,12 @@ public class NoticeDAO {
 			ptmt.setString(3, dto.content);
 			ptmt.setString(4, dto.upfile);
 			ptmt.executeUpdate();
-
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close();
 		}
-	}
-
-	public int modify(NoticeDTO dto) {
-
-		int res = 0;
-
-		sql = "update notice set subject = ?, pname = ?, content = ? where noticeNo = ?";
-
-		try {
-			ptmt = con.prepareStatement(sql);
-			ptmt.setString(1, dto.subject);
-			ptmt.setString(2, dto.pname);
-			ptmt.setString(3, dto.content);
-			ptmt.setInt(4, dto.noticeNo);
-
-			res = ptmt.executeUpdate();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close();
-		}
-
-		return res;
-
 	}
 
 	public void close() {

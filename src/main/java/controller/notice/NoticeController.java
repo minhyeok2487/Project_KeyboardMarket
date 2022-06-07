@@ -23,7 +23,6 @@ public class NoticeController extends HttpServlet {
 		super();
 		nonClass = new ArrayList<String>();
 		nonClass.add("noticeInsertForm");
-		nonClass.add("noticeModifyForm");
 	}
 
 	@Override
@@ -54,9 +53,6 @@ public class NoticeController extends HttpServlet {
 			dispatcher.forward(request, response);
 		} else if(serviceStr.equals("noticeInsertForm")) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/notices/noticeInsertForm.jsp");
-			dispatcher.forward(request, response);
-		} else if(serviceStr.equals("noticeModifyForm")) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/notices/noticeModifyForm.jsp");
 			dispatcher.forward(request, response);
 		}
 		
