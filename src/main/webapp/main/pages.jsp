@@ -76,9 +76,8 @@
 				</div>
 			</div>
 			<div class="col">
-			<img src="source/1_thumb.jpg" class="img-fluid rounded" alt="이미지썸네일01">
-			<img src="source/2_thumb.jpg" class="img-fluid rounded" alt="이미지썸네일02">
-			<img src="source/3_thumb.jpg" class="img-fluid rounded" alt="이미지썸네일03">
+			<img src="source/10_1.jpg" class="img-fluid rounded" alt="이미지썸네일01">
+			<img src="source/10_2.jpg" class="img-fluid rounded" alt="이미지썸네일02">
 			</div>
 		</div>
 	</div>
