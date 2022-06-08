@@ -263,6 +263,55 @@ public class memberDAO {
 		return res;
 	}
 	
+	public OrderDTO orderSelect(int orderNo) {
+		sql = "select * from orders where orderNo = ? ";
+		OrderDTO dto = new OrderDTO();
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			
+			ptmt.setInt(1, orderNo);
+			
+			rs = ptmt.executeQuery();
+			
+			while(rs.next()) {
+				dto.setOrderNo(rs.getInt("orderNo"));
+				dto.setOrdered_num(rs.getString("ordered_num"));
+				dto.setOrdered_date(rs.getTimestamp("ordered_date"));
+				dto.setManufacture(rs.getString("manufacture"));
+				dto.setCategory(rs.getString("category"));
+				if(rs.getString("switchs")!=null) {
+					dto.setSwitchs(rs.getString("switchs"));
+				}
+				dto.setSpec(rs.getString("spec"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setSelect_count(rs.getInt("select_count"));
+				dto.setItem_name(rs.getString("item_name"));
+				dto.setReg_date(rs.getTimestamp("reg_date"));
+				dto.setItem_img1(rs.getString("item_img1"));
+				dto.setItem_img2(rs.getString("item_img2"));
+				dto.setMemberNo(rs.getInt("memberNo"));
+				dto.setName(rs.getString("name"));
+				dto.setAddr1(rs.getString("addr1"));
+				dto.setAddr2(rs.getString("addr2"));
+				dto.setStatus(rs.getString("status"));
+				if(rs.getString("refund") != null) {
+					dto.setRefund(rs.getString("refund"));
+				}
+				if(rs.getTimestamp("refund_date") != null) {
+					dto.setRefund_date(rs.getTimestamp("refund_date"));
+				}
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		return dto;
+	}
 
 	public itemDTO orderDetail(String item_name) {
 		itemDTO dto = new itemDTO();

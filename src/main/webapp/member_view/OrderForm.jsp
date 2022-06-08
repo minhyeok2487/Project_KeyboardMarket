@@ -23,7 +23,7 @@
 		<tr>
 			<td>${total-no.index }</td>
 			<td>
-			<a href="<c:url value="/member/OrderDetail?item_name=${dto.item_name }&ordered_date=${dto.ordered_date }&status=${dto.status }&select_count=${dto.select_count }&page=${nowPage }" />">${dto.item_name }</a>
+			<a href="<c:url value="/member/OrderDetail?orderNo=${dto.orderNo }&page=${nowPage }" />">${dto.item_name }</a>
 			</td>
 			<td>${dto.status }</td>
 			<td>
