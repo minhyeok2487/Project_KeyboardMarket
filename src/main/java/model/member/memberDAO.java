@@ -57,29 +57,7 @@ public class memberDAO {
 			ptmt.setString(9, dto.getTel());
 			
 			rs = ptmt.executeQuery();
-			
-			if (rs.next()) {
-				res.setUser_id(rs.getString("user_id"));
-				res.setUser_pw(rs.getString("user_pw"));
-				res.setName(rs.getString("name"));
-				res.setBirthdate(rs.getTimestamp("birthdate"));
-				res.setGender(rs.getString("gender"));
-				res.setEmail(rs.getString("email"));
-				
-				if(rs.getString("addr1")!=null) {				
-					res.setAddr1(rs.getString("addr1"));
-				}
-				
-				if(rs.getString("addr2")!=null) {
-					res.setAddr2(rs.getString("addr2"));
-				}
-				
-				if(rs.getString("tel")!=null) {
-					res.setTel(rs.getString("tel"));
-				}
-				
-				
-			}
+
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -210,10 +188,12 @@ public class memberDAO {
 	}
 	
 	public int totalCnt(int no){
-		sql = "SELECT COUNT(*) FROM order WHERE memberNo = ?";
+		sql = "SELECT COUNT(*) FROM orders WHERE memberNo = ?";
 		
 		try {
 			ptmt = con.prepareStatement(sql);
+			
+			ptmt.setInt(1, no);
 			
 			rs = ptmt.executeQuery();
 			
@@ -262,7 +242,6 @@ public class memberDAO {
 				dto.setName(rs.getString("name"));
 				dto.setAddr1(rs.getString("addr1"));
 				dto.setAddr2(rs.getString("addr2"));
-				dto.setItemNo(rs.getInt("itemNo"));
 				dto.setStatus(rs.getString("status"));
 				if(rs.getString("refund") != null) {
 					dto.setRefund(rs.getString("refund"));
@@ -285,6 +264,40 @@ public class memberDAO {
 	}
 	
 
+	public itemDTO orderDetail(String item_name) {
+		itemDTO dto = new itemDTO();
+		sql = "select * from item where item_name = ?";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			
+			ptmt.setString(1, item_name);
+			
+			rs = ptmt.executeQuery();
+			
+			while(rs.next()) {
+				dto.setItemNo(rs.getInt("itemNo"));
+				dto.setItem_name(rs.getString("item_name"));
+				dto.setManufacture(rs.getString("manufacture"));
+				dto.setCategory(rs.getString("category"));
+				dto.setSwitchs(rs.getString("switchs"));
+				dto.setSpec(rs.getString("spec"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setStock(rs.getInt("stock"));
+				dto.setReg_date(rs.getTimestamp("reg_date"));
+				dto.setItem_img1(rs.getString("item_img1"));
+				dto.setItem_img2(rs.getString("item_img2"));
+				dto.setItem_sold(rs.getInt("item_sold"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		
+		return dto;
+	}
 	
 	
 	public void close() {

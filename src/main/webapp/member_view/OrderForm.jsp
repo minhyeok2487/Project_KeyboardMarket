@@ -11,54 +11,52 @@
 <body>
 <h1>주문내역</h1>
 
-
-<table border="">
-	<tr>
-		<td>번호</td>
-		<td>제목</td>
-		<td>작성자</td>
-		<td>작성일</td>
-		<td>조회수</td>
-	</tr>
-	<c:forEach var="dto" items="${mainData }" varStatus="no">
-	<tr>
-		<td>${start+no.index+1 }</td>
-		<td>
-		<a href="<c:url value="/board/Detail?id=${dto.id }&page=${nowPage }" />">${dto.title }</a>
-		</td>
-		<td>${dto.pname }</td>
-		<td>
-		<fmt:formatDate value="${dto.reg_date }" pattern="yy-MM-dd HH:mm"/>
-		</td>
-		<td>${dto.cnt }</td>
-	</tr>
-	</c:forEach>
-	
-	<tr>
-		<td colspan="5" align="center">
-		<c:if test="${pageStart > 1 }">
-			<a href="<c:url value="/board/List?page=${pageStart-1 }" />">[이전]</a>
-		</c:if>
-		
-		<c:forEach var="i" begin="${pageStart }" end="${pageEnd }" step="1">
-			<c:choose>
-				<c:when test="${nowPage==i }">
-					[${i }]
-				</c:when>
-				<c:otherwise>
-					<a href="<c:url value="/board/List?page=${i }" />">${i }</a>
-				</c:otherwise>
-			</c:choose>
-			
+<form method="post">
+	<table border="2">
+		<tr>
+			<td>번호</td>
+			<td>상품명</td>
+			<td>주문상태</td>
+			<td>주문일</td>
+		</tr>
+		<c:forEach var="dto" items="${mainData }" varStatus="no">
+		<tr>
+			<td>${total-no.index }</td>
+			<td>
+			<a href="<c:url value="/member/OrderDetail?item_name=${dto.item_name }&ordered_date=${dto.ordered_date }&status=${dto.status }&select_count=${dto.select_count }&page=${nowPage }" />">${dto.item_name }</a>
+			</td>
+			<td>${dto.status }</td>
+			<td>
+			<fmt:formatDate value="${dto.ordered_date }" pattern="yyyy-MM-dd HH:mm:ss"/>
+			</td>
+		</tr>
 		</c:forEach>
 		
-		<c:if test="${pageEnd<pageTotal }">
-			<a href="<c:url value="/board/List?page=${pageEnd+1 }" />">[다음]</a>
-		</c:if>
-		</td>
-	</tr>
-</table>
-
+		<tr>
+			<td colspan="4" align="center">
+			<c:if test="${pageStart > 1 }">
+				<a href="<c:url value="/member_view/OrderForm?page=${pageStart-1 }" />">[이전]</a>
+			</c:if>
+			
+			<c:forEach var="i" begin="${pageStart }" end="${pageEnd }" step="1">
+				<c:choose>
+					<c:when test="${nowPage==i }">
+						[${i }]
+					</c:when>
+					<c:otherwise>
+						<a href="<c:url value="/member_view/OrderForm?page=${i }" />">${i }</a>
+					</c:otherwise>
+				</c:choose>
+				
+			</c:forEach>
+			
+			<c:if test="${pageEnd<pageTotal }">
+				<a href="<c:url value="/member_view/OrderForm?page=${pageEnd+1 }" />">[다음]</a>
+			</c:if>
+			</td>
+		</tr>
+	</table>
+</form>
 
 </body>
 </html>
