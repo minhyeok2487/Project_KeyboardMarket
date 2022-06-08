@@ -16,14 +16,10 @@ if (dto != null) {
 	userStatus = dto.getStatus();
 }
 
-/* int id = Integer.parseInt(request.getParameter("noticeNo")); */
-
 NoticeDAO dao = new NoticeDAO();
 Object dataList = dao.list(0, 5);
-/* Object dataDetail = dao.detail(id); */
 
 request.setAttribute("noticeMainList", dataList);
-/* request.setAttribute("noticeMainDetail", dataDetail); */
 %>
 <title>메인페이지</title>
 </head>
