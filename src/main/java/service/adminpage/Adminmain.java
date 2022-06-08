@@ -20,22 +20,57 @@ public class Adminmain implements Service {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		OrderDAO dao = new OrderDAO();
-		ArrayList<OrderDTO> orderList = dao.list();
-		
-		ArrayList<OrderDTO> mainList = new ArrayList<OrderDTO>();
-		for(int i =0; i< orderList.size(); i++) {
-			for(int j=0; j<mainList.size(); j++) {
-				if(orderList.get(i).getOrdered_num().equals(mainList.get(j).getOrdered_num())) {
-					mainList.get(j).setPrice(mainList.get(j).getPrice()+orderList.get(i).getPrice());
-					mainList.get(j).setSelect_count(mainList.get(j).getSelect_count()+orderList.get(i).getSelect_count());
-				} else {
-					mainList.add(orderList.get(i));
-				}
-			}
+
+		// 1.최근 일주일 주문량
+		ArrayList<OrderDTO> allList = dao.allList();
+		int total = 0;
+		for(OrderDTO price : allList) {
+			total += price.getPrice();
 		}
 	
-		request.setAttribute("orderList", orderList);
+
+		// 1.최근 일주일 주문량
+		ArrayList<OrderDTO> orderList = dao.list();
+		ArrayList<OrderDTO> mainList = new ArrayList<OrderDTO>();
+		for (int i = 0; i < orderList.size(); i++) {
+			boolean res = true;
+			for (int j = 0; j < mainList.size(); j++) {
+				if (mainList.get(j).getOrdered_num().equals(orderList.get(i).getOrdered_num())) {
+					mainList.get(j).setPrice(mainList.get(j).getPrice() + orderList.get(i).getPrice());
+					mainList.get(j)
+							.setSelect_count(mainList.get(j).getSelect_count() + orderList.get(i).getSelect_count());
+					res = false;
+					break;
+				}
+			}
+			if (res) {
+				mainList.add(orderList.get(i));
+			}
+		}
+
+		// 2.배송해야 할 것
+		ArrayList<OrderDTO> orderinglist = dao.orderinglist();
+		ArrayList<OrderDTO> mainorderinglist = new ArrayList<OrderDTO>();
+		for (int i = 0; i < orderinglist.size(); i++) {
+			boolean res = true;
+			for (int j = 0; j < mainorderinglist.size(); j++) {
+				if (mainorderinglist.get(j).getOrdered_num().equals(orderinglist.get(i).getOrdered_num())) {
+					mainorderinglist.get(j)
+							.setPrice(mainorderinglist.get(j).getPrice() + orderinglist.get(i).getPrice());
+					mainorderinglist.get(j).setSelect_count(
+							mainorderinglist.get(j).getSelect_count() + orderinglist.get(i).getSelect_count());
+					res = false;
+					break;
+				}
+			}
+			if (res) {
+				mainorderinglist.add(orderinglist.get(i));
+			}
+		}
+
+		request.setAttribute("total", total);
 		request.setAttribute("mainList", mainList);
+		request.setAttribute("mainorderinglist", mainorderinglist);
 		request.setAttribute("mainUrl", "./admins/admainpage");
 	}
 }
