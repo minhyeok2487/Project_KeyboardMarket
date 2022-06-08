@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -90,6 +92,30 @@ public class OrderDAO {
 		}
 	}
 	
+	public ArrayList<OrderDTO> list() {
+		ArrayList<OrderDTO>  res = new ArrayList<OrderDTO> ();
+		sql = "select * from orders where ordered_date > date_add(now(),interval -7 day)";
+		try {
+			ptmt = con.prepareStatement(sql);
+			rs = ptmt.executeQuery();
+			while (rs.next()) {
+				OrderDTO dto = new OrderDTO();
+				dto.setOrdered_num(rs.getString("ordered_num"));
+				dto.setName(rs.getString("name"));
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				Date date = formatter.parse(rs.getString("ordered_date"));
+				dto.setOrdered_date(date);
+				dto.setPrice(rs.getInt("price"));
+				dto.setSelect_count(rs.getInt("select_count"));
+				dto.setStatus(rs.getString("status"));
+				res.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return res;
+	}
+	
 	
 	public void close() {
 		if (rs != null) {
@@ -111,6 +137,8 @@ public class OrderDAO {
 			}
 		}
 	}
+
+	
 
 
 	
