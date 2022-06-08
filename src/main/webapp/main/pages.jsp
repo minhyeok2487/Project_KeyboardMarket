@@ -41,7 +41,7 @@ request.setAttribute("noticeMainList", dataList);
 					<tbody>
 					<c:forEach var="dto" items="${noticeMainList }" varStatus="no">
 							<tr align="center">
-								<td><a href="../NoticeDetail?noticeNo=${dto.noticeNo }">${dto.subject }</a></td>
+								<td><a href="../notice/NoticeDetail?noticeNo=${dto.noticeNo }">${dto.subject }</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
