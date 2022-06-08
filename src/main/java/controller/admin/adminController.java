@@ -30,15 +30,16 @@ public class adminController extends HttpServlet {
 			Service service = (Service) Class.forName("service.adminpage."+serviceStr).newInstance();
 			service.execute(request, response);
 			
-			if(serviceStr.equals("AdMain")) {
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/administratos/admainpage.jsp");
-				dispatcher.forward(request, response);
-			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/template.jsp");
+		dispatcher.forward(request, response);
 	}
 
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub

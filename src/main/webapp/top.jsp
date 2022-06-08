@@ -45,9 +45,16 @@
 	              <li><a class="dropdown-item" href="../member/Logout">Logout</a></li>
 	              <li><a class="dropdown-item" href="../member/Order">Order</a></li>
 				<%} %>
-
           </ul>
         </li>
+        <%
+			if(userStatus != null){
+				if(userStatus.equals("관리자")){
+		%>
+		<li class="nav-item">
+          	<a class="nav-link active" aria-current="page" href="../admin/Adminmain">관리자 페이지</a>
+        </li>
+		<%}}%>
       </ul>
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -56,3 +63,4 @@
     </div>
   </div>
 </nav>
+
