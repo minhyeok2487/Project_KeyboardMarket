@@ -26,7 +26,7 @@
 	</tbody>
 </table>
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-	<a href="./noticeInsertpage?=${nowPage }">
+	<a href="./noticeInsertpage">
 		<button type="button" class="btn btn-outline-primary">글쓰기</button>
 	</a>
 </div>
