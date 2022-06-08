@@ -32,20 +32,20 @@
 		<td>상품스펙</td><td>${dto.spec }</td>
 	</tr>
 	<tr>
-		<td>주문 갯수</td><td>${select_count }</td>
+		<td>주문 갯수</td><td>${orderDto.select_count }</td>
 	</tr>
 	<tr>
 		<td>가격</td><td>${dto.price }</td>
 	</tr>
 	<tr>
-		<td>배송 상황</td><td>${status }</td>
+		<td>배송 상황</td><td>${orderDto.status }</td>
 	</tr>
 	<tr>
 		<td>이미지 1</td><td></td>
 	</tr>
 	<tr>
-		<td>주문일</td><td><fmt:parseDate var="dateString" value="${ordered_date}" pattern="yyyy-MM-dd HH:mm:ss" />
-		<fmt:formatDate value="${dateString }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+		<td>주문일</td><td>
+		<fmt:formatDate value="${orderDto.ordered_date }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 	</tr>
 <%-- 	<tr>
 		<td colspan="2" align="right">

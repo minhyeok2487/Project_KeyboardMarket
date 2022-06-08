@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Service;
 import model.item.itemDTO;
 import model.member.memberDAO;
+import model.order.OrderDTO;
 
 public class MemberOrderDetail implements Service {
 
@@ -18,20 +19,18 @@ public class MemberOrderDetail implements Service {
 		
 		memberDAO dao = new memberDAO();
 		
-		String oItem_name = request.getParameter("item_name");
-		String oOrdered_date = request.getParameter("ordered_date");
-		String oStatus = request.getParameter("status");
 		String oPage = request.getParameter("page");
-		String oSelect_count = request.getParameter("select_count");
+		
+		String oOrderNo = request.getParameter("orderNo");
+		
+		OrderDTO oDto = dao.orderSelect(Integer.parseInt(oOrderNo));
 		
 		
-		itemDTO dto = dao.orderDetail(oItem_name);
-		
-		request.setAttribute("ordered_date", oOrdered_date);
-		request.setAttribute("status", oStatus);
+		itemDTO dto = dao.orderDetail(oDto.getItem_name());
+
 		request.setAttribute("nowPage", oPage);
-		request.setAttribute("select_count", oSelect_count);
 		request.setAttribute("dto", dto);
+		request.setAttribute("orderDto", oDto);
 		request.setAttribute("mainUrl", "member_view/OrderDetailForm");
 	}
 }
