@@ -24,13 +24,16 @@
           <a class="nav-link active" aria-current="page" href="#">회원관리</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">상품관리</a>
+          <a class="nav-link active" aria-current="page" href="./ItemControl">상품관리</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">고객센터</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">공지사항 관리</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">메인페이지 관리</a>
         </li>
       </ul>
     </div>

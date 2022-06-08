@@ -92,9 +92,57 @@ public class OrderDAO {
 		}
 	}
 	
+	public ArrayList<OrderDTO> allList() {
+		ArrayList<OrderDTO>  res = new ArrayList<OrderDTO> ();
+		sql = "SELECT * FROM orders WHERE ( ordered_date > LAST_DAY(NOW() - interval 1 month) AND ordered_date <= LAST_DAY(NOW()))";
+		try {
+			ptmt = con.prepareStatement(sql);
+			rs = ptmt.executeQuery();
+			while (rs.next()) {
+				OrderDTO dto = new OrderDTO();
+				dto.setOrdered_num(rs.getString("ordered_num"));
+				dto.setName(rs.getString("name"));
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				Date date = formatter.parse(rs.getString("ordered_date"));
+				dto.setOrdered_date(date);
+				dto.setPrice(rs.getInt("price"));
+				dto.setSelect_count(rs.getInt("select_count"));
+				dto.setStatus(rs.getString("status"));
+				res.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return res;
+	}
+	
 	public ArrayList<OrderDTO> list() {
 		ArrayList<OrderDTO>  res = new ArrayList<OrderDTO> ();
 		sql = "select * from orders where ordered_date > date_add(now(),interval -7 day)";
+		try {
+			ptmt = con.prepareStatement(sql);
+			rs = ptmt.executeQuery();
+			while (rs.next()) {
+				OrderDTO dto = new OrderDTO();
+				dto.setOrdered_num(rs.getString("ordered_num"));
+				dto.setName(rs.getString("name"));
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				Date date = formatter.parse(rs.getString("ordered_date"));
+				dto.setOrdered_date(date);
+				dto.setPrice(rs.getInt("price"));
+				dto.setSelect_count(rs.getInt("select_count"));
+				dto.setStatus(rs.getString("status"));
+				res.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return res;
+	}
+	
+	public ArrayList<OrderDTO> orderinglist() {
+		ArrayList<OrderDTO>  res = new ArrayList<OrderDTO> ();
+		sql = "select * from orders where status = '주문완료'";
 		try {
 			ptmt = con.prepareStatement(sql);
 			rs = ptmt.executeQuery();
@@ -137,6 +185,10 @@ public class OrderDAO {
 			}
 		}
 	}
+
+	
+
+	
 
 	
 
