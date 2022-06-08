@@ -28,14 +28,16 @@ public class NoticeDAO {
 		}
 	}
 
-	public ArrayList<NoticeDTO> list() {
+	public ArrayList<NoticeDTO> list(int start, int limit) {
 		ArrayList<NoticeDTO> res = new ArrayList<NoticeDTO>();
 
-		sql = "select * from notice where status = ? order by noticeNo desc";
+		sql = "select * from notice where status = ? order by noticeNo desc limit ?, ?";
 
 		try {
 			ptmt = con.prepareStatement(sql);
 			ptmt.setString(1, "게시");
+			ptmt.setInt(2, start);
+			ptmt.setInt(3, limit);
 			rs = ptmt.executeQuery();
 
 			while (rs.next()) {
@@ -46,7 +48,6 @@ public class NoticeDAO {
 				dto.setPname(rs.getString("pname"));
 				dto.setContent(rs.getString("content"));
 				dto.setReg_date(rs.getTimestamp("reg_date"));
-				dto.setHits(rs.getInt("hits"));
 				res.add(dto);
 			}
 
@@ -134,6 +135,24 @@ public class NoticeDAO {
 
 		return res;
 
+	}
+	
+	public int postCount() {
+		
+		sql = "select count(*) from notice";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			rs = ptmt.executeQuery();
+			
+			rs.next();
+			
+			return rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return 0;
 	}
 
 	public void close() {

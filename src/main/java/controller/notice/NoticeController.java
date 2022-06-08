@@ -32,6 +32,14 @@ public class NoticeController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		String serviceStr = request.getRequestURI().substring((request.getContextPath() + "/notice/").length());
+		System.out.println(serviceStr);
+		
+		int page = 1;
+		if (request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+		
+		request.setAttribute("nowPage", page);
 
 		if (nonClass.contains(serviceStr)) {
 			request.setAttribute("mainUrl", "./notices/"+serviceStr);
