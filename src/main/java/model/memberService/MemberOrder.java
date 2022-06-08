@@ -18,8 +18,12 @@ public class MemberOrder implements Service {
 		
 		int memberNo = member.getMemberNo();
 		
-		
-		int page = (int)request.getAttribute("nowPage");
+		int page;
+		if(request.getAttribute("nowPage") != null) {
+			page = (int)request.getAttribute("nowPage");
+		}else {
+			page = 1;
+		}
 		
 		int limit = 10; // 한 페이지당 게시물 수
 		int pageLimit = 10; // 페이지 번호 갯수
@@ -46,9 +50,9 @@ public class MemberOrder implements Service {
 		Object data = new memberDAO().orderList(start,limit,memberNo);
 		
 		request.setAttribute("mainData", data);
-		request.setAttribute("mainUrl", "OrderForm");
+		request.setAttribute("mainUrl", "member_view/OrderForm");
 
-		request.setAttribute("start", start);
+		request.setAttribute("total", total);
 		request.setAttribute("pageTotal", pageTotal);
 		request.setAttribute("pageStart", pageStart);
 		request.setAttribute("pageEnd", pageEnd);

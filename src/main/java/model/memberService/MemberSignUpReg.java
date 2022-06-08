@@ -42,10 +42,6 @@ public class MemberSignUpReg implements Service{
 			e.printStackTrace();
 		}
 		
-		
-		
-		
-		
 		request.setAttribute("mainUrl", "main/pages");
 	}
 }
