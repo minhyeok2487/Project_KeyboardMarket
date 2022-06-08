@@ -54,31 +54,22 @@
 		<td>주문일</td><td>
 		<fmt:formatDate value="${orderDto.ordered_date }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 	</tr>
-<%-- 	<tr>
+ 	<tr>
 		<td colspan="2" align="right">
-			<a href="<c:url value="/board/List?page=${nowPage }" />">목록으로</a>
-			<a href="<c:url value="/board/ModifyForm?id=${dto.id }&page=${nowPage }" />">환불</a>
+			<a href="<c:url value="/member/Order?page=${nowPage }" />">목록으로</a>
+			<c:choose>
+				<c:when test="${orderDto.status eq '주문완료'  }">
+					<a href="<c:url value="/admin/AdminRefund?status=${orderDto.status }&ordered_num=${orderDto.ordered_num }" />">취소신청</a>
+				</c:when>
+				<c:when test="${orderDto.status eq '배송중'  }">
+					<a href="<c:url value="/admin/AdminRefund?status=${orderDto.status }&ordered_num=${orderDto.ordered_num }" />">환불신청</a>
+				</c:when>
+				<c:when test="${orderDto.status eq '배송완료'  }">
+					<a href="<c:url value="/admin/AdminRefund?status=${orderDto.status }&ordered_num=${orderDto.ordered_num }" />">교환신청</a>
+				</c:when>
+			</c:choose>
 		</td>
-	</tr> --%>
-
-<script>
-  function cancelPay() {
-    jQuery.ajax({
-      "url": "{환불요청을 받을 서비스 URL}", // 예: http://www.myservice.com/payments/cancel
-      "type": "POST",
-      "contentType": "application/json",
-      "data": JSON.stringify({
-        "merchant_uid": "{결제건의 주문번호}", // 예: ORD20180131-0000011
-        "cancel_request_amount": 2000, // 환불금액
-        "reason": "테스트 결제 환불" // 환불사유
-        "refund_holder": "홍길동", // [가상계좌 환불시 필수입력] 환불 수령계좌 예금주
-        "refund_bank": "88" // [가상계좌 환불시 필수입력] 환불 수령계좌 은행코드(예: KG이니시스의 경우 신한은행은 88번)
-        "refund_account": "56211105948400" // [가상계좌 환불시 필수입력] 환불 수령계좌 번호
-      }),
-      "dataType": "json"
-    });
-  }
-</script>
+	</tr>
 
 </body>
 </html>
