@@ -1,23 +1,23 @@
-package service.noticePage;
+package service.qnaPage;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Service;
-import model.notice.NoticeDAO;
+import model.qna.QnaDAO;
 
-public class NoticeModifyForm implements Service {
+public class QnaModifyForm implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 
-		int no = Integer.parseInt(request.getParameter("noticeNo"));
-		NoticeDAO dao = new NoticeDAO();
+		int no = Integer.parseInt(request.getParameter("qnaNo"));
+		QnaDAO dao = new QnaDAO();
 
 		Object dataDetail = dao.detail(no);
 
 		request.setAttribute("dto", dataDetail);
-		request.setAttribute("mainUrl", "./notices/noticeModifypage");
+		request.setAttribute("mainUrl", "./qnas/qnaModifypage");
 
 	}
 

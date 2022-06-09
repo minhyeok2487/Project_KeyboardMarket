@@ -1,12 +1,12 @@
-package service.noticePage;
+package service.qnaPage;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Service;
-import model.notice.NoticeDAO;
+import model.qna.QnaDAO;
 
-public class NoticeList implements Service {
+public class QnaList implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
@@ -17,7 +17,7 @@ public class NoticeList implements Service {
 		int limit = 10; // 한 페이지당 게시물 수
 		int pageLimit = 5; // 페이지 번호 갯수
 
-		NoticeDAO dao = new NoticeDAO();
+		QnaDAO dao = new QnaDAO();
 
 		int total = dao.postCount();
 
@@ -35,10 +35,10 @@ public class NoticeList implements Service {
 			pageEnd = pageTotal;
 		}
 
-		Object dataList = new NoticeDAO().list(start, limit);
+		Object dataList = dao.list(start, limit);
 
-		request.setAttribute("noticeData", dataList);
-		request.setAttribute("mainUrl", "./notices/noticeListpage");
+		request.setAttribute("qnaData", dataList);
+		request.setAttribute("mainUrl", "./qnas/qnaListpage");
 
 		request.setAttribute("start", start);
 		request.setAttribute("limit", limit);

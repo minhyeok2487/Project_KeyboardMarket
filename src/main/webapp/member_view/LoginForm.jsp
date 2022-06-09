@@ -11,7 +11,7 @@
 
 <form action="./LoginReg" method="post">
 	아이디<input type="text" name="member_id" />
-	암호<input type="text" name="member_pw" />
+	암호<input type="password" name="member_pw" />
 	<input type="submit" value="로그인" />
 </form>
 

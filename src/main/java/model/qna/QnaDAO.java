@@ -1,4 +1,4 @@
-package model.notice;
+package model.qna;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,14 +11,14 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class NoticeDAO {
+public class QnaDAO {
 
 	Connection con;
 	PreparedStatement ptmt;
 	ResultSet rs;
 	String sql;
 
-	public NoticeDAO() {
+	public QnaDAO() {
 		try {
 			Context context = new InitialContext();
 			DataSource ds = (DataSource) context.lookup("java:comp/env/qazxsw");
@@ -28,10 +28,10 @@ public class NoticeDAO {
 		}
 	}
 
-	public ArrayList<NoticeDTO> list(int start, int limit) {
-		ArrayList<NoticeDTO> res = new ArrayList<NoticeDTO>();
+	public ArrayList<QnaDTO> list(int start, int limit) {
+		ArrayList<QnaDTO> res = new ArrayList<QnaDTO>();
 
-		sql = "select * from notice where status = ? order by noticeNo desc limit ?, ?";
+		sql = "select * from qna where status = ? order by qnaNo desc limit ?, ?";
 
 		try {
 			ptmt = con.prepareStatement(sql);
@@ -41,12 +41,13 @@ public class NoticeDAO {
 			rs = ptmt.executeQuery();
 
 			while (rs.next()) {
-				NoticeDTO dto = new NoticeDTO();
+				QnaDTO dto = new QnaDTO();
 
-				dto.setNoticeNo(rs.getInt("noticeNo"));
+				dto.setQnaNo(rs.getInt("qnaNo"));
 				dto.setSubject(rs.getString("subject"));
 				dto.setPname(rs.getString("pname"));
 				dto.setContent(rs.getString("content"));
+				dto.setHits(rs.getInt("hits"));
 				dto.setReg_date(rs.getTimestamp("reg_date"));
 				res.add(dto);
 			}
@@ -61,11 +62,11 @@ public class NoticeDAO {
 
 	}
 
-	public NoticeDTO detail(int no) {
+	public QnaDTO detail(int no) {
 
-		NoticeDTO dto = null;
+		QnaDTO dto = null;
 
-		sql = "select * from notice where noticeNo = ?";
+		sql = "select * from qna where qnaNo = ?";
 
 		try {
 			ptmt = con.prepareStatement(sql);
@@ -73,15 +74,14 @@ public class NoticeDAO {
 			rs = ptmt.executeQuery();
 
 			while (rs.next()) {
-				dto = new NoticeDTO();
+				dto = new QnaDTO();
 
-				dto.setNoticeNo(rs.getInt("noticeNo"));
+				dto.setQnaNo(rs.getInt("qnaNo"));
 				dto.setSubject(rs.getString("subject"));
 				dto.setPname(rs.getString("pname"));
 				dto.setContent(rs.getString("content"));
-				dto.setReg_date(rs.getTimestamp("reg_date"));
 				dto.setHits(rs.getInt("hits"));
-				dto.setUpfile(rs.getString("upfile"));
+				dto.setReg_date(rs.getTimestamp("reg_date"));
 			}
 
 		} catch (SQLException e) {
@@ -94,16 +94,17 @@ public class NoticeDAO {
 
 	}
 
-	public void insert(NoticeDTO dto) {
+	public void insert(QnaDTO dto) {
 
-		sql = "insert into notice(subject, pname, content, upfile, hits, reg_date) values (?, ?, ?, ?, 0, now())";
+		sql = "insert into qna(subject, pname, content, hits, reg_date, status, memberNo) values (?, ?, ?, 0, now(), ?, ?)";
 
 		try {
 			ptmt = con.prepareStatement(sql);
 			ptmt.setString(1, dto.subject);
 			ptmt.setString(2, dto.pname);
 			ptmt.setString(3, dto.content);
-			ptmt.setString(4, dto.upfile);
+			ptmt.setString(4, "게시");
+			ptmt.setInt(5, dto.memberNo);
 			ptmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -113,17 +114,17 @@ public class NoticeDAO {
 		}
 	}
 
-	public int modify(NoticeDTO dto) {
+	public int modify(QnaDTO dto) {
 
 		int res = 0;
 
-		sql = "update notice set subject = ?, content = ?, reg_date = now() where noticeNo = ?";
+		sql = "update qna set subject = ?, content = ?, reg_date = now() where qnaNo = ?";
 
 		try {
 			ptmt = con.prepareStatement(sql);
 			ptmt.setString(1, dto.subject);
 			ptmt.setString(2, dto.content);
-			ptmt.setInt(3, dto.noticeNo);
+			ptmt.setInt(3, dto.qnaNo);
 
 			res = ptmt.executeUpdate();
 
@@ -139,7 +140,7 @@ public class NoticeDAO {
 
 	public int postCount() {
 
-		sql = "select count(*) from notice";
+		sql = "select count(*) from qna";
 
 		try {
 			ptmt = con.prepareStatement(sql);
@@ -155,16 +156,16 @@ public class NoticeDAO {
 		return 0;
 	}
 
-	public ArrayList<NoticeDTO> Currentlist(String Status) {
-		ArrayList<NoticeDTO> res = new ArrayList<NoticeDTO>();
-		sql = "select * from notice where status = ? order by noticeNo desc";
+	public ArrayList<QnaDTO> Currentlist(String Status) {
+		ArrayList<QnaDTO> res = new ArrayList<QnaDTO>();
+		sql = "select * from qna where status = ? order by qnaNo desc";
 		try {
 			ptmt = con.prepareStatement(sql);
 			ptmt.setString(1, Status);
 			rs = ptmt.executeQuery();
 			while (rs.next()) {
-				NoticeDTO dto = new NoticeDTO();
-				dto.setNoticeNo(rs.getInt("noticeNo"));
+				QnaDTO dto = new QnaDTO();
+				dto.setQnaNo(rs.getInt("qnaNo"));
 				dto.setSubject(rs.getString("subject"));
 				dto.setPname(rs.getString("pname"));
 				dto.setContent(rs.getString("content"));

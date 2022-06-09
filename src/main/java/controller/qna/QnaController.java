@@ -1,4 +1,4 @@
-package controller.notice;
+package controller.qna;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,18 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Service;
 
-@WebServlet("/notice/*")
-public class NoticeController extends HttpServlet {
+@WebServlet("/qna/*")
+public class QnaController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
 	ArrayList<String> nonClass;
 
-	public NoticeController() {
+	public QnaController() {
 		super();
 		nonClass = new ArrayList<String>();
-		nonClass.add("noticeInsertpage");
-//		nonClass.add("noticeModifyForm");
+		nonClass.add("qnaInsertpage");
 	}
 
 	@Override
@@ -31,7 +30,7 @@ public class NoticeController extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 
-		String serviceStr = request.getRequestURI().substring((request.getContextPath() + "/notice/").length());
+		String serviceStr = request.getRequestURI().substring((request.getContextPath() + "/qna/").length());
 		System.out.println(serviceStr);
 
 		int page = 1;
@@ -42,10 +41,10 @@ public class NoticeController extends HttpServlet {
 		request.setAttribute("nowPage", page);
 
 		if (nonClass.contains(serviceStr)) {
-			request.setAttribute("mainUrl", "./notices/" + serviceStr);
+			request.setAttribute("mainUrl", "./qnas/" + serviceStr);
 		} else {
 			try {
-				Service service = (Service) Class.forName("service.noticePage." + serviceStr).newInstance();
+				Service service = (Service) Class.forName("service.qnaPage." + serviceStr).newInstance();
 				service.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
