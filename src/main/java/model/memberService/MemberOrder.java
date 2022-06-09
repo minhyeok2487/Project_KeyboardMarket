@@ -28,9 +28,8 @@ public class MemberOrder implements Service {
 		int limit = 10; // 한 페이지당 게시물 수
 		int pageLimit = 10; // 페이지 번호 갯수
 		
-		memberDAO dao = new memberDAO();
 		
-		int total = dao.totalCnt(memberNo);
+		int total = new memberDAO().totalCnt(memberNo);
 		
 		int pageTotal = total/limit;
 		

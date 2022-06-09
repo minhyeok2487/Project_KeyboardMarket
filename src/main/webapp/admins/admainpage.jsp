@@ -160,6 +160,7 @@
 							
 							for(OrderDTO rList : refund_list){ 
 							int sum; %>
+							
 							<tr>
 								<td></td>
 								<td><%=rList.getMemberNo()%></td>
@@ -169,23 +170,24 @@
 								<td><%=rList.getSelect_count() %></td>
 								<% sum = rList.getPrice() * rList.getSelect_count(); %>
 								<td><%= sum %></td>
-
+								<c:set var="oNum" value="<%=rList.getOrdered_num() %>" />
+								<c:set var="oNo" value="<%=rList.getOrderNo() %>" />
 								<% if(rList.getStatus().equals("주문완료")){ %>
 										<td>
 											<button type="button"
-											class="btn btn-outline-primary" onclick='location.href="../item/itemList";'>취소처리</button>
+											class="btn btn-outline-primary" onclick='location.href="../admin/AdminRefund?ordered_num=${oNum }&orderNo=${oNo }";'>취소처리</button>
 										</td>
 								<%} %>
 								<% if(rList.getStatus().equals("배송중")){ %>
 										<td>
 											<button type="button"
-											class="btn btn-outline-primary" onclick='location.href="../item/itemList";'>환불처리</button>
+											class="btn btn-outline-primary" onclick='location.href="../admin/AdminRefund?ordered_num=${oNum }&orderNo=${oNo }";'>환불처리</button>
 										</td>
 								<%} %>
 								<% if(rList.getStatus().equals("배송완료")){ %>
 										<td>
 											<button type="button"
-											class="btn btn-outline-primary" onclick='location.href="../item/itemList";'>반품처리</button>
+											class="btn btn-outline-primary" onclick='location.href="../admin/AdminRefund?ordered_num=${oNum }&orderNo=${oNo }";'>반품처리</button>
 										</td>
 								<%} %>
 							</tr>
