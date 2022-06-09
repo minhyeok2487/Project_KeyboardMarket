@@ -3,6 +3,15 @@
 <meta charset="UTF-8">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@page import="model.member.memberDTO"%>
+<%	
+	HttpSession user = request.getSession();
+	String userStatus = null;
+	memberDTO dto = (memberDTO) user.getAttribute("inUser");
+	if (dto != null) {
+		userStatus = dto.getStatus();
+	}
+%> 
 <h1>공지사항 상세보기 부분~~</h1>
 
 <div class="mb-3">
