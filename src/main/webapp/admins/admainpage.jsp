@@ -156,14 +156,16 @@
 							</tr>
 							<%
 							ArrayList<OrderDTO> refund_list = new OrderDAO().refundList();
-							int sum;
-							for(OrderDTO rList : refund_list){ %>
+							
+							for(OrderDTO rList : refund_list){ 
+							int sum; %>
 							<tr>
 								<td></td>
 								<td><%=rList.getItem_name()%></td>
 								<td><%=rList.getPrice()%></td>
 								<td><%=rList.getSelect_count() %></td>
-								<td></td>
+								<% sum = rList.getPrice() * rList.getSelect_count(); %>
+								<td><%= sum %></td>
 								<td></td>
 								<% if(rList.getStatus().equals("주문완료")){ %>
 										<td>
