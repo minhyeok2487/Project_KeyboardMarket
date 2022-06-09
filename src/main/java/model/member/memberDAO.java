@@ -33,6 +33,44 @@ public class memberDAO {
 		}
 	}
 	
+	
+	public ArrayList<memberDTO> allList(){
+		ArrayList<memberDTO> memberList = new ArrayList<memberDTO>();
+		sql = "select * from member";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			rs = ptmt.executeQuery();
+			while(rs.next()) {
+				memberDTO dto = new memberDTO();
+				dto.setMemberNo(rs.getInt("memberNo"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setName(rs.getString("name"));
+				dto.setBirthdate(rs.getTimestamp("birthdate"));
+				dto.setGender(rs.getString("gender"));
+				dto.setEmail(rs.getString("email"));
+				if(rs.getString("addr1")!=null) {				
+					dto.setAddr1(rs.getString("addr1"));
+				}
+				if(rs.getString("addr2")!=null) {
+					dto.setAddr2(rs.getString("addr2"));
+				}
+				if(rs.getString("tel")!=null) {
+					dto.setTel(rs.getString("tel"));
+				}
+				dto.setReg_date(rs.getTimestamp("reg_date"));
+				dto.setStatus(rs.getString("status"));
+				memberList.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		
+		return memberList;
+	}
+	
 	public void signUp(memberDTO dto){
 		memberDTO res = new memberDTO();
 		Date date = new Date();
@@ -354,6 +392,23 @@ public class memberDAO {
 		return dto;
 	}
 	
+	public boolean change(String status, int memberNo) {
+		sql = "update member set status = ? where memberNo =? ";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setString(1, status);
+			ptmt.setInt(2, memberNo);
+			ptmt.executeUpdate();
+			return true; 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return false;
+	}
+	
 	
 	public void close() {
 		if (rs != null) {
@@ -375,4 +430,7 @@ public class memberDAO {
 			}
 		}
 	}
+
+
+	
 }
