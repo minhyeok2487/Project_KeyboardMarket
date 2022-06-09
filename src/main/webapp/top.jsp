@@ -17,7 +17,7 @@
 	crossorigin="anonymous" >
 <nav class="navbar navbar-expand-lg navbar-light bg-light" id="topmenu">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/Project_KeyboardMarket">키보드 마켓</a>
+    <a class="navbar-brand" href="../mainpage/MainService">키보드 마켓</a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
