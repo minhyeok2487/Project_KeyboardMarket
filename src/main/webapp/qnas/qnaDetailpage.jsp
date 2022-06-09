@@ -1,8 +1,10 @@
+<%@page import="model.member.memberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <meta charset="UTF-8">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <h1>고객센터 상세보기 부분~~</h1>
 
 <div class="mb-3">
@@ -31,8 +33,12 @@
 	<textarea class="form-control" id="exampleFormControlTextarea1"
 		rows="3" disabled="disabled">${dto.content }</textarea>
 </div>
-<tr>
 
-	<td align="right"><a href="./QnaModifyForm?qnaNo=${dto.qnaNo }"><button
-				type="submit" class="btn btn-outline-primary">수정하기</button></a></td>
-</tr>
+<c:if test="${inUser != null && inUser.user_id == dto.user_id }">
+
+	<div align="right">
+		<a href="./QnaModifyForm?qnaNo=${dto.qnaNo }"><button
+				type="submit" class="btn btn-outline-primary">수정하기</button></a>
+	</div>
+</c:if>
+

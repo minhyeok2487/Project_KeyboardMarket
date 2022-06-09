@@ -1,12 +1,19 @@
+<%@page import="model.member.memberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%
+memberDTO dto = (memberDTO) session.getAttribute("inUser");
+String name = dto.getName();
+%>
 
 <h2>고객센터 작성페이지</h2>
 
 <form action="./QnaInsertReg" method="post"
 	enctype="multipart/form-data">
-	<input type="hidden" name="pname" value="관리자" />
+	<input type="hidden" name="user_id" value="${dto.user_id }" />
+	<input type="hidden" name="pname" value="<%=name %>" />
 
 	<div class="mb-3">
 		<label for="exampleFormControlInput1" class="form-label">제목</label> <input
@@ -16,17 +23,15 @@
 	<div class="mb-3">
 		<label for="exampleFormControlInput1" class="form-label">작성자</label> <input
 			type="text" class="form-control" id="exampleFormControlInput1"
-			value="관리자" disabled="disabled">
+			value="<%=name %>" disabled="disabled">
 	</div>
 	<div class="mb-3">
 		<label for="exampleFormControlTextarea1" class="form-label">내용</label>
 		<textarea class="form-control" id="exampleFormControlTextarea1"
 			rows="3" placeholder="내용을 입력하세요." name="content"></textarea>
 	</div>
-	<tr>
-		<td align="right"><button type="submit"
-				class="btn btn-outline-primary">작성하기</button></td>
-		<td align="right"><button type="reset"
-				class="btn btn-outline-primary">초기화</button></td>
-	</tr>
+		<div align="right"><button type="submit"
+				class="btn btn-outline-primary">작성하기</button></div>
+		<div align="right"><button type="reset"
+				class="btn btn-outline-primary">초기화</button></div>
 </form>
