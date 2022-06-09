@@ -148,11 +148,12 @@
 						<table class="table">
 							<tr>
 								<th></th>
+								<th>회원번호</th>
+								<th>신청인</th>
 								<th>상품</th>
 								<th>가격</th>
 								<th>수량</th>
 								<th>소계</th>
-								<th>비고</th>
 							</tr>
 							<%
 							ArrayList<OrderDTO> refund_list = new OrderDAO().refundList();
@@ -161,12 +162,14 @@
 							int sum; %>
 							<tr>
 								<td></td>
+								<td><%=rList.getMemberNo()%></td>
+								<td><%=rList.getName()%></td>
 								<td><%=rList.getItem_name()%></td>
 								<td><%=rList.getPrice()%></td>
 								<td><%=rList.getSelect_count() %></td>
 								<% sum = rList.getPrice() * rList.getSelect_count(); %>
 								<td><%= sum %></td>
-								<td></td>
+
 								<% if(rList.getStatus().equals("주문완료")){ %>
 										<td>
 											<button type="button"
