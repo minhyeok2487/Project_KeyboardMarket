@@ -1,3 +1,4 @@
+<%@page import="model.qna.QnaDTO"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="model.order.OrderDTO"%>
@@ -31,7 +32,7 @@ if (dto != null) {
 	<jsp:include page="../Admintop.jsp" />
 	<div class="jumbotron">
 		<div class="container">
-			<h2 class="display-3">공지사항 관리</h2>
+			<h2 class="display-3">고객센터 관리</h2>
 		</div>
 	</div>
 	<div class="container">
@@ -41,7 +42,7 @@ if (dto != null) {
 					<button class="accordion-button" type="button"
 						data-bs-toggle="collapse" data-bs-target="#collapseOne"
 						aria-expanded="true" aria-controls="collapseOne">
-						게시된 공지사항 ${PostList.size() }개</button>
+						게시된 문의사항 ${PostList.size() }개</button>
 				</h2>
 				<div id="collapseOne" class="accordion-collapse collapse show"
 					aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -57,20 +58,20 @@ if (dto != null) {
 								<th>처리</th>
 							</tr>
 							<%
-								ArrayList<NoticeDTO> PostList = (ArrayList<NoticeDTO>) request.getAttribute("PostList");
+								ArrayList<QnaDTO> PostList = (ArrayList<QnaDTO>) request.getAttribute("PostList");
 							for (int i = 0; i < PostList.size(); i++) { // 상품 리스트 하나씩 출력하기
-								NoticeDTO item = PostList.get(i);
+								QnaDTO item = PostList.get(i);
 							%>
 							<tr>
 								<td></td>
-								<td><%=item.getNoticeNo()%></td>
+								<td><%=item.getQnaNo()%></td>
 								<td><%=item.getSubject()%></td>
 								<td><%=item.getPname()%></td>
 								<td><%=item.getHits() %></td>
 								<td><%=item.getReg_date() %></td>
 								<td>
 									<button type="button" class="btn btn-outline-primary"
-										onclick='#'>만료처리</button>
+										onclick='#'>답변하기</button>
 								</td>
 							</tr>
 							<%
@@ -85,7 +86,7 @@ if (dto != null) {
 					<button class="accordion-button collapsed" type="button"
 						data-bs-toggle="collapse" data-bs-target="#collapseTwo"
 						aria-expanded="false" aria-controls="collapseTwo">
-						만료된 공지사항 ${EndList.size() }개</button>
+						답변된 문의사항 ${EndList.size() }개</button>
 				</h2>
 				<div id="collapseTwo" class="accordion-collapse collapse"
 					aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
@@ -101,20 +102,20 @@ if (dto != null) {
 								<th>처리</th>
 							</tr>
 							<%
-								ArrayList<NoticeDTO> EndList = (ArrayList<NoticeDTO>) request.getAttribute("EndList");
+								ArrayList<QnaDTO> EndList = (ArrayList<QnaDTO>) request.getAttribute("EndList");
 							for (int i = 0; i < EndList.size(); i++) { // 상품 리스트 하나씩 출력하기
-								NoticeDTO item = EndList.get(i);
+								QnaDTO item = EndList.get(i);
 							%>
 							<tr>
 								<td></td>
-								<td><%=item.getNoticeNo()%></td>
+								<td><%=item.getQnaNo()%></td>
 								<td><%=item.getSubject()%></td>
 								<td><%=item.getPname()%></td>
 								<td><%=item.getHits() %></td>
 								<td><%=item.getReg_date() %></td>
 								<td>
 									<button type="button" class="btn btn-outline-primary"
-										onclick='#'>재게시</button>
+										onclick='#'>답변완료</button>
 								</td>
 							</tr>
 							<%

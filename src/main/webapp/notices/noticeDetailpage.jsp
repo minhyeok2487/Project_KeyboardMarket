@@ -45,9 +45,11 @@
 	<textarea class="form-control" id="exampleFormControlTextarea1"
 		rows="3" disabled="disabled">${dto.content }</textarea>
 </div>
-<tr>
 
-	<td align="right"><a
-		href="./NoticeModifyForm?noticeNo=${dto.noticeNo }"><button
-				type="submit" class="btn btn-outline-primary">수정하기</button></a></td>
-</tr>
+<c:if test="${inUser != null && inUser.user_id == dto.user_id }">
+
+	<div align="right">
+		<a href="./NoticeModifyForm?noticeNo=${dto.noticeNo }"><button
+				type="submit" class="btn btn-outline-primary">수정하기</button></a>
+	</div>
+</c:if>

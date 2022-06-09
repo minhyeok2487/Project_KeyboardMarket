@@ -27,7 +27,7 @@
           <a class="nav-link active" aria-current="page" href="./ItemControl">상품관리</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">고객센터</a>
+          <a class="nav-link active" aria-current="page" href="./QnaControl">고객센터 관리</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="./NoticeControl">공지사항 관리</a>

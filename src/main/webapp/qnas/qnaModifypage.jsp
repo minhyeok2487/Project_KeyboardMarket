@@ -1,22 +1,21 @@
+<%@page import="model.member.memberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <meta charset="UTF-8">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@page import="model.member.memberDTO"%>
-<%	
-	HttpSession user = request.getSession();
-	String userStatus = null;
-	memberDTO dto = (memberDTO) user.getAttribute("inUser");
-	if (dto != null) {
-		userStatus = dto.getStatus();
-	}
-%> 
+
+<%
+memberDTO dto = (memberDTO) session.getAttribute("inUser");
+String name = dto.getName();
+%>
+
 <h1>고객센터 수정페이지</h1>
 
 <form action="./QnaModifyReg" method="post">
-	<input type="hidden" name="qnaNo" value="${dto.qnaNo }" /> <input
-		type="hidden" name="pname" value="관리자" />
+	<input type="hidden" name="qnaNo" value="${dto.qnaNo }" />
+	<input type="hidden" name="pname" value="${dto.pname }" />
+	<input type="hidden" name="user_id" value="${dto.user_id }" />
 
 	<div class="mb-3">
 		<label for="exampleFormControlInput1" class="form-label">번호</label> <input
@@ -38,10 +37,8 @@
 		<textarea class="form-control" id="exampleFormControlTextarea1"
 			rows="3" name="content">${dto.content }</textarea>
 	</div>
-	<tr>
-		<td align="right"><button type="submit"
-				class="btn btn-outline-primary">수정하기</button></td>
-		<td align="right"><button type="reset"
-				class="btn btn-outline-primary">초기화</button></td>
-	</tr>
+		<div align="right"><button type="submit"
+				class="btn btn-outline-primary">수정하기</button></div>
+		<div align="right"><button type="reset"
+				class="btn btn-outline-primary">초기화</button></div>
 </form>

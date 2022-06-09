@@ -31,18 +31,16 @@
 	<div class="mb-3">
 		<label for="exampleFormControlInput1" class="form-label">작성자</label> <input
 			type="text" class="form-control" id="exampleFormControlInput1"
-			value="${dto.pname }" disabled="disabled">
+			value="관리자" disabled="disabled">
 	</div>
 	<div class="mb-3">
 		<label for="exampleFormControlTextarea1" class="form-label">내용</label>
 		<textarea class="form-control" id="exampleFormControlTextarea1"
 			rows="3" name="content">${dto.content }</textarea>
 	</div>
-	<tr>
 
-		<td align="right"><button type="submit"
-				class="btn btn-outline-primary">수정하기</button></td>
-		<td align="right"><button type="reset"
-				class="btn btn-outline-primary">초기화</button></td>
-	</tr>
+		<div align="right"><button type="submit"
+				class="btn btn-outline-primary">수정하기</button></div>
+		<div align="right"><button type="reset"
+				class="btn btn-outline-primary">초기화</button></div>
 </form>

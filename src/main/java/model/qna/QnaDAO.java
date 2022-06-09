@@ -35,7 +35,7 @@ public class QnaDAO {
 
 		try {
 			ptmt = con.prepareStatement(sql);
-			ptmt.setString(1, "게시");
+			ptmt.setString(1, "미답변");
 			ptmt.setInt(2, start);
 			ptmt.setInt(3, limit);
 			rs = ptmt.executeQuery();
@@ -45,6 +45,7 @@ public class QnaDAO {
 
 				dto.setQnaNo(rs.getInt("qnaNo"));
 				dto.setSubject(rs.getString("subject"));
+				dto.setUser_id(rs.getString("user_id"));
 				dto.setPname(rs.getString("pname"));
 				dto.setContent(rs.getString("content"));
 				dto.setHits(rs.getInt("hits"));
@@ -78,6 +79,7 @@ public class QnaDAO {
 
 				dto.setQnaNo(rs.getInt("qnaNo"));
 				dto.setSubject(rs.getString("subject"));
+				dto.setUser_id(rs.getString("user_id"));
 				dto.setPname(rs.getString("pname"));
 				dto.setContent(rs.getString("content"));
 				dto.setHits(rs.getInt("hits"));
@@ -96,15 +98,16 @@ public class QnaDAO {
 
 	public void insert(QnaDTO dto) {
 
-		sql = "insert into qna(subject, pname, content, hits, reg_date, status, memberNo) values (?, ?, ?, 0, now(), ?, ?)";
+		sql = "insert into qna(subject, user_id, pname, content, hits, reg_date, status, memberNo) values (?, ?, ?, ?, 0, now(), ?, ?)";
 
 		try {
 			ptmt = con.prepareStatement(sql);
 			ptmt.setString(1, dto.subject);
-			ptmt.setString(2, dto.pname);
-			ptmt.setString(3, dto.content);
-			ptmt.setString(4, "게시");
-			ptmt.setInt(5, dto.memberNo);
+			ptmt.setString(2, dto.user_id);
+			ptmt.setString(3, dto.pname);
+			ptmt.setString(4, dto.content);
+			ptmt.setString(5, "미답변");
+			ptmt.setInt(6, dto.memberNo);
 			ptmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -167,6 +170,7 @@ public class QnaDAO {
 				QnaDTO dto = new QnaDTO();
 				dto.setQnaNo(rs.getInt("qnaNo"));
 				dto.setSubject(rs.getString("subject"));
+				dto.setUser_id(rs.getString("user_id"));
 				dto.setPname(rs.getString("pname"));
 				dto.setContent(rs.getString("content"));
 				dto.setReg_date(rs.getTimestamp("reg_date"));

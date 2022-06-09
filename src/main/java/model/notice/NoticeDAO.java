@@ -45,6 +45,7 @@ public class NoticeDAO {
 
 				dto.setNoticeNo(rs.getInt("noticeNo"));
 				dto.setSubject(rs.getString("subject"));
+				dto.setUser_id(rs.getString("user_id"));
 				dto.setPname(rs.getString("pname"));
 				dto.setContent(rs.getString("content"));
 				dto.setReg_date(rs.getTimestamp("reg_date"));
@@ -77,6 +78,7 @@ public class NoticeDAO {
 
 				dto.setNoticeNo(rs.getInt("noticeNo"));
 				dto.setSubject(rs.getString("subject"));
+				dto.setUser_id(rs.getString("user_id"));
 				dto.setPname(rs.getString("pname"));
 				dto.setContent(rs.getString("content"));
 				dto.setReg_date(rs.getTimestamp("reg_date"));
@@ -96,14 +98,15 @@ public class NoticeDAO {
 
 	public void insert(NoticeDTO dto) {
 
-		sql = "insert into notice(subject, pname, content, upfile, hits, reg_date) values (?, ?, ?, ?, 0, now())";
+		sql = "insert into notice(subject, user_id, pname, content, upfile, hits, reg_date) values (?, ?, ?, ?, ?, 0, now())";
 
 		try {
 			ptmt = con.prepareStatement(sql);
 			ptmt.setString(1, dto.subject);
-			ptmt.setString(2, dto.pname);
-			ptmt.setString(3, dto.content);
-			ptmt.setString(4, dto.upfile);
+			ptmt.setString(2, dto.user_id);
+			ptmt.setString(3, dto.pname);
+			ptmt.setString(4, dto.content);
+			ptmt.setString(5, dto.upfile);
 			ptmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -166,6 +169,7 @@ public class NoticeDAO {
 				NoticeDTO dto = new NoticeDTO();
 				dto.setNoticeNo(rs.getInt("noticeNo"));
 				dto.setSubject(rs.getString("subject"));
+				dto.setUser_id(rs.getString("user_id"));
 				dto.setPname(rs.getString("pname"));
 				dto.setContent(rs.getString("content"));
 				dto.setReg_date(rs.getTimestamp("reg_date"));
