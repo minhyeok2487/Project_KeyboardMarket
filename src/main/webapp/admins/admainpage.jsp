@@ -169,7 +169,7 @@
 								<td><%=rList.getSelect_count() %></td>
 								<% sum = rList.getPrice() * rList.getSelect_count(); %>
 								<td><%= sum %></td>
-								
+
 								<% if(rList.getStatus().equals("주문완료")){ %>
 										<td>
 											<button type="button"
