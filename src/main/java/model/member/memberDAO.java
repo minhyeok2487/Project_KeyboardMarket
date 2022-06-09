@@ -203,6 +203,8 @@ public class memberDAO {
 			return rs.getInt(1);
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close();
 		}
 		
 		return 0;
@@ -307,6 +309,8 @@ public class memberDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			close();
 		}
 		
 		
