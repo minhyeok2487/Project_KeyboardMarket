@@ -195,6 +195,54 @@ public class OrderDAO {
 		
 	}
 	
+	public ArrayList<OrderDTO> refundList(){
+		ArrayList<OrderDTO> res = new ArrayList<OrderDTO>();
+		
+		sql = "select * from orders where refund is not null ";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			rs = ptmt.executeQuery();
+			
+			while(rs.next()) {
+				OrderDTO dto = new OrderDTO();
+				
+				dto.setOrderNo(rs.getInt("orderNo"));
+				dto.setOrdered_num(rs.getString("ordered_num"));
+				dto.setOrdered_date(rs.getTimestamp("ordered_date"));
+				dto.setManufacture(rs.getString("manufacture"));
+				dto.setCategory(rs.getString("category"));
+				if(rs.getString("switchs")!=null) {
+					dto.setSwitchs(rs.getString("switchs"));
+				}
+				dto.setSpec(rs.getString("spec"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setSelect_count(rs.getInt("select_count"));
+				dto.setItem_name(rs.getString("item_name"));
+				dto.setReg_date(rs.getTimestamp("reg_date"));
+				dto.setItem_img1(rs.getString("item_img1"));
+				dto.setItem_img2(rs.getString("item_img2"));
+				dto.setMemberNo(rs.getInt("memberNo"));
+				dto.setName(rs.getString("name"));
+				dto.setAddr1(rs.getString("addr1"));
+				dto.setAddr2(rs.getString("addr2"));
+				dto.setStatus(rs.getString("status"));
+				if(rs.getString("refund") != null) {
+					dto.setRefund(rs.getString("refund"));
+				}
+				if(rs.getTimestamp("refund_date") != null) {
+					dto.setRefund_date(rs.getTimestamp("refund_date"));
+				}
+				
+				res.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
 	
 	public void close() {
 		if (rs != null) {
