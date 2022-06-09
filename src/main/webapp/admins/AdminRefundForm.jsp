@@ -99,6 +99,7 @@
 			<td>스위치</td>
 			<td>${itemData.switchs }</td>
 		</tr>
+
 		<tr>
 			<td>상품 스펙</td>
 			<td>${itemData.spec }</td>
@@ -224,7 +225,6 @@
 		</tr>
 	</table>
 </form>
-
 
 <script>
   function cancelPay() {
