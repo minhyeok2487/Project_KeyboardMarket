@@ -15,9 +15,8 @@ public class ItemEdit implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		itemDAO dao = new itemDAO();
 		int itemNo = Integer.parseInt(request.getParameter("itemNo"));
-		itemDTO getItem = dao.Detail(itemNo);
+		itemDTO getItem = new itemDAO().Detail(itemNo);
 		
 		request.setAttribute("getItem", getItem);
 		request.setAttribute("mainUrl", "./admins/itemeditpage");
