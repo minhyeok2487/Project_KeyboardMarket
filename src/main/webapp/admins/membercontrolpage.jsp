@@ -83,7 +83,7 @@ if (dto != null) {
 					<%
 						if(item.getStatus().equals("정지")){
 					%>
-						<p><a href="./MemberStatusChange?status=회원&memberNo=${memberNo }"><button class="btn btn-info" type="button">정지 해제</button></a></p>
+						<p><a href="./MemberStatusChange?status=회원&memberNo=${memberNo }"><button class="btn btn-success" type="button">정지 해제</button></a></p>
 					<%			
 						} else {
 					%>
@@ -91,7 +91,7 @@ if (dto != null) {
 					<%
 						}
 					%>
-					
+					<p><a href="./SearchMemberInfo?&memberNo=${memberNo }"><button class="btn btn-info" type="button">조회</button></a></p>
 				</td>
 			</tr>
 			<%

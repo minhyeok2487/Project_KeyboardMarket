@@ -16,52 +16,69 @@ import model.cart.CartDTO;
 import model.item.itemDTO;
 import model.member.memberDTO;
 
-
 public class OrderDAO {
 	Connection con;
 	PreparedStatement ptmt; // 보안적용
 	ResultSet rs;
 	String sql;
-	
+
 	public OrderDAO() {
 		try {
 			Context context = new InitialContext();
-			DataSource ds = (DataSource)context.lookup("java:comp/env/qazxsw");
+			DataSource ds = (DataSource) context.lookup("java:comp/env/qazxsw");
 			con = ds.getConnection();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-//	ArrayList<OrderDTO> res = new ArrayList<OrderDTO>();
-//	sql = "select * from order";
-//	try {
-//		ptmt = con.prepareStatement(sql);
-//		rs = ptmt.executeQuery();
-//		while(rs.next()) {
-//			itemDTO dto = new itemDTO();
-//			dto.setItemNo(rs.getInt("itemNo"));
-//			dto.setItem_name(rs.getString("item_name"));
-//			dto.setManufacture(rs.getString("manufacture"));
-//			dto.setCategory(rs.getString("category"));
-//			dto.setSwitchs(rs.getString("switchs"));
-//			dto.setSpec(rs.getString("spec"));
-//			dto.setPrice(rs.getInt("price"));
-//			dto.setStock(rs.getInt("stock"));
-//			dto.setReg_date(rs.getDate("reg_date"));
-//			dto.setItem_img1(rs.getString("item_img1"));
-//			dto.setItem_img2(rs.getString("item_img2"));
-//			dto.setItem_sold(rs.getInt("item_sold"));
-//			res.add(dto);
-//		}
-//	} catch (Exception e) {
-//		e.printStackTrace();
-//	} finally {
-//		close();
-//	}
-//	return res;
-	
-	public void addOrder(String ordered_num, String merchant, memberDTO member,  String addr1, String addr2, CartDTO cartDTO){
+
+	public ArrayList<OrderDTO> searchOrdr(int memberNo) {
+		ArrayList<OrderDTO> res = new ArrayList<OrderDTO>();
+		sql = "select * from orders where memberNo = ?";
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setInt(1, memberNo);
+			rs = ptmt.executeQuery();
+			while (rs.next()) {
+				OrderDTO dto = new OrderDTO();
+				dto.setOrderNo(rs.getInt("orderNo"));
+				dto.setOrdered_num(rs.getString("ordered_num"));
+				dto.setOrdered_date(rs.getTimestamp("ordered_date"));
+				dto.setManufacture(rs.getString("manufacture"));
+				dto.setCategory(rs.getString("category"));
+				if (rs.getString("switchs") != null) {
+					dto.setSwitchs(rs.getString("switchs"));
+				}
+				dto.setSpec(rs.getString("spec"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setSelect_count(rs.getInt("select_count"));
+				dto.setItem_name(rs.getString("item_name"));
+				dto.setReg_date(rs.getTimestamp("reg_date"));
+				dto.setItem_img1(rs.getString("item_img1"));
+				dto.setItem_img2(rs.getString("item_img2"));
+				dto.setMemberNo(rs.getInt("memberNo"));
+				dto.setName(rs.getString("name"));
+				dto.setAddr1(rs.getString("addr1"));
+				dto.setAddr2(rs.getString("addr2"));
+				dto.setStatus(rs.getString("status"));
+				if (rs.getString("refund") != null) {
+					dto.setRefund(rs.getString("refund"));
+				}
+				if (rs.getTimestamp("refund_date") != null) {
+					dto.setRefund_date(rs.getTimestamp("refund_date"));
+				}
+				res.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return res;
+	}
+
+	public void addOrder(String ordered_num, String merchant, memberDTO member, String addr1, String addr2,
+			CartDTO cartDTO) {
 		sql = "insert into orders (ordered_num, ordered_date, category, switchs, "
 				+ "select_count,item_name,manufacture,spec,price,reg_date, "
 				+ "item_img1,item_img2,memberNo,name,addr1,addr2,tel,status) values "
@@ -93,9 +110,9 @@ public class OrderDAO {
 			close();
 		}
 	}
-	
+
 	public ArrayList<OrderDTO> allList() {
-		ArrayList<OrderDTO>  res = new ArrayList<OrderDTO> ();
+		ArrayList<OrderDTO> res = new ArrayList<OrderDTO>();
 		sql = "SELECT * FROM orders WHERE ( ordered_date > LAST_DAY(NOW() - interval 1 month) AND ordered_date <= LAST_DAY(NOW()))";
 		try {
 			ptmt = con.prepareStatement(sql);
@@ -114,14 +131,14 @@ public class OrderDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}  finally {
+		} finally {
 			close();
 		}
 		return res;
 	}
-	
+
 	public ArrayList<OrderDTO> list() {
-		ArrayList<OrderDTO>  res = new ArrayList<OrderDTO> ();
+		ArrayList<OrderDTO> res = new ArrayList<OrderDTO>();
 		sql = "select * from orders where ordered_date > date_add(now(),interval -7 day)";
 		try {
 			ptmt = con.prepareStatement(sql);
@@ -140,14 +157,14 @@ public class OrderDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}  finally {
+		} finally {
 			close();
 		}
 		return res;
 	}
-	
+
 	public ArrayList<OrderDTO> orderinglist() {
-		ArrayList<OrderDTO>  res = new ArrayList<OrderDTO> ();
+		ArrayList<OrderDTO> res = new ArrayList<OrderDTO>();
 		sql = "select * from orders where status = '주문완료'";
 		try {
 			ptmt = con.prepareStatement(sql);
@@ -166,63 +183,63 @@ public class OrderDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}  finally {
+		} finally {
 			close();
 		}
 		return res;
 	}
-	
+
 	public void requestRefund(String orderNo, String aStatus) {
-		
+
 		sql = "update orders set refund = ?, refund_date = sysdate() where orderNo = ? ";
-		
+
 		String refundStatus;
-		
+
 		try {
 			ptmt = con.prepareStatement(sql);
-			
-			if(aStatus.equals("주문완료")) {
+
+			if (aStatus.equals("주문완료")) {
 				refundStatus = "취소신청";
-			}else if(aStatus.equals("배송중")){
+			} else if (aStatus.equals("배송중")) {
 				refundStatus = "환불신청";
-			}else if(aStatus.equals("배송완료")){
+			} else if (aStatus.equals("배송완료")) {
 				refundStatus = "반품신청";
-			}else {
+			} else {
 				refundStatus = "";
 			}
-			
+
 			ptmt.setString(1, refundStatus);
 			ptmt.setString(2, orderNo);
-			
+
 			ptmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			close();
 		}
-		
+
 	}
-	
-	public ArrayList<OrderDTO> refundList(){
+
+	public ArrayList<OrderDTO> refundList() {
 		ArrayList<OrderDTO> res = new ArrayList<OrderDTO>();
-		
+
 		sql = "select * from orders where refund is not null ";
-		
+
 		try {
 			ptmt = con.prepareStatement(sql);
 			rs = ptmt.executeQuery();
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				OrderDTO dto = new OrderDTO();
-				
+
 				dto.setOrderNo(rs.getInt("orderNo"));
 				dto.setOrdered_num(rs.getString("ordered_num"));
 				dto.setOrdered_date(rs.getTimestamp("ordered_date"));
 				dto.setManufacture(rs.getString("manufacture"));
 				dto.setCategory(rs.getString("category"));
-				if(rs.getString("switchs")!=null) {
+				if (rs.getString("switchs") != null) {
 					dto.setSwitchs(rs.getString("switchs"));
 				}
 				dto.setSpec(rs.getString("spec"));
@@ -237,13 +254,13 @@ public class OrderDAO {
 				dto.setAddr1(rs.getString("addr1"));
 				dto.setAddr2(rs.getString("addr2"));
 				dto.setStatus(rs.getString("status"));
-				if(rs.getString("refund") != null) {
+				if (rs.getString("refund") != null) {
 					dto.setRefund(rs.getString("refund"));
 				}
-				if(rs.getTimestamp("refund_date") != null) {
+				if (rs.getTimestamp("refund_date") != null) {
 					dto.setRefund_date(rs.getTimestamp("refund_date"));
 				}
-				
+
 				res.add(dto);
 			}
 		} catch (SQLException e) {
@@ -254,29 +271,25 @@ public class OrderDAO {
 		}
 		return res;
 	}
-	
+
 	public void refundCancle(int order_no) {
 		sql = "update orders set refund = ?, refund_date = sysdate() where orderNo = ? ";
-		
+
 		try {
 			ptmt = con.prepareStatement(sql);
-			
+
 			ptmt.setString(1, "취소불가");
 			ptmt.setInt(2, order_no);
-			
+
 			ptmt.executeUpdate();
-			
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
+
 	}
-	
-	
+
 	public void close() {
 		if (rs != null) {
 			try {
