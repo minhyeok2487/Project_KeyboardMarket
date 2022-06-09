@@ -37,6 +37,8 @@ public class CartDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		return false;
 	}
@@ -53,6 +55,8 @@ public class CartDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		return true;
 	}
@@ -78,6 +82,8 @@ public class CartDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		return cartDTO;
 	}
@@ -104,6 +110,8 @@ public class CartDAO {
 			ptmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 	}
 
@@ -134,7 +142,9 @@ public class CartDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		} finally {
+			close();
+		}
 		return res;
 	}
 
@@ -150,6 +160,8 @@ public class CartDAO {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		return false;
 	}
