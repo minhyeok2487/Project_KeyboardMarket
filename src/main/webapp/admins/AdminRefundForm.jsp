@@ -210,17 +210,17 @@
 		<tr>
 			<td>
 				<button type="button"
-				class="btn btn-outline-primary" onclick='location.href="../admin/AdminRefund?ordered_num=${oNum }&orderNo=${oNo }";'>승인</button>
+				class="btn btn-outline-primary" onclick='cancelPay()"'>승인</button>
 			</td>
 			<td></td>
 			<td>
 				<button type="button"
-				class="btn btn-outline-primary" onclick='location.href="../admin/AdminRefund?ordered_num=${oNum }&orderNo=${oNo }";'>거절</button>
+				class="btn btn-outline-primary" onclick='location.href="../admin/AdminRefundCancel?orderNo=${orderData.orderNo }"'>거절</button>
 			</td>
 			<td></td>
 			<td>
 				<button type="button"
-				class="btn btn-outline-primary" onclick='location.href="../admin/AdminRefund?ordered_num=${oNum }&orderNo=${oNo }";'>뒤로</button>
+				class="btn btn-outline-primary" onclick='location.href="../admin/Adminmain"'>뒤로</button>
 			</td>
 		</tr>
 	</table>
@@ -233,7 +233,7 @@
       "type": "POST",
       "contentType": "application/json",
       "data": JSON.stringify({
-        "merchant_uid": ${orderDto.ordered_num }, // "{결제건의 주문번호}" 예: ORD20180131-0000011
+        "merchant_uid": ${orderData.ordered_num }, // "{결제건의 주문번호}" 예: ORD20180131-0000011
         "cancel_request_amount": 100, // 환불금액
         "reason": "테스트 결제 환불" // 환불사유
  //       "refund_holder": "홍길동", // [가상계좌 환불시 필수입력] 환불 수령계좌 예금주

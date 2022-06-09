@@ -16,8 +16,6 @@ public class MemberRefund implements Service{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		
-		memberDAO dao = new memberDAO();
-		
 		String aStatus = request.getParameter("status");
 		String aOrdered_num = request.getParameter("ordered_num");
 		
@@ -25,7 +23,7 @@ public class MemberRefund implements Service{
 		String oPage = request.getParameter("page");
 		String oOrderNo = request.getParameter("orderNo");
 		
-		OrderDTO oDto = dao.orderSelect(Integer.parseInt(oOrderNo));
+		OrderDTO oDto = new memberDAO().orderSelect(Integer.parseInt(oOrderNo));
 		
 		if(oDto.getRefund()!=null) {
 			String refund = oDto.getRefund();
@@ -37,7 +35,7 @@ public class MemberRefund implements Service{
 			request.setAttribute("refund_date", refund_date);
 		}
 		
-		itemDTO dto = dao.orderDetail(oDto.getItem_name());
+		itemDTO dto = new memberDAO().orderDetail(oDto.getItem_name());
 		
 		new OrderDAO().requestRefund(aOrdered_num, aStatus);
 		

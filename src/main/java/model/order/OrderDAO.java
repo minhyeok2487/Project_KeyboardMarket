@@ -89,6 +89,8 @@ public class OrderDAO {
 			ptmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 	}
 	
@@ -112,7 +114,9 @@ public class OrderDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		}  finally {
+			close();
+		}
 		return res;
 	}
 	
@@ -136,7 +140,9 @@ public class OrderDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		}  finally {
+			close();
+		}
 		return res;
 	}
 	
@@ -160,7 +166,9 @@ public class OrderDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		}  finally {
+			close();
+		}
 		return res;
 	}
 	
@@ -186,11 +194,13 @@ public class OrderDAO {
 			ptmt.setString(1, refundStatus);
 			ptmt.setString(2, ordered_num);
 			
-			ptmt.execute();
+			ptmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		
 	}
@@ -239,8 +249,31 @@ public class OrderDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		return res;
+	}
+	
+	public void refundCancle(int order_no) {
+		sql = "update orders set refund = ?, refund_date = sysdate() where orderNo = ? ";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			
+			ptmt.setString(1, "취소불가");
+			ptmt.setInt(2, order_no);
+			
+			ptmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
 	}
 	
 	
@@ -264,13 +297,4 @@ public class OrderDAO {
 			}
 		}
 	}
-
-	
-
-	
-
-	
-
-
-	
 }
