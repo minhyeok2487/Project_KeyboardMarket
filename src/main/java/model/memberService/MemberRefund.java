@@ -17,7 +17,6 @@ public class MemberRefund implements Service{
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		String aStatus = request.getParameter("status");
-		String aOrdered_num = request.getParameter("ordered_num");
 		
 		
 		String oPage = request.getParameter("page");
@@ -37,7 +36,7 @@ public class MemberRefund implements Service{
 		
 		itemDTO dto = new memberDAO().orderDetail(oDto.getItem_name());
 		
-		new OrderDAO().requestRefund(aOrdered_num, aStatus);
+		new OrderDAO().requestRefund(oOrderNo, aStatus);
 		
 		request.setAttribute("nowPage", oPage);
 		request.setAttribute("dto", dto);

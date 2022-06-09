@@ -69,13 +69,13 @@
 			<a href="<c:url value="/member/Order?page=${nowPage }" />">목록으로</a>
 			<c:choose>
 				<c:when test="${orderDto.status eq '주문완료'  }">
-					<a href="<c:url value="/member/Refund?orderNo=${orderDto.orderNo }&status=${orderDto.status }&ordered_num=${orderDto.ordered_num }&page=${nowPage }" />">취소신청</a>
+					<a href="<c:url value="/member/Refund?orderNo=${orderDto.orderNo }&status=${orderDto.status }&page=${nowPage }" />">취소신청</a>
 				</c:when>
 				<c:when test="${orderDto.status eq '배송중'  }">
-					<a href="<c:url value="/admin/Refund?orderNo=${orderDto.orderNo }&status=${orderDto.status }&ordered_num=${orderDto.ordered_num }&page=${nowPage }" />">환불신청</a>
+					<a href="<c:url value="/member/Refund?orderNo=${orderDto.orderNo }&status=${orderDto.status }&page=${nowPage }" />">환불신청</a>
 				</c:when>
 				<c:when test="${orderDto.status eq '배송완료'  }">
-					<a href="<c:url value="/admin/Refund?orderNo=${orderDto.orderNo }&status=${orderDto.status }&ordered_num=${orderDto.ordered_num }&page=${nowPage }" />">반품신청</a>
+					<a href="<c:url value="/member/Refund?orderNo=${orderDto.orderNo }&status=${orderDto.status }&page=${nowPage }" />">반품신청</a>
 				</c:when>
 				<c:otherwise>
 					[[[  취소 승인 불가  ]]]

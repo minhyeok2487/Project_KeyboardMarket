@@ -13,7 +13,7 @@ public class AdminRefundCancel implements Service{
 		
 		String order_no = request.getParameter("orderNo");
 		
-		new OrderDAO().refundCancle(Integer.parseInt("order_no"));
+		new OrderDAO().refundCancle(Integer.parseInt(order_no));
 		
 		
 		request.setAttribute("mainUrl", "./admins/goAdmin");
