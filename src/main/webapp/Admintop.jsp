@@ -35,6 +35,12 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="./MainControl">메인페이지 관리</a>
         </li>
+        <li>
+        <form action="./SearchMember?" method="get" class="d-flex">
+        	<input class="form-control me-2" type="search" placeholder="회원 ID 검색" aria-label="Search" name="member_id">
+        	<button class="btn btn-outline-success" type="submit">Search</button>
+      	</form>
+      	</li>
       </ul>
     </div>
   </div>

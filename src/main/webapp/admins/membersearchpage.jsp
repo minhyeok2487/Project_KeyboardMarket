@@ -30,7 +30,7 @@ if (dto != null) {
 	<jsp:include page="../Admintop.jsp" />
 	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display-3">회원 관리</h1>
+			<h3 class="display-3">${member_id }로 검색한 회원</h3>
 		</div>
 	</div>
 	
@@ -79,19 +79,7 @@ if (dto != null) {
 				<td><%=item.getReg_date()%></td>
 				<td><%=item.getStatus()%></td>
 				<td>
-					<p><a href="./MemberEdit?&memberNo=${memberNo }"><button class="btn btn-dark" type="button">사용자 정보 수정</button></a></p>
-					<%
-						if(item.getStatus().equals("정지")){
-					%>
-						<p><a href="./MemberStatusChange?status=회원&memberNo=${memberNo }"><button class="btn btn-info" type="button">정지 해제</button></a></p>
-					<%			
-						} else {
-					%>
-						<p><a href="./MemberStatusChange?status=정지&memberNo=${memberNo }"><button class="btn btn-danger" type="button">사용자 정지</button></a></p>
-					<%
-						}
-					%>
-					
+					<p><a href="./SearchMemberInfo?&memberNo=${memberNo }"><button class="btn btn-info" type="button">상세보기</button></a></p>
 				</td>
 			</tr>
 			<%
