@@ -36,7 +36,7 @@
           </a>
           <ul id="topmenu_list" class="dropdown-menu" aria-labelledby="navbarDropdown" >
           	<%
-          		if(user.getAttribute("inUser") != null){ %>
+          		if(dto != null){ %>
 	              <li><a class="dropdown-item" href="../member/Detail">Detail</a></li>
 	              <li><a class="dropdown-item" href="../member/Logout">Logout</a></li>
 	              <li><a class="dropdown-item" href="../member/Order">Order</a></li>
