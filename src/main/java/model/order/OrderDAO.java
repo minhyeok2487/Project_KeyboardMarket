@@ -164,6 +164,37 @@ public class OrderDAO {
 		return res;
 	}
 	
+	public void requestRefund(String ordered_num, String aStatus) {
+		
+		sql = "update orders set refund = ?, refund_date = sysdate() where ordered_num = ? ";
+		
+		String refundStatus;
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			
+			if(aStatus.equals("주문완료")) {
+				refundStatus = "취소신청";
+			}else if(aStatus.equals("배송중")){
+				refundStatus = "환불신청";
+			}else if(aStatus.equals("배송완료")){
+				refundStatus = "반품신청";
+			}else {
+				refundStatus = "";
+			}
+			
+			ptmt.setString(1, refundStatus);
+			ptmt.setString(2, ordered_num);
+			
+			ptmt.execute();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	
 	public void close() {
 		if (rs != null) {

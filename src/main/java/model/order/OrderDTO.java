@@ -16,6 +16,9 @@ public class OrderDTO {
 	String item_img1, item_img2;
 	String status;
 	String refund;
+	Date refund_date;
+	
+	
 	public String getRefund() {
 		return refund;
 	}
@@ -34,7 +37,6 @@ public class OrderDTO {
 	public void setSelect_count(int select_count) {
 		this.select_count = select_count;
 	}
-	Date refund_date;
 	public int getOrderNo() {
 		return orderNo;
 	}

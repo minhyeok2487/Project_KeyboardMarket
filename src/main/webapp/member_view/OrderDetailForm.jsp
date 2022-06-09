@@ -47,6 +47,16 @@
 	<tr>
 		<td>배송 상황</td><td>${orderDto.status }</td>
 	</tr>
+	<c:if test="${refund !=null }">
+		<tr>
+			<td>환불상태</td><td>${refund }</td>
+		</tr>
+	</c:if>
+	<c:if test="${refund_date != null }">
+		<tr>
+			<td>환불날짜</td><td>${refund_date }</td>
+		</tr>
+	</c:if>
 	<tr>
 		<td>이미지 1</td><td></td>
 	</tr>
@@ -59,13 +69,13 @@
 			<a href="<c:url value="/member/Order?page=${nowPage }" />">목록으로</a>
 			<c:choose>
 				<c:when test="${orderDto.status eq '주문완료'  }">
-					<a href="<c:url value="/admin/AdminRefund?status=${orderDto.status }&ordered_num=${orderDto.ordered_num }" />">취소신청</a>
+					<a href="<c:url value="/member/Refund?orderNo=${orderDto.orderNo }&status=${orderDto.status }&ordered_num=${orderDto.ordered_num }&page=${nowPage }" />">취소신청</a>
 				</c:when>
 				<c:when test="${orderDto.status eq '배송중'  }">
-					<a href="<c:url value="/admin/AdminRefund?status=${orderDto.status }&ordered_num=${orderDto.ordered_num }" />">환불신청</a>
+					<a href="<c:url value="/admin/Refund?orderNo=${orderDto.orderNo }&status=${orderDto.status }&ordered_num=${orderDto.ordered_num }&page=${nowPage }" />">환불신청</a>
 				</c:when>
 				<c:when test="${orderDto.status eq '배송완료'  }">
-					<a href="<c:url value="/admin/AdminRefund?status=${orderDto.status }&ordered_num=${orderDto.ordered_num }" />">교환신청</a>
+					<a href="<c:url value="/admin/Refund?orderNo=${orderDto.orderNo }&status=${orderDto.status }&ordered_num=${orderDto.ordered_num }&page=${nowPage }" />">반품신청</a>
 				</c:when>
 			</c:choose>
 		</td>
