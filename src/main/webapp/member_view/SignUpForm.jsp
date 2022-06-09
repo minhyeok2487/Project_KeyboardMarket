@@ -12,18 +12,18 @@
 <body>
 <h1>회원 가입</h1>
 <form action="SignUpReg" method="post">
-	<table border="">
+	<table border="" width="500">
 		<tr>
-			<td>아이디</td><td><input type="text" name="user_id" /></td>
+			<td>아이디</td><td><input colspan="2" type="text" name="user_id" placeholder="한글 제외"/></td>
 		</tr>
 		<tr>
-			<td>비밀번호</td><td><input type="text" name="user_pw" /></td>
+			<td>비밀번호</td><td><input type="password" name="user_pw" placeholder="영문과 숫자 혼용"/></td>
 		</tr>
 		<tr>
-			<td>이름</td><td><input type="text" name="name" /></td>
+			<td>이름</td><td><input type="text" name="name" placeholder="홍길동"/></td>
 		</tr>
 		<tr>
-			<td>생일</td><td><input type="text" name="birthdate" /></td>
+			<td>생일</td><td><input type="text" name="birthdate" placeholder="예)2000-01-01"/></td>
 		</tr>
 		<tr>
 			<td>성별</td>
@@ -33,16 +33,16 @@
   			</td>
 		</tr>
 		<tr>
-			<td>이메일</td><td><input type="text" name="email" /></td>
+			<td>이메일</td><td><input type="text" name="email" placeholder="예)test@test.com"/></td>
 		</tr>
 		<tr>
-			<td>주소</td><td><input type="text" name="addr1" /></td>
+			<td>주소</td><td><input type="text" name="addr1"/></td>
 		</tr>
 		<tr>
-			<td>배송주소</td><td><input type="text" name="addr2" /></td>
+			<td>배송주소</td><td><input type="text" name="addr2"/></td>
 		</tr>
 		<tr>
-			<td>전화 번호</td><td><input type="text" name="tel" /></td>
+			<td>전화 번호</td><td><input type="text" name="tel" placeholder="예)01012341234"/></td>
 		</tr>
 		
 		<tr>

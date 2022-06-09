@@ -1,7 +1,17 @@
+<%@page import="model.member.memberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<%
+	HttpSession user = request.getSession();
+	String userStatus = null;
+	memberDTO dto = (memberDTO) user.getAttribute("inUser");
+	if (dto != null) {
+		userStatus = dto.getStatus();
+	}
+%>
 
 <table class="table">
 	<thead>
@@ -25,11 +35,16 @@
 		</c:forEach>
 	</tbody>
 </table>
+<%
+	if(userStatus != null){
+		if(userStatus.equals("회원")){
+%>
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 	<a href="./qnaInsertpage">
 		<button type="button" class="btn btn-outline-primary">글쓰기</button>
 	</a>
 </div>
+<%}}%>
 <div align="center">
 	<c:if test="${pageStart>1 }">
 		<a href="<c:url value="/qna/QnaList?page=${pageStart-1 }"/>">[이전]</a>
