@@ -172,9 +172,9 @@ public class OrderDAO {
 		return res;
 	}
 	
-	public void requestRefund(String ordered_num, String aStatus) {
+	public void requestRefund(String orderNo, String aStatus) {
 		
-		sql = "update orders set refund = ?, refund_date = sysdate() where ordered_num = ? ";
+		sql = "update orders set refund = ?, refund_date = sysdate() where orderNo = ? ";
 		
 		String refundStatus;
 		
@@ -192,7 +192,7 @@ public class OrderDAO {
 			}
 			
 			ptmt.setString(1, refundStatus);
-			ptmt.setString(2, ordered_num);
+			ptmt.setString(2, orderNo);
 			
 			ptmt.executeUpdate();
 			
