@@ -6,11 +6,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="model.member.memberDTO"%>
 <%	
+	int memberNo = 1;
 	HttpSession user = request.getSession();
 	String userStatus = null;
 	memberDTO dto = (memberDTO) user.getAttribute("inUser");
 	if (dto != null) {
 		userStatus = dto.getStatus();
+		memberNo = dto.getMemberNo();
 	}
 %> 
 <!DOCTYPE html>
@@ -23,7 +25,7 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 <%
-String memberNo = "1";
+
 %>
 <title>장바구니</title>
 </head>
@@ -40,7 +42,18 @@ String memberNo = "1";
 					<td align="left"><a
 						href="./DeleteCart?memberNo=<%=memberNo%>"
 						class="btn btn-danger">장바구니 비우기</a></td>
-					<td align="right"><a href="javascript:goOrder();" class="btn btn-success">주문하기</a></td>
+					<%
+						if(dto != null){
+					%>
+						<td align="right"><a href="javascript:goOrder();" class="btn btn-success">주문하기</a></td>
+					<%
+						} else {
+					%>
+						<td align="right"><a href="../member/Login" class="btn btn-success">주문하기</a></td>
+					<%		
+						}
+					%>
+					
 				</tr>
 			</table>
 		</div>
@@ -104,7 +117,7 @@ String memberNo = "1";
 		
 	<script type="text/javascript">
 		function goOrder(){
-			document.frm.submit();
+			document.frm.submit();	
 		}
 	</script>
 </body>
