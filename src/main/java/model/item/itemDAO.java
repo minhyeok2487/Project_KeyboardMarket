@@ -157,14 +157,57 @@ public class itemDAO {
 		return dto;
 	}
 	
+	public void insert(itemDTO dto) {
+		sql = "insert into item (item_name ,manufacture,category,switchs,"
+				+ "spec,price,stock,item_img1,item_img2,reg_date) values ("
+				+ "?,?,?,?,?,?,?,?,?,sysdate())";
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setString(1, dto.getItem_name());
+			ptmt.setString(2, dto.getManufacture());
+			ptmt.setString(3, dto.getCategory());
+			ptmt.setString(4, dto.getSwitchs());
+			ptmt.setString(5, dto.getSpec());
+			ptmt.setInt(6, dto.getPrice());
+			ptmt.setInt(7, dto.getStock());
+			ptmt.setString(8, dto.getItem_img1());
+			ptmt.setString(9, dto.getItem_img2());
+			ptmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	
+	}
 	
+	public void insertNotSwitchs(itemDTO dto) {
+		sql = "insert into item (item_name ,manufacture,category,"
+				+ "spec,price,stock,item_img1,item_img2,reg_date) values ("
+				+ "?,?,?,?,?,?,?,?,sysdate())";
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setString(1, dto.getItem_name());
+			ptmt.setString(2, dto.getManufacture());
+			ptmt.setString(3, dto.getCategory());
+			ptmt.setString(4, dto.getSpec());
+			ptmt.setInt(5, dto.getPrice());
+			ptmt.setInt(6, dto.getStock());
+			ptmt.setString(7, dto.getItem_img1());
+			ptmt.setString(8, dto.getItem_img2());
+			ptmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	
 	public void close() {
 		if(rs!=null)try {rs.close();} catch (Exception e) {}
 		if(ptmt!=null)try {ptmt.close();} catch (Exception e) {}
 		if(con!=null)try {con.close();} catch (Exception e) {}
 	}
+
+	
+	
 
 	
 }

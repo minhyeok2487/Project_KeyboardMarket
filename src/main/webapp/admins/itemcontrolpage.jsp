@@ -31,9 +31,10 @@ if (dto != null) {
 	<div class="jumbotron">
 		<div class="container">
 			<h1 class="display-3">상품관리</h1>
+			<p><a href="./AddItem"><button class="btn btn-secondary" type="button">상품 추가</button></a></p>
 		</div>
 	</div>
-
+	
 	<div class="container">
 		<table class="table">
 			<tr>
