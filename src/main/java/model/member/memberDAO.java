@@ -68,7 +68,7 @@ public class memberDAO {
 	
 	
 	public memberDTO memberLogin(memberDTO dto) {
-		memberDTO res = new memberDTO();
+		memberDTO res = null;
 		
 		sql = "SELECT * FROM member WHERE user_id = ? and user_pw = ?";
 		
@@ -80,6 +80,7 @@ public class memberDAO {
 			rs = ptmt.executeQuery();
 			
 			if (rs.next()) {
+				res = new memberDTO();
 				res.setMemberNo(rs.getInt("memberNo"));
 				res.setUser_id(rs.getString("user_id"));
 				res.setName(rs.getString("name"));

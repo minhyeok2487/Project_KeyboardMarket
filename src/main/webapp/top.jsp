@@ -36,14 +36,14 @@
           </a>
           <ul id="topmenu_list" class="dropdown-menu" aria-labelledby="navbarDropdown" >
           	<%
-          		if(user.getAttribute("inUser") == null){ %>
-	              <li><a class="dropdown-item" href="../member/Login">LOGIN</a></li>
-	              <li><a class="dropdown-item" href="../member/Join">JOIN</a></li>
-	              <li><a class="dropdown-item" href="../member/SignUp">SignUp</a></li>
-             	<%}else{ %>
+          		if(user.getAttribute("inUser") != null){ %>
 	              <li><a class="dropdown-item" href="../member/Detail">Detail</a></li>
 	              <li><a class="dropdown-item" href="../member/Logout">Logout</a></li>
 	              <li><a class="dropdown-item" href="../member/Order">Order</a></li>
+             	<%}else{ %>
+             	  <li><a class="dropdown-item" href="../member/Login">LOGIN</a></li>
+	              <li><a class="dropdown-item" href="../member/Join">JOIN</a></li>
+	              <li><a class="dropdown-item" href="../member/SignUp">SignUp</a></li>
 				<%} %>
           </ul>
         </li>
