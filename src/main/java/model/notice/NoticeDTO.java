@@ -47,7 +47,6 @@ public class NoticeDTO {
 		this.reg_date = reg_date;
 	}
 
-
 	public String getPname() {
 		return pname;
 	}

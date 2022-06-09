@@ -7,8 +7,8 @@
 <h1>공지사항 수정페이지</h1>
 
 <form action="./NoticeModifyReg" method="post">
-<input type="hidden" name="noticeNo" value="${dto.noticeNo }"/>
-<input type="hidden" name="pname" value="관리자" />
+	<input type="hidden" name="noticeNo" value="${dto.noticeNo }" /> <input
+		type="hidden" name="pname" value="관리자" />
 
 	<div class="mb-3">
 		<label for="exampleFormControlInput1" class="form-label">번호</label> <input
@@ -32,7 +32,9 @@
 	</div>
 	<tr>
 
-		<td align="right"><button type="submit" class="btn btn-outline-primary">수정하기</button></td>
-		<td align="right"><button type="reset" class="btn btn-outline-primary">초기화</button></td>
+		<td align="right"><button type="submit"
+				class="btn btn-outline-primary">수정하기</button></td>
+		<td align="right"><button type="reset"
+				class="btn btn-outline-primary">초기화</button></td>
 	</tr>
-	</form>
+</form>

@@ -2,9 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<h2>공지사항 작성페이지</h2>
+<h2>고객센터 작성페이지</h2>
 
-<form action="./NoticeInsertReg" method="post"
+<form action="./QnaInsertReg" method="post"
 	enctype="multipart/form-data">
 	<input type="hidden" name="pname" value="관리자" />
 
@@ -23,12 +23,7 @@
 		<textarea class="form-control" id="exampleFormControlTextarea1"
 			rows="3" placeholder="내용을 입력하세요." name="content"></textarea>
 	</div>
-	<div class="mb-3">
-		<label for="formFile" class="form-label">파일</label> <input
-			class="form-control" type="file" id="formFile" name="upfile">
-	</div>
 	<tr>
-
 		<td align="right"><button type="submit"
 				class="btn btn-outline-primary">작성하기</button></td>
 		<td align="right"><button type="reset"
