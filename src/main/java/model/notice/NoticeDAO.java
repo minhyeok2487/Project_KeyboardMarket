@@ -154,6 +154,32 @@ public class NoticeDAO {
 		
 		return 0;
 	}
+	
+	
+	public ArrayList<NoticeDTO> Currentlist(String Status) {
+		ArrayList<NoticeDTO> res = new ArrayList<NoticeDTO>();
+		sql = "select * from notice where status = ? order by noticeNo desc";
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setString(1, Status);
+			rs = ptmt.executeQuery();
+			while (rs.next()) {
+				NoticeDTO dto = new NoticeDTO();
+				dto.setNoticeNo(rs.getInt("noticeNo"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setPname(rs.getString("pname"));
+				dto.setContent(rs.getString("content"));
+				dto.setReg_date(rs.getTimestamp("reg_date"));
+				res.add(dto);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
+		return res;
+
+	}
+	
 
 	public void close() {
 		if (rs != null)
