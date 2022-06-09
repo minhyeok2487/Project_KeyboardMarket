@@ -1,3 +1,4 @@
+<%@page import="model.order.OrderDAO"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="model.order.OrderDTO"%>
@@ -153,6 +154,37 @@
 								<th>소계</th>
 								<th>비고</th>
 							</tr>
+							<%
+							ArrayList<OrderDTO> refund_list = new OrderDAO().refundList();
+							int sum;
+							for(OrderDTO rList : refund_list){ %>
+							<tr>
+								<td></td>
+								<td><%=rList.getItem_name()%></td>
+								<td><%=rList.getPrice()%></td>
+								<td><%=rList.getSelect_count() %></td>
+								<td></td>
+								<td></td>
+								<% if(rList.getStatus().equals("주문완료")){ %>
+										<td>
+											<button type="button"
+											class="btn btn-outline-primary" onclick='location.href="../item/itemList";'>취소처리</button>
+										</td>
+								<%} %>
+								<% if(rList.getStatus().equals("배송중")){ %>
+										<td>
+											<button type="button"
+											class="btn btn-outline-primary" onclick='location.href="../item/itemList";'>환불처리</button>
+										</td>
+								<%} %>
+								<% if(rList.getStatus().equals("배송완료")){ %>
+										<td>
+											<button type="button"
+											class="btn btn-outline-primary" onclick='location.href="../item/itemList";'>반품처리</button>
+										</td>
+								<%} %>
+							</tr>
+							<% }%>
 						</table>
 					</div>
 				</div>
