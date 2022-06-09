@@ -77,6 +77,9 @@
 				<c:when test="${orderDto.status eq '배송완료'  }">
 					<a href="<c:url value="/admin/Refund?orderNo=${orderDto.orderNo }&status=${orderDto.status }&ordered_num=${orderDto.ordered_num }&page=${nowPage }" />">반품신청</a>
 				</c:when>
+				<c:otherwise>
+					[[[  취소 승인 불가  ]]]
+				</c:otherwise>
 			</c:choose>
 		</td>
 	</tr>
