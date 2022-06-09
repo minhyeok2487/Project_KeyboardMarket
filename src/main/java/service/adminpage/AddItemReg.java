@@ -25,7 +25,7 @@ public class AddItemReg implements Service {
 		String msg = null;
 		String goUrl = "ItemControl";
 		//상대 경로저장	
-        String path = request.getContextPath()+"/source";
+        String path = request.getSession().getServletContext().getRealPath("/source");
         System.out.println("현재 작업 경로: " + path);
 		try {
 			MultipartRequest mm = new MultipartRequest(
