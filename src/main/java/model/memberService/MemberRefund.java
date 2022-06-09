@@ -8,17 +8,21 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Service;
 import model.item.itemDTO;
 import model.member.memberDAO;
+import model.order.OrderDAO;
 import model.order.OrderDTO;
 
-public class MemberOrderDetail implements Service {
+public class MemberRefund implements Service{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		memberDAO dao = new memberDAO();
 		
-		String oPage = request.getParameter("page");
+		String aStatus = request.getParameter("status");
+		String aOrdered_num = request.getParameter("ordered_num");
 		
+		
+		String oPage = request.getParameter("page");
 		String oOrderNo = request.getParameter("orderNo");
 		
 		OrderDTO oDto = dao.orderSelect(Integer.parseInt(oOrderNo));
@@ -33,10 +37,10 @@ public class MemberOrderDetail implements Service {
 			request.setAttribute("refund_date", refund_date);
 		}
 		
-		
-		
 		itemDTO dto = dao.orderDetail(oDto.getItem_name());
-
+		
+		new OrderDAO().requestRefund(aOrdered_num, aStatus);
+		
 		request.setAttribute("nowPage", oPage);
 		request.setAttribute("dto", dto);
 		request.setAttribute("orderDto", oDto);
