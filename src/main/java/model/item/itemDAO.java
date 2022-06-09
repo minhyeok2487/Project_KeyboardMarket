@@ -153,7 +153,9 @@ public class itemDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		} finally {
+			close();
+		}
 		return dto;
 	}
 	

@@ -14,12 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	ArrayList<String> nonClass;
-
 	public MainController() {
 		super();
-		nonClass = new ArrayList<String>();
-		nonClass.add("pages");
 	}
 
 	@Override
@@ -28,17 +24,12 @@ public class MainController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		String serviceStr = request.getRequestURI().substring((request.getContextPath() + "/mainpage/").length());
-		System.out.println(serviceStr);
-		if (nonClass.contains(serviceStr)) {
-			request.setAttribute("mainUrl", "/main/"+serviceStr);
-		} else {
-			try {
-				Service service = (Service) Class.forName("model.mainService.Main" + serviceStr).newInstance();
-				service.execute(request, response);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		try {
+			Service service = (Service) Class.forName("service." + serviceStr).newInstance();
+			service.execute(request, response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/template.jsp");
