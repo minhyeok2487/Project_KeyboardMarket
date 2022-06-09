@@ -17,7 +17,7 @@
 	crossorigin="anonymous">
 <%@page import="model.member.memberDTO"%>
 <%
-HttpSession user = request.getSession();
+	HttpSession user = request.getSession();
 String userStatus = null;
 memberDTO dto = (memberDTO) user.getAttribute("inUser");
 if (dto != null) {
@@ -30,43 +30,50 @@ if (dto != null) {
 	<jsp:include page="../Admintop.jsp" />
 	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display-3">상품관리</h1>
+			<h3 class="display-3">상품 입고</h3>
 		</div>
 	</div>
-
+	
 	<div class="container">
-		<table class="table">
-			<tr>
-				<th></th>
-				<th>상품</th>
-				<th>가격</th>
-				<th>재고</th>
-				<th>비고</th>
-			</tr>
+		<a href="./ItemControl" class="btn btn-secondary">상품 목록으로</a>
+		<form action="./ItemAddStockReg?" method="post">
+			<input type="hidden" name="itemNo" value="${getItem.getItemNo() }">
+			<table class="table">
+				<tr>
+					<th></th>
+					<td><img
+						src="<c:url value="/source/${getItem.getItem_img1() }"/>" alt=""
+						width=400 height=400 /></td>
+				</tr>
+				<tr>
+					<th>상품</th>
+					<td>${getItem.getItem_name() }</td>
 
-			<%
-			ArrayList<itemDTO> itemList = (ArrayList<itemDTO>) request.getAttribute("itemList");
-			for (int i = 0; i < itemList.size(); i++) { // 상품 리스트 하나씩 출력하기
-				itemDTO item = itemList.get(i);
-			%>
-			<c:set var="imgthumb" value="<%=item.getItem_img1()%>" />
-			<tr>
-				<td><img src="<c:url value="/source/${imgthumb }"/>" alt=""
-					width=150 height=150 /></td>
-				<td><%=item.getItem_name()%></td>
-				<td><%=item.getPrice()%></td>
-				<td><%=item.getStock()%></td>
-				<td>
-					<p><a href="./ItemEdit?itemNo=<%=item.getItemNo() %>"><button class="btn btn-primary" type="button">상품정보 수정</button></a></p>
-					<p><a href="./ItemAddStock?itemNo=<%=item.getItemNo() %>"><button class="btn btn-primary" type="button">상품 입고</button></a></p>
-				</td>
-			</tr>
-			<%
-			}
-			%>
-
-		</table>
-
+				</tr>
+				<tr>
+					<th>가격</th>
+					<td>${getItem.getPrice() }</td>
+				</tr>
+				<tr>
+					<th>재고</th>
+					<td>${getItem.getStock() }</td>
+				</tr>
+				<tr>
+					<th>입고</th>
+					<td>
+						<div class="form-floating">
+							<textarea class="form-control" placeholder="Leave a comment here"
+								id="floatingTextarea" name="count"></textarea>
+							<label for="floatingTextarea">입고수량 입력</label>
+						</div>
+						<p>
+							<a href="#"><button class="btn btn-primary" type="submit">상품
+									입고</button></a>
+						</p>
+					</td>
+				</tr>
+			</table>
+		</form>
 	</div>
 
 

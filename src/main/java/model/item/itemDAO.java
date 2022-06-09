@@ -28,6 +28,45 @@ public class itemDAO {
 		}
 	}
 	
+	public int modify(itemDTO dto) {
+		int res = 0;
+		sql = "update item set item_name = ?,manufacture = ?,category = ?,switchs = ?,"
+				+ "spec = ?,price = ?,item_img1 = ?,item_img2 = ? where itemNo = ?";
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setString(1, dto.getItem_name());
+			ptmt.setString(2, dto.getManufacture());
+			ptmt.setString(3, dto.getCategory());
+			ptmt.setString(4, dto.getSwitchs());
+			ptmt.setString(5, dto.getSpec());
+			ptmt.setInt(6, dto.getPrice());
+			ptmt.setString(7, dto.getItem_img1());
+			ptmt.setString(8, dto.getItem_img2());
+			ptmt.setInt(9, dto.getItemNo());
+			res = ptmt.executeUpdate();
+			return res;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return res;
+	}
+
+	
+	
+	public boolean addStock(int itemNo, int addCount) {
+		sql = "update item set stock = ? where itemNo = ?";
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setInt(1, addCount);
+			ptmt.setInt(2, itemNo);
+			ptmt.executeQuery();
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return false;
+	}
+	
 	
 	public ArrayList<itemDTO> list(){
 		ArrayList<itemDTO> res = new ArrayList<itemDTO>();
@@ -114,9 +153,7 @@ public class itemDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			close();
-		}
+		} 
 		return dto;
 	}
 	
@@ -128,7 +165,6 @@ public class itemDAO {
 		if(ptmt!=null)try {ptmt.close();} catch (Exception e) {}
 		if(con!=null)try {con.close();} catch (Exception e) {}
 	}
-
 
 	
 }
