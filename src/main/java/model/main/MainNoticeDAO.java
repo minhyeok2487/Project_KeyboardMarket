@@ -51,12 +51,12 @@ public class MainNoticeDAO {
 		return res;
 	}
 	
-	public boolean insert(MainNoticeDTO dto) {
+	public boolean insert(NoticeDTO dto) {
 		sql = "insert into MainNotice (noticeNo ,subject) values (?,?)";
 		try {
 			ptmt = con.prepareStatement(sql);
-			ptmt.setInt(1, dto.noticeNo);
-			ptmt.setString(2, dto.subject);
+			ptmt.setInt(1, dto.getNoticeNo());
+			ptmt.setString(2, dto.getSubject());
 			rs = ptmt.executeQuery();
 			return true;
 		} catch (SQLException e) {
@@ -67,11 +67,32 @@ public class MainNoticeDAO {
 		return false;
 	}
 	
+	public boolean removeitem(int noticeNo) {
+		sql = "delete from MainNotice where noticeNo = ?";
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setInt(1, noticeNo);
+			rs = ptmt.executeQuery();
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return false;
+	}
+	
+	
+	
 	public void close() {
 		if(rs!=null)try {rs.close();} catch (Exception e) {}
 		if(ptmt!=null)try {ptmt.close();} catch (Exception e) {}
 		if(con!=null)try {con.close();} catch (Exception e) {}
 	}
+
+	
+
+	
 
 	
 	
