@@ -223,11 +223,31 @@
 <form action="">
 	<table border="">
 		<tr>
+		<c:choose>
+		<c:when test="${orderData.status eq '주문완료' }">
 			<td>
+				<%-- <button type="button"
+				class="btn btn-outline-primary" onclick='location.href="../admin/CancelOrder?orderNo=${orderData.orderNo }&itemNo=${itemData.itemNo }'>주문취소</button> --%>
 				<button type="button"
-				class="btn btn-outline-primary" onclick='cancelPay()'>승인</button>
+				class="btn btn-outline-primary" onclick='cancelPay()'>주문취소</button>
 			</td>
 			<td></td>
+		</c:when>
+		<c:when test="${orderData.status eq '배송중' }">
+			<td>
+				<button type="button"
+				class="btn btn-outline-primary" onclick='location.href="../admin/CashBack?orderNo=${orderData.orderNo }&itemNo=${itemData.itemNo }'>환불</button>
+			</td>
+			<td></td>
+		</c:when>
+		<c:when test="${orderData.status eq '배송완료' }">
+			<td>
+				<button type="button"
+				class="btn btn-outline-primary" onclick='location.href="../admin/ReturnOrder?orderNo=${orderData.orderNo }&itemNo=${itemData.itemNo }'>반품</button>
+			</td>
+			<td></td>
+		</c:when>
+		</c:choose>
 			<td>
 				<button type="button"
 				class="btn btn-outline-primary" onclick='location.href="../admin/AdminRefundCancel?orderNo=${orderData.orderNo }"'>거절</button>
@@ -244,7 +264,7 @@
 <script>
   function cancelPay() {
     jQuery.ajax({
-      "url": "", // "{환불요청을 받을 서비스 URL}"예: http://www.myservice.com/payments/cancel
+      "url": "http://qwe2487.cafe24.com/admin/AdminRefund", // "{환불요청을 받을 서비스 URL}"예: http://www.myservice.com/payments/cancel
       "type": "POST",
       "contentType": "application/json",
       "data": JSON.stringify({
