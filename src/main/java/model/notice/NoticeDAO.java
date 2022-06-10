@@ -28,6 +28,36 @@ public class NoticeDAO {
 		}
 	}
 
+	public ArrayList<NoticeDTO> AllList() {
+		ArrayList<NoticeDTO> res = new ArrayList<NoticeDTO>();
+
+		sql = "select * from notice";
+
+		try {
+			ptmt = con.prepareStatement(sql);
+			rs = ptmt.executeQuery();
+
+			while (rs.next()) {
+				NoticeDTO dto = new NoticeDTO();
+				dto.setNoticeNo(rs.getInt("noticeNo"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setPname(rs.getString("pname"));
+				dto.setContent(rs.getString("content"));
+				dto.setReg_date(rs.getTimestamp("reg_date"));
+				res.add(dto);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+
+		return res;
+
+	}
+	
 	public ArrayList<NoticeDTO> list(int start, int limit) {
 		ArrayList<NoticeDTO> res = new ArrayList<NoticeDTO>();
 
