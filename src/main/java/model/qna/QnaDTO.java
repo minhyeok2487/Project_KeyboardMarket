@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class QnaDTO {
 	int qnaNo, hits, commnet, memberNo;
-	String subject, content, pname, replied, user_id;
+	String subject, content, pname, replied, user_id, status;
 	Date reg_date, answer_date;
 
 	public int getQnaNo() {
@@ -96,12 +96,21 @@ public class QnaDTO {
 		this.user_id = user_id;
 	}
 
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		return "QnaDTO [qnaNo=" + qnaNo + ", hits=" + hits + ", commnet=" + commnet + ", memberNo=" + memberNo
 				+ ", subject=" + subject + ", content=" + content + ", pname=" + pname + ", replied=" + replied
-				+ ", user_id=" + user_id + ", reg_date=" + reg_date + ", answer_date=" + answer_date + "]";
+				+ ", user_id=" + user_id + ", status=" + status + ", reg_date=" + reg_date + ", answer_date="
+				+ answer_date + "]";
 	}
-
 
 }

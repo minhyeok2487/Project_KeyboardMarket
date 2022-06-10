@@ -28,7 +28,9 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach var="dto" items="${qnaData }" varStatus="no">
+	<c:choose>
+	<c:when test="${process eq '답변' }">
+	<c:forEach var="dto" items="${answer }" varStatus="no">
 			<tr align="center">
 				<td>${dto.qnaNo}</td>
 				<td><a
@@ -38,8 +40,58 @@
 						pattern="yyyy-MM-dd HH:mm" /></td>
 			</tr>
 		</c:forEach>
+	</c:when>
+	<c:when test="${process eq '미답변' }">
+	<c:forEach var="dto" items="${answer }" varStatus="no">
+			<tr align="center">
+				<td>${dto.qnaNo}</td>
+				<td><a
+					href="<c:url value="./QnaDetail?qnaNo=${dto.qnaNo }&page=${nowPage }"/>">${dto.subject }</a></td>
+				<td>${dto.pname }</td>
+				<td><fmt:formatDate value="${dto.reg_date }"
+						pattern="yyyy-MM-dd HH:mm" /></td>
+			</tr>
+		</c:forEach>
+	</c:when>
+	<c:otherwise>
+		<c:forEach var="dto" items="${qnaDataTotal }" varStatus="no">
+			<tr align="center">
+				<td>${dto.qnaNo}</td>
+				<td><a
+					href="<c:url value="./QnaDetail?qnaNo=${dto.qnaNo }&page=${nowPage }"/>">${dto.subject }</a></td>
+				<td>${dto.pname }</td>
+				<td><fmt:formatDate value="${dto.reg_date }"
+						pattern="yyyy-MM-dd HH:mm" /></td>
+			</tr>
+		</c:forEach>
+		</c:otherwise>
+		</c:choose>
 	</tbody>
 </table>
+<%
+if (userStatus != null) {
+	if (userStatus.equals("관리자")) {
+%>
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+	<a href="./QnaList">
+		<button type="button" class="btn btn-outline-primary">전체</button>
+	</a>
+</div>
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+	<a href="../qna/QnaListSwitch?qnaStatus=답변">
+		<button type="button" class="btn btn-outline-primary">답변완료</button>
+	</a>
+</div>
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+	<a href="../qna/QnaListSwitch?qnaStatus=미답변">
+		<button type="button" class="btn btn-outline-primary">답변대기</button>
+	</a>
+</div>
+<%
+}
+}
+%>
+
 <%
 if (userStatus != null) {
 	if (userStatus.equals("회원") || userStatus.equals("관리자")) {
