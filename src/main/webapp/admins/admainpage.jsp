@@ -203,6 +203,55 @@
 					</div>
 				</div>
 			</div>
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="panelsStayOpen-headingThree">
+					<button class="accordion-button collapsed" type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#panelsStayOpen-collapseThree"
+						aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">환불, 반품, 교환 처리완료
+						${refundNO.size() }건</button>
+				</h2>
+				<div id="panelsStayOpen-collapseThree"
+					class="accordion-collapse collapse"
+					aria-labelledby="panelsStayOpen-headingThree">
+					<div class="accordion-body">
+						<table class="table">
+							<tr>
+								<th></th>
+								<th>회원번호</th>
+								<th>신청인</th>
+								<th>상품</th>
+								<th>가격</th>
+								<th>수량</th>
+								<th>소계</th>
+							</tr>
+							<%
+							ArrayList<OrderDTO> refundNo = (ArrayList<OrderDTO>) request.getAttribute("refundNO");
+							
+							for(OrderDTO rList : refundNo){ 
+							int sum; %>
+							
+							<tr>
+								<td></td>
+								<td><%=rList.getMemberNo()%></td>
+								<td><%=rList.getName()%></td>
+								<td><%=rList.getItem_name()%></td>
+								<td><%=rList.getPrice()%></td>
+								<td><%=rList.getSelect_count() %></td>
+								<% sum = rList.getPrice() * rList.getSelect_count(); %>
+								<td><%= sum %></td>
+								<c:set var="oNum" value="<%=rList.getOrdered_num() %>" />
+								<c:set var="oNo" value="<%=rList.getOrderNo() %>" />
+								<td>
+									<button type="button"
+									class="btn btn-outline-primary" onclick='location.href="../admin/AdminRefund?ordered_num=${oNum }&orderNo=${oNo }";'>상태확인</button>
+								</td>
+							</tr>
+							<% }%>
+						</table>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
