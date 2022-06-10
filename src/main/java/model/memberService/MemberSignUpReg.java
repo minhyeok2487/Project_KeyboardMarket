@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.Service;
 import model.member.memberDAO;
@@ -14,6 +15,8 @@ public class MemberSignUpReg implements Service{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
+		
+
 		
 		memberDTO dto = new memberDTO();
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -36,12 +39,23 @@ public class MemberSignUpReg implements Service{
 			
 			
 			
+			HttpSession session = request.getSession();
+			memberDTO user = new memberDTO();
+
+			user.setUser_id(request.getParameter("user_id"));
+			user.setUser_pw(request.getParameter("user_pw"));
+
+			memberDTO sDto = new memberDAO().memberLogin(user);
+
+			if (sDto != null) {
+				session.setAttribute("inUser", sDto);
+			}
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		request.setAttribute("mainUrl", "main/pages");
+		request.setAttribute("mainUrl", "./member_view/SignUpReg");
 	}
 }

@@ -22,7 +22,7 @@ public class MemberRefund implements Service{
 		String oPage = request.getParameter("page");
 		String oOrderNo = request.getParameter("orderNo");
 		
-		OrderDTO oDto = new memberDAO().orderSelect(Integer.parseInt(oOrderNo));
+		OrderDTO oDto = new OrderDAO().orderSelect(Integer.parseInt(oOrderNo));
 		
 		if(oDto.getRefund()!=null) {
 			String refund = oDto.getRefund();
@@ -34,7 +34,7 @@ public class MemberRefund implements Service{
 			request.setAttribute("refund_date", refund_date);
 		}
 		
-		itemDTO dto = new memberDAO().orderDetail(oDto.getItem_name());
+		itemDTO dto = new OrderDAO().orderDetail(oDto.getItem_name());
 		
 		new OrderDAO().requestRefund(oOrderNo, aStatus);
 		

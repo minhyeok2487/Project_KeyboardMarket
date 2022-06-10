@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Service;
 import model.item.itemDTO;
 import model.member.memberDAO;
+import model.order.OrderDAO;
 import model.order.OrderDTO;
 
 public class MemberOrderDetail implements Service {
@@ -19,7 +20,7 @@ public class MemberOrderDetail implements Service {
 		
 		String oOrderNo = request.getParameter("orderNo");
 		
-		OrderDTO oDto = new memberDAO().orderSelect(Integer.parseInt(oOrderNo));
+		OrderDTO oDto = new OrderDAO().orderSelect(Integer.parseInt(oOrderNo));
 		
 		if(oDto.getRefund()!=null) {
 			String refund = oDto.getRefund();
@@ -33,7 +34,7 @@ public class MemberOrderDetail implements Service {
 		
 		
 		
-		itemDTO dto = new memberDAO().orderDetail(oDto.getItem_name());
+		itemDTO dto = new OrderDAO().orderDetail(oDto.getItem_name());
 
 		request.setAttribute("nowPage", oPage);
 		request.setAttribute("dto", dto);
