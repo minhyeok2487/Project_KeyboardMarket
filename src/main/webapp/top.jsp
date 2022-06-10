@@ -54,13 +54,12 @@
 						aria-labelledby="navbarDropdown">
 						<%
           		if(dto != null){ %>
-						<li><a class="dropdown-item" href="../member/Detail">Detail</a></li>
-						<li><a class="dropdown-item" href="../member/Logout">Logout</a></li>
-						<li><a class="dropdown-item" href="../member/Order">Order</a></li>
+						<li><a class="dropdown-item" href="../member/Detail">회원 정보 보기</a></li>
+						<li><a class="dropdown-item" href="../member/Logout">로그 아웃</a></li>
+						<li><a class="dropdown-item" href="../member/Order">주문 내역 확인</a></li>
 						<%}else{ %>
-						<li><a class="dropdown-item" href="../member/Login">LOGIN</a></li>
-						<li><a class="dropdown-item" href="../member/Join">JOIN</a></li>
-						<li><a class="dropdown-item" href="../member/SignUp">SignUp</a></li>
+						<li><a class="dropdown-item" href="../member/Login">로그인</a></li>
+						<li><a class="dropdown-item" href="../member/SignUp">회원가입</a></li>
 						<%} %>
 					</ul></li>
 				<%
