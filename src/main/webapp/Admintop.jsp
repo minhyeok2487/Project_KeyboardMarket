@@ -27,6 +27,9 @@
   	<a class="navbar-brand" href="./Adminmain">관리자 페이지</a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      	<li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="./Chart">정산</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="./MemberControl">회원관리</a>
         </li>
