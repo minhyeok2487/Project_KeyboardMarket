@@ -14,7 +14,7 @@ public class MemberWithdrawal implements Service{
 		
 		int mNo = Integer.valueOf(request.getParameter("memberNo"));
 		
-		new memberDAO().doWithdrawal();
+		new memberDAO().doWithdrawal(mNo);
 		
 		
 		

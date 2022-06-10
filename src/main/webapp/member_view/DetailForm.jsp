@@ -92,7 +92,7 @@
 		<tr>
 			<td>
 				<button type="button"
-				class="btn btn-outline-primary" onclick="Withdrawal?memberNo=${dto.memberNo }">회원 탈퇴</button>
+				class="btn btn-outline-primary" onclick="location.href='Withdrawal?memberNo=${dto.memberNo }'">회원 탈퇴</button>
 			</td>
 			<td></td>
 		</tr>
