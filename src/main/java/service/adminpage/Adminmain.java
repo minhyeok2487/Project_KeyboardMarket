@@ -67,9 +67,14 @@ public class Adminmain implements Service {
 				mainorderinglist.add(orderinglist.get(i));
 			}
 		}
+		
+		// 3. 환불 리스트
+		
+		ArrayList<OrderDTO> refund_list = new OrderDAO().refundList();
 
 		request.setAttribute("total", total);
 		request.setAttribute("mainList", mainList);
+		request.setAttribute("refund", refund_list);
 		request.setAttribute("mainorderinglist", mainorderinglist);
 		request.setAttribute("mainUrl", "./admins/admainpage");
 	}
