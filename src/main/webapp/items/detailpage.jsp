@@ -63,7 +63,18 @@
 									</select>
 									<input type="hidden" id="count" name="count" value=1 />
 									<p>
-										<input type="submit" value="장바구니로" />
+										<%
+											if(memberNo != 0){
+										%>
+											<input type="submit" value="장바구니로" />
+										<%		
+											} else {
+										%>
+											<a href="../member/Login"><input type="button" value="장바구니로" /></a>
+										<%		
+											}
+										%>
+									
 									</p>
 								</c:otherwise>
 							</c:choose>
@@ -80,12 +91,8 @@
 
 
 
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-		crossorigin="anonymous">
-		
-	</script>
+	
+
 	<script>
 		var showValue = function(value) {
 			document.getElementById("count").value = value;

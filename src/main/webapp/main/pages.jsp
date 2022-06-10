@@ -38,7 +38,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="dto" items="${noticeMainList }" varStatus="no">
+						<c:forEach var="dto" items="${M_NoticeList }" varStatus="no">
 							<tr align="center">
 								<td><a
 									href="../notice/NoticeDetail?noticeNo=${dto.noticeNo }">${dto.subject }</a></td>

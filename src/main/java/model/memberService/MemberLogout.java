@@ -11,7 +11,11 @@ import model.item.itemDAO;
 import model.item.itemDTO;
 import model.main.MainDAO;
 import model.main.MainDTO;
+import model.main.MainNoticeDAO;
+import model.main.MainNoticeDTO;
 import model.member.memberDTO;
+import model.notice.NoticeDAO;
+import model.notice.NoticeDTO;
 
 public class MemberLogout implements Service {
 
@@ -28,7 +32,7 @@ public class MemberLogout implements Service {
 //		request.setAttribute("mainUrl", "alert");
 		// request.setAttribute("mainUrl", "main/pages");
 
-		//메인 페이지 수정하면서 에러떠서 임시조치
+		// 메인 페이지 수정하면서 에러떠서 임시조치
 		// 1.추천상품 리스트
 		ArrayList<MainDTO> GoodList = new MainDAO().Currentlist("추천상품");
 		ArrayList<itemDTO> GList = new ArrayList<itemDTO>();
@@ -41,9 +45,16 @@ public class MemberLogout implements Service {
 		for (MainDTO res : NewList) {
 			NList.add(new itemDAO().Detail(res.getItemNo()));
 		}
-		System.out.println(GList);
+
+		// 3.주요공지사항 리스트
+		ArrayList<MainNoticeDTO> NoticeList = new MainNoticeDAO().Currentlist();
+		ArrayList<NoticeDTO> M_NoticeList = new ArrayList<NoticeDTO>();
+		for (MainNoticeDTO res : NoticeList) {
+			M_NoticeList.add(new NoticeDAO().detail(res.getNoticeNo()));
+		}
 		request.setAttribute("GList", GList);
 		request.setAttribute("NList", NList);
+		request.setAttribute("M_NoticeList", M_NoticeList);
 		request.setAttribute("mainUrl", "./main/pages");
 	}
 

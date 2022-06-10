@@ -10,6 +10,10 @@ import model.item.itemDAO;
 import model.item.itemDTO;
 import model.main.MainDAO;
 import model.main.MainDTO;
+import model.main.MainNoticeDAO;
+import model.main.MainNoticeDTO;
+import model.notice.NoticeDAO;
+import model.notice.NoticeDTO;
 
 public class MainService implements Service {
 
@@ -28,9 +32,16 @@ public class MainService implements Service {
 		for (MainDTO res : NewList) {
 			NList.add(new itemDAO().Detail(res.getItemNo()));
 		}
-		System.out.println(GList);
+		
+		// 3.주요공지사항 리스트
+		ArrayList<MainNoticeDTO> NoticeList = new MainNoticeDAO().Currentlist();
+		ArrayList<NoticeDTO> M_NoticeList = new ArrayList<NoticeDTO>();
+		for (MainNoticeDTO res : NoticeList) {
+			M_NoticeList.add(new NoticeDAO().detail(res.getNoticeNo()));
+		}
 		request.setAttribute("GList", GList);
 		request.setAttribute("NList", NList);
+		request.setAttribute("M_NoticeList", M_NoticeList);
 		request.setAttribute("mainUrl", "./main/pages");
 	}
 }
