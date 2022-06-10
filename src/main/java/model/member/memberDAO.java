@@ -222,20 +222,26 @@ public class memberDAO {
 	public int Adminmodify(memberDTO dto) {
 
 		int res = 0;
-		sql = "update member set user_id = ?, name = ?,gender=?, email = ?, addr1 = ?, addr2 = ?, tel = ?, status = ? "
+		sql = "update member set user_id = ?, name = ?, birthdate = ? ,gender=?, email = ?, addr1 = ?, addr2 = ?, tel = ?, status = ? "
 				+ "where memberNo =? ";
 
 		try {
 			ptmt = con.prepareStatement(sql);
 			ptmt.setString(1, dto.user_id);
 			ptmt.setString(2, dto.name);
-			ptmt.setString(3, dto.gender);
-			ptmt.setString(4, dto.email);
-			ptmt.setString(5, dto.addr1);
-			ptmt.setString(6, dto.addr2);
-			ptmt.setString(7, dto.tel);
-			ptmt.setString(8, dto.status);
-			ptmt.setInt(9, dto.memberNo);
+			
+			Date date = new Date();
+			date = dto.birthdate;
+			Object oDate = new Timestamp(date.getTime());
+			
+			ptmt.setObject(3, oDate);
+			ptmt.setString(4, dto.gender);
+			ptmt.setString(5, dto.email);
+			ptmt.setString(6, dto.addr1);
+			ptmt.setString(7, dto.addr2);
+			ptmt.setString(8, dto.tel);
+			ptmt.setString(9, dto.status);
+			ptmt.setInt(10, dto.memberNo);
 			// 실행된 갯수만
 			res = ptmt.executeUpdate();
 
