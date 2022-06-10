@@ -6,6 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,7 +67,7 @@ if (dto != null) {
 				<tr>
 					<th>생일</th>
 					<td>
-						${getMember.getBirthdate() }
+					<input type="text" name="birthdate" value="<fmt:formatDate value="${getMember.getBirthdate() }" pattern="yyyy-MM-dd"/>">				
 					</td>
 				</tr>
 				<tr>
@@ -106,7 +107,8 @@ if (dto != null) {
 				<tr>
 					<th>등록일</th>
 					<td>
-						${getMember.getReg_date() }
+					<fmt:formatDate value="${getMember.getReg_date() }" pattern="yyyy-MM-dd HH:mm:ss"/>
+						
 					</td>
 				</tr>
 				<tr>
