@@ -19,17 +19,17 @@
 	pageContext.setAttribute("memberNo",memberNo);
 %>
 
-<h1>고객센터 수정페이지</h1>
+<h1>댓글 수정페이지</h1>
 
-<form action="./QnaModifyReg" method="post">
-	<input type="hidden" name="qnaNo" value="${dto.qnaNo }" />
+<form action="./CommentModifyReg" method="post">
+	<input type="hidden" name="commentNo" value="${dto.commentNo }" />
 	<input type="hidden" name="pname" value="${dto.pname }" />
 	<input type="hidden" name="user_id" value="${dto.user_id }" />
 
 	<div class="mb-3">
 		<label for="exampleFormControlInput1" class="form-label">번호</label> <input
 			type="text" class="form-control" id="exampleFormControlInput1"
-			value="${dto.qnaNo}" disabled="disabled">
+			value="${dto.commentNo}" disabled="disabled">
 	</div>
 	<div class="mb-3">
 		<label for="exampleFormControlInput1" class="form-label">제목</label> <input
@@ -44,7 +44,7 @@
 	<div class="mb-3">
 		<label for="exampleFormControlTextarea1" class="form-label">내용</label>
 		<textarea class="form-control" id="exampleFormControlTextarea1"
-			rows="3" name="content">${dto.content }</textarea>
+			rows="3" name="content">${dto.comment }</textarea>
 	</div>
 		<div align="right"><button type="submit"
 				class="btn btn-outline-primary">수정하기</button></div>

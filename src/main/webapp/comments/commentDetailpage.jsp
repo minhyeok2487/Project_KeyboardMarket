@@ -17,12 +17,12 @@ if (dto != null) {
 }
 pageContext.setAttribute("memberNo", memberNo);
 %>
-<h1>고객센터 상세보기 부분~~</h1>
+<h1>댓글 상세보기 부분~~</h1>
 
 <div class="mb-3">
 	<label for="exampleFormControlInput1" class="form-label">번호</label> <input
 		type="text" class="form-control" id="exampleFormControlInput1"
-		value="${dto.qnaNo}" disabled="disabled">
+		value="${dto.commentNo}" disabled="disabled">
 </div>
 <div class="mb-3">
 	<label for="exampleFormControlInput1" class="form-label">제목</label> <input
@@ -43,25 +43,13 @@ pageContext.setAttribute("memberNo", memberNo);
 <div class="mb-3">
 	<label for="exampleFormControlTextarea1" class="form-label">내용</label>
 	<textarea class="form-control" id="exampleFormControlTextarea1"
-		rows="3" disabled="disabled">${dto.content }</textarea>
+		rows="3" disabled="disabled">${dto.comment }</textarea>
 </div>
 
 <c:if test="${inUser != null && inUser.user_id == dto.user_id }">
 
 	<div align="right">
-		<a href="./QnaModifyForm?qnaNo=${dto.qnaNo }"><button
+		<a href="./CommentModifyForm?commentNo=${dto.commentNo }"><button
 				type="submit" class="btn btn-outline-primary">수정하기</button></a>
 	</div>
 </c:if>
-
-<%
-if (userStatus != null) {
-	if (userStatus.equals("관리자")) {
-%>
-<div align="right">
-	<a href="../comment/commentInsertpage"><button type="button" class="btn btn-outline-primary">답변하기</button></a>
-</div>
-<%
-}
-}
-%>
