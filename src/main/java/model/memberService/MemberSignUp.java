@@ -9,8 +9,6 @@ public class MemberSignUp implements Service{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		request.setAttribute("mainUrl", "member_view/SignUpForm");
-		
+		request.setAttribute("mainUrl", "./member_view/SignUpForm");
 	}
-
 }

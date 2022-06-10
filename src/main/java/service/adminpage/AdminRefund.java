@@ -7,6 +7,7 @@ import controller.Service;
 import model.item.itemDTO;
 import model.member.memberDAO;
 import model.member.memberDTO;
+import model.order.OrderDAO;
 import model.order.OrderDTO;
 
 public class AdminRefund implements Service {
@@ -18,10 +19,10 @@ public class AdminRefund implements Service {
 		String oOrderNo = request.getParameter("orderNo");
 		
 		//주문정보
-		OrderDTO orderData = new memberDAO().orderSelect(Integer.parseInt(oOrderNo));
+		OrderDTO orderData = new OrderDAO().orderSelect(Integer.parseInt(oOrderNo));
 		
 		//상품정보
-		itemDTO itemData = new memberDAO().orderDetail(orderData.getItem_name());
+		itemDTO itemData = new OrderDAO().orderDetail(orderData.getItem_name());
 		
 		//유저정보
 		memberDTO userData = new memberDAO().detail(orderData.getMemberNo());

@@ -218,7 +218,7 @@
 		<tr>
 			<td>
 				<button type="button"
-				class="btn btn-outline-primary" onclick='cancelPay()"'>승인</button>
+				class="btn btn-outline-primary" onclick='cancelPay()'>승인</button>
 			</td>
 			<td></td>
 			<td>
