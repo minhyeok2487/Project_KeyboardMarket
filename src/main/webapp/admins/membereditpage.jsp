@@ -72,7 +72,16 @@ if (dto != null) {
 				<tr>
 					<th>성별</th>
 					<td>
-						<input type="text" name="gender" value="${getMember.getGender() }">
+					<c:choose>
+						<c:when test="${getMember.getGender() eq 'm'}">
+							<input type='radio' name='gender' value='m' checked="checked"/>남성
+							<input type='radio' name='gender' value='f' />여성
+						</c:when>
+						<c:when test="${getMember.getGender() eq 'f'}">
+							<input type='radio' name='gender' value='m' />남성
+							<input type='radio' name='gender' value='f' checked="checked" />여성
+						</c:when>
+					</c:choose>
 					</td>
 				</tr>
 				<tr>
@@ -103,7 +112,23 @@ if (dto != null) {
 				<tr>
 					<th>상태</th>
 					<td>
-						${getMember.getStatus() }
+					<c:choose>
+						<c:when test="${getMember.getStatus()  eq '관리자'}">
+							<input type='radio' name='status' value='관리자' checked="checked"/>관리자
+							<input type='radio' name='status' value='회원' />회원
+							<input type='radio' name='status' value='정지' />정지
+						</c:when>
+						<c:when test="${getMember.getStatus()  eq '회원'}">
+							<input type='radio' name='status' value='관리자' />관리자
+							<input type='radio' name='status' value='회원' checked="checked"/>회원
+							<input type='radio' name='status' value='정지' />정지
+						</c:when>
+						<c:when test="${getMember.getStatus()  eq '정지'}">
+							<input type='radio' name='status' value='관리자' />관리자
+							<input type='radio' name='status' value='회원' />회원
+							<input type='radio' name='status' value='정지' checked="checked"/>정지
+						</c:when>						
+					</c:choose>
 					</td>
 				</tr>
 				<tr>

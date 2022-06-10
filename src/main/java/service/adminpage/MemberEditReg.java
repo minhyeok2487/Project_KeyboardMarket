@@ -30,6 +30,7 @@ public class MemberEditReg implements Service {
 		dto.setAddr1(request.getParameter("addr1"));
 		dto.setAddr2(request.getParameter("addr2"));
 		dto.setTel(request.getParameter("tel"));
+		dto.setStatus(request.getParameter("status"));
 		
 		int res = new memberDAO().Adminmodify(dto);
 	
