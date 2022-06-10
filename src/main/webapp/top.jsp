@@ -47,11 +47,11 @@
 					%> 
 				</li>
 
-				<li class="nav-item dropdown"><a
+<!-- 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
 					data-bs-toggle="dropdown" aria-expanded="false"> 회원관리 </a>
 					<ul id="topmenu_list" class="dropdown-menu"
-						aria-labelledby="navbarDropdown">
+						aria-labelledby="navbarDropdown"> -->
 						<%
           		if(dto != null){ %>
 						<li><a class="dropdown-item" href="../member/Detail">회원 정보 보기</a></li>
@@ -61,7 +61,7 @@
 						<li><a class="dropdown-item" href="../member/Login">로그인</a></li>
 						<li><a class="dropdown-item" href="../member/SignUp">회원가입</a></li>
 						<%} %>
-					</ul></li>
+<!-- 					</ul></li> -->
 				<%
 			if(userStatus != null){
 				if(userStatus.equals("관리자")){
