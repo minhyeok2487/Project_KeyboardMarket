@@ -48,7 +48,7 @@
   			</td>
 		</tr>
 		<tr>
-			<td>이메일</td><td><input type="text" name="email" placeholder="예)test@test.com"/></td>
+			<td>이메일</td><td><input type="email" name="email" placeholder="예)test@test.com"/></td>
 		</tr>
 		<tr>
 			<td>주소</td><td><input type="text" name="addr1"/></td>
