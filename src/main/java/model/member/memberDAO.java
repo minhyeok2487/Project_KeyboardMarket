@@ -222,7 +222,7 @@ public class memberDAO {
 	public int Adminmodify(memberDTO dto) {
 
 		int res = 0;
-		sql = "update member set user_id = ?, name = ?,gender=?, email = ?, addr1 = ?, addr2 = ?, tel = ? "
+		sql = "update member set user_id = ?, name = ?,gender=?, email = ?, addr1 = ?, addr2 = ?, tel = ?, status = ? "
 				+ "where memberNo =? ";
 
 		try {
@@ -234,7 +234,8 @@ public class memberDAO {
 			ptmt.setString(5, dto.addr1);
 			ptmt.setString(6, dto.addr2);
 			ptmt.setString(7, dto.tel);
-			ptmt.setInt(8, dto.memberNo);
+			ptmt.setString(8, dto.status);
+			ptmt.setInt(9, dto.memberNo);
 			// 실행된 갯수만
 			res = ptmt.executeUpdate();
 
