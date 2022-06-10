@@ -29,12 +29,12 @@ public class OrderEnd implements Service {
 		String ordered_num = request.getParameter("ordered_num");
 		String addr1 = request.getParameter("addr1");
 		String addr2 = request.getParameter("addr2");
-		
+		System.out.println(addr1+addr2);
 		ArrayList<CartDTO> cartList = new CartDAO().list(memberNo);
 		memberDTO member = new memberDAO().detail(memberNo);
 		
 		Date date = new Date();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yy년MM월dd일 HH시mm분ss초");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
 		String merchant = simpleDateFormat.format(date);
 		
 	

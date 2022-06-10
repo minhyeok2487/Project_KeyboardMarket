@@ -101,22 +101,22 @@
 	</div>
 
 	<div class="container">
-		<form name="frm" action="../cart/OrderEnd" method="post">
-			<input type="hidden" name="memberNo" value="${memberNo.memberNo }">
+		<form name="frm" action="../cart/OrderEnd?" method="post">
+			<input type="hidden" name="memberNo" value="${member.memberNo }">
 			<input type="hidden" id="ordered_num" name="ordered_num">
 			<div class="form-group row">
 				<label class="col-sm-2">주문자 이름</label>
-				<div class="col-sm-3">${memberNo.name }</div>
+				<div class="col-sm-3">${member.name }</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-2">주문자 전화번호</label>
-				<div class="col-sm-3">${memberNo.tel }</div>
+				<div class="col-sm-3">${member.tel }</div>
 			</div>
 			<div>
 				<label class="col-sm-2">주문자 주소</label><br> 
 				<input type="text" id="sample4_postcode" disabled="disabled" placeholder="우편번호">
 				<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br> 
-				<input type="text" id="sample4_roadAddress" disabled="disabled" name="addr1" placeholder="도로명주소">
+				<input type="text" id="sample4_roadAddress" name="addr1" placeholder="도로명주소">
 				<input type="text" id="sample4_jibunAddress" disabled="disabled" placeholder="지번주소"><br>
 				<input type="text" id="sample4_detailAddress" name="addr2" placeholder="상세주소 입력"> 
 				<input type="text" id="sample4_extraAddress" disabled="disabled" placeholder="참고항목">
@@ -124,7 +124,7 @@
 		</form>
 		<div class="form-group row">
 			<div class="col-sm-offset-2 col-sm-10 ">
-				<a href="./cart.jsp?memberNo=<%=request.getParameter("memberNo")%>"
+				<a href="./cart.jsp?memberNo=<%=memberNo %>"
 					class="btn btn-secondary" role="button">이전</a>
 				<button onclick="requestPay()" class="btn btn_primary">결제하기</button>
 				<a href="./checkOutCancelled.jsp" class="btn btn-secondary"
