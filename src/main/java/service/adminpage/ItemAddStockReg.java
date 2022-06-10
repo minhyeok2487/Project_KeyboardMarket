@@ -15,13 +15,12 @@ public class ItemAddStockReg implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		itemDAO dao = new itemDAO();
 		int itemNo = Integer.parseInt(request.getParameter("itemNo"));
 		int count = Integer.parseInt(request.getParameter("count"));
-		int addCount = count+dao.Detail(itemNo).getStock();
+		int addCount = count+new itemDAO().Detail(itemNo).getStock();
 		String msg = null;
 		String goUrl = "ItemAddStock?itemNo="+itemNo;
-		if(dao.addStock(itemNo, addCount)) {
+		if(new itemDAO().addStock(itemNo, addCount)) {
 			msg = "입고되었습니다";
 		} else {
 			msg = "처리 실패";

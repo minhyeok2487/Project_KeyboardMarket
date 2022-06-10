@@ -15,8 +15,7 @@ public class ItemControl implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		itemDAO dao = new itemDAO();
-		ArrayList<itemDTO> itemList = dao.list();
+		ArrayList<itemDTO> itemList = new itemDAO().list();
 		
 		request.setAttribute("itemList", itemList);
 		request.setAttribute("mainUrl", "./admins/itemcontrolpage");

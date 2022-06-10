@@ -14,12 +14,11 @@ public class QnaControl implements Service {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 
-		QnaDAO dao = new QnaDAO();
 
 		// 1.미답변 리스트
-		ArrayList<QnaDTO> PostList = dao.Currentlist("미답변");
+		ArrayList<QnaDTO> PostList = new QnaDAO().Currentlist("미답변");
 		// 2.답변 리스트
-		ArrayList<QnaDTO> EndList = dao.Currentlist("답변");
+		ArrayList<QnaDTO> EndList = new QnaDAO().Currentlist("답변");
 
 		request.setAttribute("PostList", PostList);
 		request.setAttribute("EndList", EndList);

@@ -13,12 +13,11 @@ public class NoticeControl implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		NoticeDAO dao = new NoticeDAO();
 		
 		//1.게시된 리스트
-		ArrayList<NoticeDTO> PostList = dao.Currentlist("게시");
+		ArrayList<NoticeDTO> PostList = new NoticeDAO().Currentlist("게시");
 		//2.만료된 리스트
-		ArrayList<NoticeDTO> EndList = dao.Currentlist("만료");
+		ArrayList<NoticeDTO> EndList = new NoticeDAO().Currentlist("만료");
 		
 		request.setAttribute("PostList", PostList);
 		request.setAttribute("EndList", EndList);

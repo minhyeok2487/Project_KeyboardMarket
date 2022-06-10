@@ -19,10 +19,10 @@ public class Adminmain implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		OrderDAO dao = new OrderDAO();
+		
 
 		// 1.최근 일주일 주문량
-		ArrayList<OrderDTO> allList = dao.allList();
+		ArrayList<OrderDTO> allList = new OrderDAO().allList();
 		int total = 0;
 		for(OrderDTO price : allList) {
 			total += price.getPrice();
@@ -30,7 +30,7 @@ public class Adminmain implements Service {
 	
 
 		// 1.최근 일주일 주문량
-		ArrayList<OrderDTO> orderList = dao.list();
+		ArrayList<OrderDTO> orderList = new OrderDAO().list();
 		ArrayList<OrderDTO> mainList = new ArrayList<OrderDTO>();
 		for (int i = 0; i < orderList.size(); i++) {
 			boolean res = true;
@@ -49,7 +49,7 @@ public class Adminmain implements Service {
 		}
 
 		// 2.배송해야 할 것
-		ArrayList<OrderDTO> orderinglist = dao.orderinglist();
+		ArrayList<OrderDTO> orderinglist = new OrderDAO().orderinglist();
 		ArrayList<OrderDTO> mainorderinglist = new ArrayList<OrderDTO>();
 		for (int i = 0; i < orderinglist.size(); i++) {
 			boolean res = true;
