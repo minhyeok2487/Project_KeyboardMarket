@@ -146,7 +146,7 @@
 						data-bs-toggle="collapse"
 						data-bs-target="#panelsStayOpen-collapseThree"
 						aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">환불,반품,교환
-						??건</button>
+						${refund.size() }건</button>
 				</h2>
 				<div id="panelsStayOpen-collapseThree"
 					class="accordion-collapse collapse"
@@ -163,7 +163,7 @@
 								<th>소계</th>
 							</tr>
 							<%
-							ArrayList<OrderDTO> refund_list = new OrderDAO().refundList();
+							ArrayList<OrderDTO> refund_list = (ArrayList<OrderDTO>) request.getAttribute("refund");
 							
 							for(OrderDTO rList : refund_list){ 
 							int sum; %>
