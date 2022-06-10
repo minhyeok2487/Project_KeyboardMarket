@@ -15,21 +15,20 @@ public class itemDetailList implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		itemDAO dao = new itemDAO();
 		ArrayList<itemDTO> dto = null;
 		String prices = request.getParameter("price");
 		switch (prices) {
 			case "1~5만원":
-				dto = dao.detaillist(10000,50000);
+				dto = new itemDAO().detaillist(10000,50000);
 				break;
 			case "5~10만원":
-				dto = dao.detaillist(50000,100000);
+				dto = new itemDAO().detaillist(50000,100000);
 				break;
 			case "10~20만원":
-				dto = dao.detaillist(100000,200000);
+				dto = new itemDAO().detaillist(100000,200000);
 				break;
 			case "20만원~":
-				dto = dao.detaillist(200000,999999999);
+				dto = new itemDAO().detaillist(200000,999999999);
 				break;
 
 		}

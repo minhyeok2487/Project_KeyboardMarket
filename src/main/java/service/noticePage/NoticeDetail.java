@@ -13,9 +13,7 @@ public class NoticeDetail implements Service {
 
 		int id = Integer.parseInt(request.getParameter("noticeNo"));
 
-		NoticeDAO dao = new NoticeDAO();
-
-		Object dataDetail = dao.detail(id);
+		Object dataDetail = new NoticeDAO().detail(id);
 
 		request.setAttribute("dto", dataDetail);
 		request.setAttribute("mainUrl", "./notices/noticeDetailpage");

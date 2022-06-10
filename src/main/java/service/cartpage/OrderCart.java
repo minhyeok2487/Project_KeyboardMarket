@@ -17,7 +17,6 @@ public class OrderCart implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		CartDAO dao = new CartDAO();
 		int memberNo = 1; // 멤버 기본키 로그인시 받아올 예정
 		
 		Date nowDate = new Date();
@@ -25,7 +24,7 @@ public class OrderCart implements Service {
 		String merchant = simpleDateFormat.format(nowDate);
 		String order_num = "MTS"+merchant;
 		
-		ArrayList<CartDTO> cartList = dao.list(memberNo);
+		ArrayList<CartDTO> cartList = new CartDAO().list(memberNo);
 		memberDTO member = new memberDAO().detail(memberNo);
 		request.setAttribute("cartList", cartList);
 		request.setAttribute("memberNo", member);

@@ -17,9 +17,8 @@ public class QnaList implements Service {
 		int limit = 10; // 한 페이지당 게시물 수
 		int pageLimit = 5; // 페이지 번호 갯수
 
-		QnaDAO dao = new QnaDAO();
 
-		int total = dao.postCount();
+		int total = new QnaDAO().postCount();
 
 		int pageTotal = total / limit;
 
@@ -35,7 +34,7 @@ public class QnaList implements Service {
 			pageEnd = pageTotal;
 		}
 
-		Object dataList = dao.list(start, limit);
+		Object dataList = new QnaDAO().list(start, limit);
 
 		request.setAttribute("qnaData", dataList);
 		request.setAttribute("mainUrl", "./qnas/qnaListpage");

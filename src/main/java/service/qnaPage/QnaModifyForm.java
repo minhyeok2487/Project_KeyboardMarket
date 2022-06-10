@@ -12,9 +12,8 @@ public class QnaModifyForm implements Service {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 
 		int no = Integer.parseInt(request.getParameter("qnaNo"));
-		QnaDAO dao = new QnaDAO();
 
-		Object dataDetail = dao.detail(no);
+		Object dataDetail = new QnaDAO().detail(no);
 
 		request.setAttribute("dto", dataDetail);
 		request.setAttribute("mainUrl", "./qnas/qnaModifypage");

@@ -3,12 +3,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="model.member.memberDTO"%>
 <%	
+	int memberNo;
+	String name = "비회원";
 	HttpSession user = request.getSession();
 	String userStatus = null;
 	memberDTO dto = (memberDTO) user.getAttribute("inUser");
 	if (dto != null) {
 		userStatus = dto.getStatus();
+		memberNo = dto.getMemberNo();
+		name = dto.getName();
+	} else {
+		memberNo = 0;
 	}
+	pageContext.setAttribute("memberNo",memberNo);
 %> 
 <!DOCTYPE html>
 <html>
@@ -25,6 +32,7 @@
 	<div class="container">
 		<form action="../cart/Cartview?" method="post">
 			<input type="hidden" name="reg" value="addCart" />
+			<input type="hidden" name="memberNo" value="${memberNo }" />
 			<table class="table">
 				<tr>
 					<td><img src="<c:url value="/source/${dto.getItem_img1() }"/>"

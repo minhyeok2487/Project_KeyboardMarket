@@ -1,11 +1,23 @@
-<%@page import="model.member.memberDTO"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%
-memberDTO dto = (memberDTO) session.getAttribute("inUser");
-String name = dto.getName();
+<%@page import="model.member.memberDTO"%>
+<%	
+	int memberNo;
+	String name = "비회원";
+	HttpSession user = request.getSession();
+	String userStatus = null;
+	memberDTO dto = (memberDTO) user.getAttribute("inUser");
+	if (dto != null) {
+		userStatus = dto.getStatus();
+		memberNo = dto.getMemberNo();
+		name = dto.getName();
+	} else {
+		memberNo = 0;
+	}
+	pageContext.setAttribute("memberNo",memberNo);
 %>
 
 <h2>고객센터 작성페이지</h2>

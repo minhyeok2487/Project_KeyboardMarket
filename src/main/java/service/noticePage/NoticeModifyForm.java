@@ -12,9 +12,8 @@ public class NoticeModifyForm implements Service {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 
 		int no = Integer.parseInt(request.getParameter("noticeNo"));
-		NoticeDAO dao = new NoticeDAO();
 
-		Object dataDetail = dao.detail(no);
+		Object dataDetail = new NoticeDAO().detail(no);
 
 		request.setAttribute("dto", dataDetail);
 		request.setAttribute("mainUrl", "./notices/noticeModifypage");

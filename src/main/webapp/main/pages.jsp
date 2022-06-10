@@ -10,18 +10,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<%
+<%	
+	int memberNo;
+	String name = "비회원";
 	HttpSession user = request.getSession();
-String userStatus = null;
-memberDTO dto = (memberDTO) user.getAttribute("inUser");
-if (dto != null) {
-	userStatus = dto.getStatus();
-}
-
-NoticeDAO dao = new NoticeDAO();
-Object dataList = dao.list(0, 5);
-
-request.setAttribute("noticeMainList", dataList);
+	String userStatus = null;
+	memberDTO dto = (memberDTO) user.getAttribute("inUser");
+	if (dto != null) {
+		userStatus = dto.getStatus();
+		memberNo = dto.getMemberNo();
+		name = dto.getName();
+	} else {
+		memberNo = 0;
+	}
+	pageContext.setAttribute("memberNo",memberNo);
 %>
 <title>메인페이지</title>
 </head>
