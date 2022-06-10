@@ -190,6 +190,25 @@ public class memberDAO {
 
 		return dto;
 	}
+	
+	public void doWithdrawal(int memberNo) {
+		
+		sql = "update member set status = ? where memberNo = ? ";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setString(1, "정지");
+			ptmt.setInt(2, memberNo);
+			
+			ptmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+	}
 
 	public int modify(memberDTO dto) {
 
