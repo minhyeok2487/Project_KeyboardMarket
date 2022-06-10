@@ -50,6 +50,7 @@ public class QnaDAO {
 				dto.setContent(rs.getString("content"));
 				dto.setHits(rs.getInt("hits"));
 				dto.setReg_date(rs.getTimestamp("reg_date"));
+				dto.setStatus(rs.getString("status"));
 				res.add(dto);
 			}
 
@@ -61,6 +62,76 @@ public class QnaDAO {
 
 		return res;
 
+	}
+	
+	public ArrayList<QnaDTO> complete(int start, int limit) {
+		ArrayList<QnaDTO> res = new ArrayList<QnaDTO>();
+		
+		sql = "select * from qna where status = ? order by qnaNo desc limit ?, ?";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setString(1, "답변");
+			ptmt.setInt(2, start);
+			ptmt.setInt(3, limit);
+			rs = ptmt.executeQuery();
+			
+			while (rs.next()) {
+				QnaDTO dto = new QnaDTO();
+				
+				dto.setQnaNo(rs.getInt("qnaNo"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setPname(rs.getString("pname"));
+				dto.setContent(rs.getString("content"));
+				dto.setHits(rs.getInt("hits"));
+				dto.setReg_date(rs.getTimestamp("reg_date"));
+				dto.setStatus(rs.getString("status"));
+				res.add(dto);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return res;
+		
+	}
+	public ArrayList<QnaDTO> total(int start, int limit) {
+		ArrayList<QnaDTO> res = new ArrayList<QnaDTO>();
+		
+		sql = "select * from qna order by qnaNo desc limit ?, ?";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setInt(1, start);
+			ptmt.setInt(2, limit);
+			rs = ptmt.executeQuery();
+			
+			while (rs.next()) {
+				QnaDTO dto = new QnaDTO();
+				
+				dto.setQnaNo(rs.getInt("qnaNo"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setPname(rs.getString("pname"));
+				dto.setContent(rs.getString("content"));
+				dto.setHits(rs.getInt("hits"));
+				dto.setReg_date(rs.getTimestamp("reg_date"));
+				dto.setStatus(rs.getString("status"));
+				res.add(dto);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return res;
+		
 	}
 
 	public QnaDTO detail(int no) {
@@ -84,6 +155,7 @@ public class QnaDAO {
 				dto.setContent(rs.getString("content"));
 				dto.setHits(rs.getInt("hits"));
 				dto.setReg_date(rs.getTimestamp("reg_date"));
+				dto.setStatus(rs.getString("status"));
 			}
 
 		} catch (SQLException e) {
@@ -176,6 +248,7 @@ public class QnaDAO {
 				dto.setPname(rs.getString("pname"));
 				dto.setContent(rs.getString("content"));
 				dto.setReg_date(rs.getTimestamp("reg_date"));
+				dto.setStatus(rs.getString("status"));
 				res.add(dto);
 			}
 

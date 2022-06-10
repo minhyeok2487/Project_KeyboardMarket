@@ -1,16 +1,19 @@
 package service.qnaPage;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Service;
 import model.qna.QnaDAO;
+import model.qna.QnaDTO;
 
-public class QnaList implements Service {
+public class QnaListSwitch implements Service{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-
+		
 		int page = (int) request.getAttribute("nowPage");
 		System.out.println(page);
 
@@ -35,22 +38,24 @@ public class QnaList implements Service {
 		}
 		
 		String process = request.getParameter("qnaStatus");
-
-		Object dataList = new QnaDAO().list(start, limit);
-		Object dataListComplete = new QnaDAO().complete(start, limit);
-		Object dataListTotal = new QnaDAO().total(start, limit);
-
-		request.setAttribute("qnaData", dataList);
-		request.setAttribute("qnaDataComplete", dataListComplete);
-		request.setAttribute("qnaDataTotal", dataListTotal);
+		ArrayList<QnaDTO> dao = null;
+		
+		switch (process) {
+			
+		case "답변" :
+			System.out.println("답변");
+			dao = new QnaDAO().complete(start, limit);
+			break;
+			
+		case "미답변" :
+			System.out.println("미답변");
+			dao = new QnaDAO().list(start, limit);
+			break;
+		}
+		
 		request.setAttribute("process", process);
+		request.setAttribute("answer", dao);
 		request.setAttribute("mainUrl", "./qnas/qnaListpage");
-
-		request.setAttribute("start", start);
-		request.setAttribute("limit", limit);
-		request.setAttribute("pageTotal", pageTotal);
-		request.setAttribute("pageStart", pageStart);
-		request.setAttribute("pageEnd", pageEnd);
 	}
 
 }

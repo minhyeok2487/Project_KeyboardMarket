@@ -37,9 +37,10 @@ public class QnaInsertReg implements Service {
 			dto.setPname(mr.getParameter("pname"));
 			dto.setContent(mr.getParameter("content"));
 			dto.setMemberNo(memberNum);
+			dto.setStatus("미답변");
 			msg = "게시글을 작성했어요 :)";
 			new QnaDAO().insert(dto);
-//			System.out.println(dto);
+			System.out.println(dto);
 
 		} catch (IOException e) {
 			e.printStackTrace();

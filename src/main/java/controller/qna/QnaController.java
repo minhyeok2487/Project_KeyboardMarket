@@ -16,6 +16,8 @@ import controller.Service;
 public class QnaController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+	
+	Object data = null;
 
 	ArrayList<String> nonClass;
 
@@ -53,7 +55,6 @@ public class QnaController extends HttpServlet {
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/template.jsp");
 		dispatcher.forward(request, response);
-
 	}
 
 	@Override
