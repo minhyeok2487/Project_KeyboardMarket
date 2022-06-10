@@ -71,10 +71,22 @@ public class Adminmain implements Service {
 		// 3. 환불 리스트
 		
 		ArrayList<OrderDTO> refund_list = new OrderDAO().refundList();
+		ArrayList<OrderDTO> refundAll = new ArrayList<OrderDTO>();
+		ArrayList<OrderDTO> refundNO = new ArrayList<OrderDTO>();
+		
+		for(int i=0;i<refund_list.size();i++) {
+			if(!refund_list.get(i).getRefund().equals("취소불가")) {
+				refundAll.add(refund_list.get(i));
+			}else {
+				refundNO.add(refund_list.get(i));
+			}
+		}
+		
 
 		request.setAttribute("total", total);
 		request.setAttribute("mainList", mainList);
-		request.setAttribute("refund", refund_list);
+		request.setAttribute("refund", refundAll);
+		request.setAttribute("refundNO", refundNO);
 		request.setAttribute("mainorderinglist", mainorderinglist);
 		request.setAttribute("mainUrl", "./admins/admainpage");
 	}
