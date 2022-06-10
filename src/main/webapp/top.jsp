@@ -1,15 +1,23 @@
 <%@page import="javax.websocket.Session"%>
-<%@page import="model.member.memberDTO"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
+<%@page import="model.member.memberDTO"%>
+<%	
+	int memberNo;
+	String name = "비회원";
 	HttpSession user = request.getSession();
 	String userStatus = null;
 	memberDTO dto = (memberDTO) user.getAttribute("inUser");
 	if (dto != null) {
 		userStatus = dto.getStatus();
+		memberNo = dto.getMemberNo();
+		name = dto.getName();
+	} else {
+		memberNo = 0;
 	}
-%>    
+	pageContext.setAttribute("memberNo",memberNo);
+%>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -27,7 +35,7 @@
           <a class="nav-link active" aria-current="page" href="../item/itemList">스마트 검색</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="../cart/Cartview?reg=view">장바구니</a>
+          <a class="nav-link active" aria-current="page" href="../cart/Cartview?reg=view&memberNo=${memberNo }">장바구니</a>
         </li>
 
         <li class="nav-item dropdown">

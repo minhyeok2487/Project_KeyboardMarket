@@ -6,12 +6,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="model.member.memberDTO"%>
 <%	
+	int memberNo;
+	String name = "비회원";
 	HttpSession user = request.getSession();
 	String userStatus = null;
 	memberDTO dto = (memberDTO) user.getAttribute("inUser");
 	if (dto != null) {
 		userStatus = dto.getStatus();
+		memberNo = dto.getMemberNo();
+		name = dto.getName();
+	} else {
+		memberNo = 0;
 	}
+	pageContext.setAttribute("memberNo",memberNo);
 %> 
 <!DOCTYPE html>
 <html>
@@ -22,9 +29,6 @@
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
-<%
-String memberNo = "1";
-%>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"
 	integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
 	crossorigin="anonymous"></script>

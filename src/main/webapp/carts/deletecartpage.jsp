@@ -2,16 +2,22 @@
 	pageEncoding="UTF-8"%>
 <%@page import="model.member.memberDTO"%>
 <%	
+	int memberNo;
+	String name = "비회원";
 	HttpSession user = request.getSession();
 	String userStatus = null;
 	memberDTO dto = (memberDTO) user.getAttribute("inUser");
 	if (dto != null) {
 		userStatus = dto.getStatus();
+		memberNo = dto.getMemberNo();
+		name = dto.getName();
+	} else {
+		memberNo = 0;
 	}
-%> 
+	pageContext.setAttribute("memberNo",memberNo);
+%>
 <%
 	String msg = (String)request.getAttribute("msg");
-	int memberNo = (int)request.getAttribute("memberNo");
 %>
 
 <form name="frm" action="../cart/Cartview?" method="post">

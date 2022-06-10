@@ -16,7 +16,7 @@ public class Cartview implements Service {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		String reg = request.getParameter("reg");
-		int memberNo = 1; // 멤버 기본키 로그인시 받아올 예정
+		int memberNo = Integer.parseInt(request.getParameter("memberNo")); // 멤버 기본키 로그인시 받아올 예정
 
 		// 장바구니 보기
 		if (reg.equals("view")) {

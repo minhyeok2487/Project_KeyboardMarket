@@ -13,9 +13,8 @@ public class QnaDetail implements Service {
 
 		int id = Integer.parseInt(request.getParameter("qnaNo"));
 
-		QnaDAO dao = new QnaDAO();
 
-		Object dataDetail = dao.detail(id);
+		Object dataDetail = new QnaDAO().detail(id);
 
 		request.setAttribute("dto", dataDetail);
 		request.setAttribute("mainUrl", "./qnas/qnaDetailpage");

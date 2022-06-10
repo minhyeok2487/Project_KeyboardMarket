@@ -4,7 +4,19 @@
 <meta charset="UTF-8">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%	
+	int memberNo;
+	HttpSession user = request.getSession();
+	String userStatus = null;
+	memberDTO dto = (memberDTO) user.getAttribute("inUser");
+	if (dto != null) {
+		userStatus = dto.getStatus();
+		memberNo = dto.getMemberNo();
+	} else {
+		memberNo = 0;
+	}
+	pageContext.setAttribute("memberNo",memberNo);
+%>
 <h1>고객센터 상세보기 부분~~</h1>
 
 <div class="mb-3">

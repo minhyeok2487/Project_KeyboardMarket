@@ -153,6 +153,8 @@ public class NoticeDAO {
 			return rs.getInt(1);
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 
 		return 0;
@@ -178,6 +180,8 @@ public class NoticeDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		return res;
 

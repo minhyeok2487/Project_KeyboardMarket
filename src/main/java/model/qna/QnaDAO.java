@@ -154,6 +154,8 @@ public class QnaDAO {
 			return rs.getInt(1);
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 
 		return 0;
@@ -179,6 +181,8 @@ public class QnaDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		return res;
 

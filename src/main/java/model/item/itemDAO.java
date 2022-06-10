@@ -47,7 +47,9 @@ public class itemDAO {
 			return res;
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		} finally {
+			close();
+		}
 		return res;
 	}
 
@@ -63,7 +65,9 @@ public class itemDAO {
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		} finally {
+			close();
+		}
 		return false;
 	}
 	
@@ -177,6 +181,8 @@ public class itemDAO {
 			ptmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 	
 	}
@@ -198,6 +204,8 @@ public class itemDAO {
 			ptmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 	}
 
