@@ -1,6 +1,9 @@
 <%@page import="java.util.Arrays"%>
 <%@page import="model.cart.CartDTO"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.inicis.std.util.SignatureUtil"%>
+<%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -18,7 +21,47 @@
 	} else {
 		memberNo = 0;
 	}
-	pageContext.setAttribute("memberNo",memberNo);
+	user.setAttribute("memberNo",memberNo);
+%>
+<%
+	// 여기에 설정된 값은 Form 필드에 동일한 값으로 설정
+	String mid					= "INIpayTest";		// 가맹점 ID(가맹점 수정후 고정)					
+	
+	//인증
+	String signKey			    = "SU5JTElURV9UUklQTEVERVNfS0VZU1RS";	// 가맹점에 제공된 웹 표준 사인키(가맹점 수정후 고정)
+	String timestamp			= SignatureUtil.getTimestamp();			// util에 의해서 자동생성
+
+	String oid					= mid+"_"+SignatureUtil.getTimestamp();	// 가맹점 주문번호(가맹점에서 직접 설정)
+	String price				= "1000";													// 상품가격(특수기호 제외, 가맹점에서 직접 설정)
+
+	String cardNoInterestQuota	= "11-2:3:,34-5:12,14-6:12:24,12-12:36,06-9:12,01-3:4";		// 카드 무이자 여부 설정(가맹점에서 직접 설정)
+	String cardQuotaBase		= "2:3:4:5:6:11:12:24:36";		// 가맹점에서 사용할 할부 개월수 설정
+
+	//###############################################
+	// 2. 가맹점 확인을 위한 signKey를 해시값으로 변경 (SHA-256방식 사용)
+	//###############################################
+	String mKey = SignatureUtil.hash(signKey, "SHA-256");
+	
+	//###############################################
+	// 2.signature 생성
+	//###############################################
+	Map<String, String> signParam = new HashMap<String, String>();
+
+	signParam.put("oid", oid); 					// 필수
+	signParam.put("price", price);				// 필수
+	signParam.put("timestamp", timestamp);		// 필수
+
+	// signature 데이터 생성 (모듈에서 자동으로 signParam을 알파벳 순으로 정렬후 NVP 방식으로 나열해 hash)
+	String signature = SignatureUtil.makeSignature(signParam);
+	
+	
+	/* 기타 */
+	String siteDomain = "http://localhost:8080/Project_KeyboardMarket/carts"; //가맹점 도메인 입력
+	// 페이지 URL에서 고정된 부분을 적는다. 
+	// Ex) returnURL이 http://localhost:8080INIpayStdSample/INIStdPayReturn.jsp 라면
+	// http://localhost:8080/INIpayStdSample 까지만 기입한다.
+	
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -34,6 +77,9 @@
 	crossorigin="anonymous"></script>
 <script type="text/javascript"
 	src="https://service.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<!-- 테스트 JS(샘플에 제공된 테스트 MID 전용) -->
+<script language="javascript" type="text/javascript"
+	src="https://stgstdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script>
 <title>주문페이지</title>
 </head>
 <body>
@@ -43,14 +89,6 @@
 		</div>
 	</div>
 	<div class="container">
-		<div class="row">
-			<table width="100%">
-				<tr>
-					<td align="left"><a href="#" class="btn btn-danger">장바구니
-							돌아가기</a></td>
-				</tr>
-			</table>
-		</div>
 		<div style="padding-top: 50px">
 			<table class="table">
 				<tr>
@@ -59,7 +97,6 @@
 					<th>가격</th>
 					<th>수량</th>
 					<th>소계</th>
-					<th>비고</th>
 				</tr>
 				<%
 				int sum = 0;
@@ -81,8 +118,6 @@
 					<td><%=item.getPrice()%></td>
 					<td><%=item.getSelected_count()%></td>
 					<td><%=total%></td>
-					<td><a
-						href="./RemoveItem?itemNo=<%=item.getItemNo()%>&memberNo=<%=memberNo%>">삭제</a></td>
 				</tr>
 				<%
 				}
@@ -102,8 +137,8 @@
 
 	<div class="container">
 		<form name="frm" action="../cart/OrderEnd?" method="post">
-			<input type="hidden" name="memberNo" value="${member.memberNo }">
-			<input type="hidden" id="ordered_num" name="ordered_num">
+			<input type="hidden" id="memberNo" value="<%=memberNo%>">
+			<input type="hidden" id="ordered_num" value="<%=mid%>">
 			<div class="form-group row">
 				<label class="col-sm-2">주문자 이름</label>
 				<div class="col-sm-3">${member.name }</div>
@@ -113,26 +148,63 @@
 				<div class="col-sm-3">${member.tel }</div>
 			</div>
 			<div>
-				<label class="col-sm-2">주문자 주소</label><br> 
-				<input type="text" id="sample4_postcode" disabled="disabled" placeholder="우편번호">
-				<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br> 
-				<input type="text" id="sample4_roadAddress" name="addr1" placeholder="도로명주소">
-				<input type="text" id="sample4_jibunAddress" disabled="disabled" placeholder="지번주소"><br>
-				<input type="text" id="sample4_detailAddress" name="addr2" placeholder="상세주소 입력"> 
-				<input type="text" id="sample4_extraAddress" disabled="disabled" placeholder="참고항목">
+				<label class="col-sm-2">주문자 주소</label><br> <input type="text"
+					id="sample4_postcode" disabled="disabled" placeholder="우편번호">
+				<input type="button" onclick="sample4_execDaumPostcode()"
+					value="우편번호 찾기"><br> <input type="text"
+					id="sample4_roadAddress" name="addr1" placeholder="도로명주소">
+				<input type="text" id="sample4_jibunAddress" disabled="disabled"
+					placeholder="지번주소"><br> <input type="text"
+					id="sample4_detailAddress" name="addr2" placeholder="상세주소 입력">
+				<input type="text" id="sample4_extraAddress" disabled="disabled"
+					placeholder="참고항목">
 			</div>
 		</form>
 		<div class="form-group row">
 			<div class="col-sm-offset-2 col-sm-10 ">
 				<a href="./cart.jsp?memberNo=<%=memberNo %>"
 					class="btn btn-secondary" role="button">이전</a>
-				<button onclick="requestPay()" class="btn btn_primary">결제하기</button>
+				<button onclick="requestPay()"
+					class="btn btn_primary">결제하기</button>
 				<a href="./checkOutCancelled.jsp" class="btn btn-secondary"
 					role="button">취소</a>
 			</div>
 		</div>
 
 	</div>
+
+	<form id="SendPayForm_id" name="inissubmit" method="POST">
+		<input type="hidden" name="version" value="1.0">
+		<input type="hidden" name="mid" value="<%=mid%>">
+		<input type="hidden" style="width: 100%;" name="goodname" value="테스트">
+		<input type="hidden" style="width: 100%;" name="oid" value="<%=oid%>"> 
+		<input type="hidden" style="width: 100%;" name="price" value="<%=price %>">
+		<input type="hidden" style="width: 100%;" name="currency" value="WON"> 
+		<input type="hidden" style="width: 100%;" name="buyername" value="${member.name }"> 
+		<input type="hidden" style="width: 100%;" name="buyertel" value="${member.tel }">
+		<input type="hidden" style="width: 100%;" name="buyeremail" value="test@inicis.com">
+		<input type="hidden" type="hidden" style="width: 100%;" name="timestamp"
+			value="<%=timestamp %>">
+		<input type="hidden" style="width: 100%;" name="signature"
+			value="<%=signature%>">
+		<input type="hidden" style="width: 100%;" name="returnUrl"
+			value="<%=siteDomain%>/INIStdPayReturn.jsp">
+		<input type="hidden" name="mKey" value="<%=mKey%>">
+		<input type="hidden" style="width:100%;" name="gopaymethod" value="Card" >
+		<input type="hidden" style="width:100%;" name="offerPeriod" value="20151001-20151231" >
+		<input type="hidden" style="width:100%;" name="acceptmethod" value="CARDPOINT:HPP(1):no_receipt:va_receipt:below1000" >
+		<input type="hidden" style="width:100%;" name="languageView" value="ko" >
+		<input type="hidden" style="width:100%;" name="charset" value="UTF-8" >
+		<input type="hidden" style="width:100%;" name="payViewType" value="popup" >
+		<input type="hidden" style="width:100%;" name="closeUrl" value="<%=siteDomain%>/close.jsp" >
+		<input type="hidden" style="width:100%;" name="popupUrl" value="<%=siteDomain%>/popup.jsp" >
+		<input type="hidden" style="width:100%;" name="quotabase" value="<%=cardQuotaBase%>" >
+		<input type="hidden" style="width:100%;" name="ini_onlycardcode" value="" >
+		<input type="hidden" style="width:100%;" name="ini_cardcode" value="" >
+		<input type="hidden" style="width:100%;" name="ansim_quota" value="" >
+		<input type="hidden" style="width:100%;" name="INIregno" value="" >
+		<input type="hidden" style="width:100%;" name="merchantData" value="" >	
+	</form>
 
 
 
@@ -188,55 +260,16 @@
 		
 	</script>
 	<script>
-		Date.prototype.YYYYMMDDHHMMSS = function(){
-			var yyyy = this.getFullYear().toString();
-			var MM = pad(this.getMonth() + 1,2);
-			var dd = pad(this.getDate() + 2);
-			var hh = pad(this.getHours() + 2);
-			var mm = pad(this.getMinutes() + 2);
-			var ss = pad(this.getSeconds() + 2);
-			return yyyy + MM + dd + hh + mm + ss;
-		}
-		
-		function pad(number, length){
-			var str = ''+ number;
-			while(str.length < length){
-				str = '0' + str;
-			}
-			return str;
-		}
-		
-	
 		function requestPay() {
-			var nowDate = new Date();
-			var order_num = "MTS"+ nowDate.YYYYMMDDHHMMSS();
 			if(document.getElementById('sample4_postcode').value != ""
 					& document.getElementById('sample4_detailAddress').value != ""){
-				IMP.init('imp49092937');
-				IMP.request_pay({ // param
-						pg : "inicis",
-						pay_method : "card",
-						merchant_uid : order_num,//주문번호
-						name : "상품명",
-						amount : 100,//금액 일단 고정
-						buyer_email : "gildong@gmail.com",
-						buyer_name : "홍길동",
-						buyer_tel : "010-4242-4242",
-						buyer_addr : document.getElementById("sample4_roadAddress").value,
-						buyer_postcode : "01181"
-					}, function(rsp) { // callback
-						if (rsp.success) {
-							// 결제 성공 시 로직
-							document.getElementById("ordered_num").value = order_num;
-							document.frm.submit();
-							
-						} else {
-							//결제 실패 시 로직,
-							alert("실패");
-							document.getElementById("ordered_num").value = order_num;
-							document.frm.submit();
-						}
-					});
+				var addr1 = document.getElementById('sample4_roadAddress').value;
+				var addr2 = document.getElementById('sample4_detailAddress').value;
+				var memberNo = document.getElementById('memberNo').value;
+				sessionStorage['addr1'] = addr1;
+				sessionStorage['addr2'] = addr2;
+				sessionStorage['memberNo'] = memberNo;
+				INIStdPay.pay('SendPayForm_id');
 			} else {
 				alert("우편번호를 입력해주십시오");
 			}

@@ -18,7 +18,6 @@ public class OrderDTO {
 	String refund;
 	Date refund_date;
 	
-	
 	public String getRefund() {
 		return refund;
 	}
@@ -151,6 +150,7 @@ public class OrderDTO {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
 	@Override
 	public String toString() {
 		return "OrderDTO [orderNo=" + orderNo + ", ordered_num=" + ordered_num + ", ordered_date=" + ordered_date
@@ -160,7 +160,7 @@ public class OrderDTO {
 				+ ", spec=" + spec + ", price=" + price + ", item_img1=" + item_img1 + ", item_img2=" + item_img2
 				+ ", status=" + status + ", refund=" + refund + ", refund_date=" + refund_date + "]";
 	}
-	
+
 
 
 	
