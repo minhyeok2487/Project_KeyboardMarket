@@ -31,7 +31,7 @@ public class CommentDAO {
 		
 		ArrayList<CommentDTO> res = new ArrayList<CommentDTO>();
 
-		sql = "select * from comment order by commentNo";
+		sql = "select * from comment order by commentNo desc";
 
 		try {
 			ptmt = con.prepareStatement(sql);
@@ -48,6 +48,7 @@ public class CommentDAO {
 				dto.setReg_date(rs.getTimestamp("reg_date"));
 				dto.setQnaNo(rs.getInt("qnaNo"));
 				dto.setMemberNo(rs.getInt("memberNo"));
+				dto.setStatus(rs.getString("status"));
 				res.add(dto);
 			}
 
@@ -59,6 +60,42 @@ public class CommentDAO {
 
 		return res;
 
+	}
+	
+	public ArrayList<CommentDTO> qnaNoList(int no) {
+		
+		ArrayList<CommentDTO> res = new ArrayList<CommentDTO>();
+		
+		sql = "select * from comment where qnaNo = ? order by commentNo desc";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setInt(1, no);
+			rs = ptmt.executeQuery();
+			
+			while (rs.next()) {
+				CommentDTO dto = new CommentDTO();
+				
+				dto.setCommentNo(rs.getInt("commentNo"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setComment(rs.getString("comment"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setPname(rs.getString("pname"));
+				dto.setReg_date(rs.getTimestamp("reg_date"));
+				dto.setQnaNo(rs.getInt("qnaNo"));
+				dto.setMemberNo(rs.getInt("memberNo"));
+				dto.setStatus(rs.getString("status"));
+				res.add(dto);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return res;
+		
 	}
 	
 	public CommentDTO detail(int no) {
@@ -83,6 +120,7 @@ public class CommentDAO {
 				dto.setReg_date(rs.getTimestamp("reg_date"));
 				dto.setQnaNo(rs.getInt("qnaNo"));
 				dto.setMemberNo(rs.getInt("memberNo"));
+				dto.setStatus(rs.getString("status"));
 			}
 
 		} catch (SQLException e) {
@@ -97,7 +135,7 @@ public class CommentDAO {
 
 	public void insert(CommentDTO dto) {
 		
-		sql = "insert into comment(subject, comment, user_id, pname, reg_date, qnaNo, memberNo) values (?, ?, ?, ?, now(), ?, ?)";
+		sql = "insert into comment(subject, comment, user_id, pname, reg_date, qnaNo, memberNo, status) values (?, ?, ?, ?, now(), ?, ?, ?)";
 
 		try {
 			ptmt = con.prepareStatement(sql);
@@ -107,6 +145,7 @@ public class CommentDAO {
 			ptmt.setString(4, dto.pname);
 			ptmt.setInt(5, dto.qnaNo);
 			ptmt.setInt(6, dto.memberNo);
+			ptmt.setString(7, "답변");
 			ptmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -157,6 +196,28 @@ public class CommentDAO {
 			close();
 		}
 
+		return 0;
+	}
+	
+	public int answerCount(int no) {
+		
+		sql = "select count(*) from comment where qnaNo = ?";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setInt(1, no);
+			rs = ptmt.executeQuery();
+			
+			rs.next();
+			
+			return rs.getInt(1);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
 		return 0;
 	}
 

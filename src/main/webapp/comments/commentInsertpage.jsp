@@ -27,6 +27,7 @@ pageContext.setAttribute("memberNo", memberNo);
 <form action="./CommentInsertReg" method="post">
 	<input type="hidden" name="user_id" value="${dto.user_id }" />
 	<input type="hidden" name="pname" value="<%=name%>" />
+	<input type="hidden" name="status" value="답변">
 
 	<div class="mb-3">
 		<label for="exampleFormControlInput1" class="form-label">제목</label>

@@ -7,6 +7,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,10 +75,10 @@
 								<td><%=item.getSubject()%></td>
 								<td><%=item.getPname()%></td>
 								<td><%=item.getHits() %></td>
-								<td><%=item.getReg_date() %></td>
+								<td><fmt:formatDate value="<%=item.getReg_date() %>" pattern="yyyy-MM-dd HH:mm" /></td>
 								<td>
 									<button type="button" class="btn btn-outline-primary"
-										onclick='#'>만료처리</button>
+										onclick="location='../notice/NoticeExpiration?noticeNo=<%=item.getNoticeNo()%>'">만료처리</button>
 								</td>
 							</tr>
 							<%
@@ -120,8 +121,8 @@
 								<td><%=item.getHits() %></td>
 								<td><%=item.getReg_date() %></td>
 								<td>
-									<button type="button" class="btn btn-outline-primary"
-										onclick='#'>재게시</button>
+									<button type="submit" class="btn btn-secondary"
+										onclick='#'>만료됨</button>
 								</td>
 							</tr>
 							<%

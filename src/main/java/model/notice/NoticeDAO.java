@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 public class NoticeDAO {
@@ -168,6 +167,29 @@ public class NoticeDAO {
 
 		return res;
 
+	}
+	
+	public int expirationUpdate(int no) {
+		
+		int res = 0;
+		
+		sql = "update notice set status = ? where noticeNo = ?";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setString(1, "만료");
+			ptmt.setInt(2, no);
+			
+			res = ptmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return res;
+		
 	}
 
 	public int postCount() {

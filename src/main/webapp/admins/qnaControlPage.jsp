@@ -1,3 +1,4 @@
+<%@page import="model.comment.CommentDAO"%>
 <%@page import="model.qna.QnaDTO"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.Arrays"%>
@@ -8,6 +9,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,10 +77,10 @@
 								<td><%=item.getSubject()%></td>
 								<td><%=item.getPname()%></td>
 								<td><%=item.getHits() %></td>
-								<td><%=item.getReg_date() %></td>
+								<td><fmt:formatDate value="<%=item.getReg_date() %>" pattern="yyyy-MM-dd HH:mm" /></td>
 								<td>
 									<button type="button" class="btn btn-outline-primary"
-										onclick='#'>답변하기</button>
+										onclick="location='../qna/QnaDetail?qnaNo=<%=item.getQnaNo()%>'">답변하기</button>
 								</td>
 							</tr>
 							<%
@@ -119,10 +121,9 @@
 								<td><%=item.getSubject()%></td>
 								<td><%=item.getPname()%></td>
 								<td><%=item.getHits() %></td>
-								<td><%=item.getReg_date() %></td>
+								<td><fmt:formatDate value="<%=item.getReg_date() %>" pattern="yyyy-MM-dd HH:mm" /></td>
 								<td>
-									<button type="button" class="btn btn-outline-primary"
-										onclick='#'>답변완료</button>
+									<button type="button" class="btn btn-success" onclick='#'>답변완료</button>
 								</td>
 							</tr>
 							<%

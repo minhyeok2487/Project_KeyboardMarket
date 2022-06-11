@@ -1,3 +1,4 @@
+<%@page import="model.qna.QnaDTO"%>
 <%@page import="model.comment.CommentDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.comment.CommentDTO"%>
@@ -12,17 +13,21 @@ int memberNo;
 HttpSession user = request.getSession();
 String userStatus = null;
 memberDTO dto = (memberDTO) user.getAttribute("inUser");
+QnaDTO qDTO = (QnaDTO) user.getAttribute("qnaNum");
 if (dto != null) {
 	userStatus = dto.getStatus();
 	memberNo = dto.getMemberNo();
 } else {
 	memberNo = 0;
 }
+
 pageContext.setAttribute("memberNo", memberNo);
 
-Object dataList = new CommentDAO().list();
+int no = qDTO.getQnaNo();
+Object dataQnoList = new CommentDAO().qnaNoList(no);
+request.setAttribute("commentDataList", dataQnoList);
 
-request.setAttribute("commentDataList", dataList);
+int count = new CommentDAO().answerCount(no);
 %>
 <h1>고객센터 상세보기 부분~~</h1>
 
@@ -74,7 +79,9 @@ if (userStatus != null) {
 }
 %>
 <hr>
-
+<%
+if(count > 0){
+%>
 <div class="container">
 	<div class="accordion" id="accordionExample">
 		<div class="accordion-item">
@@ -103,3 +110,7 @@ if (userStatus != null) {
 		</div>
 	</div>
 </div>
+<hr>
+<%	
+}
+%>
