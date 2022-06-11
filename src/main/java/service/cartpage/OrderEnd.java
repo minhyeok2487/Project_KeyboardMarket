@@ -34,7 +34,7 @@ public class OrderEnd implements Service {
 		memberDTO member = new memberDAO().detail(memberNo);
 		
 		Date date = new Date();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String merchant = simpleDateFormat.format(date);
 		
 	
