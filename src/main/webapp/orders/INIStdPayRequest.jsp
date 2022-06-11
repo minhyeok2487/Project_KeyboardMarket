@@ -3,26 +3,6 @@
 <%@page import="com.inicis.std.util.SignatureUtil"%>
 <%@page import="java.util.*"%>
 <%
-
-	/*
-		//*** 위변조 방지체크를 signature 생성 ***
-
-			oid, price, timestamp 3개의 키와 값을
-
-			key=value 형식으로 하여 '&'로 연결한 하여 SHA-256 Hash로 생성 된값
-
-			ex) oid=INIpayTest_1432813606995&price=819000&timestamp=2012-02-01 09:19:04.004
-				
-
-			 * key기준 알파벳 정렬
-
-			 * timestamp는 반드시 signature생성에 사용한 timestamp 값을 timestamp input에 그대로 사용하여야함
-	*/
-
-	//############################################
-	// 1.전문 필드 값 설정(***가맹점 개발수정***)
-	//############################################
-
 	// 여기에 설정된 값은 Form 필드에 동일한 값으로 설정
 	String mid					= "INIpayTest";		// 가맹점 ID(가맹점 수정후 고정)					
 	

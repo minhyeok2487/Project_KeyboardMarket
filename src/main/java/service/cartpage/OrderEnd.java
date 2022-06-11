@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.Service;
 import model.cart.CartDAO;
@@ -25,10 +26,13 @@ public class OrderEnd implements Service {
 			e.printStackTrace();
 		}
 		
+	
+		String ordered_num = (String) request.getSession().getAttribute("tid");
 		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
-		String ordered_num = request.getParameter("ordered_num");
 		String addr1 = request.getParameter("addr1");
 		String addr2 = request.getParameter("addr2");
+	
+	
 		System.out.println(addr1+addr2);
 		ArrayList<CartDTO> cartList = new CartDAO().list(memberNo);
 		memberDTO member = new memberDAO().detail(memberNo);
