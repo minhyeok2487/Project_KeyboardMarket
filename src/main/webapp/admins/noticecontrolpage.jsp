@@ -77,7 +77,7 @@
 								<td><%=item.getHits() %></td>
 								<td><fmt:formatDate value="<%=item.getReg_date() %>" pattern="yyyy-MM-dd HH:mm" /></td>
 								<td>
-									<button type="button" class="btn btn-outline-primary"
+									<button type="button" class="btn btn-success"
 										onclick="location='../notice/NoticeExpiration?noticeNo=<%=item.getNoticeNo()%>'">만료처리</button>
 								</td>
 							</tr>
