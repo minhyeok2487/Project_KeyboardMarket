@@ -1,7 +1,9 @@
+<%@page import="model.order.OrderDTO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@page import="model.member.memberDTO"%>
 <%	
 	int memberNo;
@@ -24,80 +26,92 @@
 <head>
 <meta charset="UTF-8">
 
-<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-  
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+
 <title>주문 상세 페이지</title>
 </head>
 <body>
-<h1>주문 상세 페이지</h1>
+	<div class="jumbotron">
+		<div class="container">
+			<h4 class="display-3">주문내역 상세보기</h4>
+			<p>주문번호 - ${orderNum }</p>
+			<p>처리상태 - ${main.getStatus() }</p>
+		</div>
+	</div>
+	<div class="container">
+		<div style="padding-top: 50px">
+			<h5>상품정보</h5>
+			<table class="table">
+				<tr>
+					<th></th>
+					<th>상품</th>
+					<th>가격</th>
+					<th>수량</th>
+					<th>소계</th>
+				</tr>
+				<%
+				int sum = 0;
+				ArrayList<OrderDTO> OrderList = (ArrayList<OrderDTO>) request.getAttribute("OrderList");
+				if (OrderList == null) {
+					OrderList = new ArrayList<OrderDTO>();
+				}
+				for (int i = 0; i < OrderList.size(); i++) { // 상품 리스트 하나씩 출력하기
+					OrderDTO item = OrderList.get(i);
+					int total = item.getPrice() * item.getSelect_count();
+					sum = sum + total;
+				%>
+				<c:set var="imgthumb" value="<%=item.getItem_img1()%>" />
+				<tr>
+					<td><img src="<c:url value="/source/${imgthumb }"/>" alt=""
+						width=150 height=150 /></td>
+					<td><%=item.getItem_name()%></td>
+					<td><%=item.getPrice()%></td>
+					<td><%=item.getSelect_count()%></td>
+					<td><%=total%></td>
+				</tr>
+				<%
+				}
+				%>
+				<tr>
+					<th></th>
+					<th></th>
+					<th>총액</th>
+					<th><%=sum%></th>
+					<th></th>
+				</tr>
+			</table>
+		</div>
+	</div>
 
-<table border="">
-	<tr>
-		<td>일련번호</td><td>${dto.itemNo }</td>
-	</tr>
-	<tr>
-		<td>제품명</td><td>${dto.item_name }</td>
-	</tr>
-	<tr>
-		<td>제조사</td><td>${dto.manufacture }</td>
-	</tr>
-	<tr>
-		<td>분류</td><td>${dto.category }</td>
-	</tr>
-	<tr>
-		<td>스위치</td><td>${dto.switchs }</td>
-	</tr>
-	<tr>
-		<td>상품스펙</td><td>${dto.spec }</td>
-	</tr>
-	<tr>
-		<td>주문 갯수</td><td>${orderDto.select_count }</td>
-	</tr>
-	<tr>
-		<td>가격</td><td>${dto.price }</td>
-	</tr>
-	<tr>
-		<td>배송 상황</td><td>${orderDto.status }</td>
-	</tr>
-	<c:if test="${refund !=null }">
-		<tr>
-			<td>환불상태</td><td>${refund }</td>
-		</tr>
-	</c:if>
-	<c:if test="${refund_date != null }">
-		<tr>
-			<td>환불날짜</td><td>${refund_date }</td>
-		</tr>
-	</c:if>
-	<tr>
-		<td>이미지 1</td><td></td>
-	</tr>
-	<tr>
-		<td>주문일</td><td>
-		<fmt:formatDate value="${orderDto.ordered_date }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-	</tr>
- 	<tr>
-		<td colspan="2" align="right">
-			<a href="<c:url value="/member/Order?page=${nowPage }" />">목록으로</a>
-			<c:choose>
-				<c:when test="${orderDto.status eq '주문완료' && orderDto.refund ne '취소불가' }">
-					<a href="<c:url value="/member/Refund?orderNo=${orderDto.orderNo }&status=${orderDto.status }&page=${nowPage }" />">취소신청</a>
-				</c:when>
-				<c:when test="${orderDto.status eq '배송중' && orderDto.refund ne '취소불가' }">
-					<a href="<c:url value="/member/Refund?orderNo=${orderDto.orderNo }&status=${orderDto.status }&page=${nowPage }" />">환불신청</a>
-				</c:when>
-				<c:when test="${orderDto.status eq '배송완료' && orderDto.refund ne '취소불가' }">
-					<a href="<c:url value="/member/Refund?orderNo=${orderDto.orderNo }&status=${orderDto.status }&page=${nowPage }" />">반품신청</a>
-				</c:when>
-				<c:otherwise>
-					[[[  취소 승인 불가  ]]]
-				</c:otherwise>
-			</c:choose>
-		</td>
-	</tr>
+	<div class="container">
+		<div style="padding-top: 50px">
+			<h5>주문 정보</h5>
+			<table class="table">
+				<tr>
+					<th>주문자 아이디</th>
+					<th>주문자 이름</th>
+					<th>배송지</th>
+					<th>전화번호</th>
+				</tr>
+				<tr>
+					<td>${memberid }</td>
+					<td>${main.getName() }</td>
+					<td>${main.getAddr1() }${main.getAddr2() }</td>
+					<td>${main.getTel() }</td>
+				</tr>
+			</table>
+		</div>
+		<c:if test="${main.getStatus() == '주문완료' }">
+			<button type="button" class="btn btn-outline-danger"
+				onclick='location.href="./Ordering?orderNum=${main.getOrdered_num()}&res=주문취소";'>주문취소</button>
+		</c:if>
+		<c:if test="${main.getStatus() == '배송중' }">
+			
+		</c:if>
+
+	</div>
 
 </body>
 </html>

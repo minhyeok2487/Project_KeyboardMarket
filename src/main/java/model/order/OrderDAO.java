@@ -171,7 +171,7 @@ public class OrderDAO {
 		sql = "insert into orders (ordered_num, ordered_date, category, switchs, "
 				+ "select_count,item_name,manufacture,spec,price,reg_date, "
 				+ "item_img1,item_img2,memberNo,name,addr1,addr2,tel,status, itemNo) values "
-				+ "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			ptmt = con.prepareStatement(sql);
 			ptmt.setString(1, ordered_num);
@@ -234,6 +234,35 @@ public class OrderDAO {
 		try {
 			ptmt = con.prepareStatement(sql);
 			ptmt.setString(1, status);
+			rs = ptmt.executeQuery();
+			while (rs.next()) {
+				OrderDTO dto = new OrderDTO();
+				dto.setOrdered_num(rs.getString("ordered_num"));
+				dto.setName(rs.getString("name"));
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				Date date = formatter.parse(rs.getString("ordered_date"));
+				dto.setOrdered_date(date);
+				dto.setPrice(rs.getInt("price"));
+				dto.setSelect_count(rs.getInt("select_count"));
+				dto.setStatus(rs.getString("status"));
+				dto.setItemNo(rs.getInt("itemNo"));
+				res.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return res;
+	}
+	
+	public ArrayList<OrderDTO> SearchMemberNolist(String status, int MemberNo) {
+		ArrayList<OrderDTO> res = new ArrayList<OrderDTO>();
+		sql = "select * from orders where status = ? and memberNo = ?";
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setString(1, status);
+			ptmt.setInt(2, MemberNo);
 			rs = ptmt.executeQuery();
 			while (rs.next()) {
 				OrderDTO dto = new OrderDTO();
