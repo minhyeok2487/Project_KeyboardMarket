@@ -1,3 +1,6 @@
+<%@page import="model.comment.CommentDAO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.comment.CommentDTO"%>
 <%@page import="model.member.memberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -16,6 +19,10 @@ if (dto != null) {
 	memberNo = 0;
 }
 pageContext.setAttribute("memberNo", memberNo);
+
+Object dataList = new CommentDAO().list();
+
+request.setAttribute("commentDataList", dataList);
 %>
 <h1>고객센터 상세보기 부분~~</h1>
 
@@ -59,9 +66,40 @@ if (userStatus != null) {
 	if (userStatus.equals("관리자")) {
 %>
 <div align="right">
-	<a href="../comment/commentInsertpage"><button type="button" class="btn btn-outline-primary">답변하기</button></a>
+	<a href="../comment/commentInsertpage"><button type="button"
+			class="btn btn-outline-primary">답변하기</button></a>
 </div>
 <%
 }
 }
 %>
+<hr>
+
+<div class="container">
+	<div class="accordion" id="accordionExample">
+		<div class="accordion-item">
+			<h2 class="accordion-header" id="headingOne">
+				<button class="accordion-button" type="button"
+					data-bs-toggle="collapse" data-bs-target="#collapseOne"
+					aria-expanded="true" aria-controls="collapseOne">댓글</button>
+			</h2>
+			<div id="collapseOne" class="accordion-collapse collapse show"
+				aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+				<div class="accordion-body">
+					<table class="table">
+						<c:forEach var="dto" items="${commentDataList }" varStatus="no">
+							<tr align="center">
+								<td>${dto.commentNo}</td>
+								<td><a
+									href="<c:url value="./CommentDetail?commentNo=${dto.commentNo }"/>">${dto.subject }</a></td>
+								<td>${dto.pname }</td>
+								<td><fmt:formatDate value="${dto.reg_date }"
+										pattern="yyyy-MM-dd HH:mm" /></td>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

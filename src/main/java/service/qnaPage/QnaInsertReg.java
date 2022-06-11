@@ -28,7 +28,7 @@ public class QnaInsertReg implements Service {
 		memberDTO mDTO = (memberDTO) session.getAttribute("inUser");
 		int memberNum = mDTO.getMemberNo();
 		String getId = mDTO.getUser_id();
-
+		
 		try {
 			mr = new MultipartRequest(request, path, size, "UTF-8", new DefaultFileRenamePolicy());
 			QnaDTO dto = new QnaDTO();
