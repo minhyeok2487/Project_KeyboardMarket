@@ -81,7 +81,7 @@ if (userStatus != null) {
 			<h2 class="accordion-header" id="headingOne">
 				<button class="accordion-button" type="button"
 					data-bs-toggle="collapse" data-bs-target="#collapseOne"
-					aria-expanded="true" aria-controls="collapseOne">댓글</button>
+					aria-expanded="true" aria-controls="collapseOne">답변리스트</button>
 			</h2>
 			<div id="collapseOne" class="accordion-collapse collapse show"
 				aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -91,7 +91,7 @@ if (userStatus != null) {
 							<tr align="center">
 								<td>${dto.commentNo}</td>
 								<td><a
-									href="<c:url value="./CommentDetail?commentNo=${dto.commentNo }"/>">${dto.subject }</a></td>
+									href="<c:url value="../comment/CommentDetail?commentNo=${dto.commentNo }"/>">${dto.subject }</a></td>
 								<td>${dto.pname }</td>
 								<td><fmt:formatDate value="${dto.reg_date }"
 										pattern="yyyy-MM-dd HH:mm" /></td>
