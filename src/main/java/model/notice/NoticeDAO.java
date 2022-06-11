@@ -90,7 +90,7 @@ public class NoticeDAO {
 		return res;
 
 	}
-
+	
 	public NoticeDTO detail(int no) {
 
 		NoticeDTO dto = null;
@@ -123,6 +123,41 @@ public class NoticeDAO {
 
 		return dto;
 
+	}
+	
+	public NoticeDTO notExpiredDetail(int no) {
+		
+		NoticeDTO dto = null;
+		
+		sql = "select * from notice where noticeNo = ? and status = ?";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setInt(1, no);
+			ptmt.setString(2, "게시");
+			rs = ptmt.executeQuery();
+			
+			while (rs.next()) {
+				dto = new NoticeDTO();
+				
+				dto.setNoticeNo(rs.getInt("noticeNo"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setPname(rs.getString("pname"));
+				dto.setContent(rs.getString("content"));
+				dto.setReg_date(rs.getTimestamp("reg_date"));
+				dto.setHits(rs.getInt("hits"));
+				dto.setUpfile(rs.getString("upfile"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return dto;
+		
 	}
 
 	public void insert(NoticeDTO dto) {

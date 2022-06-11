@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Service;
-import model.main.MainDAO;
 import model.main.MainNoticeDAO;
 
 public class RemoveMainNotice implements Service {
@@ -15,9 +14,9 @@ public class RemoveMainNotice implements Service {
 		String msg = null;
 		String goUrl = "MainControl";
 		if(new MainNoticeDAO().removeitem(noticeNo)) {
-			msg = "주요공지가 내려갔습니다.";
+			msg = "메인화면에서 공지사항을 내렸어요.";
 		} else {
-			msg = "처리 실패";
+			msg = "메인화면에서 공지사항을 내리지 못했어요.";
 		}
 		
 		

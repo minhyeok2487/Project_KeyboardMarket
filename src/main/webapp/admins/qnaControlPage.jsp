@@ -123,7 +123,7 @@
 								<td><%=item.getHits() %></td>
 								<td><fmt:formatDate value="<%=item.getReg_date() %>" pattern="yyyy-MM-dd HH:mm" /></td>
 								<td>
-									<button type="button" class="btn btn-success" onclick='#'>답변완료</button>
+									<button type="button" class="btn btn-success" onclick="location='../qna/QnaDetail?qnaNo=<%=item.getQnaNo()%>'">답변완료</button>
 								</td>
 							</tr>
 							<%
