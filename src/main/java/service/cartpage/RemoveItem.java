@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import controller.Service;
 import model.cart.CartDAO;
 import model.cart.CartDTO;
+import model.main.MainNoticeDAO;
 
 
 public class RemoveItem implements Service{
@@ -18,17 +19,21 @@ public class RemoveItem implements Service{
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
 		int itemNo = Integer.parseInt(request.getParameter("itemNo"));
-		String msg = "상품이 없습니다";
-		
+		String msg = null;
+		String goUrl = "Cartview?reg=view&memberNo="+request.getParameter("memberNo");
 		// 장바구니에 데이터가 있는지 확인(있으면 true)
 		if(new CartDAO().CheckMemberCart(memberNo)) { //있으면 장바구니 비우기
 			new CartDAO().removeitem(memberNo,itemNo);
-		} else { //없으면 넘어감
-			
+			msg = "상품을 삭제했습니다";
+		} else { 
+			msg = "삭제 실패";
 		}
 		
+		
+		request.setAttribute("msg", msg);
+		request.setAttribute("goUrl", goUrl);
 		request.setAttribute("itemNo", itemNo);
 		request.setAttribute("memberNo", memberNo);
-		request.setAttribute("mainUrl", "./carts/cartpage");
+		request.setAttribute("mainUrl", "./carts/cartAlert");
 	}
 }

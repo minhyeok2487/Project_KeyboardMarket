@@ -40,15 +40,6 @@ public class Cartview implements Service {
 			}
 		}
 
-		// 장바구니 비우기일때
-		if (reg.equals("delCart")) {
-
-		}
-
-		// 아이템 삭제일때
-		if (reg.equals("removeItem")) {
-
-		}
 
 		ArrayList<CartDTO> cartList = new CartDAO().list(memberNo);
 		// System.out.println(cartList.size());
