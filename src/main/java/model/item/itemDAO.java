@@ -10,6 +10,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import model.member.memberDTO;
+
 
 public class itemDAO {
 	Connection con;
@@ -240,11 +242,46 @@ public class itemDAO {
 		return res;
 	}
 	
+	public ArrayList<itemDTO> searchList(String itemname) {
+		ArrayList<itemDTO> itemList = new ArrayList<itemDTO>();
+		sql = "select * from item where item_name like ?";
+
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setString(1, itemname);
+			rs = ptmt.executeQuery();
+			while (rs.next()) {
+				itemDTO dto = new itemDTO();
+				dto.setItemNo(rs.getInt("itemNo"));
+				dto.setItem_name(rs.getString("item_name"));
+				dto.setManufacture(rs.getString("manufacture"));
+				dto.setCategory(rs.getString("category"));
+				dto.setSwitchs(rs.getString("switchs"));
+				dto.setSpec(rs.getString("spec"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setStock(rs.getInt("stock"));
+				dto.setReg_date(rs.getDate("reg_date"));
+				dto.setItem_img1(rs.getString("item_img1"));
+				dto.setItem_img2(rs.getString("item_img2"));
+				dto.setItem_sold(rs.getInt("item_sold"));
+				itemList.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+
+		return itemList;
+	}
+	
 	public void close() {
 		if(rs!=null)try {rs.close();} catch (Exception e) {}
 		if(ptmt!=null)try {ptmt.close();} catch (Exception e) {}
 		if(con!=null)try {con.close();} catch (Exception e) {}
 	}
+
+	
 
 	
 	
