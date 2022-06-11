@@ -52,7 +52,7 @@ pageContext.setAttribute("memberNo", memberNo);
 				<h2 class="accordion-header" id="headingOne">
 					<button class="accordion-button" type="button"
 						data-bs-toggle="collapse" data-bs-target="#collapseOne"
-						aria-expanded="true" aria-controls="collapseOne">게시되지 않은 공지사항</button>
+						aria-expanded="true" aria-controls="collapseOne">공지사항 목록</button>
 				</h2>
 				<div id="collapseOne" class="accordion-collapse collapse show"
 					aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -110,7 +110,6 @@ pageContext.setAttribute("memberNo", memberNo);
 							</tr>
 							<%
 							ArrayList<MainNoticeDTO> mainPostList = (ArrayList<MainNoticeDTO>) request.getAttribute("mainPostList");
-							System.out.println(mainPostList);
 							for (int i = 0; i < mainPostList.size(); i++) { // 상품 리스트 하나씩 출력하기
 								MainNoticeDTO item = mainPostList.get(i);
 							%>
