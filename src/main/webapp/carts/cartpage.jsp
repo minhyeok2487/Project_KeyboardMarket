@@ -94,7 +94,9 @@
 					</td>
 					<td name="Item_name"><%=item.getItem_name()%></td>
 					<td><%=item.getPrice()%></td>
-					<td name="Selected_count"><%=item.getSelected_count()%></td>
+					<td name="Selected_count"><%=item.getSelected_count()%></br>
+						<a href="./ChangeCart?memberNo=<%=memberNo%>&itemNo=<%=item.getItemNo() %>" class="btn btn-outline-success">수량 변경</a>
+					</td>
 					<td><%=total%></td>
 					<td><a href="./RemoveItem?itemNo=<%=item.getItemNo() %>&memberNo=<%=memberNo%>">삭제</a></td>
 				</tr>
@@ -120,6 +122,7 @@
 		function goOrder(){
 			document.frm.submit();	
 		}
+		
 	</script>
 </body>
 </html>
