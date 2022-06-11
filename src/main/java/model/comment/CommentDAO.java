@@ -27,7 +27,7 @@ public class CommentDAO {
 		}
 	}
 
-	public ArrayList<CommentDTO> list(int start, int limit) {
+	public ArrayList<CommentDTO> list() {
 		
 		ArrayList<CommentDTO> res = new ArrayList<CommentDTO>();
 
@@ -61,7 +61,6 @@ public class CommentDAO {
 
 	}
 	
-
 	public CommentDTO detail(int no) {
 
 		CommentDTO dto = null;
@@ -97,7 +96,7 @@ public class CommentDAO {
 	}
 
 	public void insert(CommentDTO dto) {
-
+		
 		sql = "insert into comment(subject, comment, user_id, pname, reg_date, qnaNo, memberNo) values (?, ?, ?, ?, now(), ?, ?)";
 
 		try {

@@ -44,7 +44,7 @@
 	<div class="mb-3">
 		<label for="exampleFormControlTextarea1" class="form-label">내용</label>
 		<textarea class="form-control" id="exampleFormControlTextarea1"
-			rows="3" name="content">${dto.comment }</textarea>
+			rows="3" name="comment">${dto.comment }</textarea>
 	</div>
 		<div align="right"><button type="submit"
 				class="btn btn-outline-primary">수정하기</button></div>

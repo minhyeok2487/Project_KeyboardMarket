@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 public class QnaDAO {
@@ -167,7 +166,42 @@ public class QnaDAO {
 		return dto;
 
 	}
-
+	
+	public QnaDTO getSubject(int no, String subject) {
+		
+		QnaDTO res = null;
+		
+		sql = "select * from qna where qnaNo = ? and subject = ?";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setInt(1, no);
+			ptmt.setString(2, subject);
+			rs = ptmt.executeQuery();
+			
+			while (rs.next()) {
+				res = new QnaDTO();
+				
+				res.setQnaNo(rs.getInt("qnaNo"));
+				res.setSubject(rs.getString("subject"));
+				res.setUser_id(rs.getString("user_id"));
+				res.setPname(rs.getString("pname"));
+				res.setContent(rs.getString("content"));
+				res.setHits(rs.getInt("hits"));
+				res.setReg_date(rs.getTimestamp("reg_date"));
+				res.setStatus(rs.getString("status"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return res;
+		
+	}
+	
 	public void insert(QnaDTO dto) {
 
 		sql = "insert into qna(subject, user_id, pname, content, hits, reg_date, status, memberNo) values (?, ?, ?, ?, 0, now(), ?, ?)";
