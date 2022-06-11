@@ -19,18 +19,15 @@ public class Adminmain implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		
 
-		// 1.최근 일주일 주문량
 		ArrayList<OrderDTO> allList = new OrderDAO().allList();
 		int total = 0;
-		for(OrderDTO price : allList) {
+		for (OrderDTO price : allList) {
 			total += price.getPrice();
 		}
-	
 
-		// 1.최근 일주일 주문량
-		ArrayList<OrderDTO> orderList = new OrderDAO().list();
+		// 1.주문완료 리스트
+		ArrayList<OrderDTO> orderList = new OrderDAO().Searchlist("주문완료");
 		ArrayList<OrderDTO> mainList = new ArrayList<OrderDTO>();
 		for (int i = 0; i < orderList.size(); i++) {
 			boolean res = true;
@@ -48,8 +45,8 @@ public class Adminmain implements Service {
 			}
 		}
 
-		// 2.배송해야 할 것
-		ArrayList<OrderDTO> orderinglist = new OrderDAO().orderinglist();
+		// 2.배송중 리스트
+		ArrayList<OrderDTO> orderinglist = new OrderDAO().Searchlist("배송중");
 		ArrayList<OrderDTO> mainorderinglist = new ArrayList<OrderDTO>();
 		for (int i = 0; i < orderinglist.size(); i++) {
 			boolean res = true;
@@ -67,27 +64,47 @@ public class Adminmain implements Service {
 				mainorderinglist.add(orderinglist.get(i));
 			}
 		}
-		
-		// 3. 환불 리스트
-		
+
+		// 3.배송완료 리스트
+		ArrayList<OrderDTO> orderEndlist = new OrderDAO().Searchlist("배송완료");
+		ArrayList<OrderDTO> MainorderEndlist = new ArrayList<OrderDTO>();
+		for (int i = 0; i < orderEndlist.size(); i++) {
+			boolean res = true;
+			for (int j = 0; j < MainorderEndlist.size(); j++) {
+				if (MainorderEndlist.get(j).getOrdered_num().equals(orderEndlist.get(i).getOrdered_num())) {
+					MainorderEndlist.get(j)
+							.setPrice(MainorderEndlist.get(j).getPrice() + orderEndlist.get(i).getPrice());
+					MainorderEndlist.get(j).setSelect_count(
+							MainorderEndlist.get(j).getSelect_count() + orderEndlist.get(i).getSelect_count());
+					res = false;
+					break;
+				}
+			}
+			if (res) {
+				MainorderEndlist.add(orderEndlist.get(i));
+			}
+		}
+
+		// 4. 환불 리스트
+
 		ArrayList<OrderDTO> refund_list = new OrderDAO().refundList();
 		ArrayList<OrderDTO> refundAll = new ArrayList<OrderDTO>();
 		ArrayList<OrderDTO> refundNO = new ArrayList<OrderDTO>();
-		
-		for(int i=0;i<refund_list.size();i++) {
-			if(!refund_list.get(i).getRefund().equals("취소불가")) {
+
+		for (int i = 0; i < refund_list.size(); i++) {
+			if (!refund_list.get(i).getRefund().equals("취소불가")) {
 				refundAll.add(refund_list.get(i));
-			}else {
+			} else {
 				refundNO.add(refund_list.get(i));
 			}
 		}
-		
 
 		request.setAttribute("total", total);
 		request.setAttribute("mainList", mainList);
 		request.setAttribute("refund", refundAll);
 		request.setAttribute("refundNO", refundNO);
 		request.setAttribute("mainorderinglist", mainorderinglist);
+		request.setAttribute("MainorderEndlist", MainorderEndlist);
 		request.setAttribute("mainUrl", "./admins/admainpage");
 	}
 }
