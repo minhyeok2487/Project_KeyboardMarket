@@ -36,6 +36,8 @@ public class CommentInsertReg implements Service {
 		msg = "댓글을 작성했어요 :)";
 		new CommentDAO().insert(dto);
 		System.out.println(dto);
+		
+		new QnaDAO().processUpdate(qDTO);
 
 		request.setAttribute("msg", msg);
 		request.setAttribute("mainUrl", "./comments/commentAlert");

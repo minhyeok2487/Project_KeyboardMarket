@@ -23,8 +23,6 @@ public class QnaDetail implements Service {
 			session.setAttribute("qnaNum", dataDetail);
 		}
 
-
-
 		request.setAttribute("dto", dataDetail);
 		request.setAttribute("mainUrl", "./qnas/qnaDetailpage");
 

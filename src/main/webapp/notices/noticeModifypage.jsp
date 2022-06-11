@@ -28,7 +28,7 @@
 	<div class="mb-3">
 		<label for="exampleFormControlInput1" class="form-label">번호</label> <input
 			type="text" class="form-control" id="exampleFormControlInput1"
-			value="${dto.noticeNo + 1 }" disabled="disabled">
+			value="${dto.noticeNo}" disabled="disabled">
 	</div>
 	<div class="mb-3">
 		<label for="exampleFormControlInput1" class="form-label">제목</label> <input

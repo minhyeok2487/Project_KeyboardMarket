@@ -31,7 +31,7 @@
 	<tbody>
 		<c:forEach var="dto" items="${noticeData }" varStatus="no">
 			<tr align="center">
-				<td>${dto.noticeNo + 1}</td>
+				<td>${dto.noticeNo}</td>
 				<td><a
 					href="<c:url value="./NoticeDetail?noticeNo=${dto.noticeNo }&page=${nowPage }"/>">${dto.subject }</a></td>
 				<td>${dto.pname }</td>

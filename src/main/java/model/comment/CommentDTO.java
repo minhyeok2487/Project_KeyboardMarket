@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class CommentDTO {
 	int commentNo, qnaNo, memberNo;
-	String comment, user_id, pname, subject;
+	String comment, user_id, pname, subject, status;
 	Date reg_date;
 
 	public int getCommentNo() {
@@ -70,13 +70,20 @@ public class CommentDTO {
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	@Override
 	public String toString() {
 		return "CommentDTO [commentNo=" + commentNo + ", qnaNo=" + qnaNo + ", memberNo=" + memberNo + ", comment="
-				+ comment + ", user_id=" + user_id + ", pname=" + pname + ", subject=" + subject + ", reg_date="
-				+ reg_date + "]";
+				+ comment + ", user_id=" + user_id + ", pname=" + pname + ", subject=" + subject + ", status=" + status
+				+ ", reg_date=" + reg_date + "]";
 	}
-	
-	
+
 }

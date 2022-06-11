@@ -246,7 +246,30 @@ public class QnaDAO {
 		return res;
 
 	}
-
+	
+	public int processUpdate(QnaDTO dto) {
+		
+		int res = 0;
+		
+		sql = "update qna set status = ? where qnaNo = ?";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setString(1, "답변");
+			ptmt.setInt(2, dto.qnaNo);
+			
+			res = ptmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return res;
+		
+	}
+	
 	public int postCount() {
 
 		sql = "select count(*) from qna";
