@@ -17,10 +17,14 @@ public class Cartview implements Service {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		String reg = request.getParameter("reg");
 		int memberNo = Integer.parseInt(request.getParameter("memberNo")); // 멤버 기본키 로그인시 받아올 예정
-
+		
+		
 		// 장바구니 보기
 		if (reg.equals("view")) {
-
+			ArrayList<CartDTO> cartList = new CartDAO().list(memberNo);
+			// System.out.println(cartList.size());
+			request.setAttribute("cartList", cartList);
+			request.setAttribute("mainUrl", "./carts/cartpage");
 		}
 
 		// 장바구니 추가일때
@@ -35,15 +39,21 @@ public class Cartview implements Service {
 				String strNowDate = simpleDateFormat.format(new Date());
 				dto.setReg_date(strNowDate);
 				new CartDAO().insert(dto); // DB에 추가
-			} else { // 이미 있으면 안넣고 있는거 출력
-
+				ArrayList<CartDTO> cartList = new CartDAO().list(memberNo);
+				// System.out.println(cartList.size());
+				request.setAttribute("cartList", cartList);
+				request.setAttribute("mainUrl", "./carts/cartpage");
+			} else { // 이미 alert창
+				String msg = "장바구니에 상품이 있습니다";
+				String goUrl = "Cartview?reg=view&memberNo="+request.getParameter("memberNo");
+				request.setAttribute("msg", msg);
+				request.setAttribute("goUrl", goUrl);
+				request.setAttribute("memberNo", memberNo);
+				request.setAttribute("mainUrl", "./carts/cartAlert");
 			}
 		}
 
-
-		ArrayList<CartDTO> cartList = new CartDAO().list(memberNo);
-		// System.out.println(cartList.size());
-		request.setAttribute("cartList", cartList);
-		request.setAttribute("mainUrl", "./carts/cartpage");
+		
+		
 	}
 }

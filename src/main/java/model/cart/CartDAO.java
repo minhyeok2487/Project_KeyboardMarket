@@ -60,6 +60,36 @@ public class CartDAO {
 		}
 		return true;
 	}
+	
+	public CartDTO CartDetail(int itemNo, int memberNo) {
+		CartDTO cartDTO = new CartDTO();
+		sql = "select * from cart where itemNo = ? and memberNo = ? ";
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setInt(1, itemNo);
+			ptmt.setInt(2, memberNo);
+			rs = ptmt.executeQuery();
+			while (rs.next()) {
+				cartDTO.setItem_name(rs.getString("item_name"));
+				cartDTO.setManufacture(rs.getString("manufacture"));
+				cartDTO.setCategory(rs.getString("category"));
+				cartDTO.setSwitchs(rs.getString("switchs"));
+				cartDTO.setSpec(rs.getString("spec"));
+				cartDTO.setPrice(rs.getInt("price"));
+				cartDTO.setStock(rs.getInt("stock"));
+				cartDTO.setItem_img1(rs.getString("item_img1"));
+				cartDTO.setItem_img2(rs.getString("item_img2"));
+				cartDTO.setItemNo(itemNo);
+				cartDTO.setMemberNo(memberNo);
+				cartDTO.setSelected_count(rs.getInt("selected_count"));
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return cartDTO;
+	}
 
 	public CartDTO ItemToCartDTO(int index) {
 		CartDTO cartDTO = new CartDTO();
@@ -185,6 +215,22 @@ public class CartDAO {
 		return false;
 	}
 
+	public void ChangeSelectCount(int itemNo, int memberNo, int count) {
+		sql = "update cart set selected_count = ? where itemNo = ? and memberNo = ? ";
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setInt(1, count);
+			ptmt.setInt(2, itemNo);
+			ptmt.setInt(3, memberNo);
+			ptmt.executeQuery();
+		}catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+	}
+	
+	
 	public void close() {
 		if (rs != null)
 			try {
