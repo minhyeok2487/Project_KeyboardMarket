@@ -17,18 +17,19 @@ public class DeleteCart implements Service{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
-		String msg = "상품이 없습니다";
-		
+		String msg = null;
+		String goUrl = "Cartview?reg=view&memberNo="+request.getParameter("memberNo");
 		// 장바구니에 데이터가 있는지 확인(있으면 true)
 		if(new CartDAO().CheckMemberCart(memberNo)) { //있으면 장바구니 비우기
 			new CartDAO().delCart(memberNo);
 			msg = "장바구니를 비웠습니다";
-		} else { //없으면 넘어감
-			
+		} else { 
+			msg = "장바구니가 없습니다";
 		}
 		
 		request.setAttribute("msg", msg);
+		request.setAttribute("goUrl", goUrl);
 		request.setAttribute("memberNo", memberNo);
-		request.setAttribute("mainUrl", "./carts/cartpage");
+		request.setAttribute("mainUrl", "./carts/cartAlert");
 	}
 }
