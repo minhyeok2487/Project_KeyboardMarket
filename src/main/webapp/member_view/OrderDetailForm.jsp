@@ -108,9 +108,15 @@
 				onclick='location.href="./Ordering?orderNum=${main.getOrdered_num()}&res=주문취소";'>주문취소</button>
 		</c:if>
 		<c:if test="${main.getStatus() == '배송중' }">
-			
+			<button type="button" class="btn btn-outline-danger"
+				onclick='location.href="./Ordering?orderNum=${main.getOrdered_num()}&res=주문취소요청";'>주문 취소 요청</button>
 		</c:if>
-
+		<c:if test="${main.getStatus() == '배송완료' }">
+			<button type="button" class="btn btn-outline-danger"
+				onclick='location.href="./Ordering?orderNum=${main.getOrdered_num()}&res=반품요청";'>반품요청</button>
+			<button type="button" class="btn btn-outline-info"
+				onclick='location.href="./Ordering?orderNum=${main.getOrdered_num()}&res=교환요청";'>교환요청</button>
+		</c:if>
 	</div>
 
 </body>

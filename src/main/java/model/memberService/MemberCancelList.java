@@ -13,7 +13,7 @@ import model.member.memberDTO;
 import model.order.OrderDAO;
 import model.order.OrderDTO;
 
-public class MemberOrder implements Service {
+public class MemberCancelList implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
@@ -53,8 +53,8 @@ public class MemberOrder implements Service {
 
 //		Object data = new memberDAO().orderList(start,limit,memberNo);
 
-		// 1.주문완료 리스트
-		ArrayList<OrderDTO> orderList = new OrderDAO().SearchMemberNolist("주문완료", memberNo);
+		// 1.주문취소 리스트
+		ArrayList<OrderDTO> orderList = new OrderDAO().SearchMemberNolist("%주문취소%", memberNo);
 		ArrayList<OrderDTO> mainList = new ArrayList<OrderDTO>();
 		for (int i = 0; i < orderList.size(); i++) {
 			boolean res = true;
@@ -75,8 +75,8 @@ public class MemberOrder implements Service {
 		}
 		
 
-		// 2.배송중 리스트
-		ArrayList<OrderDTO> shippingList = new OrderDAO().SearchMemberNolist("배송중", memberNo);
+		// 2.반품 리스트
+		ArrayList<OrderDTO> shippingList = new OrderDAO().SearchMemberNolist("%반품%", memberNo);
 		ArrayList<OrderDTO> mainshippingList = new ArrayList<OrderDTO>();
 		for (int i = 0; i < shippingList.size(); i++) {
 			boolean res = true;
@@ -94,8 +94,8 @@ public class MemberOrder implements Service {
 			}
 		}
 
-		// 3.배송완료 리스트
-		ArrayList<OrderDTO> endList = new OrderDAO().SearchMemberNolist("배송완료", memberNo);
+		// 3.환불 리스트
+		ArrayList<OrderDTO> endList = new OrderDAO().SearchMemberNolist("%환불%", memberNo);
 		ArrayList<OrderDTO> mainendList = new ArrayList<OrderDTO>();
 		for (int i = 0; i < endList.size(); i++) {
 			boolean res = true;
@@ -116,7 +116,7 @@ public class MemberOrder implements Service {
 		request.setAttribute("mainList", mainList);
 		request.setAttribute("mainshippingList", mainshippingList);
 		request.setAttribute("mainendList", mainendList);
-		request.setAttribute("mainUrl", "member_view/OrderForm");
+		request.setAttribute("mainUrl", "member_view/CancelForm");
 	}
 
 }

@@ -258,7 +258,7 @@ public class OrderDAO {
 	
 	public ArrayList<OrderDTO> SearchMemberNolist(String status, int MemberNo) {
 		ArrayList<OrderDTO> res = new ArrayList<OrderDTO>();
-		sql = "select * from orders where status = ? and memberNo = ?";
+		sql = "select * from orders where status LIKE ? and memberNo = ?";
 		try {
 			ptmt = con.prepareStatement(sql);
 			ptmt.setString(1, status);

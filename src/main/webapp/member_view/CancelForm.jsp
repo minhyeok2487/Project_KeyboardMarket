@@ -29,23 +29,23 @@ pageContext.setAttribute("memberNo", memberNo);
 <body>
 	<div class="container">
 		<h1>주문내역</h1>
-		<a href="./CancelList" class="btn btn-primary">취소 반품 교환 내역 보러가기</a>
+		<a href="./Order" class="btn btn-primary">주문 내역 보러가기</a>
 		<!-- 탭 메뉴 -->
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
 			<li class="nav-item" role="presentation">
 				<button class="nav-link active" id="order-tab" data-bs-toggle="tab"
 					data-bs-target="#order" type="button" role="tab"
-					aria-controls="order" aria-selected="true">주문완료</button>
+					aria-controls="order" aria-selected="true">주문취소</button>
 			</li>
 			<li class="nav-item" role="presentation">
 				<button class="nav-link" id="shipping-tab" data-bs-toggle="tab"
 					data-bs-target="#shipping" type="button" role="tab"
-					aria-controls="shipping" aria-selected="false">배송중</button>
+					aria-controls="shipping" aria-selected="false">반품</button>
 			</li>
 			<li class="nav-item" role="presentation">
 				<button class="nav-link" id="end-tab" data-bs-toggle="tab"
 					data-bs-target="#end" type="button" role="tab" aria-controls="end"
-					aria-selected="false">배송완료</button>
+					aria-selected="false">환불</button>
 			</li>
 		</ul>
 
