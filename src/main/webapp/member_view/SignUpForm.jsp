@@ -26,7 +26,7 @@
 </head>
 <body>
 <h1>회원 가입</h1>
-<form action="SignUpReg" method="post">
+<form action="SignUpReg?email=${email }" method="post">
 	<table border="" width="500">
 		<tr>
 			<td>아이디</td><td><input colspan="2" type="text" name="user_id" placeholder="한글 제외"/></td>
@@ -48,7 +48,7 @@
   			</td>
 		</tr>
 		<tr>
-			<td>이메일</td><td><input type="email" name="email" placeholder="예)test@test.com"/></td>
+			<td>이메일</td><td>${email }</td>
 		</tr>
 		<tr>
 			<td>주소</td><td><input type="text" name="addr1"/></td>

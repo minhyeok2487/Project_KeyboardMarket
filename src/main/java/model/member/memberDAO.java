@@ -348,6 +348,25 @@ public class memberDAO {
 
 		return res;
 	}
+	
+	public void updatePW(String userId, String userPw) {
+		sql = "update member set user_pw = password(?) where user_id = ? ";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setString(1, userPw);
+			ptmt.setString(2, userId);
+			
+			ptmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+	}
 
 
 	public boolean change(String status, int memberNo) {
