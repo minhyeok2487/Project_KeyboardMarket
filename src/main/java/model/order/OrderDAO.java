@@ -223,37 +223,12 @@ public class OrderDAO {
 		return res;
 	}
 
-	public ArrayList<OrderDTO> list() {
+	public ArrayList<OrderDTO> Searchlist(String status) {
 		ArrayList<OrderDTO> res = new ArrayList<OrderDTO>();
-		sql = "select * from orders where ordered_date > date_add(now(),interval -7 day)";
+		sql = "select * from orders where status = ?";
 		try {
 			ptmt = con.prepareStatement(sql);
-			rs = ptmt.executeQuery();
-			while (rs.next()) {
-				OrderDTO dto = new OrderDTO();
-				dto.setOrdered_num(rs.getString("ordered_num"));
-				dto.setName(rs.getString("name"));
-				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				Date date = formatter.parse(rs.getString("ordered_date"));
-				dto.setOrdered_date(date);
-				dto.setPrice(rs.getInt("price"));
-				dto.setSelect_count(rs.getInt("select_count"));
-				dto.setStatus(rs.getString("status"));
-				res.add(dto);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close();
-		}
-		return res;
-	}
-
-	public ArrayList<OrderDTO> orderinglist() {
-		ArrayList<OrderDTO> res = new ArrayList<OrderDTO>();
-		sql = "select * from orders where status = '주문완료'";
-		try {
-			ptmt = con.prepareStatement(sql);
+			ptmt.setString(1, status);
 			rs = ptmt.executeQuery();
 			while (rs.next()) {
 				OrderDTO dto = new OrderDTO();
@@ -375,6 +350,75 @@ public class OrderDAO {
 		}
 
 	}
+	
+	
+	public ArrayList<OrderDTO> SearchOrederedNum(String orderednum) {
+		ArrayList<OrderDTO> res = new ArrayList<OrderDTO>();
+		sql = "select * from orders where ordered_num = ?";
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setString(1, orderednum);
+			rs = ptmt.executeQuery();
+			while (rs.next()) {
+				OrderDTO dto = new OrderDTO();
+
+				dto.setOrderNo(rs.getInt("orderNo"));
+				dto.setOrdered_num(rs.getString("ordered_num"));
+				dto.setOrdered_date(rs.getTimestamp("ordered_date"));
+				dto.setManufacture(rs.getString("manufacture"));
+				dto.setCategory(rs.getString("category"));
+				if (rs.getString("switchs") != null) {
+					dto.setSwitchs(rs.getString("switchs"));
+				}
+				dto.setSpec(rs.getString("spec"));
+				dto.setPrice(rs.getInt("price"));
+				dto.setSelect_count(rs.getInt("select_count"));
+				dto.setItem_name(rs.getString("item_name"));
+				dto.setReg_date(rs.getTimestamp("reg_date"));
+				dto.setItem_img1(rs.getString("item_img1"));
+				dto.setItem_img2(rs.getString("item_img2"));
+				dto.setMemberNo(rs.getInt("memberNo"));
+				dto.setName(rs.getString("name"));
+				dto.setAddr1(rs.getString("addr1"));
+				dto.setAddr2(rs.getString("addr2"));
+				dto.setTel(rs.getString("tel"));
+				dto.setStatus(rs.getString("status"));
+				if (rs.getString("refund") != null) {
+					dto.setRefund(rs.getString("refund"));
+				}
+				if (rs.getTimestamp("refund_date") != null) {
+					dto.setRefund_date(rs.getTimestamp("refund_date"));
+				}
+
+				res.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return res;
+	}
+	
+	
+	public boolean requestOrder(String orderNum, String status) {
+
+		sql = "update orders set status = ? where ordered_num = ? ";
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setString(1, status);
+			ptmt.setString(2, orderNum);
+			ptmt.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return false;
+	}
+	
 
 	public void close() {
 		if (rs != null) {
