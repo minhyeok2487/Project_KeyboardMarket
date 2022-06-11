@@ -49,7 +49,7 @@
 			<td></td>
 			<td>
 				<button type="button"
-				class="btn btn-outline-primary" onclick="">비밀번호 찾기</button>
+				class="btn btn-outline-primary" onclick="location.href='SearchPWForm'">비밀번호 찾기</button>
 			</td>
 			<td></td>
 		</tr>

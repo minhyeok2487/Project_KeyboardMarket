@@ -1,7 +1,7 @@
 package model.memberService;
 
-import java.io.IOException;
 import java.util.ArrayList;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -64,5 +64,8 @@ public class MemberLoginReg implements Service {
 		request.setAttribute("NList", NList);
 		request.setAttribute("M_NoticeList", M_NoticeList);
 		request.setAttribute("mainUrl", "./main/pages");
+		
 	}
+	
+
 }

@@ -6,12 +6,12 @@ import javax.servlet.http.HttpSession;
 
 import controller.Service;
 
-public class MemberSignUp implements Service{
+public class MemberSearchPWForm implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
-		session.setAttribute("fromURL", "signUp");
-		request.setAttribute("mainUrl", "./member_view/AuthenticationForm");
+		session.setAttribute("fromURL", "searchPW");
+		request.setAttribute("mainUrl", "./member_view/SearchPWForm");
 	}
 }

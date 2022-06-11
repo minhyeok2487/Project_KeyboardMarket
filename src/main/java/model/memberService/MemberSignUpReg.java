@@ -58,4 +58,7 @@ public class MemberSignUpReg implements Service{
 		
 		request.setAttribute("mainUrl", "./member_view/SignUpReg");
 	}
+	
+
+	
 }
