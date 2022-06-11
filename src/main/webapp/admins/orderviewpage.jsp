@@ -108,6 +108,10 @@
 			<button type="button" class="btn btn-outline-danger"
 				onclick='location.href="./Ordering?orderNum=${main.getOrdered_num()}&res=주문취소";'>주문취소</button>
 		</c:if>
+		<c:if test="${main.getStatus() == '배송중' }">
+			<button type="button" class="btn btn-outline-primary"
+				onclick='location.href="./Ordering?orderNum=${main.getOrdered_num() }&res=배송완료";'>배송완료</button>
+		</c:if>
 
 	</div>
 

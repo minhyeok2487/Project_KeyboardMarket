@@ -60,6 +60,7 @@ public class OrderDAO {
 				dto.setItem_img1(rs.getString("item_img1"));
 				dto.setItem_img2(rs.getString("item_img2"));
 				dto.setMemberNo(rs.getInt("memberNo"));
+				dto.setItemNo(rs.getInt("itemNo"));
 				dto.setName(rs.getString("name"));
 				dto.setAddr1(rs.getString("addr1"));
 				dto.setAddr2(rs.getString("addr2"));
@@ -106,6 +107,7 @@ public class OrderDAO {
 				dto.setItem_img1(rs.getString("item_img1"));
 				dto.setItem_img2(rs.getString("item_img2"));
 				dto.setItem_sold(rs.getInt("item_sold"));
+				dto.setItemNo(rs.getInt("itemNo"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -143,6 +145,7 @@ public class OrderDAO {
 				dto.setItem_img1(rs.getString("item_img1"));
 				dto.setItem_img2(rs.getString("item_img2"));
 				dto.setMemberNo(rs.getInt("memberNo"));
+				dto.setItemNo(rs.getInt("itemNo"));
 				dto.setName(rs.getString("name"));
 				dto.setAddr1(rs.getString("addr1"));
 				dto.setAddr2(rs.getString("addr2"));
@@ -167,7 +170,7 @@ public class OrderDAO {
 			CartDTO cartDTO) {
 		sql = "insert into orders (ordered_num, ordered_date, category, switchs, "
 				+ "select_count,item_name,manufacture,spec,price,reg_date, "
-				+ "item_img1,item_img2,memberNo,name,addr1,addr2,tel,status) values "
+				+ "item_img1,item_img2,memberNo,name,addr1,addr2,tel,status, itemNo) values "
 				+ "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			ptmt = con.prepareStatement(sql);
@@ -189,6 +192,7 @@ public class OrderDAO {
 			ptmt.setString(16, addr2);
 			ptmt.setString(17, member.getTel());
 			ptmt.setString(18, "주문완료");
+			ptmt.setInt(19, cartDTO.getItemNo());
 			ptmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -213,6 +217,7 @@ public class OrderDAO {
 				dto.setPrice(rs.getInt("price"));
 				dto.setSelect_count(rs.getInt("select_count"));
 				dto.setStatus(rs.getString("status"));
+				dto.setItemNo(rs.getInt("itemNo"));
 				res.add(dto);
 			}
 		} catch (Exception e) {
@@ -240,6 +245,7 @@ public class OrderDAO {
 				dto.setPrice(rs.getInt("price"));
 				dto.setSelect_count(rs.getInt("select_count"));
 				dto.setStatus(rs.getString("status"));
+				dto.setItemNo(rs.getInt("itemNo"));
 				res.add(dto);
 			}
 		} catch (Exception e) {
@@ -311,6 +317,7 @@ public class OrderDAO {
 				dto.setItem_img1(rs.getString("item_img1"));
 				dto.setItem_img2(rs.getString("item_img2"));
 				dto.setMemberNo(rs.getInt("memberNo"));
+				dto.setItemNo(rs.getInt("itemNo"));
 				dto.setName(rs.getString("name"));
 				dto.setAddr1(rs.getString("addr1"));
 				dto.setAddr2(rs.getString("addr2"));
@@ -378,6 +385,7 @@ public class OrderDAO {
 				dto.setItem_img1(rs.getString("item_img1"));
 				dto.setItem_img2(rs.getString("item_img2"));
 				dto.setMemberNo(rs.getInt("memberNo"));
+				dto.setItemNo(rs.getInt("itemNo"));
 				dto.setName(rs.getString("name"));
 				dto.setAddr1(rs.getString("addr1"));
 				dto.setAddr2(rs.getString("addr2"));

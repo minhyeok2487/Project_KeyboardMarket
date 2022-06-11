@@ -275,6 +275,23 @@ public class itemDAO {
 		return itemList;
 	}
 	
+	
+	public void Sell(int itemNo, int count) {
+	
+		sql = "update item set stock = ? where itemNo = ?";
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setInt(1, count);
+			ptmt.setInt(2, itemNo);
+			ptmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+	}
+	
+	
 	public void close() {
 		if(rs!=null)try {rs.close();} catch (Exception e) {}
 		if(ptmt!=null)try {ptmt.close();} catch (Exception e) {}

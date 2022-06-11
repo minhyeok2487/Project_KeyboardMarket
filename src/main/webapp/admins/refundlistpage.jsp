@@ -133,8 +133,8 @@
 								<td><%=item.getSelect_count() %></td>
 								<td><%=item.getStatus() %></td>
 								<td>
-									<button type="button" class="btn btn-outline-success"
-										onclick='location.href="../admin/OrderView?orderNum=${orderNum }";'>상세보기</button>
+									<button type="button" class="btn btn-outline-primary"
+										onclick='location.href="../admin/OrderEnd?orderNum=${orderNum }";'>배송완료</button>
 								</td>
 							</tr>
 							<%
@@ -200,7 +200,7 @@
 						aria-controls="panelsStayOpen-collapseFour">주문취소
 						${MainCanellist.size() }건</button>
 				</h2>
-				<div id="panelsStayOpen-collapseFour"
+				<div id="panelsStayOpen-collapseThree"
 					class="accordion-collapse collapse"
 					aria-labelledby="panelsStayOpen-headingFour">
 					<div class="accordion-body">
@@ -236,6 +236,118 @@
 							<%
 							}
 							%>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="panelsStayOpen-headingFour">
+					<button class="accordion-button collapsed" type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#panelsStayOpen-collapseFour"
+						aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">환불,반품,교환
+						${refund.size() }건</button>
+				</h2>
+				<div id="panelsStayOpen-collapseFour"
+					class="accordion-collapse collapse"
+					aria-labelledby="panelsStayOpen-headingFour">
+					<div class="accordion-body">
+						<table class="table">
+							<tr>
+								<th></th>
+								<th>회원번호</th>
+								<th>신청인</th>
+								<th>상품</th>
+								<th>가격</th>
+								<th>수량</th>
+								<th>소계</th>
+							</tr>
+							<%
+							ArrayList<OrderDTO> refund_list = (ArrayList<OrderDTO>) request.getAttribute("refund");
+							
+							for(OrderDTO rList : refund_list){ 
+							int sum; %>
+
+							<tr>
+								<td></td>
+								<td><%=rList.getMemberNo()%></td>
+								<td><%=rList.getName()%></td>
+								<td><%=rList.getItem_name()%></td>
+								<td><%=rList.getPrice()%></td>
+								<td><%=rList.getSelect_count() %></td>
+								<% sum = rList.getPrice() * rList.getSelect_count(); %>
+								<td><%= sum %></td>
+								<c:set var="oNum" value="<%=rList.getOrdered_num() %>" />
+								<c:set var="oNo" value="<%=rList.getOrderNo() %>" />
+								<% if(rList.getStatus().equals("주문완료")){ %>
+								<td>
+									<button type="button" class="btn btn-outline-primary"
+										onclick='location.href="../admin/AdminRefund?ordered_num=${oNum }&orderNo=${oNo }";'>취소처리</button>
+								</td>
+								<%} %>
+								<% if(rList.getStatus().equals("배송중")){ %>
+								<td>
+									<button type="button" class="btn btn-outline-primary"
+										onclick='location.href="../admin/AdminRefund?ordered_num=${oNum }&orderNo=${oNo }";'>환불처리</button>
+								</td>
+								<%} %>
+								<% if(rList.getStatus().equals("배송완료")){ %>
+								<td>
+									<button type="button" class="btn btn-outline-primary"
+										onclick='location.href="../admin/AdminRefund?ordered_num=${oNum }&orderNo=${oNo }";'>반품처리</button>
+								</td>
+								<%} %>
+							</tr>
+							<% }%>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="panelsStayOpen-headingThree">
+					<button class="accordion-button collapsed" type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#panelsStayOpen-collapseThree"
+						aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">환불,
+						반품, 교환 처리완료 ${refundNO.size() }건</button>
+				</h2>
+				<div id="panelsStayOpen-collapseThree"
+					class="accordion-collapse collapse"
+					aria-labelledby="panelsStayOpen-headingThree">
+					<div class="accordion-body">
+						<table class="table">
+							<tr>
+								<th></th>
+								<th>회원번호</th>
+								<th>신청인</th>
+								<th>상품</th>
+								<th>가격</th>
+								<th>수량</th>
+								<th>소계</th>
+							</tr>
+							<%
+							ArrayList<OrderDTO> refundNo = (ArrayList<OrderDTO>) request.getAttribute("refundNO");
+							
+							for(OrderDTO rList : refundNo){ 
+							int sum; %>
+
+							<tr>
+								<td></td>
+								<td><%=rList.getMemberNo()%></td>
+								<td><%=rList.getName()%></td>
+								<td><%=rList.getItem_name()%></td>
+								<td><%=rList.getPrice()%></td>
+								<td><%=rList.getSelect_count() %></td>
+								<% sum = rList.getPrice() * rList.getSelect_count(); %>
+								<td><%= sum %></td>
+								<c:set var="oNum" value="<%=rList.getOrdered_num() %>" />
+								<c:set var="oNo" value="<%=rList.getOrderNo() %>" />
+								<td>
+									<button type="button" class="btn btn-outline-primary"
+										onclick='location.href="../admin/AdminRefund?ordered_num=${oNum }&orderNo=${oNo }";'>상태확인</button>
+								</td>
+							</tr>
+							<% }%>
 						</table>
 					</div>
 				</div>

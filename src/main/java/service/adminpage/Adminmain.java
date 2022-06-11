@@ -84,6 +84,25 @@ public class Adminmain implements Service {
 				MainorderEndlist.add(orderEndlist.get(i));
 			}
 		}
+		// 4.주문취소 리스트
+		ArrayList<OrderDTO> Canellist = new OrderDAO().Searchlist("주문취소");
+		ArrayList<OrderDTO> MainCanellist = new ArrayList<OrderDTO>();
+		for (int i = 0; i < Canellist.size(); i++) {
+			boolean res = true;
+			for (int j = 0; j < MainCanellist.size(); j++) {
+				if (MainCanellist.get(j).getOrdered_num().equals(Canellist.get(i).getOrdered_num())) {
+					MainCanellist.get(j)
+							.setPrice(MainCanellist.get(j).getPrice() + Canellist.get(i).getPrice());
+					MainCanellist.get(j).setSelect_count(
+							MainCanellist.get(j).getSelect_count() + Canellist.get(i).getSelect_count());
+					res = false;
+					break;
+				}
+			}
+			if (res) {
+				MainCanellist.add(Canellist.get(i));
+			}
+		}
 
 		// 4. 환불 리스트
 
@@ -105,6 +124,7 @@ public class Adminmain implements Service {
 		request.setAttribute("refundNO", refundNO);
 		request.setAttribute("mainorderinglist", mainorderinglist);
 		request.setAttribute("MainorderEndlist", MainorderEndlist);
+		request.setAttribute("MainCanellist", MainCanellist);
 		request.setAttribute("mainUrl", "./admins/admainpage");
 	}
 }
