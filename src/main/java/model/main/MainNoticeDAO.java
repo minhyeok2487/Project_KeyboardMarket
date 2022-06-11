@@ -40,6 +40,8 @@ public class MainNoticeDAO {
 				dto.setMainNoticeNo(rs.getInt("MainNoticeNo"));
 				dto.setNoticeNo(rs.getInt("noticeNo"));
 				dto.setSubject(rs.getString("subject"));
+				dto.setPname(rs.getString("pname"));
+				dto.setReg_date(rs.getTimestamp("reg_date"));
 				res.add(dto);
 			}
 
@@ -51,12 +53,39 @@ public class MainNoticeDAO {
 		return res;
 	}
 	
+	public ArrayList<MainNoticeDTO> CurrentPostList(String status) {
+		ArrayList<MainNoticeDTO> res = new ArrayList<MainNoticeDTO>();
+		sql = "select * from MainNotice where status = ? order by noticeNo desc";
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setString(1, status);
+			rs = ptmt.executeQuery();
+			while (rs.next()) {
+				MainNoticeDTO dto = new MainNoticeDTO();
+				dto.setMainNoticeNo(rs.getInt("MainNoticeNo"));
+				dto.setNoticeNo(rs.getInt("noticeNo"));
+				dto.setSubject(rs.getString("subject"));
+				dto.setPname(rs.getString("pname"));
+				dto.setReg_date(rs.getTimestamp("reg_date"));
+				res.add(dto);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return res;
+	}
+	
 	public boolean insert(NoticeDTO dto) {
-		sql = "insert into MainNotice (noticeNo ,subject) values (?,?)";
+		sql = "insert into MainNotice (noticeNo, subject, pname, reg_date, status) values (?, ?, ?, now(), ?)";
 		try {
 			ptmt = con.prepareStatement(sql);
 			ptmt.setInt(1, dto.getNoticeNo());
 			ptmt.setString(2, dto.getSubject());
+			ptmt.setString(3, dto.getPname());
+			ptmt.setString(4, "게시중");
 			rs = ptmt.executeQuery();
 			return true;
 		} catch (SQLException e) {

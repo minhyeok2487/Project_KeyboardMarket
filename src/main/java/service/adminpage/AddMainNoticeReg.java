@@ -1,19 +1,12 @@
 package service.adminpage;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Service;
-import model.item.itemDAO;
-import model.item.itemDTO;
-import model.main.MainDAO;
 import model.main.MainNoticeDAO;
 import model.notice.NoticeDAO;
 import model.notice.NoticeDTO;
-import model.order.OrderDAO;
-import model.order.OrderDTO;
 
 public class AddMainNoticeReg implements Service {
 
@@ -25,9 +18,9 @@ public class AddMainNoticeReg implements Service {
 		String msg = null;
 		String goUrl = "MainControl";
 		if(new MainNoticeDAO().insert(dto)) {
-			msg = "처리 성공";
+			msg = "메인화면에 공지사항을 추가했어요.";
 		} else {
-			msg = "처리 실패";
+			msg = "메인화면에 공지사항을 추가하지 못했어요.";
 		}
 		
 		
