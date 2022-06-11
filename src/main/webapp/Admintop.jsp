@@ -48,7 +48,7 @@
         <li>
         <form action="./SearchMember?" method="get" class="d-flex">
         	<input class="form-control me-2" type="search" placeholder="회원 ID 검색" aria-label="Search" name="member_id">
-        	<button class="btn btn-outline-success" type="submit">Search</button>
+        	<button class="btn btn-outline-success" type="submit">검색</button>
       	</form>
       	</li>
       </ul>

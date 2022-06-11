@@ -47,11 +47,6 @@
 					%> 
 				</li>
 
-<!-- 				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-					data-bs-toggle="dropdown" aria-expanded="false"> 회원관리 </a>
-					<ul id="topmenu_list" class="dropdown-menu"
-						aria-labelledby="navbarDropdown"> -->
 						<%
           		if(dto != null){ %>
 						<li><a class="dropdown-item" href="../member/Detail">회원 정보 보기</a></li>
@@ -70,10 +65,10 @@
 					aria-current="page" href="../admin/Adminmain">관리자 페이지</a></li>
 				<%}}%>
 			</ul>
-			<form class="d-flex">
-				<input class="form-control me-2" type="search" placeholder="Search"
-					aria-label="Search">
-				<button class="btn btn-outline-success" type="submit">Search</button>
+			<form action="../item/SearchItem?" method="get" class="d-flex">
+				<input class="form-control me-2" type="search" placeholder="제품 검색"
+					aria-label="Search" name="itemname">
+				<button class="btn btn-outline-success" type="submit">검색</button>
 			</form>
 		</div>
 	</div>
