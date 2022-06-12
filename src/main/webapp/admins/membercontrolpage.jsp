@@ -6,6 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,7 +68,7 @@
 				<td><%=item.getMemberNo() %></td>
 				<td><%=item.getUser_id()%></td>
 				<td><%=item.getName()%></td>
-				<td><%=item.getBirthdate()%></td>
+				<td><fmt:formatDate value="<%=item.getBirthdate()%>" pattern="yyyy-MM-dd" /></td>
 				<td><%=item.getGender() %></td>
 				<td><%=item.getEmail()%></td>
 				<%
@@ -83,7 +84,7 @@
 				%>
 				
 				<td><%=item.getTel()%></td>
-				<td><%=item.getReg_date()%></td>
+				<td><fmt:formatDate value="<%=item.getReg_date()%>" pattern="yyyy-MM-dd" /></td>
 				<td><%=item.getStatus()%></td>
 				<td>
 					<p><a href="./MemberEdit?&memberNo=${memberNo }"><button class="btn btn-dark" type="button">사용자 정보 수정</button></a></p>
