@@ -33,6 +33,11 @@
 	}
 	pageContext.setAttribute("memberNo",memberNo);
 %>
+<%
+	ArrayList<OrderDTO> MainROCList = (ArrayList<OrderDTO>) request.getAttribute("MainROCList");
+	ArrayList<OrderDTO> MainRCList = (ArrayList<OrderDTO>) request.getAttribute("MainRCList");
+	ArrayList<OrderDTO> MainRRList = (ArrayList<OrderDTO>) request.getAttribute("MainRRList");
+%>
 <title>관리자 페이지</title>
 </head>
 <body>
@@ -43,6 +48,118 @@
 				관리자 페이지
 			</h1>
 			<h2 class="display-3">이번달 수입 : ${total }원</h2>
+		</div>
+	</div>
+	<div class="container">
+		<!-- 탭 메뉴 -->
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+			<li class="nav-item" role="presentation">
+				<button class="nav-link active" id="order-tab" data-bs-toggle="tab"
+					data-bs-target="#order" type="button" role="tab"
+					aria-controls="order" aria-selected="true">주문취소요청(<%=MainROCList.size() %>건)</button>
+			</li>
+			<li class="nav-item" role="presentation">
+				<button class="nav-link" id="shipping-tab" data-bs-toggle="tab"
+					data-bs-target="#shipping" type="button" role="tab"
+					aria-controls="shipping" aria-selected="false">반품요청(<%=MainRCList.size()  %>건)</button>
+			</li>
+			<li class="nav-item" role="presentation">
+				<button class="nav-link" id="end-tab" data-bs-toggle="tab"
+					data-bs-target="#end" type="button" role="tab" aria-controls="end"
+					aria-selected="false">반품요청(<%=MainRRList.size()  %>건)</button>
+			</li>
+		</ul>
+
+		<!-- 내용 -->
+		<div class="tab-content" id="myTabContent">
+			<div class="tab-pane fade show active" id="order" role="tabpanel"
+				aria-labelledby="order-tab">
+				<table class="table">
+					<tr>
+						<th></th>
+						<th>주문번호</th>
+						<th>주문날짜</th>
+						<th>총 가격</th>
+						<th>총 수량</th>
+						<th>상태</th>
+					</tr>
+					<%
+						for (int i = 0; i < MainROCList.size(); i++) { 
+							OrderDTO item = MainROCList.get(i);	
+					%>
+					<tr>
+						<c:set var="orderNum" value="<%=item.getOrdered_num()%>" />
+						<td></td>
+						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getOrdered_num()%></td>
+						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getOrdered_date() %></td>
+						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getPrice() %></td>
+						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getSelect_count() %></td>
+						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getStatus() %></td>
+					</tr>
+					<%
+						}
+					%>
+				</table>
+			</div>
+			<div class="tab-pane fade" id="shipping" role="tabpanel"
+				aria-labelledby="shipping-tab">
+				<table class="table">
+					<tr>
+						<th></th>
+						<th>주문번호</th>
+						<th>주문날짜</th>
+						<th>총 가격</th>
+						<th>총 수량</th>
+						<th>상태</th>
+					</tr>
+					<%
+						for (int i = 0; i < MainRCList.size(); i++) { 
+							OrderDTO item = MainRCList.get(i);	
+					%>
+					<tr>
+						<c:set var="orderNum" value="<%=item.getOrdered_num()%>" />
+						<td></td>
+						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getOrdered_num()%></td>
+						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getOrdered_date() %></td>
+						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getPrice() %></td>
+						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getSelect_count() %></td>
+						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getStatus() %></td>
+					</tr>
+					<%
+						}
+					%>
+				</table>
+			</div>
+			<div class="tab-pane fade" id="end" role="tabpanel"
+				aria-labelledby="end-tab">
+				<table class="table">
+					<tr>
+						<th></th>
+						<th>주문번호</th>
+						<th>주문날짜</th>
+						<th>총 가격</th>
+						<th>총 수량</th>
+						<th>상태</th>
+					</tr>
+					<%
+						for (int i = 0; i < MainRRList.size(); i++) { 
+							OrderDTO item = MainRRList.get(i);	
+					%>
+					<tr>
+						<c:set var="orderNum" value="<%=item.getOrdered_num()%>" />
+						<td></td>
+						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getOrdered_num()%></td>
+						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getOrdered_date() %></td>
+						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getPrice() %></td>
+						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getSelect_count() %></td>
+						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getStatus() %></td>
+					</tr>
+					<%
+						}
+					%>
+				</table>
+
+			</div>
 		</div>
 	</div>
 	<div class="container">
@@ -197,8 +314,8 @@
 					<button class="accordion-button collapsed" type="button"
 						data-bs-toggle="collapse"
 						data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false"
-						aria-controls="panelsStayOpen-collapseFour">주문취소
-						${MainCanellist.size() }건</button>
+						aria-controls="panelsStayOpen-collapseFour">취소/반품/교환확인
+						${MainRequestCheckList.size() }건</button>
 				</h2>
 				<div id="panelsStayOpen-collapseFour"
 					class="accordion-collapse collapse"
@@ -216,9 +333,9 @@
 								<th>처리</th>
 							</tr>
 							<%
-							ArrayList<OrderDTO> MainCanellist = (ArrayList<OrderDTO>) request.getAttribute("MainCanellist");
-							for (int i = 0; i < MainCanellist.size(); i++) { // 상품 리스트 하나씩 출력하기
-								OrderDTO item = MainCanellist.get(i);
+							ArrayList<OrderDTO> MainRequestCheckList = (ArrayList<OrderDTO>) request.getAttribute("MainRequestCheckList");
+							for (int i = 0; i < MainRequestCheckList.size(); i++) { // 상품 리스트 하나씩 출력하기
+								OrderDTO item = MainRequestCheckList.get(i);
 							%>
 							<tr><c:set var="orderNum" value="<%=item.getOrdered_num()%>" />
 								<td></td>
@@ -242,6 +359,40 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		let key = "${param.key}";
+		console.log(key);
+		if (key === "order") {
 
+			$("#shipping-tab").removeClass("active");
+			$("#end-tab").removeClass("active");
+			$("#order-tab").addClass("active");
+
+			$("#shipping").removeClass("show active");
+			$("#end").removeClass("show active");
+			$("#order").addClass("show active");
+
+		} else if (key === "shipping") {
+
+			$("#end-tab").removeClass("active");
+			$("#order-tab").removeClass("active");
+			$("#shipping-tab").addClass("active");
+
+			$("#order").removeClass("show active");
+			$("#end").removeClass("show active");
+			$("#shipping").addClass("show active");
+
+		} else if (key === "end") {
+
+			$("#order-tab").removeClass("active");
+			$("#shipping-tab").removeClass("active");
+			$("#end-tab").addClass("active");
+
+			$("#shipping").removeClass("show active");
+			$("#order").removeClass("show active");
+			$("#end").addClass("show active");
+
+		}
+	</script>
 </body>
 </html>

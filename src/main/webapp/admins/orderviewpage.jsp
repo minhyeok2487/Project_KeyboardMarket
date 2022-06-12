@@ -37,6 +37,7 @@
 		<div class="container">
 			<h4 class="display-3">주문내역 상세보기</h4>
 			<p>주문번호 ${orderNum }</p>
+			<p>처리상태 - ${main.getStatus() }</p>
 		</div>
 	</div>
 	<div class="container">
@@ -106,11 +107,23 @@
 			<button type="button" class="btn btn-outline-primary"
 				onclick='location.href="./Ordering?orderNum=${main.getOrdered_num() }&res=배송중";'>배송처리</button>
 			<button type="button" class="btn btn-outline-danger"
-				onclick='location.href="./Ordering?orderNum=${main.getOrdered_num()}&res=주문취소";'>주문취소</button>
+				onclick='location.href="./Ordering?orderNum=${main.getOrdered_num()}&res=주문취소확인";'>주문취소</button>
 		</c:if>
 		<c:if test="${main.getStatus() == '배송중' }">
 			<button type="button" class="btn btn-outline-primary"
 				onclick='location.href="./Ordering?orderNum=${main.getOrdered_num() }&res=배송완료";'>배송완료</button>
+		</c:if>
+		<c:if test="${main.getStatus() == '주문취소요청' }">
+			<button type="button" class="btn btn-outline-danger"
+				onclick='location.href="./Ordering?orderNum=${main.getOrdered_num()}&res=주문취소확인";'>주문취소</button>
+		</c:if>
+		<c:if test="${main.getStatus() == '반품요청' }">
+			<button type="button" class="btn btn-outline-primary"
+				onclick='location.href="./Ordering?orderNum=${main.getOrdered_num() }&res=반품완료";'>반품완료</button>
+		</c:if>
+		<c:if test="${main.getStatus() == '교환요청' }">
+			<button type="button" class="btn btn-outline-primary"
+				onclick='location.href="./Ordering?orderNum=${main.getOrdered_num() }&res=교환완료";'>교환완료</button>
 		</c:if>
 
 	</div>
