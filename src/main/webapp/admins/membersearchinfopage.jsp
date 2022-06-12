@@ -72,6 +72,7 @@
 								OrderDTO item = mainList.get(i);
 							%>
 							<tr>
+								<c:set var="orderNum" value="<%=item.getOrdered_num()%>" />
 								<td></td>
 								<td><%=item.getOrdered_num()%></td>
 								<td><%=item.getName()%></td>
@@ -81,7 +82,7 @@
 								<td><%=item.getStatus()%></td>
 								<td>
 									<button type="button" class="btn btn-outline-primary"
-										onclick='location.href="../item/itemList";'>상세보기</button>
+										onclick='location.href="../admin/OrderView?orderNum=${orderNum }";'>상세보기</button>
 								</td>
 							</tr>
 							<%
