@@ -8,6 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,8 +41,8 @@
 	<div class="jumbotron">
 		<div class="container">
 			<h2 class="display-3">메인페이지 관리</h2>
-			<a href="./AddMainItem"><button class="btn btn-secondary" type="button">메인 페이지 상품 추가</button></a>
-			<a href="./AddMainNotice"><button class="btn btn-info" type="button">메인 페이지 공지 추가</button></a>
+			<a href="./AddMainItem"><button class="btn btn-warning" type="button">메인 페이지 상품 추가</button></a>
+			<a href="./AddMainNotice"><button class="btn btn-warning" type="button">메인 페이지 공지 추가</button></a>
 		</div>
 	</div>
 	<div class="container">
@@ -50,11 +51,9 @@
 				<h2 class="accordion-header" id="headingOne">
 					<button class="accordion-button" type="button"
 						data-bs-toggle="collapse" data-bs-target="#collapseOne"
-						aria-expanded="true" aria-controls="collapseOne">추천상품 리스트
-						${GList.size() }개</button>
+						aria-expanded="true" aria-controls="collapseOne">추천상품 리스트 ${GList.size() }개</button>
 				</h2>
-				<div id="collapseOne" class="accordion-collapse collapse show"
-					aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+				<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 					<div class="accordion-body">
 						<form action="./RemoveMainItem?" method="get">
 						<table class="table">
@@ -84,7 +83,7 @@
 								<td><%=item.getPrice()%></td>
 								<td><%=item.getReg_date()%></td>
 								<td>
-									<button type="submit" class="btn btn-outline-primary">상품 내리기</button>
+									<button type="submit" class="btn btn-danger">상품 내리기</button>
 								</td>
 							</tr>
 							<%
@@ -99,11 +98,9 @@
 				<h2 class="accordion-header" id="headingOne">
 					<button class="accordion-button" type="button"
 						data-bs-toggle="collapse" data-bs-target="#collapseOne"
-						aria-expanded="true" aria-controls="collapseOne">신상품 리스트
-						${NList.size() }개</button>
+						aria-expanded="true" aria-controls="collapseOne">신상품 리스트 ${NList.size() }개</button>
 				</h2>
-				<div id="collapseOne" class="accordion-collapse collapse show"
-					aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+				<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 					<div class="accordion-body">
 						<form action="./RemoveMainItem?" method="get">
 						<table class="table">
@@ -125,16 +122,14 @@
 							<input type="hidden" name="status" value="신상품">
 							<c:set var="imgthumb" value="<%=item.getItem_img1()%>" />
 							<tr>
-								<td><img src="<c:url value="/source/${imgthumb }"/>" alt=""
-									width=150 height=150 /></td>
+								<td><img src="<c:url value="/source/${imgthumb }"/>" alt="" width=150 height=150 /></td>
 								<td><%=item.getItemNo()%></td>
 								<td><%=item.getItem_name()%></td>
 								<td><%=item.getStock()%></td>
 								<td><%=item.getPrice()%></td>
 								<td><%=item.getReg_date()%></td>
 								<td>
-									<button type="submit" class="btn btn-outline-primary"
-										onclick='./RemoveMainItem?id=${itemNo }&status=신상품'>상품 내리기</button>
+									<button type="submit" class="btn btn-danger" onclick='./RemoveMainItem?id=${itemNo }&status=신상품'>상품 내리기</button>
 								</td>
 							</tr>
 							<%
@@ -147,10 +142,7 @@
 			</div>
 			<div class="accordion-item">
 				<h2 class="accordion-header" id="headingOne">
-					<button class="accordion-button" type="button"
-						data-bs-toggle="collapse" data-bs-target="#collapseOne"
-						aria-expanded="true" aria-controls="collapseOne">주요 공지사항
-						${M_NoticeList.size() }개</button>
+					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">주요 공지사항 ${M_NoticeList.size() }개</button>
 				</h2>
 				<div id="collapseOne" class="accordion-collapse collapse show"
 					aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -163,6 +155,7 @@
 								<th>제목</th>
 								<th>작성자</th>
 								<th>등록일</th>
+								<th>추가여부</th>
 							</tr>
 							<%
 								ArrayList<NoticeDTO> M_NoticeList = (ArrayList<NoticeDTO>) request.getAttribute("M_NoticeList");
@@ -175,9 +168,9 @@
 								<td><%=item.getNoticeNo()%></td>
 								<td><%=item.getSubject()%></td>
 								<td><%=item.getPname()%></td>
-								<td><%=item.getReg_date()%></td>
+								<td><fmt:formatDate value="<%=item.getReg_date()%>" pattern="yyyy-MM-dd HH:mm" /></td>
 								<td>
-									<button type="submit" class="btn btn-outline-primary"
+									<button type="submit" class="btn btn-danger"
 										onclick='./RemoveMainNotice?noticeNo=${noticeNo }'>공지 내리기</button>
 								</td>
 							</tr>
