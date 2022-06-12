@@ -44,7 +44,7 @@ public class MemberModifyForm implements Service {
 //		request.setAttribute("msg", msg);
 //		request.setAttribute("goUrl", goUrl);
 //		request.setAttribute("mainUrl", "alert");
-		request.setAttribute("mainUrl", "main/pages");
+		request.setAttribute("mainUrl", "./main/pages");
 	}
 
 }

@@ -40,14 +40,10 @@
 					if(form.user_pw.value != form.user_pw2.value){
 						alert("비밀번호가 다릅니다. 다시 입력해주세요");
 					}else{
-						gogoUrl();
+						var url = "./UpdateNewPW?user_pw="+form.user_pw.value;
+						location.href = url;
 					}	
 				}
-			}
-			
-			function gogoUrl(){
-				var url = "./UpdateNewPW?user_pw="+form.user_pw.value;
-				location.href = url;
 			}
 </script>	
 

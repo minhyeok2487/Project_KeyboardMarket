@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.Service;
+import model.adminEmail.adminEmailDAO;
+import model.adminEmail.adminEmailDTO;
 import model.member.memberDAO;
 import model.member.memberDTO;
 
@@ -26,6 +28,9 @@ public class MemberAuthentication implements Service {
 		HttpSession userFrom = request.getSession();
 		String from = (String) userFrom.getAttribute("fromURL");
 
+		
+		adminEmailDTO adminDTO = new adminEmailDAO().adminData();
+		
 		
         String email = request.getParameter("email");
         boolean flag = true;
@@ -45,8 +50,8 @@ public class MemberAuthentication implements Service {
         }else {
 	        //mail server 설정
 	        String host = "smtp.naver.com";
-	        String user = "503green503@naver.com"; //자신의 네이버 계정
-	        String password = "K99136S64JKH";//자신의 네이버 패스워드
+	        String user = adminDTO.getEmailAddress(); //자신의 네이버 계정
+	        String password = adminDTO.getEmailPassword();//자신의 네이버 패스워드
 	        
 	        //메일 받을 주소
 	        String to_email = email;

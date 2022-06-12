@@ -40,7 +40,7 @@
 			<td>회원 번호</td><td>${dto.memberNo }</td>
 		</tr>
 		<tr>
-			<td>아이디</td><td><input type="text" name="user_id" value="${dto.user_id }" /></td>
+			<td>아이디</td><td>${dto.user_id }</td>
 		</tr>
 		<tr>
 			<td>비밀번호</td><td><input type="text" name="user_pw" /></td>
@@ -63,7 +63,7 @@
 			</c:choose>
 		</tr>
 		<tr>
-			<td>이메일</td><td><input type="text" name="email" value="${dto.email }" /></td>
+			<td>이메일</td><td>${dto.email }</td>
 		</tr>
 		<tr>
 			<td>주소</td><td><input type="text" name="addr1" value="${dto.addr1 }" /></td>

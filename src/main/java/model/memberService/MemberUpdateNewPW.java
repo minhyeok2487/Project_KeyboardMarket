@@ -16,8 +16,6 @@ public class MemberUpdateNewPW implements Service{
 		String userId = (String) session.getAttribute("userID");
 		String userPw = request.getParameter("user_pw");
 		
-		System.out.println(userId + "  : "+ userPw);
-		
 		new memberDAO().updatePW(userId, userPw);
 		
 		request.setAttribute("mainUrl", "member_view/windowcloseLogin");

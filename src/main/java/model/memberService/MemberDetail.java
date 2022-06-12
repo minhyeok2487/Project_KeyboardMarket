@@ -22,7 +22,10 @@ public class MemberDetail implements Service {
 		
 		// close 하면 detail 에서 접속이안된다.
 		
-		Object data = dao.detail(id);
+		memberDTO data = dao.detail(id);
+		
+		System.out.println(data.getGender());
+		
 		
 		request.setAttribute("dto", data);
 		request.setAttribute("mainUrl", "member_view/DetailForm");
