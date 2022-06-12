@@ -46,6 +46,9 @@ public class memberDAO {
 				dto.setBirthdate(rs.getTimestamp("birthdate"));
 				dto.setGender(rs.getString("gender"));
 				dto.setEmail(rs.getString("email"));
+				if (rs.getString("zip_code") != null) {
+					dto.setZip_code(rs.getString("zip_code"));
+				}
 				if (rs.getString("addr1") != null) {
 					dto.setAddr1(rs.getString("addr1"));
 				}
@@ -69,12 +72,11 @@ public class memberDAO {
 	}
 
 	public void signUp(memberDTO dto) {
-		memberDTO res = new memberDTO();
 		Date date = new Date();
 		Object birthDay;
 
-		sql = "insert into member (user_id, user_pw, name, birthdate, gender, email, addr1, addr2, tel, reg_date) values "
-				+ "(?, password(?), ?, ?, ?, ?, ?, ?, ?, sysdate())";
+		sql = "insert into member (user_id, user_pw, name, birthdate, gender, email, zip_code, addr1, addr2, tel, reg_date) values "
+				+ "(?, password(?), ?, ?, ?, ?, ?, ?, ?, ?, sysdate())";
 		try {
 			ptmt = con.prepareStatement(sql);
 			ptmt.setString(1, dto.getUser_id());
@@ -87,9 +89,10 @@ public class memberDAO {
 
 			ptmt.setString(5, dto.getGender());
 			ptmt.setString(6, dto.getEmail());
-			ptmt.setString(7, dto.getAddr1());
-			ptmt.setString(8, dto.getAddr2());
-			ptmt.setString(9, dto.getTel());
+			ptmt.setString(7, dto.getZip_code());
+			ptmt.setString(8, dto.getAddr1());
+			ptmt.setString(9, dto.getAddr2());
+			ptmt.setString(10, dto.getTel());
 
 			rs = ptmt.executeQuery();
 
@@ -122,6 +125,10 @@ public class memberDAO {
 				res.setGender(rs.getString("gender"));
 				res.setEmail(rs.getString("email"));
 
+				if (rs.getString("zip_code") != null) {
+					res.setZip_code(rs.getString("zip_code"));
+				}
+				
 				if (rs.getString("addr1") != null) {
 					res.setAddr1(rs.getString("addr1"));
 				}
@@ -169,6 +176,10 @@ public class memberDAO {
 				dto.setGender(rs.getString("gender"));
 				dto.setEmail(rs.getString("email"));
 
+				if (rs.getString("zip_code") != null) {
+					dto.setZip_code(rs.getString("zip_code"));
+				}
+				
 				if (rs.getString("addr1") != null) {
 					dto.setAddr1(rs.getString("addr1"));
 				}
@@ -213,7 +224,7 @@ public class memberDAO {
 	public int modify(memberDTO dto) {
 
 		int res = 0;
-		sql = "update member set user_id = ?, user_pw = password(?), name = ?, email = ?, addr1 = ?, addr2 = ?, tel = ? "
+		sql = "update member set user_id = ?, user_pw = password(?), name = ?, email = ?, zip_code=?, addr1 = ?, addr2 = ?, tel = ? "
 
 				+ "where memberNo =? ";
 
@@ -223,10 +234,11 @@ public class memberDAO {
 			ptmt.setString(2, dto.user_pw);
 			ptmt.setString(3, dto.name);
 			ptmt.setString(4, dto.email);
-			ptmt.setString(5, dto.addr1);
-			ptmt.setString(6, dto.addr2);
-			ptmt.setString(7, dto.tel);
-			ptmt.setInt(8, dto.memberNo);
+			ptmt.setString(5, dto.zip_code);
+			ptmt.setString(6, dto.addr1);
+			ptmt.setString(7, dto.addr2);
+			ptmt.setString(8, dto.tel);
+			ptmt.setInt(9, dto.memberNo);
 			// 실행된 갯수만
 			res = ptmt.executeUpdate();
 
@@ -241,7 +253,7 @@ public class memberDAO {
 	public int Adminmodify(memberDTO dto) {
 
 		int res = 0;
-		sql = "update member set user_id = ?, name = ?, birthdate = ? ,gender=?, email = ?, addr1 = ?, addr2 = ?, tel = ?, status = ? "
+		sql = "update member set user_id = ?, name = ?, birthdate = ? ,gender=?, email = ?, zip_code = ?, addr1 = ?, addr2 = ?, tel = ?, status = ? "
 				+ "where memberNo =? ";
 
 		try {
@@ -256,11 +268,12 @@ public class memberDAO {
 			ptmt.setObject(3, oDate);
 			ptmt.setString(4, dto.gender);
 			ptmt.setString(5, dto.email);
-			ptmt.setString(6, dto.addr1);
-			ptmt.setString(7, dto.addr2);
-			ptmt.setString(8, dto.tel);
-			ptmt.setString(9, dto.status);
-			ptmt.setInt(10, dto.memberNo);
+			ptmt.setString(6, dto.zip_code);
+			ptmt.setString(7, dto.addr1);
+			ptmt.setString(8, dto.addr2);
+			ptmt.setString(9, dto.tel);
+			ptmt.setString(10, dto.status);
+			ptmt.setInt(11, dto.memberNo);
 			// 실행된 갯수만
 			res = ptmt.executeUpdate();
 
@@ -402,6 +415,11 @@ public class memberDAO {
 				dto.setBirthdate(rs.getTimestamp("birthdate"));
 				dto.setGender(rs.getString("gender"));
 				dto.setEmail(rs.getString("email"));
+				
+				if (rs.getString("zip_code") != null) {
+					dto.setZip_code(rs.getString("zip_code"));
+				}
+				
 				if (rs.getString("addr1") != null) {
 					dto.setAddr1(rs.getString("addr1"));
 				}

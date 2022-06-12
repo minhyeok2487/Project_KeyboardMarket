@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class memberDTO {
 	int memberNo;
-	String user_id, user_pw, name, gender, email, addr1, addr2, tel, status;
+	String user_id, user_pw, name, gender, email, addr1, addr2, tel, status, zip_code;
 	Date  birthdate, reg_date;
 	public int getMemberNo() {
 		return memberNo;
@@ -78,13 +78,17 @@ public class memberDTO {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public String getZip_code() {
+		return zip_code;
+	}
+	public void setZip_code(String zip_code) {
+		this.zip_code = zip_code;
+	}
 	@Override
 	public String toString() {
 		return "memberDTO [memberNo=" + memberNo + ", user_id=" + user_id + ", user_pw=" + user_pw + ", name=" + name
 				+ ", gender=" + gender + ", email=" + email + ", addr1=" + addr1 + ", addr2=" + addr2 + ", tel=" + tel
-				+ ", status=" + status + ", birthdate=" + birthdate + ", reg_date=" + reg_date + "]";
+				+ ", status=" + status + ", zip_code=" + zip_code + ", birthdate=" + birthdate + ", reg_date="
+				+ reg_date + "]";
 	}
-	
-	
-	
 }
