@@ -60,7 +60,7 @@ public class MemberOrder implements Service {
 			boolean res = true;
 			for (int j = 0; j < mainList.size(); j++) {
 				if (mainList.get(j).getOrdered_num().equals(orderList.get(i).getOrdered_num())) {
-					mainList.get(j).setPrice(mainList.get(j).getPrice() + orderList.get(i).getPrice());
+					mainList.get(j).setPrice(mainList.get(j).getPrice() + orderList.get(i).getPrice()*orderList.get(i).getSelect_count());
 					mainList.get(j)
 							.setSelect_count(mainList.get(j).getSelect_count() + orderList.get(i).getSelect_count());
 					res = false;
@@ -70,6 +70,7 @@ public class MemberOrder implements Service {
 				}
 			}
 			if (res) {
+				orderList.get(i).setPrice(orderList.get(i).getPrice()*orderList.get(i).getSelect_count());
 				mainList.add(orderList.get(i));
 			}
 		}
@@ -82,7 +83,7 @@ public class MemberOrder implements Service {
 			boolean res = true;
 			for (int j = 0; j < mainshippingList.size(); j++) {
 				if (mainshippingList.get(j).getOrdered_num().equals(shippingList.get(i).getOrdered_num())) {
-					mainshippingList.get(j).setPrice(mainshippingList.get(j).getPrice() + shippingList.get(i).getPrice());
+					mainshippingList.get(j).setPrice(mainshippingList.get(j).getPrice() + shippingList.get(i).getPrice()*shippingList.get(i).getSelect_count());
 					mainshippingList.get(j)
 							.setSelect_count(mainshippingList.get(j).getSelect_count() + shippingList.get(i).getSelect_count());
 					res = false;
@@ -90,10 +91,11 @@ public class MemberOrder implements Service {
 				}
 			}
 			if (res) {
+				shippingList.get(i).setPrice(shippingList.get(i).getPrice()*shippingList.get(i).getSelect_count());
 				mainshippingList.add(shippingList.get(i));
 			}
 		}
-
+	
 		// 3.배송완료 리스트
 		ArrayList<OrderDTO> endList = new OrderDAO().SearchMemberNolist("배송완료", memberNo);
 		ArrayList<OrderDTO> mainendList = new ArrayList<OrderDTO>();
@@ -101,7 +103,7 @@ public class MemberOrder implements Service {
 			boolean res = true;
 			for (int j = 0; j < mainendList.size(); j++) {
 				if (mainendList.get(j).getOrdered_num().equals(endList.get(i).getOrdered_num())) {
-					mainendList.get(j).setPrice(mainendList.get(j).getPrice() + endList.get(i).getPrice());
+					mainendList.get(j).setPrice(mainendList.get(j).getPrice() + endList.get(i).getPrice()*endList.get(i).getSelect_count());
 					mainendList.get(j)
 							.setSelect_count(mainendList.get(j).getSelect_count() + endList.get(i).getSelect_count());
 					res = false;
@@ -109,6 +111,7 @@ public class MemberOrder implements Service {
 				}
 			}
 			if (res) {
+				endList.get(i).setPrice(endList.get(i).getPrice()*endList.get(i).getSelect_count());
 				mainendList.add(endList.get(i));
 			}
 		}
