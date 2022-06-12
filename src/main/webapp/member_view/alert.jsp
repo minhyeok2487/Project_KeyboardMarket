@@ -1,6 +1,7 @@
 <%@page import="model.member.memberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%	
 	int memberNo;
@@ -18,7 +19,7 @@
 	pageContext.setAttribute("memberNo",memberNo);
 %>
 <script>
-alert("${msg}");
-location.href = "<c:url value="/member_view/${ goUrl }.jsp"/>";
+	alert("${msg}");
+	location.href = "<c:url value="/member/${ goUrl }"/>";
 
 </script>

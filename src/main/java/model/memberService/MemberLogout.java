@@ -25,12 +25,7 @@ public class MemberLogout implements Service {
 
 		memberDTO user = (memberDTO) session.getAttribute("inUser");
 
-		session.removeAttribute("inUser");
-
-//		request.setAttribute("msg", "로그아웃 성공");
-//		request.setAttribute("goUrl", "LogoutReg");
-//		request.setAttribute("mainUrl", "alert");
-		// request.setAttribute("mainUrl", "main/pages");
+		session.removeAttribute("inUser");;
 
 		// 메인 페이지 수정하면서 에러떠서 임시조치
 		// 1.추천상품 리스트
@@ -55,7 +50,12 @@ public class MemberLogout implements Service {
 		request.setAttribute("GList", GList);
 		request.setAttribute("NList", NList);
 		request.setAttribute("M_NoticeList", M_NoticeList);
-		request.setAttribute("mainUrl", "./main/pages");
+		
+		String msg = "로그아웃 되었습니다";
+		
+		request.setAttribute("msg", msg);
+		request.setAttribute("goUrl", "../mainpage/MainService");
+		request.setAttribute("mainUrl", "/member_view/alert");
 	}
 
 }

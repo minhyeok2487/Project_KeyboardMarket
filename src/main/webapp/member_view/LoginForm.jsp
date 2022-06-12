@@ -32,16 +32,21 @@
 <body>
 <h1>로그인</h1>
 
-<form action="./LoginReg" method="post">
+<form action="./LoginReg" name="frm" method="post">
 	아이디<input type="text" name="member_id" />
 	암호<input type="password" name="member_pw" />
 	<input type="submit" value="로그인" />
 </form>
 
 
-<form action="">
+<form action="" >
 	<table border="">
 		<tr>
+			<td>
+				<button type="button"
+				class="btn btn-outline-primary" onclick="location.href='SignUp'">회원가입</button>
+			</td>
+			<td></td>
 			<td>
 				<button type="button"
 				class="btn btn-outline-primary" onclick="location.href='SearchIDForm'">아이디 찾기</button>
@@ -52,6 +57,7 @@
 				class="btn btn-outline-primary" onclick="location.href='SearchPWForm'">비밀번호 찾기</button>
 			</td>
 			<td></td>
+
 		</tr>
 	</table>
 </form>

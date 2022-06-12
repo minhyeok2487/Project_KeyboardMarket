@@ -14,22 +14,34 @@ public class MemberSearchIDReg implements Service{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		String uEmail = request.getParameter("email");
-		String uID = "일치하는 회원이 없습니다";
+		String uName = request.getParameter("name");
+		
+		String uID = "";
+		boolean flag = true;
 		
 		
 		ArrayList<memberDTO> memberList = new memberDAO().allList();
 		
-		request.setAttribute("userID", uID);
-		
 		for(memberDTO dto : memberList) {
-			if(uEmail.equals(dto.getEmail())) {
+			if(uEmail.equals(dto.getEmail()) && uName.equals(dto.getName())) {
 				uID = dto.getUser_id();
-				request.setAttribute("userID", uID);
+				flag = false;
 				break;
 			}
 		}
+		request.setAttribute("userID", uID);
+		request.setAttribute("email", uEmail);
 		
-		request.setAttribute("mainUrl", "./member_view/SearchIDReg");
+		if(flag) {
+			request.setAttribute("msg", "일치하는 회원이 없습니다");
+			request.setAttribute("goUrl", "./Login");
+			request.setAttribute("mainUrl", "./member_view/alert");
+		}else {
+//			request.setAttribute("mainUrl", "./member_view/SearchIDReg");
+
+			request.setAttribute("mainUrl", "./member_view/GoAuthentication");
+		}
+		
 	}
 
 }

@@ -72,6 +72,10 @@
 			<td>${userData.email }</td>
 		</tr>
 		<tr>
+			<td>우편번호</td>
+			<td>${userData.zip_code }</td>
+		</tr>
+		<tr>
 			<td>주소</td>
 			<td>${userData.addr1 }</td>
 		</tr>
@@ -192,6 +196,10 @@
 		<tr>
 			<td>주문 회원 이름</td>
 			<td>${orderData.name }</td>
+		</tr>
+		<tr>
+			<td>주소</td>
+			<td>${orderData.zip_code }</td>
 		</tr>
 		<tr>
 			<td>주소</td>

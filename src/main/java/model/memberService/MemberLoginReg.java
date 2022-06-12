@@ -31,14 +31,13 @@ public class MemberLoginReg implements Service {
 
 		memberDTO dto = new memberDAO().memberLogin(user);
 
+		String msg = "로그인 실패";
 		if (dto != null) {
 			session.setAttribute("inUser", dto);
+			msg = "로그인 성공";
 		}
 
-//		request.setAttribute("msg", "로그인 성공");
-//		request.setAttribute("goUrl", "template");
-//		request.setAttribute("mainUrl", "alert");
-//		request.setAttribute("saveUrl", "main/pages");
+
 
 		// 메인 페이지 수정하면서 에러떠서 임시조치
 		// 1.추천상품 리스트
@@ -63,9 +62,10 @@ public class MemberLoginReg implements Service {
 		request.setAttribute("GList", GList);
 		request.setAttribute("NList", NList);
 		request.setAttribute("M_NoticeList", M_NoticeList);
-		request.setAttribute("mainUrl", "./main/pages");
+		
+		request.setAttribute("msg", msg);
+		request.setAttribute("goUrl", "../mainpage/MainService");
+		request.setAttribute("mainUrl", "/member_view/alert");
 		
 	}
-	
-
 }

@@ -26,7 +26,7 @@
 </head>
 <body>
 <h1>회원 가입</h1>
-<form action="SignUpReg?email=${email }" method="post">
+<form action="SignUpReg?email=${email }" name="frm" method="post">
 	<table border="" width="500">
 		<tr>
 			<td>아이디</td><td><input colspan="2" type="text" name="user_id" placeholder="한글 제외"/></td>
@@ -99,6 +99,13 @@
           }
       }).open();
   }
+  
+  function checkform() {
+		if ( document.frm.name.value == "") {
+			alert("이름을 입력해주세요")
+			document.frm.name.select();
+		}
+	}
 </script>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
