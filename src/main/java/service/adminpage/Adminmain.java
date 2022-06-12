@@ -33,7 +33,7 @@ public class Adminmain implements Service {
 			boolean res = true;
 			for (int j = 0; j < mainList.size(); j++) {
 				if (mainList.get(j).getOrdered_num().equals(orderList.get(i).getOrdered_num())) {
-					mainList.get(j).setPrice(mainList.get(j).getPrice() + orderList.get(i).getPrice());
+					mainList.get(j).setPrice(mainList.get(j).getPrice() + orderList.get(i).getPrice()*orderList.get(i).getSelect_count());
 					mainList.get(j)
 							.setSelect_count(mainList.get(j).getSelect_count() + orderList.get(i).getSelect_count());
 					res = false;
@@ -41,6 +41,7 @@ public class Adminmain implements Service {
 				}
 			}
 			if (res) {
+				orderList.get(i).setPrice(orderList.get(i).getPrice()*orderList.get(i).getSelect_count());
 				mainList.add(orderList.get(i));
 			}
 		}
@@ -53,7 +54,7 @@ public class Adminmain implements Service {
 			for (int j = 0; j < mainorderinglist.size(); j++) {
 				if (mainorderinglist.get(j).getOrdered_num().equals(orderinglist.get(i).getOrdered_num())) {
 					mainorderinglist.get(j)
-							.setPrice(mainorderinglist.get(j).getPrice() + orderinglist.get(i).getPrice());
+							.setPrice(mainorderinglist.get(j).getPrice() + orderinglist.get(i).getPrice()*orderinglist.get(i).getSelect_count());
 					mainorderinglist.get(j).setSelect_count(
 							mainorderinglist.get(j).getSelect_count() + orderinglist.get(i).getSelect_count());
 					res = false;
@@ -61,6 +62,7 @@ public class Adminmain implements Service {
 				}
 			}
 			if (res) {
+				orderinglist.get(i).setPrice(orderinglist.get(i).getPrice()*orderinglist.get(i).getSelect_count());
 				mainorderinglist.add(orderinglist.get(i));
 			}
 		}
@@ -73,7 +75,7 @@ public class Adminmain implements Service {
 			for (int j = 0; j < MainorderEndlist.size(); j++) {
 				if (MainorderEndlist.get(j).getOrdered_num().equals(orderEndlist.get(i).getOrdered_num())) {
 					MainorderEndlist.get(j)
-							.setPrice(MainorderEndlist.get(j).getPrice() + orderEndlist.get(i).getPrice());
+							.setPrice(MainorderEndlist.get(j).getPrice() + orderEndlist.get(i).getPrice()*orderEndlist.get(i).getSelect_count());
 					MainorderEndlist.get(j).setSelect_count(
 							MainorderEndlist.get(j).getSelect_count() + orderEndlist.get(i).getSelect_count());
 					res = false;
@@ -81,6 +83,7 @@ public class Adminmain implements Service {
 				}
 			}
 			if (res) {
+				orderEndlist.get(i).setPrice(orderEndlist.get(i).getPrice()*orderEndlist.get(i).getSelect_count());
 				MainorderEndlist.add(orderEndlist.get(i));
 			}
 		}
@@ -93,7 +96,7 @@ public class Adminmain implements Service {
 			for (int j = 0; j < MainROCList.size(); j++) {
 				if (MainROCList.get(j).getOrdered_num().equals(RequestOrderCancelList.get(i).getOrdered_num())) {
 					MainROCList.get(j)
-							.setPrice(MainROCList.get(j).getPrice() + RequestOrderCancelList.get(i).getPrice());
+							.setPrice(MainROCList.get(j).getPrice() + RequestOrderCancelList.get(i).getPrice()*RequestOrderCancelList.get(i).getSelect_count());
 					MainROCList.get(j).setSelect_count(
 							MainROCList.get(j).getSelect_count() + RequestOrderCancelList.get(i).getSelect_count());
 					res = false;
@@ -103,6 +106,7 @@ public class Adminmain implements Service {
 				}
 			}
 			if (res) {
+				RequestOrderCancelList.get(i).setPrice(RequestOrderCancelList.get(i).getPrice()*RequestOrderCancelList.get(i).getSelect_count());
 				MainROCList.add(RequestOrderCancelList.get(i));
 			}
 		}
@@ -114,7 +118,7 @@ public class Adminmain implements Service {
 			boolean res = true;
 			for (int j = 0; j < MainRCList.size(); j++) {
 				if (MainRCList.get(j).getOrdered_num().equals(RequestChangeList.get(i).getOrdered_num())) {
-					MainRCList.get(j).setPrice(MainRCList.get(j).getPrice() + RequestChangeList.get(i).getPrice());
+					MainRCList.get(j).setPrice(MainRCList.get(j).getPrice() + RequestChangeList.get(i).getPrice()*RequestChangeList.get(i).getSelect_count());
 					MainRCList.get(j).setSelect_count(
 							MainRCList.get(j).getSelect_count() + RequestChangeList.get(i).getSelect_count());
 					res = false;
@@ -122,6 +126,7 @@ public class Adminmain implements Service {
 				}
 			}
 			if (res) {
+				RequestChangeList.get(i).setPrice(RequestChangeList.get(i).getPrice()*RequestChangeList.get(i).getSelect_count());
 				MainRCList.add(RequestChangeList.get(i));
 			}
 		}
@@ -133,7 +138,7 @@ public class Adminmain implements Service {
 			boolean res = true;
 			for (int j = 0; j < MainRRList.size(); j++) {
 				if (MainRRList.get(j).getOrdered_num().equals(RequestRefundList.get(i).getOrdered_num())) {
-					MainRRList.get(j).setPrice(MainRRList.get(j).getPrice() + RequestRefundList.get(i).getPrice());
+					MainRRList.get(j).setPrice(MainRRList.get(j).getPrice() + RequestRefundList.get(i).getPrice()*RequestRefundList.get(i).getSelect_count());
 					MainRRList.get(j).setSelect_count(
 							MainRRList.get(j).getSelect_count() + RequestRefundList.get(i).getSelect_count());
 					res = false;
@@ -141,6 +146,7 @@ public class Adminmain implements Service {
 				}
 			}
 			if (res) {
+				RequestRefundList.get(i).setPrice(RequestRefundList.get(i).getPrice()*RequestRefundList.get(i).getSelect_count());
 				MainRRList.add(RequestRefundList.get(i));
 			}
 		}
@@ -152,7 +158,7 @@ public class Adminmain implements Service {
 			boolean res = true;
 			for (int j = 0; j < MainRequestCheckList.size(); j++) {
 				if (MainRequestCheckList.get(j).getOrdered_num().equals(RequestCheckList.get(i).getOrdered_num())) {
-					MainRequestCheckList.get(j).setPrice(MainRequestCheckList.get(j).getPrice() + RequestCheckList.get(i).getPrice());
+					MainRequestCheckList.get(j).setPrice(MainRequestCheckList.get(j).getPrice() + RequestCheckList.get(i).getPrice()*RequestCheckList.get(i).getSelect_count());
 					MainRequestCheckList.get(j).setSelect_count(
 							MainRequestCheckList.get(j).getSelect_count() + RequestCheckList.get(i).getSelect_count());
 					res = false;
@@ -160,6 +166,7 @@ public class Adminmain implements Service {
 				}
 			}
 			if (res) {
+				RequestCheckList.get(i).setPrice(RequestCheckList.get(i).getPrice()*RequestCheckList.get(i).getSelect_count());
 				MainRequestCheckList.add(RequestCheckList.get(i));
 			}
 		}

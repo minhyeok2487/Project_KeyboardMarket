@@ -16,9 +16,13 @@ public class SearchItem implements Service {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		String itemname = request.getParameter("itemname");
+		
 		String item_name = "%"+itemname+"%";
 		ArrayList<itemDTO> itemList = new itemDAO().searchList(item_name);
 		
+		if(itemname.equals("")) {
+			itemname="전체";
+		}
 		request.setAttribute("itemList", itemList);
 		request.setAttribute("itemname", itemname);
 		request.setAttribute("mainUrl", "./items/itemsearchpage");
