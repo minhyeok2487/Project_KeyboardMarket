@@ -42,11 +42,11 @@ public class Ordering implements Service {
 					int stock = new itemDAO().Detail(itemNo).getStock() - count;
 					new itemDAO().Sell(itemNo, stock);
 				}
-			} else if (res.equals("반품완료")) {
+			} else if (res.equals("반품확인")) {
 				msg = "반품을 완료하였습니다.";
 				Cancel(orderNum);
 				new OrderDAO().requestRefund(orderNum);
-			} else if (res.equals("교환완료")) {
+			} else if (res.equals("교환확인")) {
 				msg = "교환을 완료하였습니다.";
 			}
 		} else {

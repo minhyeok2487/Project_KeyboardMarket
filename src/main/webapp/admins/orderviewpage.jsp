@@ -119,11 +119,11 @@
 		</c:if>
 		<c:if test="${main.getStatus() == '반품요청' }">
 			<button type="button" class="btn btn-outline-primary"
-				onclick='location.href="./Ordering?orderNum=${main.getOrdered_num() }&res=반품완료";'>반품완료</button>
+				onclick='location.href="./Ordering?orderNum=${main.getOrdered_num() }&res=반품확인";'>반품완료</button>
 		</c:if>
 		<c:if test="${main.getStatus() == '교환요청' }">
 			<button type="button" class="btn btn-outline-primary"
-				onclick='location.href="./Ordering?orderNum=${main.getOrdered_num() }&res=교환완료";'>교환완료</button>
+				onclick='location.href="./Ordering?orderNum=${main.getOrdered_num() }&res=교환확인";'>교환완료</button>
 		</c:if>
 
 	</div>
