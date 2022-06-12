@@ -8,9 +8,13 @@
 </head>
 <body>
 <h1>아이디 찾기</h1>
-<h2>이메일로 찾기</h2>
+<h2>이름을 입력하세요</h2>
 <form action="SearchIDReg" method="post">
 	<table border="">
+		<tr>
+			<td>이름 입력</td>
+			<td><input type="text" name="name" /></td>
+		</tr>
 		<tr>
 			<td>이메일 입력</td>
 			<td><input type="text" name="email" /></td>
