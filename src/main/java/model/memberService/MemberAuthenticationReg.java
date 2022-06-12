@@ -31,18 +31,18 @@ public class MemberAuthenticationReg implements Service {
         if(from.equals("signUp")) {
 	        if(!AuthenticationKey.equals(AuthenticationUser)){
 	        	
-	        		request.setAttribute("mainUrl", "./member_view/windowcloseLogin");
+	        		request.setAttribute("mainUrl", "./member_view/LoginForm");
 	        		
 	        }else if(AuthenticationKey.equals(AuthenticationUser)){
 	        	
 	        		session.setAttribute("email", email);
-	        		request.setAttribute("mainUrl", "./member_view/windowclose");
+	        		request.setAttribute("mainUrl", "./member_view/SignUpForm");
 	        }
 	        
 	        
         }else if(from.equals("searchPW")){
         		if(!AuthenticationKey.equals(AuthenticationUser)){
-        			request.setAttribute("mainUrl", "./member_view/windowcloseLogin");
+        			request.setAttribute("mainUrl", "./member_view/LoginForm");
 	        		
 	        }else if(AuthenticationKey.equals(AuthenticationUser)){
 	        	

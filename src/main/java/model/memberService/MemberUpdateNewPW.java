@@ -18,7 +18,7 @@ public class MemberUpdateNewPW implements Service{
 		
 		new memberDAO().updatePW(userId, userPw);
 		
-		request.setAttribute("mainUrl", "member_view/windowcloseLogin");
+		request.setAttribute("mainUrl", "./member_view/LoginForm");
 	}
 
 }
