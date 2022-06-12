@@ -1,5 +1,5 @@
 <%@page import="javax.websocket.Session"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="model.member.memberDTO"%>
@@ -18,6 +18,7 @@
 	}
 	pageContext.setAttribute("memberNo",memberNo);
 %>
+
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -49,13 +50,15 @@
 
 						<%
           		if(dto != null){ %>
-						<li><a class="dropdown-item" href="../member/Detail">회원 정보 보기</a></li>
-						<li><a class="dropdown-item" href="../member/Logout">로그 아웃</a></li>
-						<li><a class="dropdown-item" href="../member/Order">주문 내역 확인</a></li>
-						<%}else{ %>
-						<li><a class="dropdown-item" href="../member/Login">로그인</a></li>
-						<li><a class="dropdown-item" href="../member/SignUp">회원가입</a></li>
-						<%} %>
+         			<c:set var="userName" value="<%=dto.getName() %>"/>
+					<li><a class="dropdown-item" href="../member/Detail">회원 정보 보기</a></li>
+					<li><a class="dropdown-item" href="../member/Logout">로그 아웃</a></li>
+					<li><a class="dropdown-item" href="../member/Order">주문 내역 확인</a></li>
+					<li><h3>${userName } 님 어서오세요!</h3></li>
+					<%}else{ %>
+					<li><a class="dropdown-item" href="../member/Login">로그인</a></li>
+					<li><a class="dropdown-item" href="../member/SignUp">회원가입</a></li>
+					<%} %>
 <!-- 					</ul></li> -->
 				<%
 			if(userStatus != null){

@@ -39,15 +39,17 @@
 					form.email.focus();
 					return false;
 				}else{
-					joinMember();
+					var uid = document.getElementsByName('email')[0].value;
+					var url = "Authentication?email=" + uid;
+					location.href = url;
 				}
 			}
 
-            function joinMember(){
+/*             function joinMember(){
 	            	var uid = document.getElementsByName('email')[0].value;
 	            	var url = "Authentication?email=" + uid;
 	               window.open(url, "인증하기", "width=640, height=400")
-            }
+            } */
 </script>
 
 </body>
