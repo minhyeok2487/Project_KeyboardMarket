@@ -119,7 +119,6 @@ public class OrderDAO {
 		return dto;
 	}
 
-	
 	public ArrayList<OrderDTO> searchOrdr(int memberNo) {
 		ArrayList<OrderDTO> res = new ArrayList<OrderDTO>();
 		sql = "select * from orders where memberNo = ?";
@@ -255,7 +254,7 @@ public class OrderDAO {
 		}
 		return res;
 	}
-	
+
 	public ArrayList<OrderDTO> SearchMemberNolist(String status, int MemberNo) {
 		ArrayList<OrderDTO> res = new ArrayList<OrderDTO>();
 		sql = "select * from orders where status LIKE ? and memberNo = ?";
@@ -285,27 +284,13 @@ public class OrderDAO {
 		return res;
 	}
 
-	public void requestRefund(String orderNo, String aStatus) {
+	public void requestRefund(String orderNo) {
 
-		sql = "update orders set refund = ?, refund_date = sysdate() where orderNo = ? ";
-
-		String refundStatus;
+		sql = "update orders set refund_date = sysdate() where ordered_Num = ? ";
 
 		try {
 			ptmt = con.prepareStatement(sql);
-
-			if (aStatus.equals("주문완료")) {
-				refundStatus = "취소신청";
-			} else if (aStatus.equals("배송중")) {
-				refundStatus = "환불신청";
-			} else if (aStatus.equals("배송완료")) {
-				refundStatus = "반품신청";
-			} else {
-				refundStatus = "";
-			}
-
-			ptmt.setString(1, refundStatus);
-			ptmt.setString(2, orderNo);
+			ptmt.setString(1, orderNo);
 
 			ptmt.executeUpdate();
 
@@ -386,8 +371,7 @@ public class OrderDAO {
 		}
 
 	}
-	
-	
+
 	public ArrayList<OrderDTO> SearchOrederedNum(String orderednum) {
 		ArrayList<OrderDTO> res = new ArrayList<OrderDTO>();
 		sql = "select * from orders where ordered_num = ?";
@@ -436,8 +420,7 @@ public class OrderDAO {
 		}
 		return res;
 	}
-	
-	
+
 	public boolean requestOrder(String orderNum, String status) {
 
 		sql = "update orders set status = ? where ordered_num = ? ";
@@ -455,7 +438,34 @@ public class OrderDAO {
 		}
 		return false;
 	}
-	
+
+	public ArrayList<OrderDTO> RequestCheckList(String status) {
+		ArrayList<OrderDTO> res = new ArrayList<OrderDTO>();
+		sql = "select * from orders where status LIKE ? ";
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setString(1, status);
+			rs = ptmt.executeQuery();
+			while (rs.next()) {
+				OrderDTO dto = new OrderDTO();
+				dto.setOrdered_num(rs.getString("ordered_num"));
+				dto.setName(rs.getString("name"));
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				Date date = formatter.parse(rs.getString("ordered_date"));
+				dto.setOrdered_date(date);
+				dto.setPrice(rs.getInt("price"));
+				dto.setSelect_count(rs.getInt("select_count"));
+				dto.setStatus(rs.getString("status"));
+				dto.setItemNo(rs.getInt("itemNo"));
+				res.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return res;
+	}
 
 	public void close() {
 		if (rs != null) {

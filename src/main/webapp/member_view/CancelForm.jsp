@@ -45,7 +45,7 @@ pageContext.setAttribute("memberNo", memberNo);
 			<li class="nav-item" role="presentation">
 				<button class="nav-link" id="end-tab" data-bs-toggle="tab"
 					data-bs-target="#end" type="button" role="tab" aria-controls="end"
-					aria-selected="false">환불</button>
+					aria-selected="false">교환</button>
 			</li>
 		</ul>
 

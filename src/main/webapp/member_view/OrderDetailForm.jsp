@@ -105,7 +105,7 @@
 		</div>
 		<c:if test="${main.getStatus() == '주문완료' }">
 			<button type="button" class="btn btn-outline-danger"
-				onclick='location.href="./Ordering?orderNum=${main.getOrdered_num()}&res=주문취소";'>주문취소</button>
+				onclick='location.href="./Ordering?orderNum=${main.getOrdered_num()}&res=취소확인";'>주문취소</button>
 		</c:if>
 		<c:if test="${main.getStatus() == '배송중' }">
 			<button type="button" class="btn btn-outline-danger"
