@@ -126,16 +126,25 @@
 							<input type='radio' name='status' value='관리자' checked="checked"/>관리자
 							<input type='radio' name='status' value='회원' />회원
 							<input type='radio' name='status' value='정지' />정지
+							<input type='radio' name='status' value='탈퇴' />탈퇴
 						</c:when>
 						<c:when test="${getMember.getStatus()  eq '회원'}">
 							<input type='radio' name='status' value='관리자' />관리자
 							<input type='radio' name='status' value='회원' checked="checked"/>회원
 							<input type='radio' name='status' value='정지' />정지
+							<input type='radio' name='status' value='탈퇴' />탈퇴
 						</c:when>
 						<c:when test="${getMember.getStatus()  eq '정지'}">
 							<input type='radio' name='status' value='관리자' />관리자
 							<input type='radio' name='status' value='회원' />회원
 							<input type='radio' name='status' value='정지' checked="checked"/>정지
+							<input type='radio' name='status' value='탈퇴' />탈퇴
+						</c:when>	
+						<c:when test="${getMember.getStatus()  eq '탈퇴'}">
+							<input type='radio' name='status' value='관리자' />관리자
+							<input type='radio' name='status' value='회원' />회원
+							<input type='radio' name='status' value='정지'/>정지
+							<input type='radio' name='status' value='탈퇴'  checked="checked"/>탈퇴
 						</c:when>						
 					</c:choose>
 					</td>
