@@ -32,24 +32,24 @@ int count = new CommentDAO().answerCount(no);
 <h1>고객센터 상세보기 부분~~</h1>
 
 <div class="mb-3">
-	<label for="exampleFormControlInput1" class="form-label">번호</label> <input
-		type="text" class="form-control" id="exampleFormControlInput1"
-		value="${dto.qnaNo}" disabled="disabled">
+	<label for="exampleFormControlInput1" class="form-label">번호</label>
+	<input type="text" class="form-control" id="exampleFormControlInput1" value="${dto.qnaNo}" disabled="disabled">
 </div>
 <div class="mb-3">
-	<label for="exampleFormControlInput1" class="form-label">제목</label> <input
-		type="text" class="form-control" id="exampleFormControlInput1"
-		value="${dto.subject }" disabled="disabled">
+	<label for="exampleFormControlInput1" class="form-label">제목</label>
+	<input type="text" class="form-control" id="exampleFormControlInput1" value="${dto.subject }" disabled="disabled">
 </div>
 <div class="mb-3">
-	<label for="exampleFormControlInput1" class="form-label">작성자</label> <input
-		type="text" class="form-control" id="exampleFormControlInput1"
-		value="${dto.pname }" disabled="disabled">
+	<label for="exampleFormControlInput1" class="form-label">작성자</label>
+	<input type="text" class="form-control" id="exampleFormControlInput1" value="${dto.pname }" disabled="disabled">
 </div>
 <div class="mb-3">
-	<label for="exampleFormControlInput1" class="form-label">작성일</label> <input
-		type="text" class="form-control" id="exampleFormControlInput1"
-		value="<fmt:formatDate value="${dto.reg_date }" pattern="yyyy-MM-dd HH:mm" />"
+	<label for="exampleFormControlInput1" class="form-label">주문번호</label>
+	<input type="text" class="form-control" id="exampleFormControlInput1" value="${dto.ordered_num }" disabled="disabled">
+</div>
+<div class="mb-3">
+	<label for="exampleFormControlInput1" class="form-label">작성일</label>
+	<input type="text" class="form-control" id="exampleFormControlInput1" value="<fmt:formatDate value="${dto.reg_date }" pattern="yyyy-MM-dd HH:mm" />"
 		disabled="disabled">
 </div>
 <div class="mb-3">
@@ -82,22 +82,20 @@ if (userStatus != null) {
 <%
 if(count > 0){
 %>
-<h1>댓글</h1>
 <c:forEach var="dto" items="${commentDataList }" varStatus="no">
+<hr>
+<h1>댓글</h1>
 <div class="mb-3">
-	<label for="exampleFormControlInput1" class="form-label">제목</label> <input
-		type="text" class="form-control" id="exampleFormControlInput1"
-		value="${dto.subject }" disabled="disabled">
+	<label for="exampleFormControlInput1" class="form-label">제목</label>
+	<input type="text" class="form-control" id="exampleFormControlInput1" value="${dto.subject }" disabled="disabled">
 </div>
 <div class="mb-3">
-	<label for="exampleFormControlInput1" class="form-label">작성자</label> <input
-		type="text" class="form-control" id="exampleFormControlInput1"
-		value="${dto.pname }" disabled="disabled">
+	<label for="exampleFormControlInput1" class="form-label">작성자</label>
+	<input type="text" class="form-control" id="exampleFormControlInput1" value="${dto.pname }" disabled="disabled">
 </div>
 <div class="mb-3">
-	<label for="exampleFormControlInput1" class="form-label">작성일</label> <input
-		type="text" class="form-control" id="exampleFormControlInput1"
-		value="<fmt:formatDate value="${dto.reg_date }" pattern="yyyy-MM-dd HH:mm" />"
+	<label for="exampleFormControlInput1" class="form-label">작성일</label>
+	<input type="text" class="form-control" id="exampleFormControlInput1" value="<fmt:formatDate value="${dto.reg_date }" pattern="yyyy-MM-dd HH:mm" />"
 		disabled="disabled">
 </div>
 <div class="mb-3">
@@ -106,13 +104,18 @@ if(count > 0){
 		rows="3" disabled="disabled">${dto.comment }</textarea>
 </div>
 </c:forEach>
-<c:if test="${inUser != null && inUser.user_id == dto.user_id }">
-
+<%
+if (userStatus != null) {
+	if (userStatus.equals("관리자")) {
+%>
 	<div align="right">
-		<a href="./CommentModifyForm?commentNo=${dto.commentNo }"><button
-				type="submit" class="btn btn-outline-primary">수정하기</button></a>
+		<a href="../comment/CommentModifyForm?commentNo=${dto.commentNo }">
+		<button type="submit" class="btn btn-outline-primary">수정하기</button></a>
 	</div>
-</c:if>
+	<%
+}
+}
+%>
 <hr>
 <%	
 }

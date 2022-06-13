@@ -272,6 +272,7 @@ public class OrderDAO {
 				OrderDTO dto = new OrderDTO();
 				dto.setOrdered_num(rs.getString("ordered_num"));
 				dto.setName(rs.getString("name"));
+				dto.setItem_name(rs.getString("item_name"));
 				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				Date date = formatter.parse(rs.getString("ordered_date"));
 				dto.setOrdered_date(date);

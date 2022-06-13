@@ -65,7 +65,7 @@ pageContext.setAttribute("memberNo", memberNo);
 					<%
 						ArrayList<OrderDTO> mainList = (ArrayList<OrderDTO>) request.getAttribute("mainList");
 						for (int i = 0; i < mainList.size(); i++) { 
-							OrderDTO item = mainList.get(i);	
+							OrderDTO item = mainList.get(i);
 					%>
 					<tr>
 						<c:set var="orderNum" value="<%=item.getOrdered_num()%>" />
