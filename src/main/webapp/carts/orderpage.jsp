@@ -151,8 +151,8 @@
 				<label class="col-sm-2">주문자 주소</label><br> <input type="text"
 					id="sample4_postcode" disabled="disabled" placeholder="우편번호">
 				<input type="button" onclick="sample4_execDaumPostcode()"
-					value="우편번호 찾기"><br> <input type="text"
-					id="sample4_roadAddress" name="addr1" placeholder="도로명주소">
+					value="우편번호 찾기"><br> 
+				<input type="text" id="sample4_roadAddress" name="addr1" placeholder="도로명주소">
 				<input type="text" id="sample4_jibunAddress" disabled="disabled"
 					placeholder="지번주소"><br> <input type="text"
 					id="sample4_detailAddress" name="addr2" placeholder="상세주소 입력">
@@ -265,9 +265,11 @@
 					& document.getElementById('sample4_detailAddress').value != ""){
 				var addr1 = document.getElementById('sample4_roadAddress').value;
 				var addr2 = document.getElementById('sample4_detailAddress').value;
+				var zipcode = document.getElementById('sample4_postcode').value;
 				var memberNo = document.getElementById('memberNo').value;
 				sessionStorage['addr1'] = addr1;
 				sessionStorage['addr2'] = addr2;
+				sessionStorage['zipcode'] = zipcode;
 				sessionStorage['memberNo'] = memberNo;
 				INIStdPay.pay('SendPayForm_id');
 			} else {

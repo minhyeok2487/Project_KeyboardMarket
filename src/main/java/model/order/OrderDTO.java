@@ -1,5 +1,7 @@
 package model.order;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class OrderDTO {
@@ -17,6 +19,13 @@ public class OrderDTO {
 	String status;
 	String refund;
 	Date refund_date;
+	String zip_code;
+	
+	public String getDate_format(Date date) {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일 HH:mm:ss");
+		String date_format = dateFormat.format(date);
+		return date_format;
+	}
 	
 	public String getRefund() {
 		return refund;
@@ -150,7 +159,12 @@ public class OrderDTO {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+	public String getZip_code() {
+		return zip_code;
+	}
+	public void setZip_code(String zip_code) {
+		this.zip_code = zip_code;
+	}
 	@Override
 	public String toString() {
 		return "OrderDTO [orderNo=" + orderNo + ", ordered_num=" + ordered_num + ", ordered_date=" + ordered_date
@@ -158,9 +172,11 @@ public class OrderDTO {
 				+ ", reg_date=" + reg_date + ", itemNo=" + itemNo + ", select_count=" + select_count + ", item_name="
 				+ item_name + ", manufacture=" + manufacture + ", category=" + category + ", switchs=" + switchs
 				+ ", spec=" + spec + ", price=" + price + ", item_img1=" + item_img1 + ", item_img2=" + item_img2
-				+ ", status=" + status + ", refund=" + refund + ", refund_date=" + refund_date + "]";
+				+ ", status=" + status + ", refund=" + refund + ", refund_date=" + refund_date + ", zip_code="
+				+ zip_code + "]";
 	}
-
+	
+	
 
 
 	

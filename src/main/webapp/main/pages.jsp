@@ -120,7 +120,7 @@
 			</div>
 			<div class="col">
 				<h2>!!M.T.S 신상품!!</h2>
-				<div id="carouselExampleDark" class="carousel carousel-dark slide"
+				<div id="carouselExampleIndicators" class="carousel slide"
 					data-bs-ride="carousel">
 					<div class="carousel-indicators">
 						<%
@@ -128,14 +128,14 @@
 						for (int i = 0; i < NList.size(); i++) {
 							if (i == 0) {
 						%>
-						<button type="button" data-bs-target="#carouselExampleDark"
+						<button type="button" data-bs-target="#carouselExampleIndicators"
 							data-bs-slide-to="0" class="active" aria-current="true"
 							aria-label="Slide 1"></button>
 						<%
 							} else {
 						pageContext.setAttribute("i", i);
 						%>
-						<button type="button" data-bs-target="#carouselExampleDark"
+						<button type="button" data-bs-target="#carouselExampleIndicators"
 							data-bs-slide-to="${i }" aria-label="Slide ${i+1 }"></button>
 						<%
 							}
@@ -178,12 +178,12 @@
 					</div>
 
 					<button class="carousel-control-prev" type="button"
-						data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+						data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
 						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 						<span class="visually-hidden">Previous</span>
 					</button>
 					<button class="carousel-control-next" type="button"
-						data-bs-target="#carouselExampleDark" data-bs-slide="next">
+						data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
 						<span class="carousel-control-next-icon" aria-hidden="true"></span>
 						<span class="visually-hidden">Next</span>
 					</button>

@@ -32,10 +32,10 @@ public class OrderEnd implements Service {
 		int memberNo = Integer.parseInt(request.getParameter("memberNo"));
 		String addr1 = request.getParameter("addr1");
 		String addr2 = request.getParameter("addr2");
+		String zipcode = request.getParameter("zipcode");
 		//결제완료되면 계속 로그아웃되서 재로그인만듬
 		login(request, memberNo);
 	
-		System.out.println(addr1+addr2);
 		ArrayList<CartDTO> cartList = new CartDAO().list(memberNo);
 		memberDTO member = new memberDAO().detail(memberNo);
 		
@@ -45,7 +45,7 @@ public class OrderEnd implements Service {
 		
 	
 		for(int i=0; i<cartList.size();i++) {
-			new OrderDAO().addOrder(ordered_num,merchant,member,addr1,addr2,cartList.get(i));
+			new OrderDAO().addOrder(ordered_num,merchant,member,addr1,addr2,cartList.get(i),zipcode);
 			int count = new itemDAO().Detail(cartList.get(i).getItemNo()).getStock()-cartList.get(i).getSelected_count();
 			new itemDAO().addStock(cartList.get(i).getItemNo(), count);
 		}

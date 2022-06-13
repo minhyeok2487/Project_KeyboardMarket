@@ -44,10 +44,9 @@
 	<jsp:include page="../Admintop.jsp" />
 	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display-3"><%=new Date()%>
-				관리자 페이지
-			</h1>
-			<h2 class="display-3">이번달 수입 : ${total }원</h2>
+			<h4 class="display-3"><%=new OrderDTO().getDate_format(new Date())%>
+			</h4>
+			<h5 class="display-3">이번달 예상 수입 : ${total }원</h5>
 		</div>
 	</div>
 	<div class="container">
@@ -91,7 +90,7 @@
 						<c:set var="orderNum" value="<%=item.getOrdered_num()%>" />
 						<td></td>
 						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getOrdered_num()%></td>
-						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getOrdered_date() %></td>
+						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getDate_format(item.getOrdered_date()) %></td>
 						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getPrice() %></td>
 						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getSelect_count() %></td>
 						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getStatus() %></td>
@@ -120,7 +119,7 @@
 						<c:set var="orderNum" value="<%=item.getOrdered_num()%>" />
 						<td></td>
 						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getOrdered_num()%></td>
-						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getOrdered_date() %></td>
+						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getDate_format(item.getOrdered_date()) %></td>
 						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getPrice() %></td>
 						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getSelect_count() %></td>
 						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getStatus() %></td>
@@ -149,7 +148,7 @@
 						<c:set var="orderNum" value="<%=item.getOrdered_num()%>" />
 						<td></td>
 						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getOrdered_num()%></td>
-						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getOrdered_date() %></td>
+						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getDate_format(item.getOrdered_date()) %></td>
 						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getPrice() %></td>
 						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getSelect_count() %></td>
 						<td onClick='location.href="../admin/OrderView?orderNum=${orderNum }";'><%=item.getStatus() %></td>
@@ -245,7 +244,7 @@
 								<td></td>
 								<td><%=item.getOrdered_num()%></td>
 								<td><%=item.getName()%></td>
-								<td><%=item.getOrdered_date() %></td>
+								<td><%=item.getDate_format(item.getOrdered_date()) %></td>
 								<td><%=item.getPrice() %></td>
 								<td><%=item.getSelect_count() %></td>
 								<td><%=item.getStatus() %></td>
@@ -293,7 +292,7 @@
 								<td></td>
 								<td><%=item.getOrdered_num()%></td>
 								<td><%=item.getName()%></td>
-								<td><%=item.getOrdered_date() %></td>
+								<td><%=item.getDate_format(item.getOrdered_date()) %></td>
 								<td><%=item.getPrice() %></td>
 								<td><%=item.getSelect_count() %></td>
 								<td><%=item.getStatus() %></td>
@@ -341,7 +340,7 @@
 								<td></td>
 								<td><%=item.getOrdered_num()%></td>
 								<td><%=item.getName()%></td>
-								<td><%=item.getOrdered_date() %></td>
+								<td><%=item.getDate_format(item.getOrdered_date()) %></td>
 								<td><%=item.getPrice() %></td>
 								<td><%=item.getSelect_count() %></td>
 								<td><%=item.getStatus() %></td>
