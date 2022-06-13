@@ -35,6 +35,9 @@
 <h1>개인 정보</h1>
 <form action="ModifyForm" method="post">
 	<input type="hidden" name="memberNo" value="${dto.memberNo }" />
+	<input type="hidden" name="user_id" value="${dto.user_id }" />
+	<input type="hidden" name="email" value="${dto.email }" />
+	<input type="hidden" name="reg_date" value="${dto.reg_date }" />
 	<table border="">
 		<tr>
 			<td>회원 번호</td><td>${dto.memberNo }</td>

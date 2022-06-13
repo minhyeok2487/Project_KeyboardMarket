@@ -45,6 +45,9 @@
 	<div class="container">
 		<a href="./MemberControl" class="btn btn-secondary">회원 목록으로</a>
 		<form action="MemberEditReg" method="post">
+			<input type="hidden" name="user_id" value="${getMember.getUser_id() }" />
+			<input type="hidden" name="email" value="${getMember.getEmail() }" />
+			<input type="hidden" name="reg_date" value="${getMember.getReg_date() }" />
 			<input type="hidden" name="memberNo" value="${getMember.getMemberNo() }">
 			<table class="table">
 				<tr>
