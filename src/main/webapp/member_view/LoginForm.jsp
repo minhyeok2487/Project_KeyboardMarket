@@ -70,12 +70,27 @@
 		var spacing =  /\s/g; // 띄어쓰기 체크
 		var newLine =  /\n/g; // 개행문자 체크 (제거로 만들자)
 		var regExpId = /^[a-z|A-Z|0-9]+$/g; //id 체크 영문, 숫자만 가능
-		var regExpPw = ^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,15}$; //최소 8자리, 최대 15자리. 최소 하나의 문자, 하나의 숫자, 하나의 특수문자
+		var regExpPw = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,15}$/g; //최소 8자리, 최대 15자리. 최소 하나의 문자, 하나의 숫자, 하나의 특수문자
 		
+		var userId = form.member_id.value;
+		var userPw = form.member_pw.value;
+
+		if(userId == ""){
+			alert("아이디를 입력하세요.");
+		    form.
+		    return false;
+		}else if(spacing.test(userId)){
+			alert("빈 칸이 없어야 합니다");
+		    uid.focus();
+		    return false;
+		}
 		
-		
-		var regExpName
-		
+		if(user_pw == ""){
+			alert("비밀번호를 입력하세요.");
+		    uid.focus();
+		    return false;
+		}
+	
 	}
 
 </script>
