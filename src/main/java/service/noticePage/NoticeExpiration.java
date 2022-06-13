@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Service;
+import model.main.MainNoticeDAO;
 import model.notice.NoticeDAO;
 
 public class NoticeExpiration implements Service {
@@ -15,6 +16,7 @@ public class NoticeExpiration implements Service {
 		String msg = null;
 
 		new NoticeDAO().expirationUpdate(no);
+		new MainNoticeDAO().removeitem(no);
 		msg = "만료처리가 되었어요.";
 		
 		request.setAttribute("msg", msg);
