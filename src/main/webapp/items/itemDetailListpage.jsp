@@ -133,7 +133,7 @@ if (request.getParameterValues("sw") != null) {
 					<tr>
 						<th scope="row" style="text-align: center;">가격대</th>
 						<td colspan="4">
-							<button type="button" id="pricebtn" class="btn btn-outline-dark">전체</button>
+							<button type="button" id="pricebtn" class="btn btn-outline-dark" onclick='location.href="../item/itemList";'>전체</button>
 							<c:forEach var="name" items="${priceLange }" varStatus="i">
 								<c:choose>
 									<c:when test="${name == prices }">
@@ -146,7 +146,6 @@ if (request.getParameterValues("sw") != null) {
 											onclick='location.href="../item/itemDetailList?price=${name}";'>${name}</button>
 									</c:otherwise>
 								</c:choose>
-
 							</c:forEach>
 						</td>
 					</tr>
