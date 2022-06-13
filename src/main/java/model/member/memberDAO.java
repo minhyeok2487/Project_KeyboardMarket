@@ -239,7 +239,7 @@ public class memberDAO {
 		
 		try {
 			ptmt = con.prepareStatement(sql);
-			ptmt.setString(1, "정지");
+			ptmt.setString(1, "탈퇴");
 			ptmt.setInt(2, memberNo);
 			
 			ptmt.executeUpdate();
