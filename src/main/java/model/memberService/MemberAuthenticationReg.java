@@ -27,7 +27,7 @@ public class MemberAuthenticationReg implements Service {
 	        if(!AuthenticationKey.equals(AuthenticationUser)){
 	        	
 	    			request.setAttribute("msg", "인증번호가 올바르지 않습니다");
-	    			request.setAttribute("goUrl", "./LoginForm");
+	    			request.setAttribute("goUrl", "./Login");
 	    			request.setAttribute("mainUrl", "./member_view/alert");
 	        		
 	        }else if(AuthenticationKey.equals(AuthenticationUser)){
@@ -41,7 +41,7 @@ public class MemberAuthenticationReg implements Service {
         		if(!AuthenticationKey.equals(AuthenticationUser)){
         			
 	    			request.setAttribute("msg", "인증번호가 올바르지 않습니다");
-	    			request.setAttribute("goUrl", "./LoginForm");
+	    			request.setAttribute("goUrl", "./Login");
 	    			request.setAttribute("mainUrl", "./member_view/alert");
 	        		
 	        }else if(AuthenticationKey.equals(AuthenticationUser)){
@@ -54,7 +54,7 @@ public class MemberAuthenticationReg implements Service {
 	    		if(!AuthenticationKey.equals(AuthenticationUser)){
 	    			
 	    			request.setAttribute("msg", "인증번호가 올바르지 않습니다");
-	    			request.setAttribute("goUrl", "./LoginForm");
+	    			request.setAttribute("goUrl", "./Login");
 	    			request.setAttribute("mainUrl", "./member_view/alert");
 	        		
 	        }else if(AuthenticationKey.equals(AuthenticationUser)){

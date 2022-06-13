@@ -62,8 +62,22 @@
 	</table>
 </form>
 
+<script type="text/javascript">
 
+	function checkLogin() {
+		// * : 0개 이상 반복되는지
+		// $ : 그 패턴으로 끝이 나는지
+		var spacing =  /\s/g; // 띄어쓰기 체크
+		var newLine =  /\n/g; // 개행문자 체크 (제거로 만들자)
+		var regExpId = /^[a-z|A-Z|0-9]+$/g; //id 체크 영문, 숫자만 가능
+		var regExpPw = ^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,15}$; //최소 8자리, 최대 15자리. 최소 하나의 문자, 하나의 숫자, 하나의 특수문자
+		
+		
+		
+		var regExpName
+		
+	}
 
-
+</script>
 </body>
 </html>
