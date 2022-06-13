@@ -3,9 +3,17 @@ package model.qna;
 import java.util.Date;
 
 public class QnaDTO {
-	int qnaNo, hits, commnet, memberNo;
+	int qnaNo, hits, commnet, memberNo, answerCnt;
 	String subject, content, pname, replied, user_id, status;
 	Date reg_date, answer_date;
+
+	public int getAnswerCnt() {
+		return answerCnt;
+	}
+
+	public void setAnswerCnt(int answerCnt) {
+		this.answerCnt = answerCnt;
+	}
 
 	public int getQnaNo() {
 		return qnaNo;
@@ -86,7 +94,6 @@ public class QnaDTO {
 	public void setAnswer_date(Date answer_date) {
 		this.answer_date = answer_date;
 	}
-	
 
 	public String getUser_id() {
 		return user_id;
@@ -96,21 +103,19 @@ public class QnaDTO {
 		this.user_id = user_id;
 	}
 
-	
 	public String getStatus() {
 		return status;
 	}
 
 	public void setStatus(String status) {
-		this.status = status;
 	}
 
 	@Override
 	public String toString() {
 		return "QnaDTO [qnaNo=" + qnaNo + ", hits=" + hits + ", commnet=" + commnet + ", memberNo=" + memberNo
-				+ ", subject=" + subject + ", content=" + content + ", pname=" + pname + ", replied=" + replied
-				+ ", user_id=" + user_id + ", status=" + status + ", reg_date=" + reg_date + ", answer_date="
-				+ answer_date + "]";
+				+ ", answerCnt=" + answerCnt + ", subject=" + subject + ", content=" + content + ", pname=" + pname
+				+ ", replied=" + replied + ", user_id=" + user_id + ", status=" + status + ", reg_date=" + reg_date
+				+ ", answer_date=" + answer_date + "]";
 	}
 
 }
