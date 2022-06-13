@@ -107,6 +107,7 @@
 								<th>조회수</th>
 								<th>작성일</th>
 								<th>처리</th>
+								<th></th>
 							</tr>
 							<%
 								ArrayList<NoticeDTO> EndList = (ArrayList<NoticeDTO>) request.getAttribute("EndList");
@@ -121,8 +122,10 @@
 								<td><%=item.getHits() %></td>
 								<td><%=item.getReg_date() %></td>
 								<td>
-									<button type="submit" class="btn btn-secondary"
-										onclick='#'>만료됨</button>
+									<button type="submit" class="btn btn-secondary" onclick='#'>만료됨</button>
+								</td>
+								<td>
+									<button type="submit" class="btn btn-primary" onclick="location='../notice/NoticeNotExpiration?noticeNo=<%=item.getNoticeNo()%>'">만료취소</button>
 								</td>
 							</tr>
 							<%
