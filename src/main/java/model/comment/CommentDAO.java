@@ -10,6 +10,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import model.qna.QnaDTO;
+
 public class CommentDAO {
 
 	Connection con;
@@ -28,7 +30,7 @@ public class CommentDAO {
 	}
 
 	public ArrayList<CommentDTO> list() {
-		
+
 		ArrayList<CommentDTO> res = new ArrayList<CommentDTO>();
 
 		sql = "select * from comment order by commentNo desc";
@@ -61,21 +63,21 @@ public class CommentDAO {
 		return res;
 
 	}
-	
+
 	public ArrayList<CommentDTO> qnaNoList(int no) {
-		
+
 		ArrayList<CommentDTO> res = new ArrayList<CommentDTO>();
-		
+
 		sql = "select * from comment where qnaNo = ? order by commentNo desc";
-		
+
 		try {
 			ptmt = con.prepareStatement(sql);
 			ptmt.setInt(1, no);
 			rs = ptmt.executeQuery();
-			
+
 			while (rs.next()) {
 				CommentDTO dto = new CommentDTO();
-				
+
 				dto.setCommentNo(rs.getInt("commentNo"));
 				dto.setSubject(rs.getString("subject"));
 				dto.setComment(rs.getString("comment"));
@@ -87,17 +89,17 @@ public class CommentDAO {
 				dto.setStatus(rs.getString("status"));
 				res.add(dto);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close();
 		}
-		
+
 		return res;
-		
+
 	}
-	
+
 	public CommentDTO detail(int no) {
 
 		CommentDTO dto = null;
@@ -134,7 +136,7 @@ public class CommentDAO {
 	}
 
 	public void insert(CommentDTO dto) {
-		
+
 		sql = "insert into comment(subject, comment, user_id, pname, reg_date, qnaNo, memberNo, status) values (?, ?, ?, ?, now(), ?, ?, ?)";
 
 		try {
@@ -198,27 +200,47 @@ public class CommentDAO {
 
 		return 0;
 	}
-	
+
 	public int answerCount(int no) {
-		
+
 		sql = "select count(*) from comment where qnaNo = ?";
-		
+
 		try {
 			ptmt = con.prepareStatement(sql);
 			ptmt.setInt(1, no);
 			rs = ptmt.executeQuery();
-			
+
 			rs.next();
-			
+
 			return rs.getInt(1);
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close();
 		}
-		
+
 		return 0;
+	}
+
+	public void answerCount(QnaDTO qnaDTO) {
+
+		sql = "select count(*) from comment where qnaNo = ?";
+
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setInt(1, qnaDTO.getQnaNo());
+			rs = ptmt.executeQuery();
+
+			rs.next();
+
+			qnaDTO.setAnswerCnt(rs.getInt(1));
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
 	}
 
 	public void close() {

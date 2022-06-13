@@ -59,7 +59,9 @@
 				<td>${dto.qnaNo}</td>
 				<td>
 				<a href="<c:url value="./QnaDetail?qnaNo=${dto.qnaNo }&page=${nowPage }"/>">${dto.subject }</a>
-				<%-- <c:forEach var="count" items="${count }" varStatus="no">[${count }]</c:forEach> --%>
+				<c:if test="${dto.answerCnt > 0 }">
+				[${dto.answerCnt }]
+				</c:if>
 				</td>
 				<td>${dto.pname }</td>
 				<td><fmt:formatDate value="${dto.reg_date }"
