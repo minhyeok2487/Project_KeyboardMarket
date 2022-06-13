@@ -23,6 +23,7 @@
 		<tr align="center" class="table-secondary">
 			<th scope="col">번호</th>
 			<th scope="col">제목</th>
+			<th scope="col">상태</th>
 			<th scope="col">작성자</th>
 			<th scope="col">작성일</th>
 		</tr>
@@ -33,8 +34,8 @@
 	<c:forEach var="dto" items="${answer }" varStatus="no">
 			<tr align="center">
 				<td>${dto.qnaNo}</td>
-				<td><a
-					href="<c:url value="./QnaDetail?qnaNo=${dto.qnaNo }&page=${nowPage }"/>">${dto.subject }</a></td>
+				<td><a href="<c:url value="./QnaDetail?qnaNo=${dto.qnaNo }&page=${nowPage }"/>">${dto.subject }</a></td>
+				<td>답변완료</td>
 				<td>${dto.pname }</td>
 				<td><fmt:formatDate value="${dto.reg_date }"
 						pattern="yyyy-MM-dd HH:mm" /></td>
@@ -45,8 +46,8 @@
 	<c:forEach var="dto" items="${answer }" varStatus="no">
 			<tr align="center">
 				<td>${dto.qnaNo}</td>
-				<td><a
-					href="<c:url value="./QnaDetail?qnaNo=${dto.qnaNo }&page=${nowPage }"/>">${dto.subject }</a></td>
+				<td><a href="<c:url value="./QnaDetail?qnaNo=${dto.qnaNo }&page=${nowPage }"/>">${dto.subject }</a></td>
+				<td>답변대기</td>
 				<td>${dto.pname }</td>
 				<td><fmt:formatDate value="${dto.reg_date }"
 						pattern="yyyy-MM-dd HH:mm" /></td>
@@ -62,6 +63,12 @@
 				<c:if test="${dto.answerCnt > 0 }">
 				[${dto.answerCnt }]
 				</c:if>
+				</td>
+				<td>
+				<c:choose>
+				<c:when test="${dto.answerCnt > 0 }">답변완료</c:when>
+				<c:otherwise>답변대기</c:otherwise>
+				</c:choose>
 				</td>
 				<td>${dto.pname }</td>
 				<td><fmt:formatDate value="${dto.reg_date }"
