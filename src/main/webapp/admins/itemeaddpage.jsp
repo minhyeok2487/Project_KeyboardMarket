@@ -35,7 +35,6 @@
 <title>관리자 페이지</title>
 </head>
 <body>
-	<c:url value="/source/MMMR3KH.jpeg"/>
 	<jsp:include page="../Admintop.jsp" />
 	<div class="jumbotron">
 		<div class="container">

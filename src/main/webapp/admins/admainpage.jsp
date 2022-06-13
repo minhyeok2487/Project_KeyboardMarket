@@ -46,7 +46,7 @@
 		<div class="container">
 			<h4 class="display-3"><%=new OrderDTO().getDate_format(new Date())%>
 			</h4>
-			<h5 class="display-3">이번달 예상 수입 : ${total }원</h5>
+			<h5 class="display-3">이번달 예상 수입 : ${total }원</h5>(status : 주문완료, 배송중, 배송완료, 반품확인)
 		</div>
 	</div>
 	<div class="container">
