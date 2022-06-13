@@ -35,6 +35,8 @@ public class MemberAuthentication implements Service {
         String email = request.getParameter("email");
         boolean flag = true;
         
+        System.out.println("인증"+email);
+        
 		ArrayList<memberDTO> memberList = new memberDAO().allList();
 		
 		for(memberDTO dto : memberList) {
