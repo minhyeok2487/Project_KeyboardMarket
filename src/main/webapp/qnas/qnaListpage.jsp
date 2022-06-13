@@ -60,9 +60,6 @@
 				<td>${dto.qnaNo}</td>
 				<td>
 				<a href="<c:url value="./QnaDetail?qnaNo=${dto.qnaNo }&page=${nowPage }"/>">${dto.subject }</a>
-				<c:if test="${dto.answerCnt > 0 }">
-				[${dto.answerCnt }]
-				</c:if>
 				</td>
 				<td>
 				<c:choose>

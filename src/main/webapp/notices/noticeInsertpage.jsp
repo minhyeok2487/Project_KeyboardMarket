@@ -34,8 +34,7 @@ function checkEmpty() {
 	}
 </script>
 
-<form action="./NoticeInsertReg" method="post"
-	enctype="multipart/form-data" name="notice">
+<form action="./NoticeInsertReg" method="post" name="notice">
 	<input type="hidden" name="pname" value="관리자" />
 	<input type="hidden" name="user_id" value="${dto.user_id }">
 
@@ -54,11 +53,6 @@ function checkEmpty() {
 		<textarea class="form-control" id="exampleFormControlTextarea1"
 			rows="3" placeholder="내용을 입력하세요." name="content"></textarea>
 	</div>
-	<div class="mb-3">
-		<label for="formFile" class="form-label">파일</label>
-		<input class="form-control" type="file" id="formFile" name="upfile">
-	</div>
-
 	<div align="right">
 		<button type="button" class="btn btn-outline-primary" onclick="checkEmpty()">작성하기</button>
 	</div>

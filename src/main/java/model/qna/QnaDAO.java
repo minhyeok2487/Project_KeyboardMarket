@@ -50,6 +50,7 @@ public class QnaDAO {
 				dto.setHits(rs.getInt("hits"));
 				dto.setReg_date(rs.getTimestamp("reg_date"));
 				dto.setStatus(rs.getString("status"));
+				dto.setOrdered_num(rs.getString("ordered_num"));
 				res.add(dto);
 			}
 
@@ -86,6 +87,7 @@ public class QnaDAO {
 				dto.setHits(rs.getInt("hits"));
 				dto.setReg_date(rs.getTimestamp("reg_date"));
 				dto.setStatus(rs.getString("status"));
+				dto.setOrdered_num(rs.getString("ordered_num"));
 				res.add(dto);
 			}
 			
@@ -120,6 +122,7 @@ public class QnaDAO {
 				dto.setHits(rs.getInt("hits"));
 				dto.setReg_date(rs.getTimestamp("reg_date"));
 				dto.setStatus(rs.getString("status"));
+				dto.setOrdered_num(rs.getString("ordered_num"));
 				res.add(dto);
 			}
 			
@@ -155,6 +158,7 @@ public class QnaDAO {
 				dto.setHits(rs.getInt("hits"));
 				dto.setReg_date(rs.getTimestamp("reg_date"));
 				dto.setStatus(rs.getString("status"));
+				dto.setOrdered_num(rs.getString("ordered_num"));
 			}
 
 		} catch (SQLException e) {
@@ -190,6 +194,7 @@ public class QnaDAO {
 				res.setHits(rs.getInt("hits"));
 				res.setReg_date(rs.getTimestamp("reg_date"));
 				res.setStatus(rs.getString("status"));
+				res.setOrdered_num(rs.getString("ordered_num"));
 			}
 			
 		} catch (SQLException e) {
@@ -204,7 +209,7 @@ public class QnaDAO {
 	
 	public void insert(QnaDTO dto) {
 
-		sql = "insert into qna(subject, user_id, pname, content, hits, reg_date, status, memberNo) values (?, ?, ?, ?, 0, now(), ?, ?)";
+		sql = "insert into qna(subject, user_id, pname, content, hits, reg_date, status, memberNo, ordered_num) values (?, ?, ?, ?, 0, now(), ?, ?, ?)";
 
 		try {
 			ptmt = con.prepareStatement(sql);
@@ -214,6 +219,7 @@ public class QnaDAO {
 			ptmt.setString(4, dto.content);
 			ptmt.setString(5, "미답변");
 			ptmt.setInt(6, dto.memberNo);
+			ptmt.setString(7, dto.ordered_num);
 			ptmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -227,13 +233,14 @@ public class QnaDAO {
 
 		int res = 0;
 
-		sql = "update qna set subject = ?, content = ?, reg_date = now() where qnaNo = ?";
+		sql = "update qna set subject = ?, content = ?, reg_date = now(), ordered_num = ? where qnaNo = ?";
 
 		try {
 			ptmt = con.prepareStatement(sql);
 			ptmt.setString(1, dto.subject);
 			ptmt.setString(2, dto.content);
-			ptmt.setInt(3, dto.qnaNo);
+			ptmt.setString(3, dto.ordered_num);
+			ptmt.setInt(4, dto.qnaNo);
 
 			res = ptmt.executeUpdate();
 
@@ -306,6 +313,7 @@ public class QnaDAO {
 				dto.setContent(rs.getString("content"));
 				dto.setReg_date(rs.getTimestamp("reg_date"));
 				dto.setStatus(rs.getString("status"));
+				dto.setOrdered_num(rs.getString("ordered_num"));
 				res.add(dto);
 			}
 

@@ -19,7 +19,7 @@ public class NoticeNotExpiration implements Service {
 		
 		request.setAttribute("msg", msg);
 		request.setAttribute("mainUrl", "./notices/noticeAlert");
-		request.setAttribute("goUrl", "NoticeList");
+		request.setAttribute("goUrl", "../admin/NoticeControl");
 	}
 
 }

@@ -16,7 +16,7 @@ public class AddMainNoticeReg implements Service {
 		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
 		NoticeDTO dto = new NoticeDAO().detail(noticeNo);
 		String msg = null;
-		String goUrl = "MainControl";
+		String goUrl = "AddMainNotice";
 		if(new MainNoticeDAO().insert(dto)) {
 			msg = "메인화면에 공지사항을 추가했어요.";
 		} else {

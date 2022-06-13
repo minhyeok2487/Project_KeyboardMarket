@@ -12,7 +12,7 @@ public class RemoveMainNotice implements Service {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
 		String msg = null;
-		String goUrl = "MainControl";
+		String goUrl = "AddMainNotice";
 		if(new MainNoticeDAO().removeitem(noticeNo)) {
 			msg = "메인화면에서 공지사항을 내렸어요.";
 		} else {

@@ -4,16 +4,8 @@ import java.util.Date;
 
 public class QnaDTO {
 	int qnaNo, hits, commnet, memberNo, answerCnt;
-	String subject, content, pname, replied, user_id, status;
+	String subject, content, pname, replied, user_id, status, ordered_num;
 	Date reg_date, answer_date;
-
-	public int getAnswerCnt() {
-		return answerCnt;
-	}
-
-	public void setAnswerCnt(int answerCnt) {
-		this.answerCnt = answerCnt;
-	}
 
 	public int getQnaNo() {
 		return qnaNo;
@@ -45,6 +37,14 @@ public class QnaDTO {
 
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
+	}
+
+	public int getAnswerCnt() {
+		return answerCnt;
+	}
+
+	public void setAnswerCnt(int answerCnt) {
+		this.answerCnt = answerCnt;
 	}
 
 	public String getSubject() {
@@ -79,6 +79,30 @@ public class QnaDTO {
 		this.replied = replied;
 	}
 
+	public String getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getOrdered_num() {
+		return ordered_num;
+	}
+
+	public void setOrdered_num(String ordered_num) {
+		this.ordered_num = ordered_num;
+	}
+
 	public Date getReg_date() {
 		return reg_date;
 	}
@@ -95,27 +119,12 @@ public class QnaDTO {
 		this.answer_date = answer_date;
 	}
 
-	public String getUser_id() {
-		return user_id;
-	}
-
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-	}
-
 	@Override
 	public String toString() {
 		return "QnaDTO [qnaNo=" + qnaNo + ", hits=" + hits + ", commnet=" + commnet + ", memberNo=" + memberNo
 				+ ", answerCnt=" + answerCnt + ", subject=" + subject + ", content=" + content + ", pname=" + pname
-				+ ", replied=" + replied + ", user_id=" + user_id + ", status=" + status + ", reg_date=" + reg_date
-				+ ", answer_date=" + answer_date + "]";
+				+ ", replied=" + replied + ", user_id=" + user_id + ", status=" + status + ", ordered_num="
+				+ ordered_num + ", reg_date=" + reg_date + ", answer_date=" + answer_date + "]";
 	}
 
 }

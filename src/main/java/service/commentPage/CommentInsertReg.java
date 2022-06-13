@@ -41,6 +41,6 @@ public class CommentInsertReg implements Service {
 
 		request.setAttribute("msg", msg);
 		request.setAttribute("mainUrl", "./comments/commentAlert");
-		request.setAttribute("goUrl", "CommentList");
+		request.setAttribute("goUrl", "../admin/QnaControl");
 	}
 }

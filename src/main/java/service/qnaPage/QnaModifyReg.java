@@ -24,6 +24,7 @@ public class QnaModifyReg implements Service {
 		dto.setSubject(request.getParameter("subject"));
 		dto.setPname(request.getParameter("pname"));
 		dto.setContent(request.getParameter("content"));
+		dto.setOrdered_num(request.getParameter("select_orderNum"));
 
 		int res = new QnaDAO().modify(dto);
 
