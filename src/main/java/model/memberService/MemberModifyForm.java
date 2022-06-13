@@ -26,6 +26,7 @@ public class MemberModifyForm implements Service {
 		dto.setUser_pw(request.getParameter("user_pw"));
 		dto.setName(request.getParameter("name"));
 		dto.setEmail(request.getParameter("email"));
+		dto.setZip_code(request.getParameter("zip_code"));
 		dto.setAddr1(request.getParameter("addr1"));
 		dto.setAddr2(request.getParameter("addr2"));
 		

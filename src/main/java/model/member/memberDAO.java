@@ -61,7 +61,7 @@ public class memberDAO {
 					String tel = rs.getString("tel");
 					
 					String tel1 = tel.substring(0,2);
-					String tel2 = tel.substring(3,6);
+					String tel2 = tel.substring(3,7);
 					String tel3 = tel.substring(7);
 					
 					dto.setTel1(tel1);
@@ -154,7 +154,7 @@ public class memberDAO {
 					String tel = rs.getString("tel");
 					
 					String tel1 = tel.substring(0,2);
-					String tel2 = tel.substring(3,6);
+					String tel2 = tel.substring(3,7);
 					String tel3 = tel.substring(7);
 					
 					res.setTel1(tel1);
@@ -213,7 +213,7 @@ public class memberDAO {
 					String tel = rs.getString("tel");
 					
 					String tel1 = tel.substring(0,2);
-					String tel2 = tel.substring(3,6);
+					String tel2 = tel.substring(3,7);
 					String tel3 = tel.substring(7);
 					
 					dto.setTel1(tel1);
