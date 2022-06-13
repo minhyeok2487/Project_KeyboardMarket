@@ -71,6 +71,7 @@ public class OrderDAO {
 				if (rs.getTimestamp("refund_date") != null) {
 					dto.setRefund_date(rs.getTimestamp("refund_date"));
 				}
+				dto.setZip_code(rs.getString("zip_code"));
 			}
 
 		} catch (SQLException e) {
@@ -155,6 +156,7 @@ public class OrderDAO {
 				if (rs.getTimestamp("refund_date") != null) {
 					dto.setRefund_date(rs.getTimestamp("refund_date"));
 				}
+				dto.setZip_code(rs.getString("zip_code"));
 				res.add(dto);
 			}
 		} catch (Exception e) {
@@ -166,11 +168,11 @@ public class OrderDAO {
 	}
 
 	public void addOrder(String ordered_num, String merchant, memberDTO member, String addr1, String addr2,
-			CartDTO cartDTO) {
+			CartDTO cartDTO, String zipcode) {
 		sql = "insert into orders (ordered_num, ordered_date, category, switchs, "
 				+ "select_count,item_name,manufacture,spec,price,reg_date, "
-				+ "item_img1,item_img2,memberNo,name,addr1,addr2,tel,status, itemNo) values "
-				+ "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "item_img1,item_img2,memberNo,name,addr1,addr2,tel,status, itemNo, zip_code) values "
+				+ "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			ptmt = con.prepareStatement(sql);
 			ptmt.setString(1, ordered_num);
@@ -192,6 +194,7 @@ public class OrderDAO {
 			ptmt.setString(17, member.getTel());
 			ptmt.setString(18, "주문완료");
 			ptmt.setInt(19, cartDTO.getItemNo());
+			ptmt.setString(20, zipcode);
 			ptmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -217,6 +220,7 @@ public class OrderDAO {
 				dto.setSelect_count(rs.getInt("select_count"));
 				dto.setStatus(rs.getString("status"));
 				dto.setItemNo(rs.getInt("itemNo"));
+				dto.setZip_code(rs.getString("zip_code"));
 				res.add(dto);
 			}
 		} catch (Exception e) {
@@ -245,6 +249,7 @@ public class OrderDAO {
 				dto.setSelect_count(rs.getInt("select_count"));
 				dto.setStatus(rs.getString("status"));
 				dto.setItemNo(rs.getInt("itemNo"));
+				dto.setZip_code(rs.getString("zip_code"));
 				res.add(dto);
 			}
 		} catch (Exception e) {
@@ -274,6 +279,7 @@ public class OrderDAO {
 				dto.setSelect_count(rs.getInt("select_count"));
 				dto.setStatus(rs.getString("status"));
 				dto.setItemNo(rs.getInt("itemNo"));
+				dto.setZip_code(rs.getString("zip_code"));
 				res.add(dto);
 			}
 		} catch (Exception e) {
@@ -342,7 +348,7 @@ public class OrderDAO {
 				if (rs.getTimestamp("refund_date") != null) {
 					dto.setRefund_date(rs.getTimestamp("refund_date"));
 				}
-
+				dto.setZip_code(rs.getString("zip_code"));
 				res.add(dto);
 			}
 		} catch (SQLException e) {
@@ -410,7 +416,7 @@ public class OrderDAO {
 				if (rs.getTimestamp("refund_date") != null) {
 					dto.setRefund_date(rs.getTimestamp("refund_date"));
 				}
-
+				dto.setZip_code(rs.getString("zip_code"));
 				res.add(dto);
 			}
 		} catch (Exception e) {
@@ -457,6 +463,7 @@ public class OrderDAO {
 				dto.setSelect_count(rs.getInt("select_count"));
 				dto.setStatus(rs.getString("status"));
 				dto.setItemNo(rs.getInt("itemNo"));
+				dto.setZip_code(rs.getString("zip_code"));
 				res.add(dto);
 			}
 		} catch (Exception e) {

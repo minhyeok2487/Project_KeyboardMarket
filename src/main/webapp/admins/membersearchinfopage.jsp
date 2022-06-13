@@ -76,7 +76,7 @@
 								<td></td>
 								<td><%=item.getOrdered_num()%></td>
 								<td><%=item.getName()%></td>
-								<td><%=item.getOrdered_date()%></td>
+								<td><%=item.getDate_format(item.getOrdered_date())%></td>
 								<td><%=item.getPrice()%></td>
 								<td><%=item.getSelect_count()%></td>
 								<td><%=item.getStatus()%></td>

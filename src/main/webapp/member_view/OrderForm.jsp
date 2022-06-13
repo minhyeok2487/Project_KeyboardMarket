@@ -71,7 +71,7 @@ pageContext.setAttribute("memberNo", memberNo);
 						<c:set var="orderNum" value="<%=item.getOrdered_num()%>" />
 						<td></td>
 						<td onClick='location.href="./OrderDetail?orderNum=${orderNum }";'><%=item.getOrdered_num()%></td>
-						<td onClick='location.href="./OrderDetail?orderNum=${orderNum }";'><%=item.getOrdered_date() %></td>
+						<td onClick='location.href="./OrderDetail?orderNum=${orderNum }";'><%=item.getDate_format(item.getOrdered_date()) %></td>
 						<td onClick='location.href="./OrderDetail?orderNum=${orderNum }";'><%=item.getPrice() %></td>
 						<td onClick='location.href="./OrderDetail?orderNum=${orderNum }";'><%=item.getSelect_count() %></td>
 						<td onClick='location.href="./OrderDetail?orderNum=${orderNum }";'><%=item.getStatus() %></td>
@@ -101,7 +101,7 @@ pageContext.setAttribute("memberNo", memberNo);
 						<c:set var="orderNum" value="<%=item.getOrdered_num()%>" />
 						<td></td>
 						<td onClick='location.href="./OrderDetail?orderNum=${orderNum }";'><%=item.getOrdered_num()%></td>
-						<td onClick='location.href="./OrderDetail?orderNum=${orderNum }";'><%=item.getOrdered_date() %></td>
+						<td onClick='location.href="./OrderDetail?orderNum=${orderNum }";'><%=item.getDate_format(item.getOrdered_date()) %></td>
 						<td onClick='location.href="./OrderDetail?orderNum=${orderNum }";'><%=item.getPrice() %></td>
 						<td onClick='location.href="./OrderDetail?orderNum=${orderNum }";'><%=item.getSelect_count() %></td>
 						<td onClick='location.href="./OrderDetail?orderNum=${orderNum }";'><%=item.getStatus() %></td>
@@ -131,7 +131,7 @@ pageContext.setAttribute("memberNo", memberNo);
 						<c:set var="orderNum" value="<%=item.getOrdered_num()%>" />
 						<td></td>
 						<td onClick='location.href="./OrderDetail?orderNum=${orderNum }";'><%=item.getOrdered_num()%></td>
-						<td onClick='location.href="./OrderDetail?orderNum=${orderNum }";'><%=item.getOrdered_date() %></td>
+						<td onClick='location.href="./OrderDetail?orderNum=${orderNum }";'><%=item.getDate_format(item.getOrdered_date()) %></td>
 						<td onClick='location.href="./OrderDetail?orderNum=${orderNum }";'><%=item.getPrice() %></td>
 						<td onClick='location.href="./OrderDetail?orderNum=${orderNum }";'><%=item.getSelect_count() %></td>
 						<td onClick='location.href="./OrderDetail?orderNum=${orderNum }";'><%=item.getStatus() %></td>

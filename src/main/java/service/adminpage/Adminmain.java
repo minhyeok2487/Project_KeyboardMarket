@@ -23,6 +23,7 @@ public class Adminmain implements Service {
 		ArrayList<OrderDTO> allList = new OrderDAO().allList();
 		int total = 0;
 		for (OrderDTO price : allList) {
+			if(price.getStatus().equals("주문완료") || price.getStatus().equals("배송완료") || price.getStatus().equals("배송중"))
 			total += price.getPrice();
 		}
 
@@ -87,6 +88,8 @@ public class Adminmain implements Service {
 				MainorderEndlist.add(orderEndlist.get(i));
 			}
 		}
+		
+		
 
 		// 4.주문취소요청 리스트
 		ArrayList<OrderDTO> RequestOrderCancelList = new OrderDAO().Searchlist("주문취소요청");
