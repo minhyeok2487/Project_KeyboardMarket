@@ -18,8 +18,8 @@ public class MemberAuthenticationReg implements Service {
 		HttpSession session = request.getSession();
 		String from = (String) session.getAttribute("fromURL");
 		
-        String AuthenticationKey = request.getParameter("AuthenticationKey");
-        String AuthenticationUser = request.getParameter("AuthenticationUser");
+//        String AuthenticationKey = request.getParameter("AuthenticationKey");
+//        String AuthenticationUser = request.getParameter("AuthenticationUser");
         String email = request.getParameter("email");
         
         

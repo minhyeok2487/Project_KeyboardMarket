@@ -34,7 +34,13 @@ public class MemberSignUpReg implements Service{
 			dto.setZip_code(request.getParameter("zip_code"));
 			dto.setAddr1(request.getParameter("addr1"));
 			dto.setAddr2(request.getParameter("addr2"));
-			dto.setTel(request.getParameter("tel"));
+			
+			String tel1 = request.getParameter("tel1");
+			String tel2 = request.getParameter("tel2");
+			String tel3 = request.getParameter("tel3");
+			String tel = tel1 + tel2+ tel3;
+			
+			dto.setTel(tel);
 			
 			new memberDAO().signUp(dto);
 			
