@@ -25,7 +25,7 @@
 			<td><input type="email" name="email"/></td>
 		</tr>
 		<tr>
-			<td><input type="button" value="인증 코드 보내기" onclick="checkLogin()"/></td>
+			<td><input type="button" value="인증 코드 보내기" onclick="javascript:checkLogin()"/></td>
 		</tr>
 		
 		
