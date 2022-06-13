@@ -82,34 +82,37 @@ if (userStatus != null) {
 <%
 if(count > 0){
 %>
-<div class="container">
-	<div class="accordion" id="accordionExample">
-		<div class="accordion-item">
-			<h2 class="accordion-header" id="headingOne">
-				<button class="accordion-button" type="button"
-					data-bs-toggle="collapse" data-bs-target="#collapseOne"
-					aria-expanded="true" aria-controls="collapseOne">답변리스트</button>
-			</h2>
-			<div id="collapseOne" class="accordion-collapse collapse show"
-				aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-				<div class="accordion-body">
-					<table class="table">
-						<c:forEach var="dto" items="${commentDataList }" varStatus="no">
-							<tr align="center">
-								<td>${dto.commentNo}</td>
-								<td><a
-									href="<c:url value="../comment/CommentDetail?commentNo=${dto.commentNo }"/>">${dto.subject }</a></td>
-								<td>${dto.pname }</td>
-								<td><fmt:formatDate value="${dto.reg_date }"
-										pattern="yyyy-MM-dd HH:mm" /></td>
-							</tr>
-						</c:forEach>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
+<h1>댓글</h1>
+<c:forEach var="dto" items="${commentDataList }" varStatus="no">
+<div class="mb-3">
+	<label for="exampleFormControlInput1" class="form-label">제목</label> <input
+		type="text" class="form-control" id="exampleFormControlInput1"
+		value="${dto.subject }" disabled="disabled">
 </div>
+<div class="mb-3">
+	<label for="exampleFormControlInput1" class="form-label">작성자</label> <input
+		type="text" class="form-control" id="exampleFormControlInput1"
+		value="${dto.pname }" disabled="disabled">
+</div>
+<div class="mb-3">
+	<label for="exampleFormControlInput1" class="form-label">작성일</label> <input
+		type="text" class="form-control" id="exampleFormControlInput1"
+		value="<fmt:formatDate value="${dto.reg_date }" pattern="yyyy-MM-dd HH:mm" />"
+		disabled="disabled">
+</div>
+<div class="mb-3">
+	<label for="exampleFormControlTextarea1" class="form-label">내용</label>
+	<textarea class="form-control" id="exampleFormControlTextarea1"
+		rows="3" disabled="disabled">${dto.comment }</textarea>
+</div>
+</c:forEach>
+<c:if test="${inUser != null && inUser.user_id == dto.user_id }">
+
+	<div align="right">
+		<a href="./CommentModifyForm?commentNo=${dto.commentNo }"><button
+				type="submit" class="btn btn-outline-primary">수정하기</button></a>
+	</div>
+</c:if>
 <hr>
 <%	
 }

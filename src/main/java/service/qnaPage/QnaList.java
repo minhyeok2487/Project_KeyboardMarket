@@ -1,10 +1,16 @@
 package service.qnaPage;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.Service;
+import model.comment.CommentDAO;
+import model.comment.CommentDTO;
 import model.qna.QnaDAO;
+import model.qna.QnaDTO;
 
 public class QnaList implements Service {
 
@@ -12,7 +18,6 @@ public class QnaList implements Service {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 
 		int page = (int) request.getAttribute("nowPage");
-		System.out.println(page);
 
 		int limit = 10; // 한 페이지당 게시물 수
 		int pageLimit = 5; // 페이지 번호 갯수
@@ -36,9 +41,23 @@ public class QnaList implements Service {
 		
 		String process = request.getParameter("qnaStatus");
 
-		Object dataList = new QnaDAO().list(start, limit);
-		Object dataListComplete = new QnaDAO().complete(start, limit);
-		Object dataListTotal = new QnaDAO().total(start, limit);
+		ArrayList<QnaDTO> dataList = new QnaDAO().list(start, limit);
+		ArrayList<QnaDTO> dataListComplete = new QnaDAO().complete(start, limit);
+		ArrayList<QnaDTO> dataListTotal = new QnaDAO().total(start, limit);
+		
+		int answerCount = 0;
+		ArrayList<Integer> count = new ArrayList<Integer>();
+		
+		for (int i = 0; i < dataListTotal.size(); i++) {
+			int no = dataListTotal.get(i).getQnaNo();
+//			System.out.println(no);
+			answerCount = new CommentDAO().answerCount(no);
+//			System.out.println(qnaNum);
+			count.add(answerCount);
+		}
+		
+		System.out.println(count);
+		request.setAttribute("count", count);
 
 		request.setAttribute("qnaData", dataList);
 		request.setAttribute("qnaDataComplete", dataListComplete);

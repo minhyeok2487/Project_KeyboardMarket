@@ -57,8 +57,10 @@
 		<c:forEach var="dto" items="${qnaDataTotal }" varStatus="no">
 			<tr align="center">
 				<td>${dto.qnaNo}</td>
-				<td><a
-					href="<c:url value="./QnaDetail?qnaNo=${dto.qnaNo }&page=${nowPage }"/>">${dto.subject }</a></td>
+				<td>
+				<a href="<c:url value="./QnaDetail?qnaNo=${dto.qnaNo }&page=${nowPage }"/>">${dto.subject }</a>
+				<%-- <c:forEach var="count" items="${count }" varStatus="no">[${count }]</c:forEach> --%>
+				</td>
 				<td>${dto.pname }</td>
 				<td><fmt:formatDate value="${dto.reg_date }"
 						pattern="yyyy-MM-dd HH:mm" /></td>
