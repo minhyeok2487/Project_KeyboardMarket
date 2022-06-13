@@ -16,8 +16,27 @@ public class itemList implements Service {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		itemDAO dao = new itemDAO();
-		ArrayList<itemDTO> dto = dao.list();
-
+		ArrayList<itemDTO> dto = null;
+		String prices = request.getParameter("price");
+		if(prices != null) {
+			switch (prices) {
+			case "1~5만원":
+				dto = new itemDAO().detaillist(10000,50000);
+				break;
+			case "5~10만원":
+				dto = new itemDAO().detaillist(50000,100000);
+				break;
+			case "10~20만원":
+				dto = new itemDAO().detaillist(100000,200000);
+				break;
+			case "20만원~":
+				dto = new itemDAO().detaillist(200000,999999999);
+				break;
+			}
+		} else {
+			dto = dao.list();
+		}
+		
 		// 1. 제조사 리스트 중복제거
 		ArrayList<String> BeforeMF = new ArrayList<String>();
 		for (itemDTO item : dto) {
@@ -76,10 +95,12 @@ public class itemList implements Service {
 
 
 		ArrayList<String> priceLange = new ArrayList<String>();
+		priceLange.add("전체");
 		priceLange.add("1~5만원");
 		priceLange.add("5~10만원");
 		priceLange.add("10~20만원");
 		priceLange.add("20만원~");
+	
 
 		request.setAttribute("manufactor", manufactor);
 		request.setAttribute("category", category);

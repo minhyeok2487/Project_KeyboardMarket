@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="model.item.itemDTO"%>
 <%@page import="java.util.ArrayList"%>
@@ -25,6 +26,11 @@
 	String[] SelectMF = null;
 	String[] SelectTY = null;
 	String[] SelectSW = null;
+	String prices = request.getParameter("price");
+	if(prices == null){
+		prices = "전체";
+	}
+	pageContext.setAttribute("prices", prices);
 	ArrayList<itemDTO> dtos = (ArrayList<itemDTO>) request.getAttribute("dto");
 	if (request.getParameterValues("manufactor") != null) {
 		SelectMF = request.getParameterValues("manufactor");
@@ -76,8 +82,14 @@
 			}
 		}
 	}
+	int total = 0;
+	for(itemDTO c: dtos){
+		if(c.getItem_name() != null){
+			total++;
+		}
+	}
 	
-	
+	HashMap<String, Integer> Count = (HashMap<String, Integer>)request.getAttribute("Count");
 %>
 <!DOCTYPE html>
 <html>
@@ -97,58 +109,165 @@
 				<thead>
 					<tr>
 						<th>스마트 검색</th>
-						<td>검색 결과 : ${dto.size() }개</td>
+						<td>검색 결과 : <%=total %>개</td>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<th scope="row" style="text-align: center;">제조사</th>
-						<c:forEach var="name" items="${manufactor }" varStatus="i">
+						<% 
+							ArrayList<String> manufactor = (ArrayList<String>) request.getAttribute("manufactor");
+							if(SelectMF != null){
+							for(int i =0; i<manufactor.size();i++){
+								boolean res = false;
+								int count = Count.get(manufactor.get(i));
+								for(int j=0; j<SelectMF.length;j++){
+									if(manufactor.get(i).equals(SelectMF[j])){
+										res=true;
+									}
+								} if(res){
+						%>
+									<td>
+									<c:set target="${Count}" property="name" value="<%=manufactor.get(i) %>"/>
+									<input type="checkbox" name="manufactor" value="<%=manufactor.get(i) %>"
+										onclick='getCheckboxValue(event)' checked> <%=manufactor.get(i) %> (<%=count %>)
+									</td>
+						<%
+								} else {
+						%>
+									<td>
+									<c:set target="${Count}" property="name" value="\<%=manufactor.get(i) %>"/>
+									<input type="checkbox" name="manufactor" value="<%=manufactor.get(i) %>"
+										onclick='getCheckboxValue(event)'> <%=manufactor.get(i) %> (<%=count %>)
+									</td>	
+						<%
+								}
+						}
+							} else {
+						%>
+							<c:forEach var="name" items="${manufactor }" varStatus="i">
 							<td>
 							<c:set target="${Count}" property="name" value="${name }"/>
 							<input type="checkbox" name="manufactor" value="${name}"
 								onclick='getCheckboxValue(event)'> ${name} (${Count.get(name) })
 							</td>
-						</c:forEach>
-						<td></td>
+							</c:forEach>
+						<%
+							}
+						%>
+						
 					</tr>
 					<tr>
 						<th scope="row" style="text-align: center;">종류</th>
-						<c:forEach var="name" items="${category }" varStatus="i">
+						<% 
+							ArrayList<String> category = (ArrayList<String>) request.getAttribute("category");
+							if(SelectTY != null){
+							for(int i =0; i<category.size();i++){
+								boolean res = false;
+								int count = Count.get(category.get(i));
+								for(int j=0; j<SelectTY.length;j++){
+									if(category.get(i).equals(SelectTY[j])){
+										res=true;
+									}
+								} if(res){
+						%>
+									<td>
+									<c:set target="${Count}" property="name" value="<%=category.get(i) %>"/>
+									<input type="checkbox" name="category" value="<%=category.get(i) %>"
+										onclick='getCheckboxValue(event)' checked> <%=category.get(i) %> (<%=count %>)
+									</td>
+						<%
+								} else {
+						%>
+									<td>
+									<c:set target="${Count}" property="name" value="\<%=category.get(i) %>"/>
+									<input type="checkbox" name="category" value="<%=category.get(i) %>"
+										onclick='getCheckboxValue(event)'> <%=category.get(i) %> (<%=count %>)
+									</td>	
+						<%
+								}
+						}
+							} else {
+						%>
+							<c:forEach var="name" items="${category }" varStatus="i">
 							<td> <c:set target="${Count}" property="name" value="${name }"/>
 							<input type="checkbox" name="category" value="${name}"
 								onclick='getCheckboxValue(event)'> ${name} (${Count.get(name) })
 							</td>
-						</c:forEach>
+							</c:forEach>
+						<%
+							}
+						%>
+						
 					</tr>
 					<tr>
 						<th scope="row" style="text-align: center;">스위치</th>
-						<c:forEach var="name" items="${sw }" varStatus="i">
+						<% 
+							ArrayList<String> sw = (ArrayList<String>) request.getAttribute("sw");
+							if(SelectSW != null){
+							for(int i =0; i<sw.size();i++){
+								boolean res = false;
+								int count = Count.get(sw.get(i));
+								for(int j=0; j<SelectSW.length;j++){
+									if(sw.get(i).equals(SelectSW[j])){
+										res=true;
+									}
+								} if(res){
+						%>
+									<td>
+									<c:set target="${Count}" property="name" value="<%=sw.get(i) %>"/>
+									<input type="checkbox" name="sw" value="<%=sw.get(i) %>"
+										onclick='getCheckboxValue(event)' checked> <%=sw.get(i) %> (<%=count %>)
+									</td>
+						<%
+								} else {
+						%>
+									<td>
+									<c:set target="${Count}" property="name" value="\<%=sw.get(i) %>"/>
+									<input type="checkbox" name="sw" value="<%=sw.get(i) %>"
+										onclick='getCheckboxValue(event)'> <%=sw.get(i) %> (<%=count %>)
+									</td>	
+						<%
+								}
+						}
+							} else {
+						%>
+							<c:forEach var="name" items="${sw }" varStatus="i">
 							<td> <c:set target="${Count}" property="name" value="${name }"/>
 							<input type="checkbox" name="sw" value="${name}"
 								onclick='getCheckboxValue(event)'> ${name} (${Count.get(name) })
 							</td>
-						</c:forEach>
+							</c:forEach>
+						<%
+							}
+						%>
+						
 					</tr>
 					<tr>
 						<th scope="row" style="text-align: center;">가격대</th>
 						<td colspan="4">
-							<button type="button" id="pricebtn"
-								class="btn btn-outline-dark active">전체</button> <c:forEach
-								var="name" items="${priceLange }" varStatus="i">
-								<button type="button" id="pricebtn" class="btn btn-outline-dark" 
-								onclick='location.href="../item/itemDetailList?price=${name}";'>${name}</button>
+							<c:forEach var="name" items="${priceLange }" varStatus="i">
+								<c:choose>
+									<c:when test="${name == prices }">
+										<button type="button" id="pricebtn"
+											class="btn btn-outline-dark active">${name}</button>
+									</c:when>
+									<c:otherwise>
+										<button type="button" id="pricebtn"
+											class="btn btn-outline-dark"
+											onclick='location.href="?price=${name}";'>${name}</button>
+									</c:otherwise>
+								</c:choose>
 							</c:forEach>
 						</td>
 					</tr>
 					<tr>
-						<th style="text-align: center;">스마트필터</th>
-						<td colspan="3" id="res"></td>
+						<th><button type="button" style="text-align:center;"
+								class="btn btn-outline-primary" onclick='location.href="../item/itemList";'>필터 초기화</button>
+						</th>
+						<td colspan="4" id="res"></td>
 						<td><button type="button" id="Submit"
 								class="btn btn-outline-primary" onclick='check()'>상세검색</button>
-						</td>
-						<td><button type="button"
-								class="btn btn-outline-primary" onclick='location.href="../item/itemList";'>필터 초기화</button>
 						</td>
 					</tr>
 				</tbody>
@@ -186,10 +305,32 @@
 		</div>
 	</div>
 	<script>
-		var mflist = [];
-		var categorylist = [];
-		var swlist = [];
-		var result = "";
+		var Beforeresult = "";
+		var Beforemflist = document.getElementsByName('manufactor');
+		var mflist =[];
+		for (var i = 0; i < Beforemflist.length; i++) { 
+		      if(Beforemflist[i].checked){
+		    	  mflist.push(Beforemflist[i].value);
+		    	  Beforeresult += Beforemflist[i].value + " ";
+		      }
+		}
+		var Beforecategorylist = document.getElementsByName('category');
+		var categorylist =[];
+		for (var i = 0; i < Beforecategorylist.length; i++) { 
+		      if(Beforecategorylist[i].checked){
+		    	  categorylist.push(Beforecategorylist[i].value);
+		    	  Beforeresult += Beforecategorylist[i].value + " ";
+		      }
+		}
+		var Beforeswlist = document.getElementsByName('sw');
+		var swlist =[];
+		for (var i = 0; i < Beforeswlist.length; i++) { 
+		      if(Beforeswlist[i].checked){
+		    	  swlist.push(Beforeswlist[i].value);
+		    	  Beforeresult += Beforeswlist[i].value + " ";
+		      }
+		}
+		
 		function getCheckboxValue(event) {
 			if (event.target.checked) {
 				if (event.target.name === "manufactor") {
@@ -227,18 +368,19 @@
 					}
 				}
 			}
-			var result = "";
-			mflist.forEach(function(item, index, array) {
-				result += item + ", ";
-			});
-			categorylist.forEach(function(item, index, array) {
-				result += item + ", ";
-			});
-			swlist.forEach(function(item, index, array) {
-				result += item + ", ";
-			});
-			document.getElementById('res').innerText = result;
+//			var result = Beforeresult;
+//			mflist.forEach(function(item, index, array) {
+//				result += item + ", ";
+//			});
+//			categorylist.forEach(function(item, index, array) {
+//				result += item + ", ";
+//			});
+//			swlist.forEach(function(item, index, array) {
+//				result += item + ", ";
+//			});
+//			document.getElementById('res').innerText = result;
 		}
+		document.getElementById('res').innerText = Beforeresult;
 	</script>
 	<script>
 		var mflist = new Array();
