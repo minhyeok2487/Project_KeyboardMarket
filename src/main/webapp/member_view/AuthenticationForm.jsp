@@ -25,10 +25,14 @@
 			<td><input type="email" name="email"/></td>
 		</tr>
 		<tr>
-			<td><input type="button" value="인증 코드 보내기" onclick="javascript:checkLogin()"/></td>
+			<td><input type="button" value="인증 코드 보내기" onclick="checkLogin()"/></td>
 		</tr>
+		
+		
 	</table>
 </form>
+
+
 
 
 <script type="text/javascript">
@@ -45,11 +49,6 @@
 				}
 			}
 
-/*             function joinMember(){
-	            	var uid = document.getElementsByName('email')[0].value;
-	            	var url = "Authentication?email=" + uid;
-	               window.open(url, "인증하기", "width=640, height=400")
-            } */
 </script>
 
 </body>
