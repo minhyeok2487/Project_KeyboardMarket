@@ -91,7 +91,24 @@
 		</div>
 		<hr>
 	</div>
-
+	<div class="container">
+		<div style="padding-top: 50px">
+			<h5>주문 정보</h5>
+			<table class="table">
+				<tr>
+					<th>주문자 아이디</th>
+					<th>주문자 이름</th>
+					<th>배송지</th>
+					<th>전화번호</th>
+				</tr>
+				<tr>
+					<td>${memberid }</td>
+					<td>${main.getName() }</td>
+					<td>${main.getAddr1() }${main.getAddr2() }</td>
+					<td>${main.getTel() }</td>
+				</tr>
+			</table>
+		</div>
 
 
 

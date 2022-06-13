@@ -26,11 +26,11 @@
 	String[] SelectMF = null;
 	String[] SelectTY = null;
 	String[] SelectSW = null;
-	String prices = request.getParameter("price");
+	String prices = request.getParameter("prices");
 	if(prices == null){
 		prices = "전체";
 	}
-	pageContext.setAttribute("prices", prices);
+
 	ArrayList<itemDTO> dtos = (ArrayList<itemDTO>) request.getAttribute("dto");
 	if (request.getParameterValues("manufactor") != null) {
 		SelectMF = request.getParameterValues("manufactor");
@@ -245,20 +245,24 @@
 					</tr>
 					<tr>
 						<th scope="row" style="text-align: center;">가격대</th>
+						<input type="hidden" name="prices" id="prices" value="전체">
 						<td colspan="4">
-							<c:forEach var="name" items="${priceLange }" varStatus="i">
-								<c:choose>
-									<c:when test="${name == prices }">
-										<button type="button" id="pricebtn"
-											class="btn btn-outline-dark active">${name}</button>
-									</c:when>
-									<c:otherwise>
-										<button type="button" id="pricebtn"
-											class="btn btn-outline-dark"
-											onclick='location.href="?price=${name}";'>${name}</button>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>
+							<% 
+								ArrayList<String> priceLange = (ArrayList<String>) request.getAttribute("priceLange");
+								for(int i = 0; i<priceLange.size(); i++){
+									if( priceLange.get(i).equals(prices)){
+							%>
+									<button type="button" id="pricebtn"
+											class="btn btn-outline-dark active"><%=priceLange.get(i) %></button>
+							<%
+									} else {
+							%>
+									<button type="button" id="pricebtn checks" name="checks"
+											class="btn btn-outline-dark" value="<%=priceLange.get(i) %>"><%=priceLange.get(i) %></button>
+							<%
+									}
+								}
+							%>
 						</td>
 					</tr>
 					<tr>
@@ -405,8 +409,40 @@
 					swlist.push(document.getElementsByName("sw")[i].value);
 				}
 			}
+			
 			document.frm.submit();
 		}
+		
+
+		var btns = document.getElementsByName("checks");
+		btns.forEach(element => element.addEventListener('click', function(e){
+			var prices = e.target.value;
+			document.getElementById("prices").value = prices;
+			var mflist = new Array();
+			var typelist = new Array();
+			var swlist = new Array();
+			j = document.getElementsByName("manufactor").length;
+			k = document.getElementsByName("category").length;
+			s = document.getElementsByName("sw").length;
+	
+				for (var i = 0; i < j; i++) {
+					if (document.getElementsByName("manufactor")[i].checked == true) {
+						mflist.push(document.getElementsByName("manufactor")[i].value);
+					}
+				}
+				for (var i = 0; i < k; i++) {
+					if (document.getElementsByName("category")[i].checked == true) {
+						categorylist.push(document.getElementsByName("category")[i].value);
+					}
+				}
+				for (var i = 0; i < s; i++) {
+					if (document.getElementsByName("sw")[i].checked == true) {
+						swlist.push(document.getElementsByName("sw")[i].value);
+					}
+				}
+				console.log(prices)
+				document.frm.submit();
+		}));
 	</script>
 </body>
 </html>

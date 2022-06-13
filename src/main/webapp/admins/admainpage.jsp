@@ -65,7 +65,7 @@
 			<li class="nav-item" role="presentation">
 				<button class="nav-link" id="end-tab" data-bs-toggle="tab"
 					data-bs-target="#end" type="button" role="tab" aria-controls="end"
-					aria-selected="false">반품요청(<%=MainRRList.size()  %>건)</button>
+					aria-selected="false">교환요청(<%=MainRRList.size()  %>건)</button>
 			</li>
 		</ul>
 

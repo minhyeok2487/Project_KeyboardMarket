@@ -15,6 +15,7 @@ import model.item.itemDAO;
 import model.member.memberDAO;
 import model.member.memberDTO;
 import model.order.OrderDAO;
+import model.order.OrderDTO;
 
 public class OrderEnd implements Service {
 
@@ -46,10 +47,15 @@ public class OrderEnd implements Service {
 	
 		for(int i=0; i<cartList.size();i++) {
 			new OrderDAO().addOrder(ordered_num,merchant,member,addr1,addr2,cartList.get(i),zipcode);
-			int count = new itemDAO().Detail(cartList.get(i).getItemNo()).getStock()-cartList.get(i).getSelected_count();
-			new itemDAO().addStock(cartList.get(i).getItemNo(), count);
 		}
 		new CartDAO().delCart(memberNo); //장바구니 비우기
+		
+		
+		ArrayList<OrderDTO> OrderList = new OrderDAO().SearchOrederedNum(ordered_num);
+		String memberid = new memberDAO().detail(OrderList.get(0).getMemberNo()).getUser_id();
+		request.setAttribute("main", OrderList.get(0));
+		request.setAttribute("memberid", memberid);
+		request.setAttribute("orderNum", ordered_num);
 		
 		request.setAttribute("cartList", cartList);
 		request.setAttribute("mainUrl", "./carts/orderendpage");
