@@ -30,6 +30,7 @@ public class AddMainNotice implements Service {
 				if (AllNoticeList.get(i).getNoticeNo() == M_NoticeList.get(j).getNoticeNo()) {
 					AllNoticeList.remove(i);
 					i--;
+					break;
 				}
 			}
 		}
