@@ -15,26 +15,52 @@ public class itemList implements Service {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		itemDAO dao = new itemDAO();
 		ArrayList<itemDTO> dto = null;
-		String prices = request.getParameter("price");
+		String prices = request.getParameter("prices");
+		dto = new itemDAO().list();
 		if(prices != null) {
 			switch (prices) {
+			case "전체":
+				break;
 			case "1~5만원":
-				dto = new itemDAO().detaillist(10000,50000);
+				for(int i=0; i<dto.size();i++) {
+					if(dto.get(i).getPrice()>=10000 && dto.get(i).getPrice()<=50000 ) {
+						
+					} else {
+						dto.get(i).setItem_name(null);
+					}
+				}
 				break;
 			case "5~10만원":
-				dto = new itemDAO().detaillist(50000,100000);
+				for(int i=0; i<dto.size();i++) {
+					if(dto.get(i).getPrice()>=50000 && dto.get(i).getPrice()<=100000 ) {
+						
+					} else {
+						dto.get(i).setItem_name(null);
+					}
+				}
 				break;
 			case "10~20만원":
-				dto = new itemDAO().detaillist(100000,200000);
+				for(int i=0; i<dto.size();i++) {
+					if(dto.get(i).getPrice()>=100000 && dto.get(i).getPrice()<=200000 ) {
+						
+					} else {
+						dto.get(i).setItem_name(null);
+					}
+				}
 				break;
 			case "20만원~":
-				dto = new itemDAO().detaillist(200000,999999999);
+				for(int i=0; i<dto.size();i++) {
+					if(dto.get(i).getPrice()>=200000) {
+						
+					} else {
+						dto.get(i).setItem_name(null);
+					}
+				}
 				break;
 			}
 		} else {
-			dto = dao.list();
+			dto = new itemDAO().list();
 		}
 		
 		// 1. 제조사 리스트 중복제거
