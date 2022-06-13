@@ -22,13 +22,14 @@
 	<table border="">
 		<tr>
 			<td>코드 입력</td>
-			<td><input type="text" name="AuthenticationUser"/></td>
+			<td><input type="text" id="AuthenticationUser"/></td>
 		</tr>
 		<tr>
-			<td><input type="submit" value="입력" onclick="checkCode()"/></td>
+			<td><input type="button" value="입력" onclick="javascript:checkCode()"/></td>
 		</tr>
 	</table>
 </form>
+
 <h1>
 	<div>
 	  <span>제한시간  :   </span><span id="timer"></span>
@@ -65,21 +66,25 @@
 	
 	 var AuthTimer = new $ComTimer()
 	
-	  AuthTimer.comSecond = 10;
+	  AuthTimer.comSecond = 180;
 	  AuthTimer.fnCallback = function(){alert("다시인증을 시도해주세요.")}
 	  AuthTimer.timer =  setInterval(function(){AuthTimer.fnTimer()},1000);
 	  AuthTimer.domId = document.getElementById("timer");
 	  
 	  
-	  function checkCode() {
-		var AuthenticationKeyCheck = ${AuthenticationKey };
-		var AuthenticationUser = document.getElementById(AuthenticationUser);
+
+</script>
+
+<script type="text/javascript">
+	function checkCode() {
+		var AuthenticationKeyCheck = '${AuthenticationKey }';
+		var AuthenticationUser = document.getElementById('AuthenticationUser').value;
+		
 		
 		if(AuthenticationKeyCheck == AuthenticationUser){
 			location.href = "<c:url value="AuthenticationReg?email=${email }"/>";
-			
 		}else{
-			alert("코드가 틀립니다");
+			alert(AuthenticationUser+"코드가 틀립니다");
 		}
 	}
 
