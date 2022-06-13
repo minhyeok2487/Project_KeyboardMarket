@@ -20,7 +20,7 @@
 			<td><input type="email" name="email"/></td>
 		</tr>
 		<tr>
-			<td><input type="button" value="goButton" onclick="javascript:checkLogin()"/></td>
+			<td><input type="button" value="인증 코드 보내기" onclick="javascript:checkLogin()"/></td>
 		</tr>
 	</table>
 </form>

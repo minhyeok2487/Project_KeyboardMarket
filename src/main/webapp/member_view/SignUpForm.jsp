@@ -54,12 +54,26 @@
 			<td>주소</td>
 			<td>
 				<input id="member_post"  name="zip_code" type="text" placeholder="주소 입력" readonly onclick="findAddr()">
-				<input id="member_addr" name="addr1" type="text" placeholder="Address" readonly> <br>
+				<input id="member_addr" name="addr1" type="text" placeholder="Address" readonly onclick="findAddr()"> <br>
 				<input type="text" name="addr2" placeholder="상세 주소">
 			</td>
 		</tr>
 		<tr>
-			<td>전화 번호</td><td><input type="text" name="tel" placeholder="예)01012341234"/></td>
+			<td colspan="2">전화 번호</td><!-- <td><input type="text" name="tel" placeholder="예)01012341234"/></td> -->
+			<td></td>
+		</tr>
+		<tr>
+			<td>
+				<select name = "tel1">
+					<option value="010">010</option>
+					<option value="011">011</option>
+					<option value="016">016</option>
+					<option value="017">017</option>	
+					<option value="019">019</option>
+				</select>
+			</td>
+			<td><input type="text" name="tel2" placeholder="예)1234"/></td>
+			<td><input type="text" name="tel3" placeholder="예)1234"/></td>
 		</tr>
 		
 		<tr>
