@@ -49,7 +49,8 @@
 			<td>이름</td><td><input type="text" name="name" value="${dto.name }" /></td>
 		</tr>
 		<tr>
-			<td>생일</td><td><fmt:formatDate value="${dto.birthdate }" pattern="yyyy-MM-dd"/></td>
+			<td>생일</td>
+			<td><input type="date" name="birthdate" value="<fmt:formatDate value="${dto.birthdate }" pattern="yyyy-MM-dd"/>" id="currentDate" /></td>
 		</tr>
 		<tr>
 			<td>성별</td>
@@ -69,14 +70,80 @@
 		<td>주소</td>
 			<td>
 				<input id="member_post"  name="zip_code" type="text" value="${dto.zip_code }" placeholder="주소 입력" readonly onclick="findAddr()">
-				<input id="member_addr" name="addr1" type="text" value="${dto.addr1 } placeholder="Address" readonly> <br>
+				<input id="member_addr" name="addr1" type="text" value="${dto.addr1 }" placeholder="Address" readonly> <br>
 				<input type="text" name="addr2" value="${dto.addr2 }" placeholder="상세 주소">
 			</td>
 			<td></td>
 		</tr>
 		<tr>
-			<td>전화 번호</td><td><input type="text" name="tel" value="${dto.tel }" /></td>
+			<td colspan="2">전화 번호</td>
+			<td></td>
 		</tr>
+		
+		<tr>
+<%-- 			<td>
+			<c:choose>
+				<c:when test="${dto.tel1 eq '010'}">
+				<select name = "tel1">
+					<option value="010" selected="selected">010</option>
+					<option value="011">011</option>
+					<option value="016">016</option>
+					<option value="017">017</option>	
+					<option value="019">019</option>
+				</select>
+				</c:when>
+				<c:when test="${dto.tel1 eq '011'}">
+				<select name = "tel1">
+					<option value="010">010</option>
+					<option value="011" selected="selected">011</option>
+					<option value="016">016</option>
+					<option value="017">017</option>	
+					<option value="019">019</option>
+				</select>
+				</c:when>
+				<c:when test="${dto.tel1 eq '016'}">
+				<select name = "tel1">
+					<option value="010">010</option>
+					<option value="011">011</option>
+					<option value="016" selected="selected">016</option>
+					<option value="017">017</option>	
+					<option value="019">019</option>
+				</select>
+				</c:when>
+				<c:when test="${dto.tel1 eq '017'}">
+				<select name = "tel1">
+					<option value="010">010</option>
+					<option value="011">011</option>
+					<option value="016">016</option>
+					<option value="017" selected="selected">017</option>	
+					<option value="019">019</option>
+				</select>
+				</c:when>
+				<c:when test="${dto.tel1 eq '019'}">
+				
+				<select name = "tel1">
+					<option value="010">010</option>
+					<option value="011">011</option>
+					<option value="016">016</option>
+					<option value="017">017</option>	
+					<option value="019" selected="selected">019</option>
+				</select>
+				</c:when>
+				</c:choose>
+			</td> --%>
+			<td>
+			<select name = "tel1">
+					<option value="010">010</option>
+					<option value="011">011</option>
+					<option value="016">016</option>
+					<option value="017">017</option>	
+					<option value="019">019</option>
+				</select>
+			</td>
+			<td><input type="text" name="tel2" value="${dto.tel2 }" placeholder="예)1234"/></td>
+			<td><input type="text" name="tel3" value="${dto.tel3 }" placeholder="예)1234"/></td>
+		</tr>
+		
 		<tr>
 			<td>가입일</td><td><fmt:formatDate value="${dto.reg_date }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 		</tr>
@@ -104,7 +171,6 @@
 </form>
 
 <script type="text/javascript">
-	document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);
 	
 	function findAddr(){
 		new daum.Postcode({
