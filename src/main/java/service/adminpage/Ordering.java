@@ -48,6 +48,13 @@ public class Ordering implements Service {
 				new OrderDAO().requestRefund(orderNum);
 			} else if (res.equals("교환확인")) {
 				msg = "교환을 완료하였습니다.";
+				ArrayList<OrderDTO> OrderList = new OrderDAO().SearchOrederedNum(orderNum);
+				for(OrderDTO order:OrderList) {
+					int itemNo = order.getItemNo();
+					int count = order.getSelect_count();
+					int stock = new itemDAO().Detail(itemNo).getStock() - count;
+					new itemDAO().Sell(itemNo, stock);
+				}
 			}
 		} else {
 			msg = "처리 실패";
