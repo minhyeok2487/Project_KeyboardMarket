@@ -24,7 +24,16 @@ public class MemberDetail implements Service {
 		
 		memberDTO data = dao.detail(id);
 		
-		System.out.println(data.getGender());
+		
+		String tel = data.getTel();
+		
+		String tel1 = tel.substring(0,2);
+		String tel2 = tel.substring(3,6);
+		String tel3 = tel.substring(7);
+		
+		data.setTel1(tel1);
+		data.setTel2(tel2);
+		data.setTel3(tel3);
 		
 		
 		request.setAttribute("dto", data);

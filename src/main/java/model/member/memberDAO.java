@@ -57,6 +57,17 @@ public class memberDAO {
 				}
 				if (rs.getString("tel") != null) {
 					dto.setTel(rs.getString("tel"));
+					
+					String tel = rs.getString("tel");
+					
+					String tel1 = tel.substring(0,2);
+					String tel2 = tel.substring(3,6);
+					String tel3 = tel.substring(7);
+					
+					dto.setTel1(tel1);
+					dto.setTel2(tel2);
+					dto.setTel3(tel3);
+					
 				}
 				dto.setReg_date(rs.getTimestamp("reg_date"));
 				dto.setStatus(rs.getString("status"));
@@ -139,6 +150,17 @@ public class memberDAO {
 
 				if (rs.getString("tel") != null) {
 					res.setTel(rs.getString("tel"));
+					
+					String tel = rs.getString("tel");
+					
+					String tel1 = tel.substring(0,2);
+					String tel2 = tel.substring(3,6);
+					String tel3 = tel.substring(7);
+					
+					res.setTel1(tel1);
+					res.setTel2(tel2);
+					res.setTel3(tel3);
+					
 				}
 
 				res.setReg_date(rs.getTimestamp("reg_date"));
@@ -188,6 +210,15 @@ public class memberDAO {
 				}
 				if (rs.getString("tel") != null) {
 					dto.setTel(rs.getString("tel"));
+					String tel = rs.getString("tel");
+					
+					String tel1 = tel.substring(0,2);
+					String tel2 = tel.substring(3,6);
+					String tel3 = tel.substring(7);
+					
+					dto.setTel1(tel1);
+					dto.setTel2(tel2);
+					dto.setTel3(tel3);
 				}
 				dto.setReg_date(rs.getTimestamp("reg_date"));
 				dto.setStatus(rs.getString("status"));

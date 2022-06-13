@@ -60,7 +60,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2">전화 번호</td><!-- <td><input type="text" name="tel" placeholder="예)01012341234"/></td> -->
+			<td colspan="2">전화 번호</td>
 			<td></td>
 		</tr>
 		<tr>
