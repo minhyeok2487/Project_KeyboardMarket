@@ -84,65 +84,20 @@
 		</tr>
 		
 		<tr>
-<%-- 			<td>
-			<c:choose>
-				<c:when test="${dto.tel1 eq '010'}">
+ 			<td>
 				<select name = "tel1">
-					<option value="010" selected="selected">010</option>
-					<option value="011">011</option>
-					<option value="016">016</option>
-					<option value="017">017</option>	
-					<option value="019">019</option>
-				</select>
-				</c:when>
-				<c:when test="${dto.tel1 eq '011'}">
-				<select name = "tel1">
-					<option value="010">010</option>
-					<option value="011" selected="selected">011</option>
-					<option value="016">016</option>
-					<option value="017">017</option>	
-					<option value="019">019</option>
-				</select>
-				</c:when>
-				<c:when test="${dto.tel1 eq '016'}">
-				<select name = "tel1">
-					<option value="010">010</option>
-					<option value="011">011</option>
-					<option value="016" selected="selected">016</option>
-					<option value="017">017</option>	
-					<option value="019">019</option>
-				</select>
-				</c:when>
-				<c:when test="${dto.tel1 eq '017'}">
-				<select name = "tel1">
-					<option value="010">010</option>
-					<option value="011">011</option>
-					<option value="016">016</option>
-					<option value="017" selected="selected">017</option>	
-					<option value="019">019</option>
-				</select>
-				</c:when>
-				<c:when test="${dto.tel1 eq '019'}">
-				
-				<select name = "tel1">
-					<option value="010">010</option>
-					<option value="011">011</option>
-					<option value="016">016</option>
-					<option value="017">017</option>	
-					<option value="019" selected="selected">019</option>
-				</select>
-				</c:when>
-				</c:choose>
-			</td> --%>
-			<td>
-			<select name = "tel1">
-					<option value="010">010</option>
-					<option value="011">011</option>
-					<option value="016">016</option>
-					<option value="017">017</option>	
-					<option value="019">019</option>
+				<c:forTokens items="010,011,016,017,019"  delims="," var="tt">
+					<c:set  var="ss" value="" />
+					<c:if test="${dto.tel1 eq tt}">
+						<c:set  var="ss" value="selected" />
+					</c:if>
+					
+					<option value="${tt }" ${ss }>${tt }</option>
+						
+				</c:forTokens>
 				</select>
 			</td>
+
 			<td><input type="text" name="tel2" value="${dto.tel2 }" placeholder="예)1234"/></td>
 			<td><input type="text" name="tel3" value="${dto.tel3 }" placeholder="예)1234"/></td>
 		</tr>

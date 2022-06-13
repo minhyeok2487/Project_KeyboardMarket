@@ -27,7 +27,7 @@ public class MemberDetail implements Service {
 		
 		String tel = data.getTel();
 		
-		String tel1 = tel.substring(0,2);
+		String tel1 = tel.substring(0,3);
 		String tel2 = tel.substring(3,7);
 		String tel3 = tel.substring(7);
 		
