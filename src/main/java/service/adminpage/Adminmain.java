@@ -23,7 +23,7 @@ public class Adminmain implements Service {
 		ArrayList<OrderDTO> allList = new OrderDAO().allList();
 		int total = 0;
 		for (OrderDTO price : allList) {
-			if(price.getStatus().equals("주문완료") || price.getStatus().equals("배송완료") || price.getStatus().equals("배송중"))
+			if(price.getStatus().equals("주문완료") || price.getStatus().equals("배송완료") || price.getStatus().equals("배송중") || price.getStatus().equals("교환확인"))
 			total += price.getPrice();
 		}
 
@@ -135,7 +135,7 @@ public class Adminmain implements Service {
 		}
 
 		// 6.교환요청 리스트
-		ArrayList<OrderDTO> RequestRefundList = new OrderDAO().Searchlist("환불요청");
+		ArrayList<OrderDTO> RequestRefundList = new OrderDAO().Searchlist("교환요청");
 		ArrayList<OrderDTO> MainRRList = new ArrayList<OrderDTO>();
 		for (int i = 0; i < RequestRefundList.size(); i++) {
 			boolean res = true;
