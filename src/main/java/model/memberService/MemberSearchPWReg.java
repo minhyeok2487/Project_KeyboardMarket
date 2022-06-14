@@ -20,6 +20,7 @@ public class MemberSearchPWReg implements Service {
 		String userId = request.getParameter("user_id");
 		String uID = "";
 		boolean flag = true;
+		String msg = "";
 		
 		ArrayList<memberDTO> memberList = new memberDAO().allList();
 		
@@ -33,7 +34,10 @@ public class MemberSearchPWReg implements Service {
 		}
 		
 		if(flag) {
-			request.setAttribute("mainUrl", "./member_view/LoginForm");
+			msg = "계정이 존재하지 않습니다";
+			request.setAttribute("msg", msg);
+			request.setAttribute("goUrl", "./Login");
+			request.setAttribute("mainUrl", "/member_view/alert");
 		}else {
 			request.setAttribute("mainUrl", "./member_view/SearchPWNext");
 		}
