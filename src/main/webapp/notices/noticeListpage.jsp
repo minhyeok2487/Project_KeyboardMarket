@@ -20,8 +20,11 @@
 %>
 <link href="../css/notice.css" rel="stylesheet" type="text/css">
 <br>
-<h1 align="center">공지</h1>
+
 <div class="container-box">
+<div class="alert alert-success" role="alert">
+<h2 align="center">공지</h2>
+</div>
 <table class="table">
 	<thead>
 		<tr align="center">
@@ -36,7 +39,7 @@
 			<tr align="center">
 				<td>${dto.noticeNo}</td>
 				<td><a href="<c:url value="./NoticeDetail?noticeNo=${dto.noticeNo }&page=${nowPage }"/>" style="text-decoration: none; color: black;">${dto.subject }</a></td>
-				<td style="color: gray">${dto.pname }</td>
+				<td style="color: green">${dto.pname }</td>
 				<td><fmt:formatDate value="${dto.reg_date }"
 						pattern="yyyy-MM-dd HH:mm" /></td>
 			</tr>
