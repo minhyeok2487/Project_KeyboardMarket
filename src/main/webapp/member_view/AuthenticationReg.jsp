@@ -18,7 +18,8 @@
 
 <h2>코드는 대소문자를 정확하게 입력해주세요</h2>
 <%-- <form action="AuthenticationReg?AuthenticationKey=${AuthenticationKey }&email=${email}" method="post"> --%>
-<form action="" method="post">
+<form action="AuthenticationReg" name="frm" method="post">
+<input type="hidden" name="email" value="${email }" />
 	<table border="">
 		<tr>
 			<td>코드 입력</td>
@@ -80,11 +81,12 @@
 		var AuthenticationKeyCheck = '${AuthenticationKey }';
 		var AuthenticationUser = document.getElementById('AuthenticationUser').value;
 		
+		var form = document.frm;
 		
 		if(AuthenticationKeyCheck == AuthenticationUser){
-			location.href = "<c:url value="AuthenticationReg?email=${email }"/>";
+			form.submit();
 		}else{
-			alert(AuthenticationUser+"코드가 틀립니다");
+			alert("코드가 틀립니다");
 		}
 	}
 
