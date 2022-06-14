@@ -78,7 +78,8 @@ function checkEmpty() {
 	%>
 	<label for="exampleFormControlInput1" class="form-label">주문번호</label>
 	<div class="dropdown">
-		<select class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" name="select_orderNum">
+		<select class="form-select" aria-label="Default select example" name="select_orderNum">
+		<option selected="selected">주문번호를 선택하세요</option>
 		<%
 		String ordered_num = null;
 		String itemName = null;

@@ -35,6 +35,7 @@ function checkEmpty() {
 	form.submit();
 	}
 </script>
+<div class="container">
 <form action="./NoticeModifyReg" method="post" name="noticeModify">
 	<input type="hidden" name="noticeNo" value="${dto.noticeNo }" />
 	<input type="hidden" name="pname" value="관리자" />
@@ -63,3 +64,4 @@ function checkEmpty() {
 		<div align="right"><button type="button" class="btn btn-outline-primary" onclick="checkEmpty()">수정하기</button></div>
 		<div align="right"><button type="reset" class="btn btn-outline-primary">초기화</button></div>
 </form>
+</div>
