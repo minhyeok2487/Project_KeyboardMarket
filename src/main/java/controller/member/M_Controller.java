@@ -25,10 +25,15 @@ public class M_Controller extends HttpServlet {
 	 */
 
 	ArrayList<String> nonClass;
+	
+	ArrayList<String> nonTemplate;
 
 	public M_Controller() {
 		super();
 		nonClass = new ArrayList<String>();
+		
+		nonTemplate = new ArrayList<String>();
+		nonTemplate.add("IdCheck");
 	}
 
 	/**
@@ -61,9 +66,11 @@ public class M_Controller extends HttpServlet {
 			}
 		}
 
+		if(!nonTemplate.contains(serviceStr)) {
 		// 포워딩의 액션태그 기능을 쓰기위한 사전작업 앞에 / 안붙이면 무한루프돌음
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/template.jsp");
-		dispatcher.forward(request, response);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/template.jsp");
+			dispatcher.forward(request, response);
+		}
 	}
 
 	@Override
