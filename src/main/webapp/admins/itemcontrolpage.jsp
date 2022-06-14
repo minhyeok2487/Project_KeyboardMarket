@@ -31,6 +31,12 @@
 	}
 	pageContext.setAttribute("memberNo",memberNo);
 %>
+<style type="text/css">
+td {
+	vertical-align: middle !important;
+	text-align: center !important;
+}
+</style>
 <title>관리자 페이지</title>
 </head>
 <body>
@@ -39,13 +45,13 @@
 	</jsp:include>
 	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display-3">상품관리</h1>
+			<h1 class="display-4">상품관리</h1>
 			<p><a href="./AddItem"><button class="btn btn-secondary" type="button">상품 추가</button></a></p>
 		</div>
 	</div>
 	
-	<div class="container">
-		<table class="table">
+	<div class="container" >
+		<table class="table table-striped">
 			<tr>
 				<th></th>
 				<th>상품</th>
@@ -67,8 +73,8 @@
 				<td><%=item.getPrice()%></td>
 				<td><%=item.getStock()%></td>
 				<td>
-					<p><a href="./ItemEdit?itemNo=<%=item.getItemNo() %>"><button class="btn btn-primary" type="button">상품정보 수정</button></a></p>
-					<p><a href="./ItemAddStock?itemNo=<%=item.getItemNo() %>"><button class="btn btn-primary" type="button">상품 입고</button></a></p>
+					<p><a href="./ItemEdit?itemNo=<%=item.getItemNo() %>"><button class="btn btn-primary" type="button" style="width: 100%;">상품정보 수정</button></a></p>
+					<p><a href="./ItemAddStock?itemNo=<%=item.getItemNo() %>"><button class="btn btn-success" type="button" style="width: 100%;">상품 입고</button></a></p>
 				</td>
 			</tr>
 			<%

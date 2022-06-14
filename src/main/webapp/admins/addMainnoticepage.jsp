@@ -36,6 +36,12 @@ if (dto != null) {
 }
 pageContext.setAttribute("memberNo", memberNo);
 %>
+<style type="text/css">
+td {
+	vertical-align: middle !important;
+	text-align: center !important;
+}
+</style>
 <title>관리자 페이지</title>
 </head>
 <body>
@@ -44,7 +50,7 @@ pageContext.setAttribute("memberNo", memberNo);
 	</jsp:include>
 	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display-3">메인페이지 공지 추가</h1>
+			<h1 class="display-4">메인페이지 공지 추가</h1>
 		</div>
 	</div>
 
@@ -59,7 +65,7 @@ pageContext.setAttribute("memberNo", memberNo);
 				<div id="collapseOne" class="accordion-collapse collapse show"
 					aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 					<div class="accordion-body">
-						<table class="table">
+						<table class="table table-striped">
 							<tr>
 								<th></th>
 								<th>번호</th>
@@ -101,7 +107,7 @@ pageContext.setAttribute("memberNo", memberNo);
 				<div id="collapseTwo" class="accordion-collapse collapse"
 					aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
 					<div class="accordion-body">
-						<table class="table">
+						<table class="table table-striped">
 							<tr>
 								<th></th>
 								<th>번호</th>

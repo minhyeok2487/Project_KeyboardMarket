@@ -73,7 +73,7 @@ td {
 					</c:if>
 				</c:forEach>
 				</tbody>
-			</table table-striped>
+			</table>
 		</div>
 	</div>
 </body>

@@ -33,6 +33,16 @@
 	}
 	pageContext.setAttribute("memberNo",memberNo);
 %>
+<style type="text/css">
+td {
+	vertical-align: middle !important;
+	text-align: center !important;
+}
+input {
+	width: 100%;
+	text-align: center !important;
+}
+</style>
 <title>관리자 페이지</title>
 </head>
 <body>
@@ -41,7 +51,7 @@
 	</jsp:include>
 	<div class="jumbotron">
 		<div class="container">
-			<h2 class="display-3">공지사항 관리</h2>
+			<h2 class="display-4">공지사항 관리</h2>
 		</div>
 	</div>
 	<div class="container">
@@ -56,13 +66,12 @@
 				<div id="collapseOne" class="accordion-collapse collapse show"
 					aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 					<div class="accordion-body">
-						<table class="table">
+						<table class="table table-striped">
 							<tr>
 								<th></th>
 								<th>번호</th>
 								<th>제목</th>
 								<th>작성자</th>
-								<th>조회수</th>
 								<th>작성일</th>
 								<th>처리</th>
 							</tr>
@@ -76,7 +85,6 @@
 								<td><%=item.getNoticeNo()%></td>
 								<td><%=item.getSubject()%></td>
 								<td><%=item.getPname()%></td>
-								<td><%=item.getHits() %></td>
 								<td><fmt:formatDate value="<%=item.getReg_date() %>" pattern="yyyy-MM-dd HH:mm" /></td>
 								<td>
 									<button type="button" class="btn btn-success"
@@ -100,13 +108,12 @@
 				<div id="collapseTwo" class="accordion-collapse collapse"
 					aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
 					<div class="accordion-body">
-						<table class="table">
+						<table class="table table-striped">
 							<tr>
 								<th></th>
 								<th>번호</th>
 								<th>제목</th>
 								<th>작성자</th>
-								<th>조회수</th>
 								<th>작성일</th>
 								<th>처리</th>
 								<th></th>
@@ -121,13 +128,9 @@
 								<td><%=item.getNoticeNo()%></td>
 								<td><%=item.getSubject()%></td>
 								<td><%=item.getPname()%></td>
-								<td><%=item.getHits() %></td>
 								<td><%=item.getReg_date() %></td>
 								<td>
-									<button type="submit" class="btn btn-secondary" onclick='#'>만료됨</button>
-								</td>
-								<td>
-									<button type="submit" class="btn btn-primary" onclick="location='../notice/NoticeNotExpiration?noticeNo=<%=item.getNoticeNo()%>'">만료취소</button>
+									<button type="submit" class="btn btn-danger" onclick="location='../notice/NoticeNotExpiration?noticeNo=<%=item.getNoticeNo()%>'">만료취소</button>
 								</td>
 							</tr>
 							<%

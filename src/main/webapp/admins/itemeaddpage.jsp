@@ -32,6 +32,16 @@
 	}
 	pageContext.setAttribute("memberNo",memberNo);
 %>
+<style type="text/css">
+td {
+	vertical-align: middle !important;
+	text-align: center !important;
+}
+input {
+	width: 100%;
+	text-align: center !important;
+}
+</style>
 <title>관리자 페이지</title>
 </head>
 <body>
@@ -40,54 +50,52 @@
 	</jsp:include>
 	<div class="jumbotron">
 		<div class="container">
-			<h3 class="display-3">상품 추가</h3>
+			<h3 class="display-4">상품 추가</h3>
+			<a href="./ItemControl" class="btn btn-secondary">상품 목록으로</a>
 		</div>
 	</div>
-
-	<div class="container">
-		<a href="./ItemControl" class="btn btn-secondary">상품 목록으로</a>
-		
+	<div class="container">	
 		<form action="./AddItemReg" method="post"
 			enctype="multipart/form-data">
-			<table class="table">
+			<table class="table table-striped" style="width:800px;">
 				<tr>
 					<th>상품명</th>
-					<td><input type="text" name="item_name"></td>
+					<td><input type="text" name="item_name" placeholder="앱코 HACKER K660 축교환 완전방수 게이밍 카일 광축 블랙"></td>
 				</tr>
 				<tr>
 					<th>제조사</th>
-					<td><input type="text" name="manufacture"></td>
+					<td><input type="text" name="manufacture" placeholder="앱코"></td>
 				</tr>
 				<tr>
 					<th>종류</th>
-					<td><input type="text" name="category"></td>
+					<td><input type="text" name="category" placeholder="무접점"></td>
 				</tr>
 				<tr>
 					<th>스위치</th>
-					<td><input type="text" name="switchs"></td>
+					<td><input type="text" name="switchs" placeholder="광축"></td>
 				</tr>
 				<tr>
 					<th>스펙</th>
-					<td><input type="text" name="spec"></td>
+					<td><input type="text" name="spec" placeholder="유선, 스위치 : 카일"></td>
 				</tr>
 				<tr>
 					<th>가격</th>
-					<td><input type="text" name="price"></td>
+					<td><input type="text" name="price" placeholder="49700"></td>
 				</tr>
 				<tr>
 					<th>재고</th>
-					<td><input type="text" name="stock"></td>
+					<td><input type="text" name="stock" placeholder="30"></td>
 				</tr>
 				<tr>
 					<th>메인 이미지 파일</th>
-					<td><input type="file" name="item_img1"></td>
+					<td><input type="file" name="item_img1" placeholder="4_1.jpg"></td>
 				</tr>
 				<tr>
 					<th>상품 정보 이미지 파일</th>
-					<td><input type="file" name="item_img2"></td>
+					<td><input type="file" name="item_img2" placeholder="4_2.jpg"></td>
 				</tr>
 				<tr>
-					<td><button class="btn btn-primary"
+					<td colspan="2"><button class="btn btn-primary"
 								type="submit">상품 추가</button></td>
 				</tr>
 			</table>
