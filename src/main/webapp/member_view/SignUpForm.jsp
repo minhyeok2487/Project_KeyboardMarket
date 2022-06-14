@@ -26,7 +26,7 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/signUpForm.css" />
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js" >
 
 </script>
 
@@ -35,9 +35,10 @@
 <form  action="SignUpReg?email=${email }" name="frm" method="post" >
 <h1 class="h3 mb-3 fw-normal">회원 가입</h1>
 	<div class="form-floating">
-    <input type="text" name="user_id" class="form-control" id="user_id" placeholder="아이디">
+    <input type="text" name="user_id" class="form-control" id="user_id" onkeydown="inputIdCheck()" placeholder="아이디">
        <label for="id">아이디</label>
     </div>
+    <input type="hidden" name="idDuplication" value="idUncheck">
     <div>
 		<button type="button"
 		class="btn btn-outline-primary" onclick="idTest()">아이디체크</button>
@@ -123,6 +124,8 @@
 		            	var msg = "사용가능";
 		            	if(data==1){///data로 html 값을 받아옴
 		               msg = "아이디 중복";
+		            	}else{
+		            		document.frm.idDuplication.value = "idCheck";
 		            	}
 		            	alert(msg);
 		            },
@@ -160,6 +163,10 @@
       }).open();
   }
   
+  function inputIdCheck(){
+	  document.frm.idDuplication.value = "idUncheck";
+  }
+  
   function checkform() {
 	  var spacing =  /\s/g; // 띄어쓰기 체크
 		var newLine =  /\n/g; // 개행문자 체크 (제거로 만들자) 
@@ -186,19 +193,6 @@
 		    return false;
 		}
 		
-		if(userPw == ""){
-			alert("비밀번호를 입력하세요.");
-			form.user_pw.select;
-		    return false;
-		}
-		
-		if(spacing.test(userPw)){
-			alert("비밀번호에는 빈 칸이 없어야 합니다");
-			form.user_pw.select;
-		    return false;
-		}
-		
-		
 		if(newLine.test(userId)){
 			alert("입력에러. 다시 입력해주세요.");
 			form.user_id.select;
@@ -211,6 +205,25 @@
 			form.user_id.select;
 		    return false;
 		}
+		
+		if(form.idDuplication.value != 'idCheck'){
+			alert("아이디 중복체크를 눌러주세요.");
+		    return false;
+		}
+		
+		
+		if(userPw == ""){
+			alert("비밀번호를 입력하세요.");
+			form.user_pw.select;
+		    return false;
+		}
+		
+		if(spacing.test(userPw)){
+			alert("비밀번호에는 빈 칸이 없어야 합니다");
+			form.user_pw.select;
+		    return false;
+		}
+		
 		
 		if(newLine.test(userPw)){
 			alert("입력에러. 다시 입력해주세요.");
