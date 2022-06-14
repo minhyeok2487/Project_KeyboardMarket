@@ -45,7 +45,7 @@
 	
 	<div class="container">
 		<a href="./ItemControl" class="btn btn-secondary">상품 목록으로</a>
-		<form action="./ItemAddStockReg?" method="post">
+		<form action="./ItemAddStockReg?" method="post" name="frm">
 			<input type="hidden" name="itemNo" value="${getItem.getItemNo() }">
 			<table class="table">
 				<tr>
@@ -71,19 +71,26 @@
 					<th>입고</th>
 					<td>
 						<div class="form-floating">
-							<textarea class="form-control" placeholder="Leave a comment here"
+							<textarea class="form-control" placeholder="입고수량 입력"
 								id="floatingTextarea" name="count"></textarea>
 							<label for="floatingTextarea">입고수량 입력</label>
 						</div>
-						<p>
-							<a href="#"><button class="btn btn-primary" type="submit">상품
-									입고</button></a>
-						</p>
 					</td>
 				</tr>
+				<tr><td colspan="2"><input type="button" class="btn btn-primary" value="상품입고" onclick="check();"></td></tr>
 			</table>
 		</form>
 	</div>
-
+	
+	<script type="text/javascript">
+		function check() {
+			var res = isNaN(document.getElementById('floatingTextarea').value);
+			if(res){
+				alert('숫자만 입력해주십시오.');
+			} else {
+				document.frm.submit();
+			}
+		}
+	</script>
 </body>
 </html>

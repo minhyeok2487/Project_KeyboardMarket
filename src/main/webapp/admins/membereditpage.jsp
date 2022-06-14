@@ -36,7 +36,7 @@
 </head>
 <body>
 	<jsp:include page="../Admintop.jsp" >
-		<jsp:param name="URL" value="member"/>
+		<jsp:param name="URL" value="member"/>
 	</jsp:include>
 	<div class="jumbotron">
 		<div class="container">

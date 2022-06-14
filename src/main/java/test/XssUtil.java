@@ -12,6 +12,7 @@ public class XssUtil {
 	    returnVal = returnVal.replaceAll("script", "");
 	    returnVal = returnVal.replaceAll("iframe", "");
 	    returnVal = returnVal.replaceAll("embed", "");
+	    returnVal = returnVal.replaceAll("/", "&#47");
 	    return returnVal;
 	  }
 }

@@ -94,7 +94,7 @@ if (request.getParameterValues("sw") != null) {
 <body>
 	<div class="container">
 		<form name="frm" action="?" method="get">
-			<table class="table">
+			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th>스마트 검색</th>
@@ -163,8 +163,8 @@ if (request.getParameterValues("sw") != null) {
 		</form>
 	</div>
 	<div class="container">
-		<div class="table-striped">
-			<table class="table">
+		<div class="table table-striped-striped">
+			<table class="table table-striped">
 				<c:forEach var="name" items="${dto }" varStatus="i">
 					<c:if test="${name.item_name != null}">
 						<tr>
