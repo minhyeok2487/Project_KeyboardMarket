@@ -66,17 +66,17 @@
 				%>
 				<c:set var="imgthumb" value="<%=item.getItem_img1()%>"/>
 				<tr>
-					<td><img
+					<td style="text-align: center;"><img
 							src="<c:url value="/source/${imgthumb }"/>" alt=""
 							width=150 height=150 />
 					</td>
-					<td name="Item_name"><%=item.getItem_name()%></td>
-					<td><%=item.getPrice()%></td>
-					<td name="Selected_count"><%=item.getSelected_count()%></br>
+					<td name="Item_name" style="text-align: center; vertical-align: middle;"><%=item.getItem_name()%></td>
+					<td style="text-align: center; vertical-align: middle;"><%=item.getPrice()%></td>
+					<td name="Selected_count" style="text-align: center; vertical-align: middle;"><%=item.getSelected_count()%></br>
 						<a href="./ChangeCart?memberNo=<%=memberNo%>&itemNo=<%=item.getItemNo() %>" class="btn btn-outline-success">수량 변경</a>
 					</td>
-					<td><%=total%></td>
-					<td><a href="./RemoveItem?itemNo=<%=item.getItemNo() %>&memberNo=<%=memberNo%>">삭제</a></td>
+					<td style="text-align: center; vertical-align: middle;"><%=total%></td>
+					<td style="text-align: center; vertical-align: middle;"><a href="./RemoveItem?itemNo=<%=item.getItemNo() %>&memberNo=<%=memberNo%>">삭제</a></td>
 				</tr>
 				<%
 				}
@@ -104,14 +104,12 @@
 					<%		
 						}
 					%>
-			<a href="./DeleteCart?memberNo=<%=memberNo%>" class="btn btn-danger" style="float: right; margin-right: 10px;">장바구니 비우기</a>
-					
+			<a href="./DeleteCart?memberNo=<%=memberNo%>" class="btn btn-danger" style="float: right; margin-right: 10px;">장바구니 비우기</a>		
 		</div>	
 	<script type="text/javascript">
 		function goOrder(){
 			document.frm.submit();	
 		}
-		
 	</script>
 </body>
 </html>

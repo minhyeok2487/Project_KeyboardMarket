@@ -96,8 +96,8 @@ public class MemberCancelList implements Service {
 			}
 		}
 
-		// 3.환불 리스트
-		ArrayList<OrderDTO> endList = new OrderDAO().SearchMemberNolist("%환불%", memberNo);
+		// 3.교환 리스트
+		ArrayList<OrderDTO> endList = new OrderDAO().SearchMemberNolist("%교환%", memberNo);
 		ArrayList<OrderDTO> mainendList = new ArrayList<OrderDTO>();
 		for (int i = 0; i < endList.size(); i++) {
 			boolean res = true;

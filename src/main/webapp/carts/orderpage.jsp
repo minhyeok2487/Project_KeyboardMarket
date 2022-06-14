@@ -80,11 +80,19 @@
 <!-- 테스트 JS(샘플에 제공된 테스트 MID 전용) -->
 <script language="javascript" type="text/javascript"
 	src="https://stgstdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script>
+<style type="text/css">
+td {
+	vertical-align: middle !important;
+	text-align: center !important;
+}
+</style>
 <title>주문페이지</title>
 </head>
 <body>
-	<div class="container">
-		<h2>주문내역서 작성</h2>
+	<div class="jumbotron">
+		<div class="container">
+			<h5 class="display-4">주문내역서 작성</h5>
+		</div>
 	</div>
 	<div class="container">
 			<table class="table table-striped">
@@ -125,7 +133,6 @@
 					<th></th>
 					<th>총액</th>
 					<th><%=sum%></th>
-					<th></th>
 				</tr>
 			</table>
 		</div>
@@ -133,38 +140,37 @@
 		<form name="frm" action="../cart/OrderEnd?" method="post">
 			<input type="hidden" id="memberNo" value="<%=memberNo%>">
 			<input type="hidden" id="ordered_num" value="<%=mid%>">
-			<div class="form-group row">
-				<label class="col-sm-2">주문자 이름</label>
-				<div class="col-sm-3">${member.name }</div>
-			</div>
-			<div class="form-group row">
-				<label class="col-sm-2">주문자 전화번호</label>
-				<div class="col-sm-3">${member.tel }</div>
-			</div>
-			<div>
-				<label class="col-sm-2">주문자 주소</label><br> <input type="text"
-					id="sample4_postcode" disabled="disabled" placeholder="우편번호">
-				<input type="button" onclick="sample4_execDaumPostcode()"
-					value="우편번호 찾기"><br> 
-				<input type="text" id="sample4_roadAddress" name="addr1" placeholder="도로명주소">
-				<input type="text" id="sample4_jibunAddress" disabled="disabled"
-					placeholder="지번주소"><br> <input type="text"
-					id="sample4_detailAddress" name="addr2" placeholder="상세주소 입력">
-				<input type="text" id="sample4_extraAddress" disabled="disabled"
-					placeholder="참고항목">
-			</div>
-		</form>
-		<div class="form-group row">
-			<div class="col-sm-offset-2 col-sm-10 ">
-				<a href="./cart.jsp?memberNo=<%=memberNo %>"
-					class="btn btn-secondary" role="button">이전</a>
-				<button onclick="requestPay()"
-					class="btn btn_primary">결제하기</button>
-				<a href="./checkOutCancelled.jsp" class="btn btn-secondary"
-					role="button">취소</a>
-			</div>
-		</div>
-
+			<table class="table" style=" margin-right:0px;">
+				<tr>
+					<th>주문자 이름</th>
+					<td colspan="2">${member.name }</td>
+				</tr>
+				<tr>
+					<th>주문자 전화번호</th>
+					<td colspan="2">${member.tel }</td>
+				</tr>
+				<tr>
+					<th>배송지 주소</th>
+					<td colspan="2"><input type="button" onclick="sample4_execDaumPostcode()"
+					value="우편번호 찾기"></td>
+				</tr>
+				<tr>
+					<td><input type="text"
+					id="sample4_postcode" disabled="disabled" placeholder="우편번호" style="width:100%; text-align:center;"></td>
+					<td><input type="text" id="sample4_jibunAddress" disabled="disabled"
+					placeholder="지번주소" style="width:100%; text-align:center;"></td>
+					<td><input type="text" id="sample4_extraAddress" disabled="disabled"
+					placeholder="참고항목" style="width:100%; text-align:center;"></td>
+				</tr>
+				<tr>
+					<td><input type="text" id="sample4_roadAddress" name="addr1" placeholder="도로명주소" style="width:100%; text-align:center;"></td>
+					<td colspan="2" ><input type="text" id="sample4_detailAddress" name="addr2" placeholder="상세주소 입력" style="width:100%; text-align:center;"></td>
+				</tr>
+			</table>
+			</form>
+			<a href="./Cartview?reg=view&memberNo=<%=memberNo %>" class="btn btn-secondary" role="button" style="margin :10px; ">이전</a>
+		<button onclick="requestPay()" class="btn btn-primary" style="margin :10px; float: right;">결제하기</button>
+		
 	</div>
 
 	<form id="SendPayForm_id" name="inissubmit" method="POST">

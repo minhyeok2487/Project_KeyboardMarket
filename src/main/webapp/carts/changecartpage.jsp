@@ -35,17 +35,14 @@ pageContext.setAttribute("memberNo", memberNo);
 <title>장바구니</title>
 </head>
 <body>
-	<div class="jumbotron">
-		<div class="container">
-			<h5 class="display-3">수량변경</h5>
-		</div>
+	<div class="container">
+		<h1 class="display-4" style="vertical-align: middle;">수량변경</h1>
 	</div>
 	<div class="container">
-		<div style="padding-top: 50px">
 			<form action="./ChangeCartReg?" method="get">
 				<input type="hidden" name="itemNo" value="${cartdto.getItemNo() }">
 				<input type="hidden" name="memberNo" value="${cartdto.getMemberNo() }">
-				<table class="table">
+				<table class="table table-striped">
 					<tr>
 						<th></th>
 						<th>상품명</th>
@@ -55,14 +52,14 @@ pageContext.setAttribute("memberNo", memberNo);
 						<th>바꿀수량</th>
 					</tr>
 					<tr>
-						<td><img
+						<td style="text-align: center; vertical-align: middle;"><img
 							src="<c:url value="/source/${cartdto.getItem_img1() }"/>" alt=""
 							width=150 height=150 /></td>
-						<td>${cartdto.getItem_name() }</td>
-						<td>${cartdto.getPrice() }</td>
-						<td>${cartdto.getSelected_count() }</td>
-						<td>${cartdto.getStock() }</td>
-						<td><select onchange="showValue(this.value)"
+						<td style="text-align: center; vertical-align: middle;">${cartdto.getItem_name() }</td>
+						<td style="text-align: center; vertical-align: middle;">${cartdto.getPrice() }</td>
+						<td style="text-align: center; vertical-align: middle;">${cartdto.getSelected_count() }</td>
+						<td style="text-align: center; vertical-align: middle;">${cartdto.getStock() }</td>
+						<td style="text-align: center; vertical-align: middle;"><select onchange="showValue(this.value)"
 							class="form-select" aria-label="Default select example">
 								<c:forEach var="i" begin="1" end="${cartdto.getStock() }">
 									<option value="${i }">${i }</option>
@@ -71,9 +68,8 @@ pageContext.setAttribute("memberNo", memberNo);
 						</td>
 					</tr>
 				</table>
-				<input type="submit" class="btn btn-outline-success" value="수량변경">
+				<input type="submit" class="btn btn-outline-success" value="수량변경" style="float: right;">
 			</form>
-		</div>
 	</div>
 	<script>
 		var showValue = function(value) {

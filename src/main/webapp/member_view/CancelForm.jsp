@@ -23,13 +23,23 @@ pageContext.setAttribute("memberNo", memberNo);
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+td {
+	vertical-align: middle !important;
+	text-align: center !important;
+}
+</style>
 <meta charset="UTF-8">
 <title>주문내역</title>
 </head>
 <body>
+	<div class="jumbotron">
+		<div class="container">
+			<h1 class="display-4">취소 교환 반품내역</h1>
+		</div>
+	</div>
 	<div class="container">
-		<h1>주문내역</h1>
-		<a href="./Order" class="btn btn-primary">주문 내역 보러가기</a>
+		<a href="./Order" class="btn btn-primary" style="margin-bottom: 20px;">주문 내역 보러가기</a>
 		<!-- 탭 메뉴 -->
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
 			<li class="nav-item" role="presentation">
@@ -53,7 +63,7 @@ pageContext.setAttribute("memberNo", memberNo);
 		<div class="tab-content" id="myTabContent">
 			<div class="tab-pane fade show active" id="order" role="tabpanel"
 				aria-labelledby="order-tab">
-				<table class="table">
+				<table class="table table-striped">
 					<tr>
 						<th></th>
 						<th>주문번호</th>
@@ -83,7 +93,7 @@ pageContext.setAttribute("memberNo", memberNo);
 			</div>
 			<div class="tab-pane fade" id="shipping" role="tabpanel"
 				aria-labelledby="shipping-tab">
-				<table class="table">
+				<table class="table table-striped">
 					<tr>
 						<th></th>
 						<th>주문번호</th>
@@ -113,7 +123,7 @@ pageContext.setAttribute("memberNo", memberNo);
 			</div>
 			<div class="tab-pane fade" id="end" role="tabpanel"
 				aria-labelledby="end-tab">
-				<table class="table">
+				<table class="table table-striped">
 					<tr>
 						<th></th>
 						<th>주문번호</th>
