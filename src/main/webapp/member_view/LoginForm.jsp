@@ -30,12 +30,12 @@
 		<form action="./LoginReg" name="frm" method="post">
 			<h1 class="h3 mb-3 fw-normal">로그인</h1>
 			<div class="form-floating">
-		       <input type="text" name="member_id" class="form-control" id="id" placeholder="ID">
-		       <label for="id">아이디</label>
+		       <input type="text" name="member_id" class="form-control" id="member_id" placeholder="ID" >
+		       <label for="member_id">아이디</label>
 		    </div>
 		    <div class="form-floating">
-			    <input type="password" name="member_pw" class="form-control" id="pwd" placeholder="Password">
-			    <label for="pwd">비밀번호</label>
+			    <input type="password" name="member_pw" class="form-control" id="member_pw" placeholder="Password">
+			    <label for="member_pw">비밀번호</label>
 			</div>
 			<button class="w-100 btn btn-lg btn-primary" type="button" onclick="javascript:checkLogin()" >로그인</button>
 			<div class="form-button">

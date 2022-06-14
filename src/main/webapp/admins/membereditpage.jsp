@@ -7,15 +7,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/signUpForm.css" />
 <%@page import="model.member.memberDTO"%>
 <%	
 	int memberNo;
@@ -32,146 +30,123 @@
 	}
 	pageContext.setAttribute("memberNo",memberNo);
 %>
-<title>관리자 페이지</title>
-</head>
-<body>
-	<jsp:include page="../Admintop.jsp" >
+
+ 	<jsp:include page="../Admintop.jsp" >
 		<jsp:param name="URL" value="member"/>
 	</jsp:include>
 	<div class="jumbotron">
-		<div class="container">
+		<div class="container" style="margin-right:-310px;">
 			<h3 class="display-4">회원 정보 수정</h3>
-			<a href="./MemberControl" class="btn btn-secondary">회원 목록으로</a>
+			<a href="./MemberControl" class="btn btn-secondary" >회원 목록으로</a>
 		</div>
 	</div>
-	
-	<div class="container">
-		<form action="MemberEditReg" method="post">
-			<input type="hidden" name="user_id" value="${getMember.getUser_id() }" />
-			<input type="hidden" name="email" value="${getMember.getEmail() }" />
-			<input type="hidden" name="reg_date" value="${getMember.getReg_date() }" />
-			<input type="hidden" name="memberNo" value="${getMember.getMemberNo() }">
-			<table class="table">
-				<tr>
-					<th>회원번호</th>
-					<td>
-						${getMember.getMemberNo() }
-					</td>
-				</tr>
-				<tr>
-					<th>회원아이디</th>
-					<td>
-						${getMember.getUser_id() }
-					</td>
-				</tr>
-				<tr>
-					<th>회원이름</th>
-					<td>
-						<input type="text" name="name" value="${getMember.getName() }">
-					</td>
-				</tr>
-				<tr>
-					<th>생일</th>
-					<td>
-					<input type="date" name="birthdate" value="<fmt:formatDate value="${getMember.birthdate }" pattern="yyyy-MM-dd"/>" id="currentDate" />
-					</td>
-				</tr>
-				<tr>
-					<th>성별</th>
-					<td>
-					<c:choose>
-						<c:when test="${getMember.getGender() eq 'm'}">
-							<input type='radio' name='gender' value='m' checked="checked"/>남성
-							<input type='radio' name='gender' value='f' />여성
-						</c:when>
-						<c:when test="${getMember.getGender() eq 'f'}">
-							<input type='radio' name='gender' value='m' />남성
-							<input type='radio' name='gender' value='f' checked="checked" />여성
-						</c:when>
-					</c:choose>
-					</td>
-				</tr>
-				<tr>
-					<th>이메일</th>
-					<td>
-						<input type="text" name="email" value="${getMember.getEmail() }">
-					</td>
-				</tr>
-				<tr>
-					<th>주소</th>
-						<td>
-							<input id="member_post"  name="zip_code" type="text" value="${getMember.zip_code }" placeholder="주소 입력" readonly onclick="findAddr()">
-							<input id="member_addr" name="addr1" type="text" value="${getMember.addr1 }" placeholder="Address" readonly> <br>
-							<input type="text" name="addr2" value="${getMember.addr2 }" placeholder="상세 주소">
-						</td>
-				</tr>
-				<tr>
-					<td colspan="2">전화 번호</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>
-					<select name = "tel1">
-					<c:forTokens items="010,011,016,017,019"  delims="," var="tt">
+
+<main class="text-center form-signin">
+	<form  action="MemberEditReg" name="frm" method="post" >
+	<input type="hidden" name="gender" value="${getMember.gender }" />
+		<div class="form-floating">
+	    		<input type="text" name="memberNo" value="${getMember.memberNo }" class="form-control" id="memberNo" placeholder="아이디" readonly>
+	    		<label for="memberNo">회원번호</label>
+	    </div>
+	    <div class="form-floating">
+	    		<input type="text" name="user_id" value="${getMember.user_id }" class="form-control" id="user_id" placeholder="아이디" readonly>
+	    		<label for="user_id">아이디</label>
+	    </div>	
+		<div class="form-floating">
+	       <input type="text" name="name" value="${getMember.name }" class="form-control" id="name" placeholder="이름">
+	       <label for="name">이름</label>
+	    </div>	
+	    	    	<div class="form-floating" style="margin-bottom:20px;">
+			<input type="date" name="birthdate" class="form-control" value="<fmt:formatDate value="${getMember.birthdate }" pattern="yyyy-MM-dd"/>" placeholder="생일">
+	       	<label for="birthdate">생일</label>
+		</div>
+	    <c:choose>
+			<c:when test="${getMember.gender eq 'm' }">
+				<div class="form-floating">
+			       <input type="text" name="gender" class="form-control" id="gender" placeholder="성별" readonly>
+			       <label for="gender">남성</label>
+			    </div>
+			</c:when>
+			<c:when test="${getMember.gender eq 'f' }">
+				<div class="form-floating">
+			       <input type="text" name="gender" class="form-control" id="gender" placeholder="성별" readonly>
+			       <label for="gender">여성</label>
+			    </div>
+			</c:when>
+		</c:choose>
+		<div class="form-floating">
+			<input type="text" name="email" value='${getMember.email }' class="form-control" id="email" placeholder="이메일">
+	    		<label for="email">이메일</label>
+		</div>
+		<div class="form-floating">
+			<input type="text" name="zip_code" class="form-control" value="${getMember.zip_code }" id="member_post" placeholder="주소 입력" readonly onclick="findAddr()">
+			<label for="addr">우편번호(클릭)</label>
+		</div>
+		<div class="form-floating">
+			<input type="text" name="addr1" class="form-control" value="${getMember.addr1 }" id="member_addr" placeholder="주소 입력" readonly onclick="findAddr()">
+			<label for="addr">주소</label>
+		</div>
+		<div class="form-floating">
+			<input type="text" name="addr2" class="form-control" value="${getMember.addr2 }"  placeholder="상세 주소" >
+			<label for="addr">상세주소</label>
+		</div>
+		<div class="container" style="margin-top:20px;" >
+			<div class="row" >
+				<div class="col">
+					<select class="form-control" name = "tel1" id="tel1" display="inline-block">
+						<c:forTokens items="010,011,016,017,019"  delims="," var="tt">
 						<c:set  var="ss" value="" />
 						<c:if test="${getMember.tel1 eq tt}">
 							<c:set  var="ss" value="selected" />
 						</c:if>
-						
 						<option value="${tt }" ${ss }>${tt }</option>
-							
-					</c:forTokens>
+						</c:forTokens>
 					</select>
-					</td>
-					<td><input type="text" name="tel2" value="${getMember.tel2 }" placeholder="예)1234"/></td>
-					<td><input type="text" name="tel3" value="${getMember.tel3 }" placeholder="예)1234"/></td>
-				</tr>
-				<tr>
-					<th>등록일</th>
-					<td>
-					<fmt:formatDate value="${getMember.getReg_date() }" pattern="yyyy-MM-dd HH:mm:ss"/>
-						
-					</td>
-				</tr>
-				<tr>
-					<th>상태</th>
-					<td>
-					<c:choose>
-						<c:when test="${getMember.getStatus()  eq '관리자'}">
-							<input type='radio' name='status' value='관리자' checked="checked"/>관리자
-							<input type='radio' name='status' value='회원' />회원
-							<input type='radio' name='status' value='정지' />정지
-							<input type='radio' name='status' value='탈퇴' />탈퇴
-						</c:when>
-						<c:when test="${getMember.getStatus()  eq '회원'}">
-							<input type='radio' name='status' value='관리자' />관리자
-							<input type='radio' name='status' value='회원' checked="checked"/>회원
-							<input type='radio' name='status' value='정지' />정지
-							<input type='radio' name='status' value='탈퇴' />탈퇴
-						</c:when>
-						<c:when test="${getMember.getStatus()  eq '정지'}">
-							<input type='radio' name='status' value='관리자' />관리자
-							<input type='radio' name='status' value='회원' />회원
-							<input type='radio' name='status' value='정지' checked="checked"/>정지
-							<input type='radio' name='status' value='탈퇴' />탈퇴
-						</c:when>	
-						<c:when test="${getMember.getStatus()  eq '탈퇴'}">
-							<input type='radio' name='status' value='관리자' />관리자
-							<input type='radio' name='status' value='회원' />회원
-							<input type='radio' name='status' value='정지'/>정지
-							<input type='radio' name='status' value='탈퇴'  checked="checked"/>탈퇴
-						</c:when>						
-					</c:choose>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<button class="btn btn-primary" type="submit">회원 정보 수정</button>
-					</td>
-				</tr>
-			</table>
-		</form>
-	</div>
+				</div>
+				<div class="col">
+					<input type="text" class="form-control" value="${getMember.tel2 }" id="tel2" name="tel2" placeholder="예)1234" />
+				</div>
+				<div class="col">
+					<input type="text" class="form-control" value="${getMember.tel3 }" name="tel3" id="tel3" placeholder="예)1234" />
+				</div>
+			</div>
+		</div>
+		<div class="form-floating">
+			<input type="text" name="reg_date" class="form-control" value="<fmt:formatDate value="${getMember.reg_date }" pattern="yyyy-MM-dd HH:mm:ss"/>"  placeholder="가입일" readonly>
+			<label for="reg_date">가입일</label>
+		</div>
+		<div style="margin-bottom:20px;">
+			<c:choose>
+				<c:when test="${getMember.getStatus()  eq '관리자'}">
+					<input type='radio' name='status' value='관리자' checked="checked"/>관리자
+					<input type='radio' name='status' value='회원' />회원
+					<input type='radio' name='status' value='정지' />정지
+					<input type='radio' name='status' value='탈퇴' />탈퇴
+				</c:when>
+				<c:when test="${getMember.getStatus()  eq '회원'}">
+					<input type='radio' name='status' value='관리자' />관리자
+					<input type='radio' name='status' value='회원' checked="checked"/>회원
+					<input type='radio' name='status' value='정지' />정지
+					<input type='radio' name='status' value='탈퇴' />탈퇴
+				</c:when>
+				<c:when test="${getMember.getStatus()  eq '정지'}">
+					<input type='radio' name='status' value='관리자' />관리자
+					<input type='radio' name='status' value='회원' />회원
+					<input type='radio' name='status' value='정지' checked="checked"/>정지
+					<input type='radio' name='status' value='탈퇴' />탈퇴
+				</c:when>	
+				<c:when test="${getMember.getStatus()  eq '탈퇴'}">
+					<input type='radio' name='status' value='관리자' />관리자
+					<input type='radio' name='status' value='회원' />회원
+					<input type='radio' name='status' value='정지'/>정지
+					<input type='radio' name='status' value='탈퇴'  checked="checked"/>탈퇴
+				</c:when>						
+			</c:choose>
+		</div>
+		<button class="w-100 btn btn-lg btn-primary" type="button" onclick="checkform()" >회원정보 수정</button>
+	</form>
+</main>
+
 
 <script type="text/javascript">
 
@@ -199,11 +174,113 @@
 	    }).open();
 	}
 
+	//유효성검사
+	  function checkform() {
+		  var spacing =  /\s/g; // 띄어쓰기 체크
+			var newLine =  /\n/g; // 개행문자 체크 (제거로 만들자) 
+			
+			
+			var form = document.frm;
+			
+			var uName = form.name.value;
+			var userEmail = form.email.value;
+			var uAddr2 = form.addr2.value;
+			var uTel2 = form.tel2.value;
+			var uTel3 = form.tel3.value;
+			
+		
+			if(uName == ""){
+				alert("이름을 입력하세요.");
+			    form.name.select;
+			    return false;
+			}
+			
+			if(spacing.test(uName)){
+				alert("이름에는 빈 칸이 없어야 합니다");
+				form.name.select;
+			    return false;
+			}
+			
+			var regExpName = /^[가-힣a-zA-Z]{2,10}$/; //이름. 한글, 영어만 가능
+			if(!regExpName.test(uName)){
+				alert("이름은 한글과 영어만 가능합니다. (최소 2글자 최대 10글자)");
+				form.name.select;
+			    return false;
+			}
+
+	 		if(userEmail == ""){
+				alert("이메일을 입력하세요.");
+				form.email.select;
+			    return false;
+			}
+			
+	 		if(spacing.test(userEmail)){
+				alert("빈 칸이 없어야 합니다");
+				form.email.select;
+			    return false;
+			}
+			
+			if(newLine.test(userEmail)){
+				alert("입력에러. 다시 입력해주세요.");
+				form.email.select;
+			    return false;
+			}
+			
+			var regExpEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+			if(!regExpEmail.test(userEmail)){
+				alert("이메일의 형식에 맞춰 입력해주세요 (test@test.com)");
+				form.email.select;
+			    return false;
+			}
+			
+			var regExpAddr2 = /^[가-힣a-zA-Z\d]{0,30}$/; //주소
+			if(!regExpAddr2.test(uAddr2)){
+				alert("주소는 한글과 영어, 숫자만 입력 가능합니다. (최대 30글자)");
+				form.addr2.select;
+			    return false;
+			}
+			
+			if(uTel2 == ""){
+				alert("전화번호를 입력해주세요");
+			    form.tel2.select;
+			    return false;
+			}
+			
+			if(spacing.test(uTel2)){
+				alert("전화번호에는 빈 칸이 없어야 합니다");
+				form.tel2.select;
+			    return false;
+			}
+			
+			var regExpTel2 = /^[0-9]{4}$/; //숫자만 가능. 4자리
+			if(!regExpTel2.test(uTel2)){
+				alert("전화번호는 4자리의 숫자만 입력 가능합니다.");
+				form.tel2.select;
+			    return false;
+			}
+			
+			if(uTel3 == ""){
+				alert("전화번호를 입력해주세요");
+			    form.tel3.select;
+			    return false;
+			}
+			
+			if(spacing.test(uTel3)){
+				alert("전화번호에는 빈 칸이 없어야 합니다");
+				form.tel3.select;
+			    return false;
+			}
+			var regExpTel3 = /^[0-9]{4}$/; //숫자만 가능. 4자리
+			if(!regExpTel3.test(uTel3)){
+				alert("전화번호는 4자리의 숫자만 입력 가능합니다.");
+				form.tel3.select;
+			    return false;
+			}
+			form.submit();
+
+		}
 
 </script>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-
-</body>
-</html>

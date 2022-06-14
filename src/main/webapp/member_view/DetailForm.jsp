@@ -18,115 +18,106 @@
 	}
 	pageContext.setAttribute("memberNo",memberNo);
 %>     
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
 
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/signUpForm.css" />
 
-<title>개인 정보</title>
-</head>
-<body>
-<h1>개인 정보</h1>
-<form action="ModifyForm" method="post">
-	<input type="hidden" name="memberNo" value="${dto.memberNo }" />
-	<input type="hidden" name="user_id" value="${dto.user_id }" />
-	<input type="hidden" name="email" value="${dto.email }" />
-	<input type="hidden" name="reg_date" value="${dto.reg_date }" />
-	<table border="">
-		<tr>
-			<td>회원 번호</td><td>${dto.memberNo }</td>
-		</tr>
-		<tr>
-			<td>아이디</td><td>${dto.user_id }</td>
-		</tr>
-		<tr>
-			<td>비밀번호</td><td><input type="text" name="user_pw" /></td>
-		</tr>
-		<tr>
-			<td>이름</td><td><input type="text" name="name" value="${dto.name }" /></td>
-		</tr>
-		<tr>
-			<td>생일</td>
-			<td><input type="date" name="birthdate" value="<fmt:formatDate value="${dto.birthdate }" pattern="yyyy-MM-dd"/>" id="currentDate" /></td>
-		</tr>
-		<tr>
-			<td>성별</td>
-			<c:choose>
-				<c:when test="${dto.gender eq 'm' }">
-					<td>남성</td>
-				</c:when>
-				<c:when test="${dto.gender eq 'f' }">
-					<td>여성</td>
-				</c:when>
-			</c:choose>
-		</tr>
-		<tr>
-			<td>이메일</td><td>${dto.email }</td>
-		</tr>
-		<tr>
-		<td>주소</td>
-			<td>
-				<input id="member_post"  name="zip_code" type="text" value="${dto.zip_code }" placeholder="주소 입력" readonly onclick="findAddr()">
-				<input id="member_addr" name="addr1" type="text" value="${dto.addr1 }" placeholder="Address" readonly> <br>
-				<input type="text" name="addr2" value="${dto.addr2 }" placeholder="상세 주소">
-			</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td colspan="2">전화 번호</td>
-			<td></td>
-		</tr>
+<main class="text-center form-signin">
+	<form  action="ModifyForm" name="frm" method="post" >
+	<h1 class="h3 mb-3 fw-normal">개인 정보</h1>
+	<input type="hidden" name="gender" value="${dto.gender }" />
+		<div class="form-floating">
+	    		<input type="text" name="memberNo" value="${dto.memberNo }" class="form-control" id="memberNo" placeholder="아이디" readonly>
+	    		<label for="memberNo">회원번호</label>
+	    </div>
+	    <div class="form-floating">
+	    		<input type="text" name="user_id" value="${dto.user_id }" class="form-control" id="user_id" placeholder="아이디" readonly>
+	    		<label for="user_id">아이디</label>
+	    </div>
+	    <div class="form-floating">
+		    <input type="password" name="user_pw" class="form-control" id="user_pw" placeholder="Password">
+		    <label for="user_pw">비밀번호</label>
+		</div>
+		<div class="form-floating">
+	       <input type="text" name="name" value="${dto.name }" class="form-control" id="name" placeholder="이름">
+	       <label for="name">이름</label>
+	    </div>
+	    	<div class="form-floating" style="margin-bottom:20px;">
+			<input type="date" name="birthdate" class="form-control" value="<fmt:formatDate value="${dto.birthdate }" pattern="yyyy-MM-dd"/>" placeholder="생일">
+	       	<label for="birthdate">생일</label>
+		</div>
+		<c:choose>
+			<c:when test="${dto.gender eq 'm' }">
+				<div class="form-floating">
+			       <input type="text" name="gender" class="form-control" id="gender" placeholder="성별" readonly>
+			       <label for="gender">남성</label>
+			    </div>
+			</c:when>
+			<c:when test="${dto.gender eq 'f' }">
+				<div class="form-floating">
+			       <input type="text" name="gender" class="form-control" id="gender" placeholder="성별" readonly>
+			       <label for="gender">여성</label>
+			    </div>
+			</c:when>
+		</c:choose>
+		<div class="form-floating">
+			<input type="text" name="email" value='${email }' class="form-control" id="email" placeholder="이메일" readonly>
+	    		<label for="email">이메일</label>
+		</div>
 		
-		<tr>
- 			<td>
-				<select name = "tel1">
-				<c:forTokens items="010,011,016,017,019"  delims="," var="tt">
-					<c:set  var="ss" value="" />
-					<c:if test="${dto.tel1 eq tt}">
-						<c:set  var="ss" value="selected" />
-					</c:if>
-					
-					<option value="${tt }" ${ss }>${tt }</option>
-						
-				</c:forTokens>
-				</select>
-			</td>
-
-			<td><input type="text" name="tel2" value="${dto.tel2 }" placeholder="예)1234"/></td>
-			<td><input type="text" name="tel3" value="${dto.tel3 }" placeholder="예)1234"/></td>
-		</tr>
+		<div class="form-floating">
+			<input type="text" name="zip_code" class="form-control" value="${dto.zip_code }" id="member_post" placeholder="주소 입력" readonly onclick="findAddr()">
+			<label for="addr">우편번호(클릭)</label>
+		</div>
+		<div class="form-floating">
+			<input type="text" name="addr1" class="form-control" value="${dto.addr1 }" id="member_addr" placeholder="주소 입력" readonly onclick="findAddr()">
+			<label for="addr">주소</label>
+		</div>
+		<div class="form-floating">
+			<input type="text" name="addr2" class="form-control" value="${dto.addr2 }"  placeholder="상세 주소" >
+			<label for="addr">상세주소</label>
+		</div>
 		
-		<tr>
-			<td>가입일</td><td><fmt:formatDate value="${dto.reg_date }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-		</tr>
-		<tr>
-			<td></td>
-				<td colspan="2" align="center">
-					<input type="reset" value="취소" />
-					<input type="submit" value="수정" />
-			</td>
-		</tr>
-	</table>
-</form>
+		<div class="container" style="margin-top:20px;" >
+			<div class="row" >
+				<div class="col">
+					<select class="form-control" name = "tel1" id="tel1" display="inline-block">
+						<c:forTokens items="010,011,016,017,019"  delims="," var="tt">
+						<c:set  var="ss" value="" />
+						<c:if test="${dto.tel1 eq tt}">
+							<c:set  var="ss" value="selected" />
+						</c:if>
+						<option value="${tt }" ${ss }>${tt }</option>
+						</c:forTokens>
+					</select>
+				</div>
+				<div class="col">
+					<input type="text" class="form-control" value="${dto.tel2 }" id="tel2" name="tel2" placeholder="예)1234" />
+				</div>
+				<div class="col">
+					<input type="text" class="form-control" value="${dto.tel3 }" name="tel3" id="tel3" placeholder="예)1234" />
+				</div>
+			</div>
+		</div>
 
+		<div class="form-floating">
+			<input type="text" name="reg_date" class="form-control" value="<fmt:formatDate value="${dto.reg_date }" pattern="yyyy-MM-dd HH:mm:ss"/>"  placeholder="가입일" readonly>
+			<label for="reg_date">가입일</label>
+		</div>
+		
+		<div class="form-button" >
+			<button type="button"
+			class="btn btn-outline-primary" style="margin-right:50px;" onclick="checkform()">수정</button>
+			<button type="button"
+			class="btn btn-outline-primary" onclick="location.href='Withdrawal?memberNo=${dto.memberNo }'">회원탈퇴</button>
+		</div>
+	</form>
+</main>
 
-<form action="">
-	<table border="">
-		<tr>
-			<td>
-				<button type="button"
-				class="btn btn-outline-primary" onclick="location.href='Withdrawal?memberNo=${dto.memberNo }'">회원 탈퇴</button>
-			</td>
-			<td></td>
-		</tr>
-	</table>
-</form>
 
 <script type="text/javascript">
 	
@@ -153,11 +144,114 @@
 	    }).open();
 	}
 
+	//유효성검사
+	  function checkform() {
+		  var spacing =  /\s/g; // 띄어쓰기 체크
+			var newLine =  /\n/g; // 개행문자 체크 (제거로 만들자) 
+			
+			
+			var form = document.frm;
+			
+			var userPw = form.user_pw.value;
+			var uName = form.name.value;
+			var uAddr2 = form.addr2.value;
+			var uTel2 = form.tel2.value;
+			var uTel3 = form.tel3.value;
+			
+			
+			if(userPw == ""){
+				alert("비밀번호를 입력하세요.");
+				form.user_pw.select;
+			    return false;
+			}
+			
+			if(spacing.test(userPw)){
+				alert("비밀번호에는 빈 칸이 없어야 합니다");
+				form.user_pw.select;
+			    return false;
+			}
+			
+			
+			if(newLine.test(userPw)){
+				alert("입력에러. 다시 입력해주세요.");
+				form.user_pw.select;
+			    return false;
+			}
+			
+			var regExpPw = /^[A-Za-z\d$@$!%*#?&]{4,15}$/; //최소 8자리, 최대 15자리.
+			if(!regExpPw.test(userPw)){
+				alert("비밀번호는 영어,숫자,특수문자가 한글자 이상 들어가야 합니다. (최소 4글자, 최대 15글자)");
+				form.user_pw.select;
+			    return false;
+			}
+			
+			if(uName == ""){
+				alert("이름을 입력하세요.");
+			    form.name.select;
+			    return false;
+			}
+			
+			if(spacing.test(uName)){
+				alert("이름에는 빈 칸이 없어야 합니다");
+				form.name.select;
+			    return false;
+			}
+			
+			var regExpName = /^[가-힣a-zA-Z]{2,10}$/; //이름. 한글, 영어만 가능
+			if(!regExpName.test(uName)){
+				alert("이름은 한글과 영어만 가능합니다. (최소 2글자 최대 10글자)");
+				form.name.select;
+			    return false;
+			}
+			
+			var regExpAddr2 = /^[가-힣a-zA-Z\d]{0,30}$/; //주소
+			if(!regExpAddr2.test(uAddr2)){
+				alert("주소는 한글과 영어, 숫자만 입력 가능합니다. (최대 30글자)");
+				form.addr2.select;
+			    return false;
+			}
+			
+			if(uTel2 == ""){
+				alert("전화번호를 입력해주세요");
+			    form.tel2.select;
+			    return false;
+			}
+			
+			if(spacing.test(uTel2)){
+				alert("전화번호에는 빈 칸이 없어야 합니다");
+				form.tel2.select;
+			    return false;
+			}
+			
+			var regExpTel2 = /^[0-9]{4}$/; //숫자만 가능. 4자리
+			if(!regExpTel2.test(uTel2)){
+				alert("전화번호는 4자리의 숫자만 입력 가능합니다.");
+				form.tel2.select;
+			    return false;
+			}
+			
+			if(uTel3 == ""){
+				alert("전화번호를 입력해주세요");
+			    form.tel3.select;
+			    return false;
+			}
+			
+			if(spacing.test(uTel3)){
+				alert("전화번호에는 빈 칸이 없어야 합니다");
+				form.tel3.select;
+			    return false;
+			}
+			var regExpTel3 = /^[0-9]{4}$/; //숫자만 가능. 4자리
+			if(!regExpTel3.test(uTel3)){
+				alert("전화번호는 4자리의 숫자만 입력 가능합니다.");
+				form.tel3.select;
+			    return false;
+			}
+			form.submit();
+
+		}
 
 </script>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-
-</body>
-</html>
