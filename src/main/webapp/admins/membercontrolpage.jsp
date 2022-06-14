@@ -32,6 +32,16 @@
 	}
 	pageContext.setAttribute("memberNo",memberNo);
 %>
+<style type="text/css">
+td {
+	vertical-align: middle !important;
+	text-align: center !important;
+}
+button {
+	width: 100%;
+	text-align: center !important;
+}
+</style>
 <title>관리자 페이지</title>
 </head>
 <body>
@@ -40,12 +50,12 @@
 	</jsp:include>
 	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display-3">회원 관리</h1>
+			<h1 class="display-4">회원 관리</h1>
 		</div>
 	</div>
 	
 	<div class="container">
-		<table class="table">
+		<table class="table table-striped">
 			<tr>
 				<th>회원 번호</th>
 				<th>아이디</th>

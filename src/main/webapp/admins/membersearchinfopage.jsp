@@ -32,6 +32,16 @@
 	}
 	pageContext.setAttribute("memberNo",memberNo);
 %>
+<style type="text/css">
+td {
+	vertical-align: middle !important;
+	text-align: center !important;
+}
+input {
+	width: 100%;
+	text-align: center !important;
+}
+</style>
 <title>관리자 페이지</title>
 </head>
 <body>
@@ -40,7 +50,7 @@
 	</jsp:include>
 	<div class="jumbotron">
 		<div class="container">
-			<h5 class="display-3">${name } 조회</h5>
+			<h5 class="display-4">${name } 조회</h5>
 		</div>
 	</div>
 	<div class="container">
@@ -57,7 +67,7 @@
 					class="accordion-collapse collapse show"
 					aria-labelledby="panelsStayOpen-headingOne">
 					<div class="accordion-body">
-						<table class="table">
+						<table class="table table-striped">
 							<tr>
 								<th></th>
 								<th>주문번호</th>

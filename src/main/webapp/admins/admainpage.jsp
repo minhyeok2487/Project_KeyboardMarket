@@ -38,6 +38,12 @@
 	ArrayList<OrderDTO> MainRCList = (ArrayList<OrderDTO>) request.getAttribute("MainRCList");
 	ArrayList<OrderDTO> MainRRList = (ArrayList<OrderDTO>) request.getAttribute("MainRRList");
 %>
+<style type="text/css">
+td {
+	vertical-align: middle !important;
+	text-align: center !important;
+}
+</style>
 <title>관리자 페이지</title>
 </head>
 <body>
@@ -45,8 +51,9 @@
 		<jsp:param name="URL" value="main"/>
 	</jsp:include>
 	<div class="container">
-		<h4 class="display-3"><%=new OrderDTO().getDate_format(new Date())%></h4>
-		<h5 class="display-3">이번달 예상 수입 : ${total }원</h5>(status : 주문완료, 배송중, 배송완료, 반품확인)
+		<h4 class="display-4"><%=new OrderDTO().getDate_format(new Date())%></h4>
+		<h5 class="display-5">이번달 예상 수입 : ${total }원</h5>
+		<span style="color:gray;">(status : 주문완료, 배송중, 배송완료, 반품확인)</span>
 	</div>
 
 	<div class="container">

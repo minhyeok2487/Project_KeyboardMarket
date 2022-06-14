@@ -31,6 +31,12 @@
 	}
 	pageContext.setAttribute("memberNo",memberNo);
 %>
+<style type="text/css">
+td {
+	vertical-align: middle !important;
+	text-align: center !important;
+}
+</style>
 <title>관리자 페이지</title>
 </head>
 <body>
@@ -39,15 +45,14 @@
 	</jsp:include>
 	<div class="jumbotron">
 		<div class="container">
-			<h3 class="display-3">상품 입고</h3>
+			<h3 class="display-4">상품 입고</h3>
+			<a href="./ItemControl" class="btn btn-secondary">상품 목록으로</a>
 		</div>
 	</div>
-	
 	<div class="container">
-		<a href="./ItemControl" class="btn btn-secondary">상품 목록으로</a>
 		<form action="./ItemAddStockReg?" method="post" name="frm">
 			<input type="hidden" name="itemNo" value="${getItem.getItemNo() }">
-			<table class="table">
+			<table class="table table-striped" style="width: 600px;">
 				<tr>
 					<th></th>
 					<td><img

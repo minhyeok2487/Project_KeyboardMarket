@@ -40,12 +40,12 @@
 	</jsp:include>
 	<div class="jumbotron">
 		<div class="container">
-			<h3 class="display-3">회원 정보 수정</h3>
+			<h3 class="display-4">회원 정보 수정</h3>
+			<a href="./MemberControl" class="btn btn-secondary">회원 목록으로</a>
 		</div>
 	</div>
 	
 	<div class="container">
-		<a href="./MemberControl" class="btn btn-secondary">회원 목록으로</a>
 		<form action="MemberEditReg" method="post">
 			<input type="hidden" name="user_id" value="${getMember.getUser_id() }" />
 			<input type="hidden" name="email" value="${getMember.getEmail() }" />

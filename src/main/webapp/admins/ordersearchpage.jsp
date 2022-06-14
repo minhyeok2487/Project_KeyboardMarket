@@ -35,6 +35,16 @@ pageContext.setAttribute("memberNo", memberNo);
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 <title></title>
+<style type="text/css">
+td {
+	vertical-align: middle !important;
+	text-align: center !important;
+}
+input {
+	width: 100%;
+	text-align: center !important;
+}
+</style>
 </head>
 <body>
 	<jsp:include page="../Admintop.jsp" >
@@ -45,7 +55,7 @@ pageContext.setAttribute("memberNo", memberNo);
     		<div class="col">
     			<h4>주문번호 검색</h4>
       			<form action="?" method="post" name="frm">
-					<table class="table" style="width: 400px; margin-right:0px;">
+					<table class="table table-striped" style="width: 400px; margin-right:0px;">
 						<tr align="center">
 							<th>주문번호</th>
 		
@@ -79,7 +89,8 @@ pageContext.setAttribute("memberNo", memberNo);
 						</tr>
 						<tr align="center">
 							<th></th>
-							<td><input class="btn btn-primary" type="reset" value="초기화" />
+							<td>
+							<p><input class="btn btn-danger"  type="reset" value="초기화" /></p>
 								<input class="btn btn-primary" type="submit" value="검색" /></td>
 						</tr>
 					</table>
@@ -87,7 +98,7 @@ pageContext.setAttribute("memberNo", memberNo);
     		</div>
     		<div class="col">
     			<h4>결과 정리</h4>
-     		 	<table class="table">
+     		 	<table class="table table-striped">
 			<tr>
 				<th>상태</th>
 				<th>갯수</th>
@@ -114,7 +125,7 @@ pageContext.setAttribute("memberNo", memberNo);
     		</div>
     	</div>
     	<div class="row">
-    	<table class="table">
+    	<table class="table table-striped">
 			<tr>
 				<th>주문번호</th>
 				<th>주문자 ID</th>
@@ -156,7 +167,6 @@ pageContext.setAttribute("memberNo", memberNo);
 			function handler(e) {
 				document.getElementById("startdate").setAttribute("max", e.target.value);
 			}
-			
 		</script>
 
 

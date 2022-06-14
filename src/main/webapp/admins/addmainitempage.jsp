@@ -31,20 +31,30 @@
 	}
 	pageContext.setAttribute("memberNo",memberNo);
 %>
+<style type="text/css">
+td {
+	vertical-align: middle !important;
+	text-align: center !important;
+}
+input {
+	width: 100%;
+	text-align: center !important;
+}
+</style>
 <title>관리자 페이지</title>
 </head>
 <body>
 	<jsp:include page="../Admintop.jsp" >
-		<jsp:param name="URL" value="item"/>
+		<jsp:param name="URL" value="Mainpage"/>
 	</jsp:include>
 	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display-3">메인페이지 상품 추가</h1>
+			<h1 class="display-4">메인페이지 상품 추가</h1>
 		</div>
 	</div>
 	
 	<div class="container">
-		<table class="table">
+		<table class="table table-striped">
 			<tr>
 				<th></th>
 				<th>상품</th>
@@ -66,8 +76,8 @@
 				<td><%=item.getPrice()%></td>
 				<td><%=item.getStock()%></td>
 				<td>
-					<p><a href="./AddMainItemReg?itemNo=<%=item.getItemNo() %>&status=추천상품"><button class="btn btn-primary" type="button">추천상품 추가</button></a></p>
-					<p><a href="./AddMainItemReg?itemNo=<%=item.getItemNo() %>&status=신상품"><button class="btn btn-primary" type="button">신상품 추가</button></a></p>
+					<p><a href="./AddMainItemReg?itemNo=<%=item.getItemNo() %>&status=추천상품"><button class="btn btn-danger" type="button" style="width: 100%;">추천상품 추가</button></a></p>
+					<p><a href="./AddMainItemReg?itemNo=<%=item.getItemNo() %>&status=신상품"><button class="btn btn-primary" type="button" style="width: 100%;">신상품 추가</button></a></p>
 				</td>
 			</tr>
 			<%

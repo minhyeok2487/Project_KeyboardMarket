@@ -34,6 +34,12 @@
 	}
 	pageContext.setAttribute("memberNo",memberNo);
 %>
+<style type="text/css">
+td {
+	vertical-align: middle !important;
+	text-align: center !important;
+}
+</style>
 <title>관리자 페이지</title>
 </head>
 <body>
@@ -42,7 +48,7 @@
 	</jsp:include>
 	<div class="jumbotron">
 		<div class="container">
-			<h2 class="display-3">메인페이지 관리</h2>
+			<h2 class="display-4">메인페이지 관리</h2>
 			<a href="./AddMainItem"><button class="btn btn-warning" type="button">메인 페이지 상품 추가</button></a>
 			<a href="./AddMainNotice"><button class="btn btn-warning" type="button">메인 페이지 공지 추가</button></a>
 		</div>
@@ -58,7 +64,7 @@
 				<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 					<div class="accordion-body">
 						<form action="./RemoveMainItem?" method="get">
-						<table class="table">
+						<table class="table table-striped">
 							<tr>
 								<th></th>
 								<th>상품 번호</th>
@@ -105,7 +111,7 @@
 				<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 					<div class="accordion-body">
 						<form action="./RemoveMainItem?" method="get">
-						<table class="table">
+						<table class="table table-striped">
 							<tr>
 								<th></th>
 								<th>상품 번호</th>
@@ -150,7 +156,7 @@
 					aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 					<div class="accordion-body">
 						<form action="./RemoveMainNotice?" method="post">
-						<table class="table">
+						<table class="table table-striped">
 							<tr>
 								<th></th>
 								<th>공지사항 번호</th>
