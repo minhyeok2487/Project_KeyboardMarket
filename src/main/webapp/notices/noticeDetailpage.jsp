@@ -43,7 +43,12 @@ pageContext.setAttribute("memberNo", memberNo);
 			rows="5" name="content" disabled="disabled">${dto.content }</textarea>
 	</div>
 	<div class="btn-group" role="group" aria-label="Basic example">
+	<%
+	if(userStatus != null){
+		if(userStatus.equals("관리자")){
+%>
 	<button type="button" class="btn btn-warning" onclick="location='./NoticeModifyForm?noticeNo=${dto.noticeNo }'">수정하기</button>
+	<%}}%>
 	<button type="button" class="btn btn-secondary" onclick="location='NoticeList'">목록으로</button>
 	</div>
 </form>
