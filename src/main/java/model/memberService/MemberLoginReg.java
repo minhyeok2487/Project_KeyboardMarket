@@ -36,15 +36,14 @@ public class MemberLoginReg implements Service {
 			if(dto.getStatus().equals("정지")) {
 				msg = "이용할 수 없는 회원입니다";
 				request.setAttribute("msg", msg);
-	//			request.setAttribute("goUrl", "../mainpage/MainService");
-	//			request.setAttribute("mainUrl", "/member_view/alert");
+				request.setAttribute("goUrl", "./Login");
+				request.setAttribute("mainUrl", "/member_view/alert");
 			} else if(dto.getStatus().equals("탈퇴")) {
 				msg = "로그인 실패";
 				request.setAttribute("msg", msg);
-	//			request.setAttribute("goUrl", "../mainpage/MainService");
-	//			request.setAttribute("mainUrl", "/member_view/alert");
+				request.setAttribute("goUrl", "./Login");
+				request.setAttribute("mainUrl", "/member_view/alert");
 			}else {
-				
 				session.setAttribute("inUser", dto);
 				msg = "로그인 성공";
 				
@@ -71,13 +70,17 @@ public class MemberLoginReg implements Service {
 				request.setAttribute("GList", GList);
 				request.setAttribute("NList", NList);
 				request.setAttribute("M_NoticeList", M_NoticeList);
+				request.setAttribute("msg", msg);
+				request.setAttribute("goUrl", "../mainpage/MainService");
+				request.setAttribute("mainUrl", "/member_view/alert");
 			}
 		}else {
 			msg = "로그인 실패";
+			request.setAttribute("msg", msg);
+			request.setAttribute("goUrl", "./Login");
+			request.setAttribute("mainUrl", "/member_view/alert");
 		}
-		request.setAttribute("msg", msg);
-		request.setAttribute("goUrl", "../mainpage/MainService");
-		request.setAttribute("mainUrl", "/member_view/alert");
+
 		
 		
 	}
