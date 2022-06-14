@@ -56,51 +56,79 @@ input {
 	</div>
 	<div class="container">	
 		<form action="./AddItemReg" method="post"
-			enctype="multipart/form-data">
+			enctype="multipart/form-data" name="frm">
 			<table class="table table-striped" style="width:800px;">
 				<tr>
 					<th>상품명</th>
-					<td><input type="text" name="item_name" placeholder="앱코 HACKER K660 축교환 완전방수 게이밍 카일 광축 블랙"></td>
+					<td><input type="text" name="item_name" id="item_name" placeholder="앱코 HACKER K660 축교환 완전방수 게이밍 카일 광축 블랙"></td>
 				</tr>
 				<tr>
 					<th>제조사</th>
-					<td><input type="text" name="manufacture" placeholder="앱코"></td>
+					<td><input type="text" name="manufacture" id="manufacture" placeholder="앱코"></td>
 				</tr>
 				<tr>
 					<th>종류</th>
-					<td><input type="text" name="category" placeholder="무접점"></td>
+					<td><input type="text" name="category" id="category" placeholder="무접점"></td>
 				</tr>
 				<tr>
 					<th>스위치</th>
-					<td><input type="text" name="switchs" placeholder="광축"></td>
+					<td><input type="text" name="switchs" id="switchs" placeholder="광축"></td>
 				</tr>
 				<tr>
 					<th>스펙</th>
-					<td><input type="text" name="spec" placeholder="유선, 스위치 : 카일"></td>
+					<td><input type="text" name="spec" id="spec" placeholder="유선, 스위치 : 카일"></td>
 				</tr>
 				<tr>
 					<th>가격</th>
-					<td><input type="text" name="price" placeholder="49700"></td>
+					<td><input type="text" name="price" id="price" placeholder="49700"></td>
 				</tr>
 				<tr>
 					<th>재고</th>
-					<td><input type="text" name="stock" placeholder="30"></td>
+					<td><input type="text" name="stock" id="stock" placeholder="30"></td>
 				</tr>
 				<tr>
 					<th>메인 이미지 파일</th>
-					<td><input type="file" name="item_img1" placeholder="4_1.jpg"></td>
+					<td><input type="file" name="item_img1" id="item_img1" placeholder="4_1.jpg"></td>
 				</tr>
 				<tr>
 					<th>상품 정보 이미지 파일</th>
-					<td><input type="file" name="item_img2" placeholder="4_2.jpg"></td>
+					<td><input type="file" name="item_img2" id="item_img2" placeholder="4_2.jpg"></td>
 				</tr>
 				<tr>
-					<td colspan="2"><button class="btn btn-primary"
-								type="submit">상품 추가</button></td>
+					<td colspan="2">
+					<input type="button" class="btn btn-primary" onclick="checkImg()" value="상품추가">
+					</td>
 				</tr>
 			</table>
 		</form>
 	</div>
-
+	<script type="text/javascript">
+	function checkImg() {
+		var item_name = document.getElementById("item_name").value; 
+		var manufacture = document.getElementById("manufacture").value; 
+		var category = document.getElementById("category").value; 
+		var switchs = document.getElementById("switchs").value; 
+		var spec = document.getElementById("spec").value; 
+		var price = document.getElementById("price").value; 
+		var stock = document.getElementById("stock").value; 
+		var item_img1 = document.getElementById("item_img1").value; 
+		var item_img2 = document.getElementById("item_img2").value;
+		if((item_name == "" || manufacture == "" || category == "" || 
+				switchs == "" || spec == "" || price == "" ||
+				stock == "" || item_img1 == "" || item_img2 == "")){
+			alert('빈칸이 있습니다');
+	   		return;
+		}
+		item_img1 = item_img1.slice(item_img1.indexOf(".") + 1).toLowerCase();
+		item_img2 = item_img2.slice(item_img2.indexOf(".") + 1).toLowerCase();
+	 	if((item_img1 != "jpg" || item_img2 != "jpg")){
+	   		alert('jpg파일만 올려주십시오');
+	   		return;
+	 	}else{
+	  		document.frm.submit();
+	 	}
+	}
+		
+	</script>
 </body>
 </html>
