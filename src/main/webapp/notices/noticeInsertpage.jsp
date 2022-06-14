@@ -21,7 +21,7 @@ pageContext.setAttribute("memberNo", memberNo);
 <link href="../css/notice.css" rel="stylesheet" type="text/css">
 <div class="container-box">
 <div class="alert alert-success" role="alert">
-<h2 align="center">공지사항을 작성해주세요 :-)</h2>
+<h2 align="center">공지사항을 적는 부분입니다 :-)</h2>
 </div>
 
 <script>
@@ -44,12 +44,6 @@ function checkEmpty() {
 	<input type="hidden" name="pname" value="관리자" />
 	<input type="hidden" name="user_id" value="${dto.user_id }">
 	
-	<!-- <div class="mb-3">
-		<label for="exampleFormControlInput1" class="form-label">제목</label>
-		<input type="text" class="form-control" id="exampleFormControlInput1"
-			placeholder="제목을 입력하세요." name="subject">
-	</div> -->
-	
 	 <div class="col-md-9">
     <label for="validationServer01" class="form-label">제목</label>
     <input type="text" class="form-control" id="validationCustom01" placeholder="제목을 입력하세요." name="subject" required>
@@ -58,7 +52,7 @@ function checkEmpty() {
     </div>
   </div>
 	
-	<div class="col-md-3">
+	<div class="col-md-5">
 		<label for="exampleFormControlInput1" class="form-label">작성자</label>
 		<input type="text" class="form-control" id="exampleFormControlInput1"
 			value="관리자" disabled="disabled">

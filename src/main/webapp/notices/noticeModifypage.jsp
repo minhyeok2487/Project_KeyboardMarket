@@ -19,7 +19,11 @@
 	}
 	pageContext.setAttribute("memberNo",memberNo);
 %>
-<h1>공지사항 수정페이지</h1>
+<link href="../css/notice.css" rel="stylesheet" type="text/css">
+<div class="container-box">
+<div class="alert alert-success" role="alert">
+<h2 align="center">공지를 수정해요</h2>
+</div>
 <script>
 function checkEmpty() {
 	var form = document.noticeModify;
@@ -36,21 +40,21 @@ function checkEmpty() {
 	}
 </script>
 <div class="container">
-<form action="./NoticeModifyReg" method="post" name="noticeModify">
+<form action="./NoticeModifyReg" method="post" name="noticeModify" class="row g-3 needs-validation" novalidate>
 	<input type="hidden" name="noticeNo" value="${dto.noticeNo }" />
 	<input type="hidden" name="pname" value="관리자" />
 
-	<div class="mb-3">
+	<div class="col-md-6">
 		<label for="exampleFormControlInput1" class="form-label">번호</label>
 		<input type="text" class="form-control" id="exampleFormControlInput1"
 			value="${dto.noticeNo}" disabled="disabled">
 	</div>
-	<div class="mb-3">
+	<div class="col-md-9">
 		<label for="exampleFormControlInput1" class="form-label">제목</label>
 		<input type="text" class="form-control" id="exampleFormControlInput1"
 			value="${dto.subject }" name="subject">
 	</div>
-	<div class="mb-3">
+	<div class="col-md-6">
 		<label for="exampleFormControlInput1" class="form-label">작성자</label> 
 		<input type="text" class="form-control" id="exampleFormControlInput1"
 			value="관리자" disabled="disabled">
@@ -60,8 +64,11 @@ function checkEmpty() {
 		<textarea class="form-control" id="exampleFormControlTextarea1"
 			rows="3" name="content">${dto.content }</textarea>
 	</div>
-
-		<div align="right"><button type="button" class="btn btn-outline-primary" onclick="checkEmpty()">수정하기</button></div>
-		<div align="right"><button type="reset" class="btn btn-outline-primary">초기화</button></div>
+<div class="btn-group" role="group" aria-label="Basic example">
+	<button type="button" class="btn btn-primary" onclick="checkEmpty()">작성하기</button>
+	<button type="button" class="btn btn-secondary" onclick="location='NoticeList'">목록으로</button>
+	<button type="reset" class="btn btn-warning">초기화</button>
+	</div>
 </form>
+</div>
 </div>
