@@ -104,13 +104,3 @@ pageContext.setAttribute("memberNo", memberNo);
 		</form>
 	</li>
 </ul>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light" id="topmenu">
-	<div class="container-fluid">
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-			</ul>
-		</div>
-	</div>
-</nav>

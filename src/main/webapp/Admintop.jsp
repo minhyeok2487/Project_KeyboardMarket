@@ -16,42 +16,71 @@
 		memberNo = 0;
 	}
 	pageContext.setAttribute("memberNo",memberNo);
+	String URL = request.getParameter("URL");
 %> 
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous" >
-<nav class="navbar navbar-expand-lg navbar-light bg-light" id="topmenu">
-  <div class="container-fluid">
-  	<a class="navbar-brand" href="./Adminmain">관리자 페이지</a>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      	<li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="./OrderSearch">주문검색</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="./MemberControl">회원관리</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="./ItemControl">상품관리</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="./QnaControl">고객센터 관리</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="./NoticeControl">공지사항 관리</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="./MainControl">메인페이지 관리</a>
-        </li>
-        <li>
-        <form action="./SearchMember?" method="get" class="d-flex">
-        	<input class="form-control me-2" type="search" placeholder="회원 ID 검색" aria-label="Search" name="member_id">
-        	<button class="btn btn-outline-success" type="submit">검색</button>
-      	</form>
-      	</li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<ul id="nav1" class="nav justify-content-center bg-dark">
+	<% if(URL.equals("main")){%>
+		<li><a href="./Adminmain"><button
+				class="btn btn-light" style="margin: 4px;">관리자페이지</button></a></li>
+	<% }else{ %>
+		<li><a href="./Adminmain"><button
+				class="btn btn-dark" style="margin: 4px;">관리자페이지</button></a></li>
+	<%}%>
+	<% if(URL.equals("order")){%>
+		<li><a href="./OrderSearch"><button
+				class="btn btn-light" style="margin: 4px;">주문검색</button></a></li>
+	<% }else{ %>
+		<li><a href="./OrderSearch"><button
+				class="btn btn-dark" style="margin: 4px;">주문검색</button></a></li>
+	<%}%>
+	<% if(URL.equals("member")){%>
+		<li><a href="./MemberControl"><button
+				class="btn btn-light" style="margin: 4px;">회원관리</button></a></li>
+	<% }else{ %>
+		<li><a href="./MemberControl"><button
+				class="btn btn-dark" style="margin: 4px;">회원관리</button></a></li>
+	<%}%>
+	<% if(URL.equals("item")){%>
+		<li><a href="./ItemControl"><button
+				class="btn btn-light" style="margin: 4px;">상품관리</button></a></li>
+	<% }else{ %>
+		<li><a href="./ItemControl"><button
+				class="btn btn-dark" style="margin: 4px;">상품관리</button></a></li>
+	<%}%>
+	<% if(URL.equals("qna")){%>
+		<li><a href="./QnaControl"><button
+				class="btn btn-light" style="margin: 4px;">고객센터 관리</button></a></li>
+	<% }else{ %>
+		<li><a href="./QnaControl"><button
+				class="btn btn-dark" style="margin: 4px;">고객센터 관리</button></a></li>
+	<%}%>		
+	<% if(URL.equals("notice")){%>
+		<li><a href="./NoticeControl"><button
+				class="btn btn-light" style="margin: 4px;">공지사항 관리</button></a></li>
+	<% }else{ %>
+		<li><a href="./NoticeControl"><button
+				class="btn btn-dark" style="margin: 4px;">공지사항 관리</button></a></li>
+	<%}%>	
+	<% if(URL.equals("Mainpage")){%>
+		<li><a href="./MainControl"><button
+				class="btn btn-light" style="margin: 4px;">메인페이지 관리</button></a></li>
+	<% }else{ %>
+		<li><a href="./MainControl"><button
+				class="btn btn-dark" style="margin: 4px;">메인페이지 관리</button></a></li>
+	<%}%>				
+	<!-- 주문검색쪽에 만듬 			
+	<li class="nav-item">
+		<form action="../item/SearchItem?" method="get"
+			class="d-flex justify-content-start" style="margin: 4px;">
+			<input class="form-control me-2" type="search" placeholder="회원 ID 검색"
+				aria-label="Search" name="member_id">
+			<button class="btn btn-outline-light btn-sm" type="submit">Search</button>
+		</form>
+	</li>
+	-->		
+</ul>
