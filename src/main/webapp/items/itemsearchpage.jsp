@@ -41,7 +41,7 @@
 	</div>
 	
 	<div class="container">
-		<table class="table">
+		<table table-striped class="table table-striped">
 				<c:forEach var="name" items="${itemList }" varStatus="i">
 					<c:if test="${name.item_name != null}">
 						<tr>
@@ -66,7 +66,7 @@
 					</c:if>
 				</c:forEach>
 				</tbody>
-			</table>
+			</table table-striped>
 	</div>
 
 </body>

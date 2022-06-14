@@ -83,14 +83,11 @@
 <title>주문페이지</title>
 </head>
 <body>
-	<div class="jumbotron">
-		<div class="container">
-			<h1 class="display-3">주문내역서 작성</h1>
-		</div>
+	<div class="container">
+		<h2>주문내역서 작성</h2>
 	</div>
 	<div class="container">
-		<div style="padding-top: 50px">
-			<table class="table">
+			<table class="table table-striped">
 				<tr>
 					<th></th>
 					<th>상품</th>
@@ -132,9 +129,6 @@
 				</tr>
 			</table>
 		</div>
-		<hr>
-	</div>
-
 	<div class="container">
 		<form name="frm" action="../cart/OrderEnd?" method="post">
 			<input type="hidden" id="memberNo" value="<%=memberNo%>">

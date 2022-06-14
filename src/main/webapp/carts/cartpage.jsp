@@ -37,34 +37,12 @@
 <body>
 	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display-3">장바구니</h1>
+			<h5 class="display-3">장바구니</h5>
 		</div>
 	</div>
 	<div class="container">
-		<div class="row">
-			<table width="100%">
-				<tr>
-					<td align="left"><a
-						href="./DeleteCart?memberNo=<%=memberNo%>"
-						class="btn btn-danger">장바구니 비우기</a></td>
-					<%
-						if(dto != null){
-					%>
-						<td align="right"><a href="javascript:goOrder();" class="btn btn-success">주문하기</a></td>
-					<%
-						} else {
-					%>
-						<td align="right"><a href="../member/Login" class="btn btn-success">주문하기</a></td>
-					<%		
-						}
-					%>
-					
-				</tr>
-			</table>
-		</div>
-		<div style="padding-top: 50px">
 			<form name="frm" action="../cart/OrderCart?" method="get">
-			<table class="table">
+			<table class="table table-striped">
 				<tr>
 					<th></th>
 					<th>상품</th>
@@ -114,10 +92,21 @@
 			</table>
 			</form>
 			<a href="../item/itemList" class="btn btn-secondary">&laquo; 쇼핑 계속하기</a>
-		</div>
-		<hr>
-	</div>
 		
+					<%
+						if(dto != null){
+					%>
+					<a href="javascript:goOrder();" class="btn btn-success" style="float: right;">주문하기</a>
+					<%
+						} else {
+					%>
+					<a href="../member/Login" class="btn btn-success" style="float: right;">주문하기</a>
+					<%		
+						}
+					%>
+			<a href="./DeleteCart?memberNo=<%=memberNo%>" class="btn btn-danger" style="float: right; margin-right: 10px;">장바구니 비우기</a>
+					
+		</div>	
 	<script type="text/javascript">
 		function goOrder(){
 			document.frm.submit();	

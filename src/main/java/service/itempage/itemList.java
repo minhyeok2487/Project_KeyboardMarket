@@ -103,7 +103,7 @@ public class itemList implements Service {
 		// 3. 스위치 중복제거
 		ArrayList<String> BeforeSW = new ArrayList<String>();
 		for (itemDTO item : dto) {
-			if (item.getSwitchs() != null) {
+			if (item.getSwitchs() != null && item.getSwitchs().length()>0) {
 				BeforeSW.add(item.getSwitchs());
 			}
 		}

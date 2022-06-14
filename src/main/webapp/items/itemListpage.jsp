@@ -105,10 +105,10 @@
 <body>
 	<div class="container">
 		<form name="frm" action="?" method="get">
-			<table class="table">
+			<table  class="table table-striped">
 				<thead>
 					<tr>
-						<th>스마트 검색</th>
+						<th style="text-align: center;">스마트 검색</th>
 						<td>검색 결과 : <%=total %>개</td>
 					</tr>
 				</thead>
@@ -266,7 +266,7 @@
 						</td>
 					</tr>
 					<tr>
-						<th><button type="button" style="text-align:center;"
+						<th style="text-align: center;"><button type="button" style="text-align:center;"
 								class="btn btn-outline-primary" onclick='location.href="../item/itemList";'>필터 초기화</button>
 						</th>
 						<td colspan="4" id="res"></td>
@@ -275,12 +275,11 @@
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			</table >
 		</form>
 	</div>
 	<div class="container">
-		<div class="table-striped">
-			<table class="table">
+			<table  class="table table-striped">
 				<c:forEach var="name" items="${dto }" varStatus="i">
 					<c:if test="${name.item_name != null}">
 						<tr>
@@ -288,8 +287,8 @@
 								src="<c:url value="/source/${name.item_img1 }"/>" alt=""
 								width=150 height=150 /></a></th>
 							<td>
-								<p>[상품번호:${name.itemNo }]</p>
-								<p><a href="./itemdetail?id=${name.itemNo}">[${name.manufacture}] ${name.item_name}</a></p>
+								<p class="jb-smaller">[상품번호:${name.itemNo }]</p>
+								<p class="jb-larger"><a href="./itemdetail?id=${name.itemNo}" style="text-decoration: none; color:black;">[${name.manufacture}] ${name.item_name}</a></p>
 							</td>
 							<td>
 								<p>${name.price}원</p> <c:choose>
@@ -305,8 +304,7 @@
 					</c:if>
 				</c:forEach>
 				</tbody>
-			</table>
-		</div>
+			</table >
 	</div>
 	<script>
 		var Beforeresult = "";
