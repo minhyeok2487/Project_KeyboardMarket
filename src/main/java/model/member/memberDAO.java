@@ -114,6 +114,29 @@ public class memberDAO {
 			close();
 		}
 	}
+	
+	public int checkPW(int memberNo, String userPW) {
+		
+		sql = "SELECT count(*) FROM member WHERE memberNO = ? and user_pw = password(?)";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setInt(1, memberNo);
+			ptmt.setString(2, userPW);
+
+			rs = ptmt.executeQuery();
+
+			rs.next(); 
+			
+			return rs.getInt(1);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
 
 	public memberDTO memberLogin(memberDTO dto) {
 		memberDTO res = null;
