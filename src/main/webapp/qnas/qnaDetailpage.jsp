@@ -24,7 +24,7 @@ if (dto != null) {
 pageContext.setAttribute("memberNo", memberNo);
 
 int no = qDTO.getQnaNo();
-Object dataQnoList = new CommentDAO().qnaNoList(no);
+ArrayList<CommentDTO> dataQnoList = new CommentDAO().qnaNoList(no);
 request.setAttribute("commentDataList", dataQnoList);
 
 int count = new CommentDAO().answerCount(no);
@@ -103,19 +103,14 @@ if(count > 0){
 	<textarea class="form-control" id="exampleFormControlTextarea1"
 		rows="3" disabled="disabled">${dto.comment }</textarea>
 </div>
-</c:forEach>
-<%
-if (userStatus != null) {
-	if (userStatus.equals("관리자")) {
-%>
+<c:if test="${userStatus != null && userStatus=='관리자' }">
 	<div align="right">
 		<a href="../comment/CommentModifyForm?commentNo=${dto.commentNo }">
-		<button type="submit" class="btn btn-outline-primary">수정하기</button></a>
+		<button type="submit" class="btn btn-outline-primary">수정하기</button>
+		</a>
 	</div>
-	<%
-}
-}
-%>
+	</c:if>
+</c:forEach>
 <hr>
 <%	
 }
