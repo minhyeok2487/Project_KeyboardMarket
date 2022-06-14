@@ -34,17 +34,23 @@
 	crossorigin="anonymous"></script>
 <script type="text/javascript"
 	src="https://service.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+<style type="text/css">
+td {
+	vertical-align: middle !important;
+	text-align: center !important;
+}
+</style>
 <title>주문완료</title>
 </head>
 <body>
 	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display-3">주문해주셔서 감사합니다</h1>
+			<h1 class="display-4">주문해주셔서 감사합니다</h1>
 		</div>
 	</div>
 	<div class="container">
-		<div style="padding-top: 50px">
-			<table class="table">
+		<h4 style="color:gray;">주문번호 : ${orderNum }</h4>
+			<table class="table table-striped">
 				<tr>
 					<th></th>
 					<th>상품</th>
@@ -89,12 +95,10 @@
 				</tr>
 			</table>
 		</div>
-		<hr>
-	</div>
+
 	<div class="container">
-		<div style="padding-top: 50px">
-			<h5>주문 정보</h5>
-			<table class="table">
+			<h1>주문 정보</h1>
+			<table class="table table-striped">
 				<tr>
 					<th>주문자 아이디</th>
 					<th>주문자 이름</th>
@@ -104,12 +108,11 @@
 				<tr>
 					<td>${memberid }</td>
 					<td>${main.getName() }</td>
-					<td>${main.getAddr1() }${main.getAddr2() }</td>
+					<td>${main.getAddr1() } ${main.getAddr2() }</td>
 					<td>${main.getTel() }</td>
 				</tr>
 			</table>
-		</div>
-
+	</div>
 
 
 

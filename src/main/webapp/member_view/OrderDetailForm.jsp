@@ -29,21 +29,41 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	crossorigin="anonymous"></script>
-
+<style type="text/css">
+td {
+	vertical-align: middle !important;
+	text-align: center !important;
+}
+</style>
 <title>주문 상세 페이지</title>
 </head>
 <body>
 	<div class="jumbotron">
 		<div class="container">
-			<h4 class="display-3">주문내역 상세보기</h4>
+			<h4 class="display-4">주문내역 상세보기</h4>
 			<p>주문번호 - ${orderNum }</p>
 			<p>처리상태 - ${main.getStatus() }</p>
 		</div>
 	</div>
-	<div class="container">
-		<div style="padding-top: 50px">
+	<div class="container" style="margin-top: 10px;">
+	<div style="margin-bottom: 10px;">
+		<c:if test="${main.getStatus() == '주문완료' }">
+			<button type="button" class="btn btn-outline-danger"
+				onclick='location.href="./Ordering?orderNum=${main.getOrdered_num()}&res=취소확인";'>주문취소</button>
+		</c:if>
+		<c:if test="${main.getStatus() == '배송중' }">
+			<button type="button" class="btn btn-outline-danger"
+				onclick='location.href="./Ordering?orderNum=${main.getOrdered_num()}&res=주문취소요청";'>주문 취소 요청</button>
+		</c:if>
+		<c:if test="${main.getStatus() == '배송완료' }">
+			<button type="button" class="btn btn-outline-danger"
+				onclick='location.href="./Ordering?orderNum=${main.getOrdered_num()}&res=반품요청";'>반품요청</button>
+			<button type="button" class="btn btn-outline-info"
+				onclick='location.href="./Ordering?orderNum=${main.getOrdered_num()}&res=교환요청";'>교환요청</button>
+		</c:if>
+	</div>
 			<h5>상품정보</h5>
-			<table class="table">
+			<table class="table table-striped">
 				<tr>
 					<th></th>
 					<th>상품</th>
@@ -83,12 +103,10 @@
 				</tr>
 			</table>
 		</div>
-	</div>
 
 	<div class="container">
-		<div style="padding-top: 50px">
 			<h5>주문 정보</h5>
-			<table class="table">
+			<table class="table table-striped">
 				<tr>
 					<th>주문자 아이디</th>
 					<th>주문자 이름</th>
@@ -102,21 +120,6 @@
 					<td>${main.getTel() }</td>
 				</tr>
 			</table>
-		</div>
-		<c:if test="${main.getStatus() == '주문완료' }">
-			<button type="button" class="btn btn-outline-danger"
-				onclick='location.href="./Ordering?orderNum=${main.getOrdered_num()}&res=취소확인";'>주문취소</button>
-		</c:if>
-		<c:if test="${main.getStatus() == '배송중' }">
-			<button type="button" class="btn btn-outline-danger"
-				onclick='location.href="./Ordering?orderNum=${main.getOrdered_num()}&res=주문취소요청";'>주문 취소 요청</button>
-		</c:if>
-		<c:if test="${main.getStatus() == '배송완료' }">
-			<button type="button" class="btn btn-outline-danger"
-				onclick='location.href="./Ordering?orderNum=${main.getOrdered_num()}&res=반품요청";'>반품요청</button>
-			<button type="button" class="btn btn-outline-info"
-				onclick='location.href="./Ordering?orderNum=${main.getOrdered_num()}&res=교환요청";'>교환요청</button>
-		</c:if>
 	</div>
 
 </body>

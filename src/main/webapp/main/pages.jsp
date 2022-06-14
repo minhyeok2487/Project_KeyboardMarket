@@ -25,6 +25,14 @@
 	}
 	pageContext.setAttribute("memberNo",memberNo);
 %>
+<style type="text/css">
+.card-body{
+	text-align: center;
+}
+.card-text{
+	color : teal;
+}
+</style>
 <title>메인페이지</title>
 </head>
 <body>
@@ -40,16 +48,14 @@
 					<tbody>
 						<c:forEach var="dto" items="${M_NoticeList }" varStatus="no">
 							<tr align="center">
-								<td><a href="../notice/NoticeDetail?noticeNo=${dto.noticeNo }">${dto.subject }</a></td>
+								<td><a href="../notice/NoticeDetail?noticeNo=${dto.noticeNo }" style="color:navy;">${dto.subject }</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col">
-				<h2>!!M.T.S 추천상품!!</h2>
+			<div class="col" >
+				<h2 style="text-align: center; color:red;">!!M.T.S 추천상품!!</h2>
 				<div id="carouselExampleDark" class="carousel carousel-dark slide"
 					data-bs-ride="carousel">
 					<div class="carousel-indicators">
@@ -118,8 +124,8 @@
 					</button>
 				</div>
 			</div>
-			<div class="col">
-				<h2>!!M.T.S 신상품!!</h2>
+			<div class="col" >
+				<h2 style="text-align: center; color:blue">!!M.T.S 신상품!!</h2>
 				<div id="carouselExampleIndicators" class="carousel slide"
 					data-bs-ride="carousel">
 					<div class="carousel-indicators">
@@ -155,7 +161,7 @@
 								src="<c:url value="/source/${img }"/>" class="d-block w-100"
 								alt="...">
 								<div class="carousel-caption d-none d-md-block">
-									<h5>${itemName}</h5>
+									<h5 style="color:black;">${itemName}</h5>
 								</div>
 							</a>
 						</div>
@@ -167,7 +173,7 @@
 								src="<c:url value="/source/${img }"/>" class="d-block w-100"
 								alt="...">
 								<div class="carousel-caption d-none d-md-block">
-									<h5>${itemName}</h5>
+									<h5 style="color:black;">${itemName}</h5>
 								</div>
 							</a>
 						</div>
@@ -177,15 +183,15 @@
 						%>
 					</div>
 
-					<button class="carousel-control-prev" type="button"
+					<button class="carousel-control-prev" type="button" 
 						data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						<span class="visually-hidden">Previous</span>
+						<span class="carousel-control-prev-icon" aria-hidden="true" style="background-color: black;"></span>
+						<span class="visually-hidden" >Previous</span>
 					</button>
-					<button class="carousel-control-next" type="button"
-						data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-						<span class="carousel-control-next-icon" aria-hidden="true"></span>
-						<span class="visually-hidden">Next</span>
+					<button class="carousel-control-next" type="button" 
+						data-bs-target="#carouselExampleIndicators" data-bs-slide="next" >
+						<span class="carousel-control-next-icon" aria-hidden="true" style="background-color: black;"></span>
+						<span class="visually-hidden" >Next</span>
 					</button>
 				</div>
 			</div>
@@ -193,31 +199,31 @@
 	</div>
 	<div class="container">
 		<div class="row">
-			<div class="card" style="width: 18rem; margin-right: 40px;">
+			<div class="card" style="width: 25rem; margin-right: 40px;">
 				<img src="<c:url value="/source/10_1.jpg"/>" class="card-img-top"
 					alt="...">
 				<div class="card-body">
 					<h5 class="card-title">기계식 키보드</h5>
 					<p class="card-text">축마다 다른 다양한 키감!</p>
-					<a href="../item/ItemCategoryList?category=기계식" class="btn btn-primary">제품보러가기</a>
+					<a href="../item/ItemCategoryList?category=기계식" class="btn btn-primary" style="width: 100%">제품보러가기</a>
 				</div>
 			</div>
-			<div class="card" style="width: 18rem; margin-right: 40px;">
+			<div class="card" style="width: 25rem; margin-right: 40px;">
 				<img src="<c:url value="/source/4_1.jpg"/>" class="card-img-top"
 					alt="...">
 				<div class="card-body">
 					<h5 class="card-title">무접점 키보드</h5>
 					<p class="card-text">쫀득한 키보드!</p>
-					<a href="../item/ItemCategoryList?category=무접점" class="btn btn-primary">제품보러가기</a>
+					<a href="../item/ItemCategoryList?category=무접점" class="btn btn-primary" style="width: 100%">제품보러가기</a>
 				</div>
 			</div>
-			<div class="card" style="width: 18rem; margin-right: 40px;">
+			<div class="card" style="width: 25rem; margin-right: 40px;">
 				<img src="<c:url value="/source/1_1.jpg"/>" class="card-img-top"
 					alt="...">
 				<div class="card-body">
 					<h5 class="card-title">멤브레인 키보드</h5>
 					<p class="card-text">키보드의 기본</p>
-					<a href="../item/ItemCategoryList?category=멤브레인" class="btn btn-primary">제품보러가기</a>
+					<a href="../item/ItemCategoryList?category=멤브레인" class="btn btn-primary" style="width: 100%">제품보러가기</a>
 				</div>
 			</div>
 		</div>
