@@ -18,10 +18,13 @@
 	}
 	pageContext.setAttribute("memberNo",memberNo);
 %>
-
+<link href="../css/notice.css" rel="stylesheet" type="text/css">
+<br>
+<h1 align="center">공지</h1>
+<div class="container-box">
 <table class="table">
 	<thead>
-		<tr align="center" class="table-secondary">
+		<tr align="center">
 			<th scope="col">번호</th>
 			<th scope="col">제목</th>
 			<th scope="col">작성자</th>
@@ -32,9 +35,8 @@
 		<c:forEach var="dto" items="${noticeData }" varStatus="no">
 			<tr align="center">
 				<td>${dto.noticeNo}</td>
-				<td><a
-					href="<c:url value="./NoticeDetail?noticeNo=${dto.noticeNo }&page=${nowPage }"/>">${dto.subject }</a></td>
-				<td>${dto.pname }</td>
+				<td><a href="<c:url value="./NoticeDetail?noticeNo=${dto.noticeNo }&page=${nowPage }"/>" style="text-decoration: none; color: black;">${dto.subject }</a></td>
+				<td style="color: gray">${dto.pname }</td>
 				<td><fmt:formatDate value="${dto.reg_date }"
 						pattern="yyyy-MM-dd HH:mm" /></td>
 			</tr>
@@ -47,7 +49,7 @@
 %>
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 	<a href="./noticeInsertpage">
-		<button type="button" class="btn btn-outline-primary">글쓰기</button>
+		<button type="button" class="btn btn-outline-success">글쓰기</button>
 	</a>
 </div>
 <%}}%>
@@ -70,4 +72,5 @@
 	<c:if test="${pageEnd<pageTotal }">
 		<a href="<c:url value="/notice/NoticeList?page=${pageEnd+1 }"/>">[다음]</a>
 	</c:if>
+</div>
 </div>

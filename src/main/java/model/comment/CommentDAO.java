@@ -11,6 +11,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import model.qna.QnaDTO;
+import test.XssUtil;
 
 public class CommentDAO {
 
@@ -138,11 +139,17 @@ public class CommentDAO {
 	public void insert(CommentDTO dto) {
 
 		sql = "insert into comment(subject, comment, user_id, pname, reg_date, qnaNo, memberNo, status) values (?, ?, ?, ?, now(), ?, ?, ?)";
+		
+		String xSubject = dto.subject;
+		xSubject = XssUtil.cleanXSS(xSubject);
+		
+		String xComment = dto.comment;
+		xComment = XssUtil.cleanXSS(xComment);
 
 		try {
 			ptmt = con.prepareStatement(sql);
-			ptmt.setString(1, dto.subject);
-			ptmt.setString(2, dto.comment);
+			ptmt.setString(1, xSubject);
+			ptmt.setString(2, xComment);
 			ptmt.setString(3, dto.user_id);
 			ptmt.setString(4, dto.pname);
 			ptmt.setInt(5, dto.qnaNo);
@@ -162,11 +169,17 @@ public class CommentDAO {
 		int res = 0;
 
 		sql = "update comment set subject = ?, comment = ?, reg_date = now() where commentNo = ?";
+		
+		String xSubject = dto.subject;
+		xSubject = XssUtil.cleanXSS(xSubject);
+		
+		String xComment = dto.comment;
+		xComment = XssUtil.cleanXSS(xComment);
 
 		try {
 			ptmt = con.prepareStatement(sql);
-			ptmt.setString(1, dto.subject);
-			ptmt.setString(2, dto.comment);
+			ptmt.setString(1, xSubject);
+			ptmt.setString(2, xComment);
 			ptmt.setInt(3, dto.commentNo);
 
 			res = ptmt.executeUpdate();

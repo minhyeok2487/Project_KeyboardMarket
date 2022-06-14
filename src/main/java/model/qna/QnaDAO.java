@@ -10,6 +10,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import test.XssUtil;
+
 public class QnaDAO {
 
 	Connection con;
@@ -210,13 +212,19 @@ public class QnaDAO {
 	public void insert(QnaDTO dto) {
 
 		sql = "insert into qna(subject, user_id, pname, content, hits, reg_date, status, memberNo, ordered_num) values (?, ?, ?, ?, 0, now(), ?, ?, ?)";
-
+		
+		String xSubject = dto.subject;
+		xSubject = XssUtil.cleanXSS(xSubject);
+		
+		String xContent = dto.content;
+		xContent = XssUtil.cleanXSS(xContent);
+		
 		try {
 			ptmt = con.prepareStatement(sql);
-			ptmt.setString(1, dto.subject);
+			ptmt.setString(1, xSubject);
 			ptmt.setString(2, dto.user_id);
 			ptmt.setString(3, dto.pname);
-			ptmt.setString(4, dto.content);
+			ptmt.setString(4, xContent);
 			ptmt.setString(5, "미답변");
 			ptmt.setInt(6, dto.memberNo);
 			ptmt.setString(7, dto.ordered_num);
@@ -234,11 +242,17 @@ public class QnaDAO {
 		int res = 0;
 
 		sql = "update qna set subject = ?, content = ?, reg_date = now(), ordered_num = ? where qnaNo = ?";
+		
+		String xSubject = dto.subject;
+		xSubject = XssUtil.cleanXSS(xSubject);
+		
+		String xContent = dto.content;
+		xContent = XssUtil.cleanXSS(xContent);
 
 		try {
 			ptmt = con.prepareStatement(sql);
-			ptmt.setString(1, dto.subject);
-			ptmt.setString(2, dto.content);
+			ptmt.setString(1, xSubject);
+			ptmt.setString(2, xContent);
 			ptmt.setString(3, dto.ordered_num);
 			ptmt.setInt(4, dto.qnaNo);
 

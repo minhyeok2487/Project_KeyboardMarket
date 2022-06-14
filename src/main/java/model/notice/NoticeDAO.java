@@ -10,6 +10,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import test.XssUtil;
+
 public class NoticeDAO {
 
 	Connection con;
@@ -163,13 +165,19 @@ public class NoticeDAO {
 	public void insert(NoticeDTO dto) {
 
 		sql = "insert into notice(subject, user_id, pname, content, upfile, hits, reg_date) values (?, ?, ?, ?, ?, 0, now())";
+		
+		String xSubject = dto.subject;
+		xSubject = XssUtil.cleanXSS(xSubject);
+		
+		String xContent = dto.content;
+		xContent = XssUtil.cleanXSS(xContent);
 
 		try {
 			ptmt = con.prepareStatement(sql);
-			ptmt.setString(1, dto.subject);
+			ptmt.setString(1, xSubject);
 			ptmt.setString(2, dto.user_id);
 			ptmt.setString(3, dto.pname);
-			ptmt.setString(4, dto.content);
+			ptmt.setString(4, xContent);
 			ptmt.setString(5, dto.upfile);
 			ptmt.executeUpdate();
 
@@ -185,11 +193,17 @@ public class NoticeDAO {
 		int res = 0;
 
 		sql = "update notice set subject = ?, content = ?, reg_date = now() where noticeNo = ?";
+		
+		String xSubject = dto.subject;
+		xSubject = XssUtil.cleanXSS(xSubject);
+		
+		String xContent = dto.content;
+		xContent = XssUtil.cleanXSS(xContent);
 
 		try {
 			ptmt = con.prepareStatement(sql);
-			ptmt.setString(1, dto.subject);
-			ptmt.setString(2, dto.content);
+			ptmt.setString(1, xSubject);
+			ptmt.setString(2, xContent);
 			ptmt.setInt(3, dto.noticeNo);
 
 			res = ptmt.executeUpdate();

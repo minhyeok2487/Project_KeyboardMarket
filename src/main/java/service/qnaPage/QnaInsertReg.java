@@ -8,6 +8,7 @@ import controller.Service;
 import model.member.memberDTO;
 import model.qna.QnaDAO;
 import model.qna.QnaDTO;
+import test.XssUtil;
 
 public class QnaInsertReg implements Service {
 
@@ -30,7 +31,7 @@ public class QnaInsertReg implements Service {
 			msg = "게시글을 작성했어요 :)";
 			new QnaDAO().insert(dto);
 			System.out.println(dto);
-
+			
 		request.setAttribute("msg", msg);
 		request.setAttribute("mainUrl", "./qnas/qnaAlert");
 		request.setAttribute("goUrl", "QnaList");
