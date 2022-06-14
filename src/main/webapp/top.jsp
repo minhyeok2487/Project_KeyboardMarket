@@ -91,7 +91,7 @@ pageContext.setAttribute("memberNo", memberNo);
 <ul id="nav4" class="nav justify-content-center bg-light">
 	<li><a href="../notice/NoticeList"><button
 				class="btn btn-light" style="margin: 4px;">공지사항</button></a></li>
-	<li><a href="#"><button
+	<li><a href="../mainpage/Street"><button
 				class="btn btn-light" style="margin: 4px;">오시는길</button></a></li>			
 	<li><a href="../item/itemList"><button
 				class="btn btn-light" style="margin: 4px;">스마트검색</button></a></li>			
