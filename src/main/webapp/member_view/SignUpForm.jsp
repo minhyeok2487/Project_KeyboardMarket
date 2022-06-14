@@ -36,16 +36,19 @@
 	<h1 class="h3 mb-3 fw-normal">회원 가입</h1>
 		<div class="form-floating">
 	    <input type="text" name="user_id" class="form-control" id="user_id" onkeydown="inputIdCheck()" placeholder="아이디">
-	       <label for="id">아이디</label>
+	       <label for="user_id">아이디</label>
 	    </div>
 	    <input type="hidden" name="idDuplication" value="idUncheck">
-	    <div>
-			<button type="button"
-			class="btn btn-outline-primary" onclick="idTest()">아이디체크</button>
+	    <div style="margin-bottom:20px;">
+			<button class="w-100 btn btn-lg btn-primary" type="button" onclick="idTest" >아이디체크</button>
 		</div>
 	    <div class="form-floating">
-		    <input type="password" name="user_pw" class="form-control" id="pwd" placeholder="비밀번호">
+		    <input type="password" name="user_pw" class="form-control" id="user_pw" placeholder="비밀번호">
 		    <label for="pwd">비밀번호</label>
+		</div>
+		<div class="form-floating">
+		    <input type="password" name="user_pw2" class="form-control" id="user_pw2" placeholder="비밀번호">
+		    <label for="user_pw2">비밀번호</label>
 		</div>
 		<div class="form-floating">
 	       <input type="text" name="name" class="form-control" id="name" placeholder="이름">
@@ -65,7 +68,7 @@
 		</div>
 		
 		<div class="form-floating">
-			<input type="text" name="email" value='${email }' class="form-control" id="email" placeholder="이름" readonly>
+			<input type="text" name="email" value='${email }' class="form-control" id="email" placeholder="이메일" readonly>
 	    		<label for="email">이메일</label>
 		</div>
 		
@@ -100,7 +103,7 @@
 				</div>
 			</div>
 		</div>
-		<button class="w-100 btn btn-lg btn-primary" type="button" onclick="javascript:checkform()" >회원가입</button>
+		<button class="w-100 btn btn-lg btn-primary" type="button" onclick="checkform()" >회원가입</button>
 	</form>
 
 </main>
