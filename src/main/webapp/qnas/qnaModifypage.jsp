@@ -39,7 +39,12 @@
 	}
 %>
 
-<h1>고객센터 수정페이지</h1>
+<link href="../css/qna.css" rel="stylesheet" type="text/css">
+<div class="container-box">
+<div class="alert alert-warning" role="alert">
+<h2 align="center">작성하신 글을 수정하는 곳입니다.</h2>
+</div>
+
 <script>
 function checkEmpty() {
 	var form = document.qnaModify;
@@ -56,7 +61,7 @@ function checkEmpty() {
 	}
 </script>
 
-<form action="./QnaModifyReg" method="post" name="qnaModify">
+<form action="./QnaModifyReg" method="post" name="qnaModify"  class="row g-3 needs-validation" novalidate>
 	<input type="hidden" name="qnaNo" value="${dto.qnaNo }" />
 	<input type="hidden" name="pname" value="${dto.pname }" />
 	<input type="hidden" name="user_id" value="${dto.user_id }" />
@@ -98,8 +103,12 @@ function checkEmpty() {
 		%>
 	<div class="mb-3">
 		<label for="exampleFormControlTextarea1" class="form-label">내용</label>
-		<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content">${dto.content }</textarea>
+		<textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="content">${dto.content }</textarea>
 	</div>
-		<div align="right"><button type="button" class="btn btn-outline-primary" onclick="checkEmpty()">수정하기</button></div>
-		<div align="right"><button type="reset" class="btn btn-outline-primary">초기화</button></div>
+	<div class="btn-group" role="group" aria-label="Basic example">
+	<button type="reset" class="btn btn-warning">초기화</button>
+	<button type="button" class="btn btn-primary" onclick="checkEmpty()">수정하기</button>
+	<button type="button" class="btn btn-secondary" onclick="location='QnaList'">목록으로</button>
+	</div>
 </form>
+</div>

@@ -81,8 +81,8 @@
 								<td><%=item.getHits() %></td>
 								<td><fmt:formatDate value="<%=item.getReg_date() %>" pattern="yyyy-MM-dd HH:mm" /></td>
 								<td>
-									<button type="button" class="btn btn-outline-primary"
-										onclick="location='../qna/QnaDetail?qnaNo=<%=item.getQnaNo()%>'">답변하기</button>
+									<button type="button" class="btn btn-outline-primary" onclick="location='../qna/QnaDetail?qnaNo=<%=item.getQnaNo()%>'">답변하기</button>
+									<button type="button" class="btn btn-outline-danger" onclick="location='../qna/RemoveQna?qnaNo=<%=item.getQnaNo()%>'">삭제하기</button>
 								</td>
 							</tr>
 							<%

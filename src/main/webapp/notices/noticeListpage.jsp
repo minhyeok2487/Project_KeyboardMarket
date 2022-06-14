@@ -20,7 +20,6 @@
 %>
 <link href="../css/notice.css" rel="stylesheet" type="text/css">
 <br>
-
 <div class="container-box">
 <div class="alert alert-success" role="alert">
 <h2 align="center">공지</h2>
@@ -46,16 +45,7 @@
 		</c:forEach>
 	</tbody>
 </table>
-<%
-	if(userStatus != null){
-		if(userStatus.equals("관리자")){
-%>
-<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-	<a href="./noticeInsertpage">
-		<button type="button" class="btn btn-outline-success">글쓰기</button>
-	</a>
-</div>
-<%}}%>
+
 <div align="center">
 	<c:if test="${pageStart>1 }">
 		<a href="<c:url value="/notice/NoticeList?page=${pageStart-1 }"/>">[이전]</a>
@@ -76,4 +66,16 @@
 		<a href="<c:url value="/notice/NoticeList?page=${pageEnd+1 }"/>">[다음]</a>
 	</c:if>
 </div>
+
+<%
+	if(userStatus != null){
+		if(userStatus.equals("관리자")){
+%>
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+	<a href="./noticeInsertpage">
+		<button type="button" class="btn btn-outline-success">글쓰기</button>
+	</a>
+</div>
+<%}}%>
+
 </div>

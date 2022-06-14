@@ -1,3 +1,4 @@
+<%@page import="model.qna.QnaDTO"%>
 <%@page import="model.member.memberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -10,6 +11,7 @@
 	HttpSession user = request.getSession();
 	String userStatus = null;
 	memberDTO dto = (memberDTO) user.getAttribute("inUser");
+	QnaDTO qDTO = (QnaDTO) user.getAttribute("qnaNum");
 	if (dto != null) {
 		userStatus = dto.getStatus();
 		memberNo = dto.getMemberNo();
@@ -17,9 +19,16 @@
 		memberNo = 0;
 	}
 	pageContext.setAttribute("memberNo",memberNo);
+	int no = qDTO.getQnaNo();
+	request.setAttribute("no", no);
 %>
 
-<h1>댓글 수정페이지</h1>
+<link href="../css/comment.css" rel="stylesheet" type="text/css">
+<div class="container-box">
+<div class="alert alert-success" role="alert">
+<h2 align="center">댓글을 수정합니다</h2>
+</div>
+
 <script>
 function checkEmpty() {
 	var form = document.commentModify;
@@ -36,7 +45,7 @@ function checkEmpty() {
 	}
 </script>
 
-<form action="./CommentModifyReg" method="post" name="commentModify">
+<form action="./CommentModifyReg" method="post" name="commentModify" class="row g-3 needs-validation" novalidate>
 	<input type="hidden" name="commentNo" value="${dto.commentNo }" />
 	<input type="hidden" name="pname" value="${dto.pname }" />
 	<input type="hidden" name="user_id" value="${dto.user_id }" />
@@ -57,6 +66,10 @@ function checkEmpty() {
 		<label for="exampleFormControlTextarea1" class="form-label">내용</label>
 		<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="comment">${dto.comment }</textarea>
 	</div>
-		<div align="right"><button type="button" class="btn btn-outline-primary" onclick="checkEmpty()">수정하기</button></div>
-		<div align="right"><button type="reset" class="btn btn-outline-primary">초기화</button></div>
+		<div class="btn-group" role="group" aria-label="Basic example">
+	<button type="reset" class="btn btn-warning">초기화</button>
+	<button type="button" class="btn btn-primary" onclick="checkEmpty()">수정하기</button>
+	<button type="button" class="btn btn-secondary" onclick="location='../qna/QnaDetail?qnaNo=${no}'">본문으로</button>
+	</div>
 </form>
+</div>
