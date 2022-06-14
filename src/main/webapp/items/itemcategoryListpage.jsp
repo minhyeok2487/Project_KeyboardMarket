@@ -32,6 +32,12 @@
 	}
 	pageContext.setAttribute("memberNo",memberNo);
 %>
+<style type="text/css">
+td {
+	vertical-align: middle !important;
+	text-align: center !important;
+}
+</style>
 <title>검색 결과 페이지</title>
 </head>
 <body>
@@ -41,8 +47,8 @@
 		</div>
 	</div>
 	<div class="container">
-		<div class="table-striped">
-			<table class="table">
+		<div class="table table-striped-striped">
+			<table table-striped class="table table-striped">
 				<c:forEach var="name" items="${categoryList }" varStatus="i">
 					<c:if test="${name.item_name != null}">
 						<tr>
@@ -50,11 +56,8 @@
 									src="<c:url value="/source/${name.item_img1 }"/>" alt=""
 									width=150 height=150 /></a></th>
 							<td>
-								<p>[상품번호:${name.itemNo }]</p>
-								<p>
-									<a href="./itemdetail?id=${name.itemNo}">[${name.manufacture}]
-										${name.item_name}</a>
-								</p>
+								<p class="jb-smaller">[상품번호:${name.itemNo }]</p>
+								<p class="jb-larger"><a href="./itemdetail?id=${name.itemNo}" style="text-decoration: none; color:black;">[${name.manufacture}] ${name.item_name}</a></p>
 							</td>
 							<td>
 								<p>${name.price}원</p> <c:choose>
@@ -70,7 +73,7 @@
 					</c:if>
 				</c:forEach>
 				</tbody>
-			</table>
+			</table table-striped>
 		</div>
 	</div>
 </body>

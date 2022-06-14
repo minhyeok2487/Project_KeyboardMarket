@@ -33,10 +33,10 @@
 		<form action="../cart/Cartview?" method="post">
 			<input type="hidden" name="reg" value="addCart" />
 			<input type="hidden" name="memberNo" value="${memberNo }" />
-			<table class="table">
+			<table class="table table-striped">
 				<tr>
-					<td><img src="<c:url value="/source/${dto.getItem_img1() }"/>"
-						alt="" width=300 height=300 /></td>
+					<th style="text-align: center;"><img src="<c:url value="/source/${dto.getItem_img1() }"/>"
+						alt="" width=350 height=370 /></th>
 					<td><input type="hidden" name="itemNo"
 						value="${dto.getItemNo() }" />
 						<p>[상품번호 : ${dto.getItemNo() }]</p>
@@ -82,10 +82,10 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2"><img
-						src="<c:url value="/source/${dto.getItem_img2() }"/>" alt="" /></td>
+					<td colspan="3"><img
+						src="<c:url value="/source/${dto.getItem_img2() }"/>"  style="width: 100%;"alt="" /></td>
 				</tr>
-			</table>
+			</table table-striped>
 		</form>
 	</div>
 

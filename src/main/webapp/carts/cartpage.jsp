@@ -37,34 +37,12 @@
 <body>
 	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display-3">장바구니</h1>
+			<h5 class="display-3">장바구니</h5>
 		</div>
 	</div>
 	<div class="container">
-		<div class="row">
-			<table width="100%">
-				<tr>
-					<td align="left"><a
-						href="./DeleteCart?memberNo=<%=memberNo%>"
-						class="btn btn-danger">장바구니 비우기</a></td>
-					<%
-						if(dto != null){
-					%>
-						<td align="right"><a href="javascript:goOrder();" class="btn btn-success">주문하기</a></td>
-					<%
-						} else {
-					%>
-						<td align="right"><a href="../member/Login" class="btn btn-success">주문하기</a></td>
-					<%		
-						}
-					%>
-					
-				</tr>
-			</table>
-		</div>
-		<div style="padding-top: 50px">
 			<form name="frm" action="../cart/OrderCart?" method="get">
-			<table class="table">
+			<table class="table table-striped">
 				<tr>
 					<th></th>
 					<th>상품</th>
@@ -88,17 +66,17 @@
 				%>
 				<c:set var="imgthumb" value="<%=item.getItem_img1()%>"/>
 				<tr>
-					<td><img
+					<td style="text-align: center;"><img
 							src="<c:url value="/source/${imgthumb }"/>" alt=""
 							width=150 height=150 />
 					</td>
-					<td name="Item_name"><%=item.getItem_name()%></td>
-					<td><%=item.getPrice()%></td>
-					<td name="Selected_count"><%=item.getSelected_count()%></br>
+					<td name="Item_name" style="text-align: center; vertical-align: middle;"><%=item.getItem_name()%></td>
+					<td style="text-align: center; vertical-align: middle;"><%=item.getPrice()%></td>
+					<td name="Selected_count" style="text-align: center; vertical-align: middle;"><%=item.getSelected_count()%></br>
 						<a href="./ChangeCart?memberNo=<%=memberNo%>&itemNo=<%=item.getItemNo() %>" class="btn btn-outline-success">수량 변경</a>
 					</td>
-					<td><%=total%></td>
-					<td><a href="./RemoveItem?itemNo=<%=item.getItemNo() %>&memberNo=<%=memberNo%>">삭제</a></td>
+					<td style="text-align: center; vertical-align: middle;"><%=total%></td>
+					<td style="text-align: center; vertical-align: middle;"><a href="./RemoveItem?itemNo=<%=item.getItemNo() %>&memberNo=<%=memberNo%>">삭제</a></td>
 				</tr>
 				<%
 				}
@@ -114,15 +92,24 @@
 			</table>
 			</form>
 			<a href="../item/itemList" class="btn btn-secondary">&laquo; 쇼핑 계속하기</a>
-		</div>
-		<hr>
-	</div>
 		
+					<%
+						if(dto != null){
+					%>
+					<a href="javascript:goOrder();" class="btn btn-success" style="float: right;">주문하기</a>
+					<%
+						} else {
+					%>
+					<a href="../member/Login" class="btn btn-success" style="float: right;">주문하기</a>
+					<%		
+						}
+					%>
+			<a href="./DeleteCart?memberNo=<%=memberNo%>" class="btn btn-danger" style="float: right; margin-right: 10px;">장바구니 비우기</a>		
+		</div>	
 	<script type="text/javascript">
 		function goOrder(){
 			document.frm.submit();	
 		}
-		
 	</script>
 </body>
 </html>

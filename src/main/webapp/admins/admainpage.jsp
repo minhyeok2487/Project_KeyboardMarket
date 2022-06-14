@@ -44,13 +44,11 @@
 	<jsp:include page="../Admintop.jsp" >
 		<jsp:param name="URL" value="main"/>
 	</jsp:include>
-	<div class="jumbotron">
-		<div class="container">
-			<h4 class="display-3"><%=new OrderDTO().getDate_format(new Date())%>
-			</h4>
-			<h5 class="display-3">이번달 예상 수입 : ${total }원</h5>(status : 주문완료, 배송중, 배송완료, 반품확인)
-		</div>
+	<div class="container">
+		<h4 class="display-3"><%=new OrderDTO().getDate_format(new Date())%></h4>
+		<h5 class="display-3">이번달 예상 수입 : ${total }원</h5>(status : 주문완료, 배송중, 배송완료, 반품확인)
 	</div>
+
 	<div class="container">
 		<!-- 탭 메뉴 -->
 		<ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -75,7 +73,7 @@
 		<div class="tab-content" id="myTabContent">
 			<div class="tab-pane fade show active" id="order" role="tabpanel"
 				aria-labelledby="order-tab">
-				<table class="table">
+				<table class="table  table-striped">
 					<tr>
 						<th></th>
 						<th>주문번호</th>
@@ -104,7 +102,7 @@
 			</div>
 			<div class="tab-pane fade" id="shipping" role="tabpanel"
 				aria-labelledby="shipping-tab">
-				<table class="table">
+				<table class="table  table-striped">
 					<tr>
 						<th></th>
 						<th>주문번호</th>
@@ -133,7 +131,7 @@
 			</div>
 			<div class="tab-pane fade" id="end" role="tabpanel"
 				aria-labelledby="end-tab">
-				<table class="table">
+				<table class="table  table-striped">
 					<tr>
 						<th></th>
 						<th>주문번호</th>
@@ -177,7 +175,7 @@
 					class="accordion-collapse collapse show"
 					aria-labelledby="panelsStayOpen-headingOne">
 					<div class="accordion-body">
-						<table class="table">
+						<table class="table  table-striped">
 							<tr>
 								<th></th>
 								<th>주문번호</th>
@@ -226,7 +224,7 @@
 					class="accordion-collapse collapse"
 					aria-labelledby="panelsStayOpen-headingTwo">
 					<div class="accordion-body">
-						<table class="table">
+						<table class="table  table-striped">
 							<tr>
 								<th></th>
 								<th>주문번호</th>
@@ -274,7 +272,7 @@
 					class="accordion-collapse collapse"
 					aria-labelledby="panelsStayOpen-headingThree">
 					<div class="accordion-body">
-						<table class="table">
+						<table class="table  table-striped">
 							<tr>
 								<th></th>
 								<th>주문번호</th>
@@ -322,7 +320,7 @@
 					class="accordion-collapse collapse"
 					aria-labelledby="panelsStayOpen-headingFour">
 					<div class="accordion-body">
-						<table class="table">
+						<table class="table table-striped">
 							<tr>
 								<th></th>
 								<th>주문번호</th>

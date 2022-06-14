@@ -17,6 +17,7 @@ import model.member.memberDAO;
 import model.member.memberDTO;
 import model.order.OrderDAO;
 import model.order.OrderDTO;
+import test.XssUtil;
 
 public class OrderSearch implements Service {
 
@@ -150,6 +151,10 @@ public class OrderSearch implements Service {
 		user_id = user_id.replace("%", "");
 		name = name.replace("%", "");
 		status = status.replace("%", "");
+		order_num = XssUtil.cleanXSS(order_num);
+		user_id = XssUtil.cleanXSS(user_id);
+		name = XssUtil.cleanXSS(name);
+		status = XssUtil.cleanXSS(status);
 		
 		request.setAttribute("order_num", order_num);
 		request.setAttribute("user_id", user_id);
