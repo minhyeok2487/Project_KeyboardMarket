@@ -31,25 +31,38 @@ public class MemberAuthentication implements Service {
 		
 		adminEmailDTO adminDTO = new adminEmailDAO().adminData();
 		
-		
+		String msg = "";
         String email = request.getParameter("email");
+        int emailCheck = new memberDAO().emailchk(email);
         boolean flag = true;
         
-        System.out.println("인증"+email);
         
-		ArrayList<memberDTO> memberList = new memberDAO().allList();
-		
-		for(memberDTO dto : memberList) {
-			if(email.equals(dto.getEmail())) {
-				flag = false;
-				break;
+        if(from.equals("signUp") && emailCheck>0) {
+    			msg = "이미 존재하는 이메일 입니다";
+    			request.setAttribute("msg", msg);
+    			request.setAttribute("goUrl", "./Login");
+    			request.setAttribute("mainUrl", "/member_view/alert");
+        }else if(from.equals("searchID") && emailCheck==0) {
+        		msg = "존재하지 않는 이메일 입니다";
+			request.setAttribute("msg", msg);
+			request.setAttribute("goUrl", "./Login");
+			request.setAttribute("mainUrl", "/member_view/alert");
+        }else if(from.equals("searchPW") && emailCheck==0) {
+	    		msg = "존재하지 않는 이메일 입니다";
+			request.setAttribute("msg", msg);
+			request.setAttribute("goUrl", "./Login");
+			request.setAttribute("mainUrl", "/member_view/alert");
+	    }else {
+	        
+			ArrayList<memberDTO> memberList = new memberDAO().allList();
+			
+			for(memberDTO dto : memberList) {
+				if(email.equals(dto.getEmail())) {
+					flag = false;
+					break;
+				}
 			}
-		}
         
-        
-        if(flag && from.equals("searchPW")) {
-	        request.setAttribute("mainUrl", "./member_view/windowcloseLogin");
-        }else {
 	        //mail server 설정
 	        String host = "smtp.naver.com";
 	        String user = adminDTO.getEmailAddress(); //자신의 네이버 계정
@@ -101,16 +114,16 @@ public class MemberAuthentication implements Service {
 	        
 	        //email 전송
 	        try {
-	            MimeMessage msg = new MimeMessage(session);
-	            msg.setFrom(new InternetAddress(user, "key_board shop"));
-	            msg.addRecipient(Message.RecipientType.TO, new InternetAddress(to_email));
+	            MimeMessage message = new MimeMessage(session);
+	            message.setFrom(new InternetAddress(user, "key_board shop"));
+	            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to_email));
 	            
 	            //메일 제목
-	            msg.setSubject("안녕하세요 키보드 쇼핑몰 인증 메일입니다.");
+	            message.setSubject("안녕하세요 키보드 쇼핑몰 인증 메일입니다.");
 	            //메일 내용
-	            msg.setText("인증 번호는 : "+temp);
+	            message.setText("인증 번호는 : "+temp);
 	            
-	            Transport.send(msg);
+	            Transport.send(message);
 	            
 	        }catch (Exception e) {
 	            e.printStackTrace();// TODO: handle exception
@@ -119,6 +132,7 @@ public class MemberAuthentication implements Service {
 	        request.setAttribute("AuthenticationKey", AuthenticationKey);
 	        request.setAttribute("email", email);
 	        request.setAttribute("mainUrl", "./member_view/AuthenticationReg");
-        }
+
+		}
 	}
 }

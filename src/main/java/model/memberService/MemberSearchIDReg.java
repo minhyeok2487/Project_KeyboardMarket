@@ -37,7 +37,6 @@ public class MemberSearchIDReg implements Service{
 			request.setAttribute("goUrl", "./Login");
 			request.setAttribute("mainUrl", "./member_view/alert");
 		}else {
-//			request.setAttribute("mainUrl", "./member_view/SearchIDReg");
 
 			request.setAttribute("mainUrl", "./member_view/GoAuthentication");
 		}
