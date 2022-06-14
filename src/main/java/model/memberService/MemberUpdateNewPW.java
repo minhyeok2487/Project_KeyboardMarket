@@ -18,7 +18,10 @@ public class MemberUpdateNewPW implements Service{
 		
 		new memberDAO().updatePW(userId, userPw);
 		
-		request.setAttribute("mainUrl", "./member_view/LoginForm");
+		String msg = "비밀번호가 변경되었습니다";
+		request.setAttribute("msg", msg);
+		request.setAttribute("goUrl", "./Login");
+		request.setAttribute("mainUrl", "/member_view/alert");
 	}
 
 }

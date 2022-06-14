@@ -47,6 +47,10 @@
 		    <label for="pwd">비밀번호</label>
 		</div>
 		<div class="form-floating">
+		    <input type="password" name="user_pw2" class="form-control" id="user_pw2" placeholder="비밀번호 확인">
+		    <label for="user_pw2">비밀번호 확인</label>
+		</div>
+		<div class="form-floating">
 		    <input type="password" name="user_pw2" class="form-control" id="user_pw2" placeholder="비밀번호">
 		    <label for="user_pw2">비밀번호</label>
 		</div>
@@ -105,7 +109,6 @@
 		</div>
 		<button class="w-100 btn btn-lg btn-primary" type="button" onclick="checkform()" >회원가입</button>
 	</form>
-
 </main>
 
 
@@ -181,6 +184,7 @@
 		
 		var userId = form.user_id.value;
 		var userPw = form.user_pw.value;
+		var userPw2 = form.user_pw2.value;
 		var uName = form.name.value;
 		var uAddr2 = form.addr2.value;
 		var uTel2 = form.tel2.value;
@@ -229,7 +233,6 @@
 		    return false;
 		}
 		
-		
 		if(newLine.test(userPw)){
 			alert("입력에러. 다시 입력해주세요.");
 			form.user_pw.select;
@@ -241,6 +244,36 @@
 			alert("비밀번호는 영어,숫자,특수문자가 한글자 이상 들어가야 합니다. (최소 4글자, 최대 15글자)");
 			form.user_pw.select;
 		    return false;
+		}
+		
+		else if(userPw2 == ""){
+			alert("비밀번호 확인을 입력해주세요");
+			form.user_pw2.select;
+			return false;
+		}
+		
+		if(spacing.test(userPw2)){
+			alert("비밀번호 확인에는 빈 칸이 없어야 합니다");
+			form.user_pw2.select;
+		    return false;
+		}
+		
+		if(newLine.test(userPw2)){
+			alert("입력에러. 다시 입력해주세요.");
+			form.user_pw2.select;
+		    return false;
+		}
+		
+		var regExpPw = /^[A-Za-z\d$@$!%*#?&]{4,15}$/; //최소 8자리, 최대 15자리.
+		if(!regExpPw.test(userPw2)){
+			alert("비밀번호 확인에는 영어,숫자,특수문자가 한글자 이상 들어가야 합니다. (최소 4글자, 최대 15글자)");
+			form.user_pw2.select;
+		    return false;
+		}
+		
+		if(userPw != userPw2){
+			alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요");
+			return false;
 		}
 		
 		if(uName == ""){
@@ -305,8 +338,6 @@
 			form.tel3.select;
 		    return false;
 		}
-		
-		
 
 		form.submit();
 
