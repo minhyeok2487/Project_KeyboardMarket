@@ -39,6 +39,7 @@ public class MemberSignUpReg implements Service{
 			String tel2 = request.getParameter("tel2");
 			String tel3 = request.getParameter("tel3");
 			String tel = tel1 + tel2+ tel3;
+			System.out.println(tel);
 			
 			dto.setTel(tel);
 			
