@@ -33,7 +33,9 @@
 <title></title>
 </head>
 <body>
-	<jsp:include page="../Admintop.jsp" />
+	<jsp:include page="../Admintop.jsp" >
+		<jsp:param name="URL" value="order"/>
+	</jsp:include>
 	<div class="jumbotron">
 		<div class="container">
 			<h4 class="display-3">주문내역 상세보기</h4>

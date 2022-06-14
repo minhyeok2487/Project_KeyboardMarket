@@ -38,7 +38,9 @@
 <title>관리자 페이지</title>
 </head>
 <body>
-	<jsp:include page="../Admintop.jsp" />
+	<jsp:include page="../Admintop.jsp" >
+		<jsp:param name="URL" value="qna"/>
+	</jsp:include>
 	<div class="jumbotron">
 		<div class="container">
 			<h2 class="display-3">고객센터 관리</h2>

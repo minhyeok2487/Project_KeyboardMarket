@@ -34,7 +34,9 @@
 <title>관리자 페이지</title>
 </head>
 <body>
-	<jsp:include page="../Admintop.jsp" />
+	<jsp:include page="../Admintop.jsp" >
+		<jsp:param name="URL" value="member"/>
+	</jsp:include>
 	<div class="jumbotron">
 		<div class="container">
 			<h3 class="display-3">${member_id }로 검색한 회원</h3>

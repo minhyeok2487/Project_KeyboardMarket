@@ -34,7 +34,9 @@
 <title>관리자 페이지</title>
 </head>
 <body>
-	<jsp:include page="../Admintop.jsp" />
+	<jsp:include page="../Admintop.jsp" >
+		<jsp:param name="URL" value="item"/>
+	</jsp:include>
 	<div class="jumbotron">
 		<div class="container">
 			<h1 class="display-3">메인페이지 상품 추가</h1>

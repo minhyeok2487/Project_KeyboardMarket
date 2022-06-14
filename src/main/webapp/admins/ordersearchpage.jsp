@@ -37,7 +37,9 @@ pageContext.setAttribute("memberNo", memberNo);
 <title></title>
 </head>
 <body>
-	<jsp:include page="../Admintop.jsp" />
+	<jsp:include page="../Admintop.jsp" >
+		<jsp:param name="URL" value="order"/>
+	</jsp:include>
 	<div class="container">
 		<div class="row">
     		<div class="col">

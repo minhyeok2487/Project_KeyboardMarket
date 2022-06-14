@@ -41,7 +41,9 @@
 <title>관리자 페이지</title>
 </head>
 <body>
-	<jsp:include page="../Admintop.jsp" />
+	<jsp:include page="../Admintop.jsp" >
+		<jsp:param name="URL" value="main"/>
+	</jsp:include>
 	<div class="jumbotron">
 		<div class="container">
 			<h4 class="display-3"><%=new OrderDTO().getDate_format(new Date())%>
