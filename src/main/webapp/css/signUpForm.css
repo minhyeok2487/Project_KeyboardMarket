@@ -42,18 +42,14 @@
 		padding: 1px;
 	}
    
-   #zip_code{
-  	 font-size: 21px;
-  	 height: 40px;
-  	 display: block;
-   }
-   
    #tel1{
    	height: 40px;
    }
       #tel2{
    	height: 40px;
    }
-   
+         #tel3{
+   	height: 40px;
+   }
    
 

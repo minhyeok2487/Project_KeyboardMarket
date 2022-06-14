@@ -28,7 +28,6 @@
 	crossorigin="anonymous">
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/loginForm.css" />
-<script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
 
 <title>로그인</title>
 </head>

@@ -30,7 +30,6 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/signUpForm.css" />
-<script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
 
 <title>회원 가입</title>
 </head>
@@ -133,10 +132,70 @@
   }
   
   function checkform() {
-		if ( document.frm.name.value == "") {
-			alert("이름을 입력해주세요")
-			document.frm.name.select();
+	  var spacing =  /\s/g; // 띄어쓰기 체크
+		var newLine =  /\n/g; // 개행문자 체크 (제거로 만들자) 
+		
+		
+		var form = document.frm;
+		
+		var userId = form.user_id.value;
+		var userPw = form.user_pw.value;
+		var uName = form.name.value;
+		var uAddr2 = form.addr2.value;
+		
+		if(userId == ""){
+			alert("아이디를 입력하세요.");
+		    form.user_id.select;
+		    return false;
 		}
+		
+		if(spacing.test(userId)){
+			alert("빈 칸이 없어야 합니다");
+			form.user_id.select;
+		    return false;
+		}
+		
+		if(userPw == ""){
+			alert("비밀번호를 입력하세요.");
+			form.user_pw.select;
+		    return false;
+		}
+		
+		if(spacing.test(userPw)){
+			alert("빈 칸이 없어야 합니다");
+			form.user_pw.select;
+		    return false;
+		}
+		
+		
+		if(newLine.test(userId)){
+			alert("입력에러. 다시 입력해주세요.");
+			form.user_id.select;
+		    return false;
+		}
+		
+		var regExpId = /^[a-zA-Z0-9]{2,10}$/; //id 체크 영문, 숫자만 가능
+		if(!regExpId.test(userId)){
+			alert("아이디는 영어와 숫자만 입력 가능합니다. (최소 2글자 최대 10글자)");
+			form.user_id.select;
+		    return false;
+		}
+		
+		if(newLine.test(userPw)){
+			alert("입력에러. 다시 입력해주세요.");
+			form.user_pw.select;
+		    return false;
+		}
+		
+		var regExpPw = /^[A-Za-z\d$@$!%*#?&]{4,15}$/; //최소 8자리, 최대 15자리.
+		if(!regExpPw.test(userPw)){
+			alert("비밀번호는 영어,숫자,특수문자가 한글자 이상 들어가야 합니다. (최소 4글자, 최대 15글자)");
+			form.user_pw.select;
+		    return false;
+		}
+
+		form.submit();
+
 	}
 </script>
 
