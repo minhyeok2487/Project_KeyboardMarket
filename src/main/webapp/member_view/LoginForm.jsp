@@ -82,19 +82,6 @@
 		    return false;
 		}
 		
- 		if(userPw == ""){
-			alert("비밀번호를 입력하세요.");
-			form.member_pw.select;
-		    return false;
-		}
-		
- 		if(spacing.test(userPw)){
-			alert("빈 칸이 없어야 합니다");
-			form.member_pw.select;
-		    return false;
-		}
-		
-		
  		if(newLine.test(userId)){
 			alert("입력에러. 다시 입력해주세요.");
 			form.member_id.select;
@@ -108,15 +95,27 @@
 		    return false;
 		}
 		
+ 		if(userPw == ""){
+			alert("비밀번호를 입력하세요.");
+			form.member_pw.select;
+		    return false;
+		}
+		
+ 		if(spacing.test(userPw)){
+			alert("빈 칸이 없어야 합니다");
+			form.member_pw.select;
+		    return false;
+		}
+		
 		if(newLine.test(userPw)){
 			alert("입력에러. 다시 입력해주세요.");
 			form.member_pw.select;
 		    return false;
 		}
 		
-		var regExpPw = /^[A-Za-z\d$@$!%*#?&]{4,15}$/; //최소 8자리, 최대 15자리.
+		var regExpPw = /^[A-Za-z\d@!%*#?&]{4,15}$/; //최소 8자리, 최대 15자리.
 		if(!regExpPw.test(userPw)){
-			alert("비밀번호는 영어,숫자,특수문자가 한글자 이상 들어가야 합니다. (최소 4글자, 최대 15글자)");
+			alert("비밀번호는 영어,숫자,특수문자사용 가능합니다.(특수문자는 @!%*#?& 만 사용가능) (최소 4글자, 최대 15글자)");
 			form.member_pw.select;
 		    return false;
 		}

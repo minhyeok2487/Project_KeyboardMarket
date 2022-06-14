@@ -472,6 +472,30 @@ public class memberDAO {
 
 		return memberList;
 	}
+	
+	// 중복 닉네임, 이메일 검사용
+	public ArrayList<memberDTO> findData() {
+		ArrayList<memberDTO> memberList = new ArrayList<memberDTO>();
+		sql = "select * from member";
+
+		try {
+			ptmt = con.prepareStatement(sql);
+			rs = ptmt.executeQuery();
+			while (rs.next()) {
+				memberDTO dto = new memberDTO();
+				dto.setMemberNo(rs.getInt("memberNo"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setEmail(rs.getString("email"));
+				memberList.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+
+		return memberList;
+	}
 
 	public void close() {
 		if (rs != null) {
@@ -494,6 +518,26 @@ public class memberDAO {
 		}
 	}
 
-	
+	public int idchk(String user_id) {
+		
+		sql = "select count(*) from member where user_id = ?";
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setString(1, user_id);
+
+			rs = ptmt.executeQuery();
+
+			rs.next(); 
+			
+			return rs.getInt(1);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+
+		return 0;
+	}
 
 }

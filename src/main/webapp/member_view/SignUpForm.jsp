@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page import="model.member.memberDTO"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%	
 	int memberNo;
 	String name = "비회원";
@@ -19,10 +18,7 @@
 	}
 	pageContext.setAttribute("memberNo",memberNo);
 %>    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+
 
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
@@ -30,18 +26,22 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/signUpForm.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.0.min.js">
 
-<title>회원 가입</title>
-</head>
-<body>
-<body class="text-center">
-<main class="form-signin">
+</script>
+
+
+<main class="text-center form-signin">
 <form  action="SignUpReg?email=${email }" name="frm" method="post" >
 <h1 class="h3 mb-3 fw-normal">회원 가입</h1>
 	<div class="form-floating">
-    <input type="text" name="user_id" class="form-control" id="id" placeholder="아이디">
+    <input type="text" name="user_id" class="form-control" id="user_id" placeholder="아이디">
        <label for="id">아이디</label>
     </div>
+    <div>
+		<button type="button"
+		class="btn btn-outline-primary" onclick="idTest()">아이디체크</button>
+	</div>
     <div class="form-floating">
 	    <input type="password" name="user_pw" class="form-control" id="pwd" placeholder="비밀번호">
 	    <label for="pwd">비밀번호</label>
@@ -106,6 +106,35 @@
 
 
 <script>
+
+	function idTest(){
+		
+		var form = document.frm;
+		
+		var userId = form.user_id.value;
+		
+		//alert(userId);
+		
+		 $(function(){        ///windows.onload=function(){} 과 같음
+		        $.ajax('IdCheck?id='+userId,{    ////접근할 주소
+		            
+		            success: function(data){    ///ajax 성공 리스너 
+		             
+		            	var msg = "사용가능";
+		            	if(data==1){///data로 html 값을 받아옴
+		               msg = "아이디 중복";
+		            	}
+		            	alert(msg);
+		            },
+		            
+		            error:function(e){    ///실패 리스너
+		                alert(e.responseText);///에러메세지
+		            }
+		        })
+		    });
+	}
+	
+
   document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);
 
   function findAddr(){
@@ -214,7 +243,6 @@
 			form.user_id.select;
 		    return false;
 		}
-		
 
 		form.submit();
 
@@ -223,5 +251,3 @@
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-</body>
-</html>
