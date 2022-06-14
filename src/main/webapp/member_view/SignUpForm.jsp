@@ -99,7 +99,7 @@
 			</div>
 		</div>
 	</div>
-	<button class="w-100 btn btn-lg btn-primary" type="submit" >회원가입</button>
+	<button class="w-100 btn btn-lg btn-primary" type="button" onclick="javascript:checkform()" >회원가입</button>
 </form>
 
 </main>
@@ -142,6 +142,8 @@
 		var userPw = form.user_pw.value;
 		var uName = form.name.value;
 		var uAddr2 = form.addr2.value;
+		var uTel2 = form.tel2.value;
+		var uTel3 = form.tel3.value;
 		
 		if(userId == ""){
 			alert("아이디를 입력하세요.");
@@ -150,7 +152,7 @@
 		}
 		
 		if(spacing.test(userId)){
-			alert("빈 칸이 없어야 합니다");
+			alert("아이디에는 빈 칸이 없어야 합니다");
 			form.user_id.select;
 		    return false;
 		}
@@ -162,7 +164,7 @@
 		}
 		
 		if(spacing.test(userPw)){
-			alert("빈 칸이 없어야 합니다");
+			alert("비밀번호에는 빈 칸이 없어야 합니다");
 			form.user_pw.select;
 		    return false;
 		}
@@ -193,6 +195,26 @@
 			form.user_pw.select;
 		    return false;
 		}
+		
+		if(uName == ""){
+			alert("이름을 입력하세요.");
+		    form.name.select;
+		    return false;
+		}
+		
+		if(spacing.test(uName)){
+			alert("이름에는 빈 칸이 없어야 합니다");
+			form.name.select;
+		    return false;
+		}
+		
+		var regExpId = /^[a-zA-Z0-9]{2,10}$/; //이름. 한글, 영어만 가능
+		if(!regExpId.test(userId)){
+			alert("아이디는 영어와 숫자만 입력 가능합니다. (최소 2글자 최대 10글자)");
+			form.user_id.select;
+		    return false;
+		}
+		
 
 		form.submit();
 

@@ -43,7 +43,7 @@
 			    <input type="password" name="member_pw" class="form-control" id="pwd" placeholder="Password">
 			    <label for="pwd">비밀번호</label>
 			</div>
-			<button class="w-100 btn btn-lg btn-primary" type="submit" onclick="javascript:checkLogin()" >로그인</button>
+			<button class="w-100 btn btn-lg btn-primary" type="button" onclick="javascript:checkLogin()" >로그인</button>
 			<div class="form-button">
 				<button type="button"
 				class="btn btn-outline-primary" onclick="location.href='SignUp'">회원가입</button>
