@@ -66,9 +66,9 @@ function checkEmpty() {
     </div>
 	</div>
 	<div class="btn-group" role="group" aria-label="Basic example">
+	<button type="reset" class="btn btn-warning">초기화</button>
 	<button type="button" class="btn btn-primary" onclick="checkEmpty()">작성하기</button>
 	<button type="button" class="btn btn-secondary" onclick="location='NoticeList'">목록으로</button>
-	<button type="reset" class="btn btn-warning">초기화</button>
 	</div>
 </form>
 	</div>

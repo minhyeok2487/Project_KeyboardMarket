@@ -12,6 +12,7 @@ String name = "비회원";
 HttpSession user = request.getSession();
 String userStatus = null;
 memberDTO dto = (memberDTO) user.getAttribute("inUser");
+QnaDTO qDTO = (QnaDTO) user.getAttribute("qnaNum");
 if (dto != null) {
 	userStatus = dto.getStatus();
 	memberNo = dto.getMemberNo();
@@ -20,9 +21,17 @@ if (dto != null) {
 	memberNo = 0;
 }
 pageContext.setAttribute("memberNo", memberNo);
+
+int no = qDTO.getQnaNo();
+request.setAttribute("no", no);
 %>
 
-<h2>댓글 작성페이지</h2>
+<link href="../css/comment.css" rel="stylesheet" type="text/css">
+<div class="container-box">
+<div class="alert alert-success" role="alert">
+<h2 align="center">댓글을 작성합니다</h2>
+</div>
+
 <script>
 function checkEmpty() {
 	var form = document.comment;
@@ -39,7 +48,7 @@ function checkEmpty() {
 	}
 </script>
 
-<form action="./CommentInsertReg" method="post" name="comment">
+<form action="./CommentInsertReg" method="post" name="comment" class="row g-3 needs-validation" novalidate>
 	<input type="hidden" name="user_id" value="${dto.user_id }" />
 	<input type="hidden" name="pname" value="<%=name%>" />
 	<input type="hidden" name="status" value="답변">
@@ -56,10 +65,10 @@ function checkEmpty() {
 		<label for="exampleFormControlTextarea1" class="form-label">내용</label>
 		<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="내용을 입력하세요." name="comment"></textarea>
 	</div>
-	<div align="right">
-		<button type="button" class="btn btn-outline-primary" onclick="checkEmpty()">작성하기</button>
-	</div>
-	<div align="right">
-		<button type="reset" class="btn btn-outline-primary">초기화</button>
+	<div class="btn-group" role="group" aria-label="Basic example">
+	<button type="reset" class="btn btn-warning">초기화</button>
+	<button type="button" class="btn btn-primary" onclick="checkEmpty()">작성하기</button>
+	<button type="button" class="btn btn-secondary" onclick="location='../qna/QnaDetail?qnaNo=${no}'">본문으로</button>
 	</div>
 </form>
+</div>

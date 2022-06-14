@@ -29,28 +29,33 @@ request.setAttribute("commentDataList", dataQnoList);
 
 int count = new CommentDAO().answerCount(no);
 %>
-<h1>고객센터 상세보기 부분~~</h1>
-
-<div class="mb-3">
-	<label for="exampleFormControlInput1" class="form-label">번호</label>
-	<input type="text" class="form-control" id="exampleFormControlInput1" value="${dto.qnaNo}" disabled="disabled">
+<link href="../css/qna.css" rel="stylesheet" type="text/css">
+<div class="container-box">
+<div class="alert alert-warning" role="alert">
+<h2 align="center">고객센터</h2>
 </div>
-<div class="mb-3">
+<form name="qnaDetail" class="row g-3 needs-validation" novalidate>
+
+<div class="col-md-4">
 	<label for="exampleFormControlInput1" class="form-label">제목</label>
 	<input type="text" class="form-control" id="exampleFormControlInput1" value="${dto.subject }" disabled="disabled">
 </div>
-<div class="mb-3">
+<div class="col-md-5">
+	<label for="exampleFormControlInput1" class="form-label">번호</label>
+	<input type="text" class="form-control" id="exampleFormControlInput1" value="${dto.qnaNo}" disabled="disabled">
+</div>
+<div class="col-md-7">
 	<label for="exampleFormControlInput1" class="form-label">작성자</label>
 	<input type="text" class="form-control" id="exampleFormControlInput1" value="${dto.pname }" disabled="disabled">
+</div>
+<div class="col-md-2">
+	<label for="exampleFormControlInput1" class="form-label">작성일</label>
+	<input type="text" class="form-control" id="exampleFormControlInput1" value="<fmt:formatDate value="${dto.reg_date }" pattern="yyyy-MM-dd HH:mm" />"
+		disabled="disabled">
 </div>
 <div class="mb-3">
 	<label for="exampleFormControlInput1" class="form-label">주문번호</label>
 	<input type="text" class="form-control" id="exampleFormControlInput1" value="${dto.ordered_num }" disabled="disabled">
-</div>
-<div class="mb-3">
-	<label for="exampleFormControlInput1" class="form-label">작성일</label>
-	<input type="text" class="form-control" id="exampleFormControlInput1" value="<fmt:formatDate value="${dto.reg_date }" pattern="yyyy-MM-dd HH:mm" />"
-		disabled="disabled">
 </div>
 <div class="mb-3">
 	<label for="exampleFormControlTextarea1" class="form-label">내용</label>
@@ -58,42 +63,42 @@ int count = new CommentDAO().answerCount(no);
 		rows="3" disabled="disabled">${dto.content }</textarea>
 </div>
 
+<div class="btn-group" role="group" aria-label="Basic example">
 <c:if test="${inUser != null && inUser.user_id == dto.user_id }">
-
-	<div align="right">
-		<a href="./QnaModifyForm?qnaNo=${dto.qnaNo }"><button
-				type="submit" class="btn btn-outline-primary">수정하기</button></a>
-	</div>
+		<button type="button" class="btn btn-warning" onclick="location='./QnaModifyForm?qnaNo=${dto.qnaNo }'">수정하기</button>
 </c:if>
-
 <%
 if (userStatus != null) {
 	if (userStatus.equals("관리자")) {
 %>
-<div align="right">
-	<a href="../comment/commentInsertpage"><button type="button"
-			class="btn btn-outline-primary">답변하기</button></a>
-</div>
+	<button type="button" class="btn btn-success" onclick="location='../comment/commentInsertpage'">답변하기</button>
 <%
 }
 }
 %>
-<hr>
+<button type="button" class="btn btn-secondary" onclick="location='QnaList'">목록으로</button>
+</div>
+</form>
+</div>
+
 <%
 if(count > 0){
 %>
 <c:forEach var="dto" items="${commentDataList }" varStatus="no">
-<hr>
-<h1>댓글</h1>
+<div class="container-box">
+<div class="alert alert-success" role="alert">
+<h2 align="center">댓글</h2>
+</div>
+<form name="qnaDetail" class="row g-3 needs-validation" novalidate>
 <div class="mb-3">
 	<label for="exampleFormControlInput1" class="form-label">제목</label>
 	<input type="text" class="form-control" id="exampleFormControlInput1" value="${dto.subject }" disabled="disabled">
 </div>
-<div class="mb-3">
+<div class="col-md-7">
 	<label for="exampleFormControlInput1" class="form-label">작성자</label>
 	<input type="text" class="form-control" id="exampleFormControlInput1" value="${dto.pname }" disabled="disabled">
 </div>
-<div class="mb-3">
+<div class="col-md-7">
 	<label for="exampleFormControlInput1" class="form-label">작성일</label>
 	<input type="text" class="form-control" id="exampleFormControlInput1" value="<fmt:formatDate value="${dto.reg_date }" pattern="yyyy-MM-dd HH:mm" />"
 		disabled="disabled">
@@ -103,15 +108,19 @@ if(count > 0){
 	<textarea class="form-control" id="exampleFormControlTextarea1"
 		rows="3" disabled="disabled">${dto.comment }</textarea>
 </div>
-<c:if test="${userStatus != null && userStatus=='관리자' }">
-	<div align="right">
-		<a href="../comment/CommentModifyForm?commentNo=${dto.commentNo }">
-		<button type="submit" class="btn btn-outline-primary">수정하기</button>
-		</a>
+
+<div class="btn-group" role="group" aria-label="Basic example">
+<%
+if (userStatus != null) {
+	if (userStatus.equals("관리자")) {
+%>
+		<button type="button" class="btn btn-warning" onclick="location='../comment/CommentModifyForm?commentNo=${dto.commentNo }'">수정하기</button>
+	<%}} %>
+	<button type="button" class="btn btn-secondary" onclick="location='QnaList'">목록으로</button>
 	</div>
-	</c:if>
+</form>
+</div>
 </c:forEach>
-<hr>
 <%	
 }
 %>

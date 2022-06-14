@@ -33,16 +33,17 @@
 	color : teal;
 }
 </style>
+
 <title>메인페이지</title>
 </head>
 <body>
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<table class="table table-success table-striped">
+				<table class="table table-warning" style="border: 2px solid gray; border-radius: 10px;">
 					<thead>
 						<tr align="center">
-							<th colspan="5">주요 공지</th>
+							<th colspan="5"><h2>✧✧ 주요 공지 ✧✧</h2></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -55,7 +56,7 @@
 				</table>
 			</div>
 			<div class="col" >
-				<h2 style="text-align: center; color:red;">!!M.T.S 추천상품!!</h2>
+				<h2 style="text-align: center; color:red;">✧✧ M.T.S 추천상품 ✧✧</h2>
 				<div id="carouselExampleDark" class="carousel carousel-dark slide"
 					data-bs-ride="carousel">
 					<div class="carousel-indicators">
@@ -125,7 +126,7 @@
 				</div>
 			</div>
 			<div class="col" >
-				<h2 style="text-align: center; color:blue">!!M.T.S 신상품!!</h2>
+				<h2 style="text-align: center; color:blue">✧✧ M.T.S 신상품 ✧✧</h2>
 				<div id="carouselExampleIndicators" class="carousel slide"
 					data-bs-ride="carousel">
 					<div class="carousel-indicators">

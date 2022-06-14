@@ -40,7 +40,12 @@ for (int i = 0; i < deliveryComList.size(); i++){
 }
 %>
 
-<h2>고객센터 작성페이지</h2>
+<link href="../css/qna.css" rel="stylesheet" type="text/css">
+<div class="container-box">
+<div class="alert alert-warning" role="alert">
+<h2 align="center">무엇이든 물어보세요 ;)</h2>
+</div>
+
 <script>
 	function checkEmpty() {
 		var form = document.qna;
@@ -58,7 +63,7 @@ for (int i = 0; i < deliveryComList.size(); i++){
 </script>
 
 
-<form action="./QnaInsertReg" method="post" name="qna">
+<form action="./QnaInsertReg" method="post" name="qna" class="row g-3 needs-validation" novalidate>
 	<input type="hidden" name="user_id" value="${dto.user_id }" />
 	<input type="hidden" name="pname" value="<%=name%>" />
 
@@ -96,13 +101,12 @@ for (int i = 0; i < deliveryComList.size(); i++){
 	<div class="mb-3">
 		<label for="exampleFormControlTextarea1" class="form-label">내용</label>
 		<textarea class="form-control" id="exampleFormControlTextarea1"
-			rows="3" placeholder="내용을 입력하세요." name="content"></textarea>
+			rows="5" placeholder="내용을 입력하세요." name="content"></textarea>
 	</div>
-	<div align="right">
-		<button type="button" class="btn btn-outline-primary"
-			onclick="checkEmpty()">작성하기</button>
-	</div>
-	<div align="right">
-		<button type="reset" class="btn btn-outline-primary">초기화</button>
+	<div class="btn-group" role="group" aria-label="Basic example">
+	<button type="reset" class="btn btn-warning">초기화</button>
+	<button type="button" class="btn btn-primary" onclick="checkEmpty()">작성하기</button>
+	<button type="button" class="btn btn-secondary" onclick="location='QnaList'">목록으로</button>
 	</div>
 </form>
+</div>
