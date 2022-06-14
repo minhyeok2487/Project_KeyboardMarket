@@ -497,26 +497,7 @@ public class memberDAO {
 		return memberList;
 	}
 
-	public void close() {
-		if (rs != null) {
-			try {
-				rs.close();
-			} catch (SQLException e) {
-			}
-		}
-		if (ptmt != null) {
-			try {
-				ptmt.close();
-			} catch (SQLException e) {
-			}
-		}
-		if (con != null) {
-			try {
-				con.close();
-			} catch (SQLException e) {
-			}
-		}
-	}
+
 
 	public int idchk(String user_id) {
 		
@@ -539,5 +520,47 @@ public class memberDAO {
 
 		return 0;
 	}
+	
+	public int emailchk(String email) {
+		
+		sql = "select count(*) from member where email = ?";
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setString(1, email);
 
+			rs = ptmt.executeQuery();
+
+			rs.next(); 
+			
+			return rs.getInt(1);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+
+		return 0;
+	}
+
+	public void close() {
+		if (rs != null) {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+			}
+		}
+		if (ptmt != null) {
+			try {
+				ptmt.close();
+			} catch (SQLException e) {
+			}
+		}
+		if (con != null) {
+			try {
+				con.close();
+			} catch (SQLException e) {
+			}
+		}
+	}
 }
