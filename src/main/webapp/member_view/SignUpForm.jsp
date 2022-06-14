@@ -163,10 +163,12 @@
       }).open();
   }
   
+  // 중복체크 이후 아이디 변경시 다시 확인하도록
   function inputIdCheck(){
 	  document.frm.idDuplication.value = "idUncheck";
   }
   
+  //유효성검사
   function checkform() {
 	  var spacing =  /\s/g; // 띄어쓰기 체크
 		var newLine =  /\n/g; // 개행문자 체크 (제거로 만들자) 
@@ -250,12 +252,58 @@
 		    return false;
 		}
 		
-		var regExpId = /^[a-zA-Z0-9]{2,10}$/; //이름. 한글, 영어만 가능
-		if(!regExpId.test(userId)){
-			alert("아이디는 영어와 숫자만 입력 가능합니다. (최소 2글자 최대 10글자)");
-			form.user_id.select;
+		var regExpName = /^[가-힣a-zA-Z]{2,10}$/; //이름. 한글, 영어만 가능
+		if(!regExpName.test(uName)){
+			alert("이름은 한글과 영어만 가능합니다. (최소 2글자 최대 10글자)");
+			form.name.select;
 		    return false;
 		}
+		
+		var regExpAddr2 = /^[가-힣a-zA-Z\d]{0,30}$/; //주소
+		if(!regExpAddr2.test(uAddr2)){
+			alert("주소는 한글과 영어, 숫자만 입력 가능합니다. (최대 30글자)");
+			form.addr2.select;
+		    return false;
+		}
+		
+		if(uTel2 == ""){
+			alert("전화번호를 입력해주세요");
+		    form.tel2.select;
+		    return false;
+		}
+		
+		if(spacing.test(uTel2)){
+			alert("전화번호에는 빈 칸이 없어야 합니다");
+			form.tel2.select;
+		    return false;
+		}
+		
+		var regExpTel2 = /^[0-9]{4}$/; //숫자만 가능. 4자리
+		if(!regExpTel2.test(uTel2)){
+			alert("전화번호는 4자리의 숫자만 입력 가능합니다.");
+			form.tel2.select;
+		    return false;
+		}
+		
+		if(uTel3 == ""){
+			alert("전화번호를 입력해주세요");
+		    form.tel3.select;
+		    return false;
+		}
+		
+		if(spacing.test(uTel3)){
+			alert("전화번호에는 빈 칸이 없어야 합니다");
+			form.tel3.select;
+		    return false;
+		}
+		var regExpTel3 = /^[0-9]{4}$/; //숫자만 가능. 4자리
+		if(!regExpTel3.test(uTel3)){
+			alert("전화번호는 4자리의 숫자만 입력 가능합니다.");
+			form.tel3.select;
+		    return false;
+		}
+		
+		
 
 		form.submit();
 
