@@ -81,7 +81,7 @@
 <script language="javascript" type="text/javascript"
 	src="https://stgstdpay.inicis.com/stdjs/INIStdPay.js" charset="UTF-8"></script>
 <style type="text/css">
-td {
+td, th {
 	vertical-align: middle !important;
 	text-align: center !important;
 }
@@ -151,23 +151,33 @@ td {
 				</tr>
 				<tr>
 					<th>배송지 주소</th>
-					<td colspan="2"><input type="button" onclick="sample4_execDaumPostcode()"
-					value="우편번호 찾기"></td>
+					<td colspan="2">
+					<c:if test="${member.addr1!=null &&member.addr2 != null }">
+						<input type="button" class="btn btn-dark" onclick="clearpotcode()" value="새 배송지 찾기">
+					</c:if>
+					<c:if test="${member.addr1 ==null || member.addr2 == null }">
+						<input type="button" class="btn btn-info" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
+					</c:if>
+					</td>
 				</tr>
-				<tr>
-					<td><input type="text"
-					id="sample4_postcode" disabled="disabled" placeholder="우편번호" style="width:100%; text-align:center;"></td>
-					<td><input type="text" id="sample4_jibunAddress" disabled="disabled"
-					placeholder="지번주소" style="width:100%; text-align:center;"></td>
-					<td><input type="text" id="sample4_extraAddress" disabled="disabled"
-					placeholder="참고항목" style="width:100%; text-align:center;"></td>
-				</tr>
-				<tr>
-					<td><input type="text" id="sample4_roadAddress" name="addr1" placeholder="도로명주소" style="width:100%; text-align:center;"></td>
-					<td colspan="2" ><input type="text" id="sample4_detailAddress" name="addr2" placeholder="상세주소 입력" style="width:100%; text-align:center;"></td>
-				</tr>
+				<c:if test="${member.addr1!=null &&member.addr2 != null }">
+					<tr>
+						<td><input type="text"
+						id="sample4_postcode" disabled="disabled" placeholder="우편번호" style="width:100%; text-align:center;" value="${member.zip_code }"></td>
+						<td><input type="text" id="sample4_roadAddress" name="addr1" placeholder="도로명주소" style="width:100%; text-align:center;" value="${member.addr1 }"></td>
+						<td colspan="2" ><input type="text" id="sample4_detailAddress" name="addr2" placeholder="상세주소 입력" style="width:100%; text-align:center;" value="${member.addr2 }"></td>
+					</tr>		
+				</c:if>
+				<c:if test="${member.addr1 ==null || member.addr2 == null }">
+					<tr>
+						<td><input type="text"
+						id="sample4_postcode" disabled="disabled" placeholder="우편번호" style="width:100%; text-align:center;"></td>
+						<td><input type="text" id="sample4_roadAddress" name="addr1" placeholder="도로명주소" style="width:100%; text-align:center;"></td>
+						<td colspan="2" ><input type="text" id="sample4_detailAddress" name="addr2" placeholder="상세주소 입력" style="width:100%; text-align:center;"></td>
+					</tr>	
+				</c:if>
 			</table>
-			</form>
+		</form>
 			<a href="./Cartview?reg=view&memberNo=<%=memberNo %>" class="btn btn-secondary" role="button" style="margin :10px; ">이전</a>
 		<button onclick="requestPay()" class="btn btn-primary" style="margin :10px; float: right;">결제하기</button>
 		
@@ -244,19 +254,13 @@ td {
 							// 우편번호와 주소 정보를 해당 필드에 넣는다.
 							document.getElementById('sample4_postcode').value = data.zonecode;
 							document.getElementById("sample4_roadAddress").value = roadAddr;
-							document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
 
-							// 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
-							if (roadAddr !== '') {
-								document.getElementById("sample4_extraAddress").value = extraRoadAddr;
-							} else {
-								document.getElementById("sample4_extraAddress").value = '';
-							}
 						}
 					}).open({
 						autoClose: true
 					});
 		}
+		
 		
 	</script>
 	<script>
@@ -277,6 +281,14 @@ td {
 			}
 			
 		}
+	</script>
+	<script>
+	function clearpotcode() {
+		document.getElementById('sample4_postcode').value = null;
+		document.getElementById('sample4_roadAddress').value = null;
+		document.getElementById('sample4_detailAddress').value = null;
+		sample4_execDaumPostcode();
+	}
 	</script>
 
 </body>
