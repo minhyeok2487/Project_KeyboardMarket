@@ -475,6 +475,41 @@ public class OrderDAO {
 		return res;
 	}
 
+	public ArrayList<OrderDTO> findList(String order_num, String name, String status, int memberNo) {
+		ArrayList<OrderDTO> res = new ArrayList<OrderDTO>();
+		sql = "select * from orders where ordered_num LIKE ? AND name LIKE ? AND status LIKE ? AND memberNo = ? order by ordered_num desc ";
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setString(1, order_num);
+			ptmt.setString(2, name);
+			ptmt.setString(3, status);
+			ptmt.setInt(4, memberNo);
+			rs = ptmt.executeQuery();
+			while (rs.next()) {
+				OrderDTO dto = new OrderDTO();
+				dto.setOrdered_num(rs.getString("ordered_num"));
+				dto.setName(rs.getString("name"));
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				Date date = formatter.parse(rs.getString("ordered_date"));
+				dto.setOrdered_date(date);
+				dto.setPrice(rs.getInt("price"));
+				dto.setSelect_count(rs.getInt("select_count"));
+				dto.setStatus(rs.getString("status"));
+				dto.setItemNo(rs.getInt("itemNo"));
+				dto.setZip_code(rs.getString("zip_code"));
+				dto.setMemberNo(memberNo);
+				dto.setAddr1(rs.getString("addr1"));
+				dto.setAddr2(rs.getString("addr2"));
+				res.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return res;
+	}
+	
 	public void close() {
 		if (rs != null) {
 			try {
@@ -495,4 +530,6 @@ public class OrderDAO {
 			}
 		}
 	}
+
+	
 }
