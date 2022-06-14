@@ -27,9 +27,6 @@
 <title>MTS키보드마켓 입니다</title>
 </head>
 <body>
-
-
-
 <jsp:include page="top.jsp" />	
 <jsp:include page="${mainUrl }.jsp" />
 <jsp:include page="bottom.jsp" />
