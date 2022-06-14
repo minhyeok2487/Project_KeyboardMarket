@@ -1,51 +1,62 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/signUpForm.css" />
 
-<h1>인증 받을 이메일을 입력하세요</h1>
-
-
-<h2><%=session.getAttribute("userID") %> 님 아이디 확인되었습니다</h2>
-
-<form name = "checkForm" action="" method="post">
-	<table border="">
-		<tr>
-			<td>이메일</td>
-			<td><input type="email" name="email"/></td>
-		</tr>
-		<tr>
-			<td><input type="button" value="인증 코드 보내기" onclick="javascript:checkLogin()"/></td>
-		</tr>
-	</table>
-</form>
+<main class="text-center form-signin">
+	<form action="Authentication" name = "frm" method="post">
+		<h1 class="h3 mb-3 fw-normal">아이디 <br> <%=session.getAttribute("userID") %><br><br>이메일 입력<br></h1>
+			<div class="form-floating">
+		        <input type="text" name="email" class="form-control" id="email" placeholder="이메일">
+		        <label for="email">이메일</label>
+			</div>
+			<button class="w-100 btn btn-lg btn-primary" type="button" onclick="checkData()" >인증코드 보내기</button>
+	</form>
+</main>
 
 <script type="text/javascript">
-			function checkLogin(){
-				var form = document.checkForm;
-				if(form.email.value == ""){
-					alert("이메일을 입력해주세요");
-					form.email.focus();
-					return false;
-				}else{
-					var uid = document.getElementsByName('email')[0].value;
-					var url = "Authentication?email=" + uid;
-					location.href = url;
-				}
-			}
 
+	function checkData() {
+		// * : 0개 이상 반복되는지
+		// $ : 그 패턴으로 끝이 나는지
+ 		var spacing =  /\s/g; // 띄어쓰기 체크
+		var newLine =  /\n/g; // 개행문자 체크 (제거로 만들자) 
+		
+		
+		var form = document.frm;
+		
+		var userEmail = form.email.value;
 
-/*             function joinMember(){
-            	var uid = document.getElementsByName('email')[0].value;
-            	var url = "Authentication?email=" + uid;
-               window.open(url, "인증하기", "width=640, height=400")
-            } */
-</script>	
+ 		if(userEmail == ""){
+			alert("이메일을 입력하세요.");
+			form.email.select;
+		    return false;
+		}
+		
+ 		if(spacing.test(userEmail)){
+			alert("빈 칸이 없어야 합니다");
+			form.email.select;
+		    return false;
+		}
+		
+		if(newLine.test(userEmail)){
+			alert("입력에러. 다시 입력해주세요.");
+			form.email.select;
+		    return false;
+		}
+		
+		var regExpEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+		if(!regExpEmail.test(userEmail)){
+			alert("이메일의 형식에 맞춰 입력해주세요 (test@test.com)");
+			form.email.select;
+		    return false;
+		}
 
-</body>
-</html>
+		form.submit();
+
+	}
+</script>

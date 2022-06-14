@@ -32,76 +32,76 @@
 
 
 <main class="text-center form-signin">
-<form  action="SignUpReg?email=${email }" name="frm" method="post" >
-<h1 class="h3 mb-3 fw-normal">회원 가입</h1>
-	<div class="form-floating">
-    <input type="text" name="user_id" class="form-control" id="user_id" onkeydown="inputIdCheck()" placeholder="아이디">
-       <label for="id">아이디</label>
-    </div>
-    <input type="hidden" name="idDuplication" value="idUncheck">
-    <div>
-		<button type="button"
-		class="btn btn-outline-primary" onclick="idTest()">아이디체크</button>
-	</div>
-    <div class="form-floating">
-	    <input type="password" name="user_pw" class="form-control" id="pwd" placeholder="비밀번호">
-	    <label for="pwd">비밀번호</label>
-	</div>
-	<div class="form-floating">
-       <input type="text" name="name" class="form-control" id="name" placeholder="이름">
-       <label for="name">이름</label>
-    </div>
-	<div class="form-floating">
-		<input type="date" name="birthdate" class="form-control" id="currentDate" placeholder="생일">
-       	<label for="birthdate">생일</label>
-	</div>
-	<div class="form-check form-check-inline">
-	  <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="m" checked>
-	  <label class="form-check-label" for="inlineRadio1">남성</label>
-	</div>
-	<div class="form-check form-check-inline">
-	  <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="f">
-	  <label class="form-check-label" for="inlineRadio2">여성</label>
-	</div>
-	
-	<div class="form-floating">
-		<input type="text" name="email" value='${email }' class="form-control" id="email" placeholder="이름" readonly>
-    		<label for="email">이메일</label>
-	</div>
-	
-	<div class="form-floating">
-		<input type="text" name="zip_code" class="form-control" id="member_post" placeholder="주소 입력" readonly onclick="findAddr()">
-		<label for="addr">우편번호(클릭)</label>
-	</div>
-	<div class="form-floating">
-		<input type="text" name="addr1" class="form-control" id="member_addr" placeholder="주소 입력" readonly onclick="findAddr()">
-		<label for="addr">주소</label>
-	</div>
-	<div class="form-floating">
-		<input type="text" name="addr2" class="form-control"  placeholder="상세 주소" >
-		<label for="addr">상세주소</label>
-	</div>
-	<div class="container" >
-		<div class="row" >
-			<div class="col">
-				<select class="form-control" name = "tel1" id="tel1" display="inline-block">
-					<option value="010">010</option>
-					<option value="011">011</option>
-					<option value="016">016</option>
-					<option value="017">017</option>	
-					<option value="019">019</option>
-				</select>
-			</div>
-			<div class="col">
-				<input type="text" class="form-control" id="tel2" name="tel2" placeholder="예)1234" />
-			</div>
-			<div class="col">
-				<input type="text" class="form-control" name="tel3" id="tel3" placeholder="예)1234" />
+	<form  action="SignUpReg?email=${email }" name="frm" method="post" >
+	<h1 class="h3 mb-3 fw-normal">회원 가입</h1>
+		<div class="form-floating">
+	    <input type="text" name="user_id" class="form-control" id="user_id" onkeydown="inputIdCheck()" placeholder="아이디">
+	       <label for="id">아이디</label>
+	    </div>
+	    <input type="hidden" name="idDuplication" value="idUncheck">
+	    <div>
+			<button type="button"
+			class="btn btn-outline-primary" onclick="idTest()">아이디체크</button>
+		</div>
+	    <div class="form-floating">
+		    <input type="password" name="user_pw" class="form-control" id="pwd" placeholder="비밀번호">
+		    <label for="pwd">비밀번호</label>
+		</div>
+		<div class="form-floating">
+	       <input type="text" name="name" class="form-control" id="name" placeholder="이름">
+	       <label for="name">이름</label>
+	    </div>
+		<div class="form-floating">
+			<input type="date" name="birthdate" class="form-control" id="currentDate" placeholder="생일">
+	       	<label for="birthdate">생일</label>
+		</div>
+		<div class="form-check form-check-inline">
+		  <input class="form-check-input" type="radio" name="gender" id="inlineRadio1" value="m" checked>
+		  <label class="form-check-label" for="inlineRadio1">남성</label>
+		</div>
+		<div class="form-check form-check-inline">
+		  <input class="form-check-input" type="radio" name="gender" id="inlineRadio2" value="f">
+		  <label class="form-check-label" for="inlineRadio2">여성</label>
+		</div>
+		
+		<div class="form-floating">
+			<input type="text" name="email" value='${email }' class="form-control" id="email" placeholder="이름" readonly>
+	    		<label for="email">이메일</label>
+		</div>
+		
+		<div class="form-floating">
+			<input type="text" name="zip_code" class="form-control" id="member_post" placeholder="주소 입력" readonly onclick="findAddr()">
+			<label for="addr">우편번호(클릭)</label>
+		</div>
+		<div class="form-floating">
+			<input type="text" name="addr1" class="form-control" id="member_addr" placeholder="주소 입력" readonly onclick="findAddr()">
+			<label for="addr">주소</label>
+		</div>
+		<div class="form-floating">
+			<input type="text" name="addr2" class="form-control"  placeholder="상세 주소" >
+			<label for="addr">상세주소</label>
+		</div>
+		<div class="container" >
+			<div class="row" >
+				<div class="col">
+					<select class="form-control" name = "tel1" id="tel1" display="inline-block">
+						<option value="010">010</option>
+						<option value="011">011</option>
+						<option value="016">016</option>
+						<option value="017">017</option>	
+						<option value="019">019</option>
+					</select>
+				</div>
+				<div class="col">
+					<input type="text" class="form-control" id="tel2" name="tel2" placeholder="예)1234" />
+				</div>
+				<div class="col">
+					<input type="text" class="form-control" name="tel3" id="tel3" placeholder="예)1234" />
+				</div>
 			</div>
 		</div>
-	</div>
-	<button class="w-100 btn btn-lg btn-primary" type="button" onclick="javascript:checkform()" >회원가입</button>
-</form>
+		<button class="w-100 btn btn-lg btn-primary" type="button" onclick="javascript:checkform()" >회원가입</button>
+	</form>
 
 </main>
 
