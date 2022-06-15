@@ -60,7 +60,7 @@ int count = new CommentDAO().answerCount(no);
 <div class="mb-3">
 	<label for="exampleFormControlTextarea1" class="form-label">내용</label>
 	<textarea class="form-control" id="exampleFormControlTextarea1"
-		rows="3" disabled="disabled">${dto.content }</textarea>
+		rows="20" disabled="disabled">${dto.content }</textarea>
 </div>
 
 <div class="btn-group" role="group" aria-label="Basic example">
@@ -106,7 +106,7 @@ if(count > 0){
 <div class="mb-3">
 	<label for="exampleFormControlTextarea1" class="form-label">내용</label>
 	<textarea class="form-control" id="exampleFormControlTextarea1"
-		rows="3" disabled="disabled">${dto.comment }</textarea>
+		rows="20" disabled="disabled">${dto.comment }</textarea>
 </div>
 
 <div class="btn-group" role="group" aria-label="Basic example">

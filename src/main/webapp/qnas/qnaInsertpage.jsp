@@ -101,7 +101,7 @@ for (int i = 0; i < deliveryComList.size(); i++){
 	<div class="mb-3">
 		<label for="exampleFormControlTextarea1" class="form-label">내용</label>
 		<textarea class="form-control" id="exampleFormControlTextarea1"
-			rows="5" placeholder="내용을 입력하세요." name="content"></textarea>
+			rows="20" placeholder="내용을 입력하세요." name="content"></textarea>
 	</div>
 	<div class="btn-group" role="group" aria-label="Basic example">
 	<button type="reset" class="btn btn-warning">초기화</button>

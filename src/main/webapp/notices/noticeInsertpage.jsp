@@ -60,7 +60,7 @@ function checkEmpty() {
 	<div class="mb-3">
 		<label for="validationServer02" class="form-label">내용</label>
 		<textarea class="form-control" id="exampleFormControlTextarea1"
-			rows="5" placeholder="내용을 입력하세요." name="content" required></textarea>
+			rows="20" placeholder="내용을 입력하세요." name="content" required></textarea>
 			<div class="invalid-feedback">
       내용을 입력해주세요.
     </div>
