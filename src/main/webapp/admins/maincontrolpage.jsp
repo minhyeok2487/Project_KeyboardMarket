@@ -50,7 +50,7 @@ td {
 		<div class="container">
 			<h2 class="display-4">메인페이지 관리</h2>
 			<a href="./AddMainItem"><button class="btn btn-warning" type="button">메인 페이지 상품 추가</button></a>
-			<a href="./AddMainNotice"><button class="btn btn-warning" type="button">메인 페이지 공지 추가</button></a>
+			<a href="./AddMainNotice"><button class="btn btn-warning" type="button">메인 페이지 공지 관리</button></a>
 		</div>
 	</div>
 	<div class="container">
@@ -103,12 +103,12 @@ td {
 				</div>
 			</div>
 			<div class="accordion-item">
-				<h2 class="accordion-header" id="headingOne">
+				<h2 class="accordion-header" id="headingTwo">
 					<button class="accordion-button" type="button"
-						data-bs-toggle="collapse" data-bs-target="#collapseOne"
-						aria-expanded="true" aria-controls="collapseOne">신상품 리스트 ${NList.size() }개</button>
+						data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+						aria-expanded="true" aria-controls="collapseTwo">신상품 리스트 ${NList.size() }개</button>
 				</h2>
-				<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+				<div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
 					<div class="accordion-body">
 						<form action="./RemoveMainItem?" method="get">
 						<table class="table table-striped">
@@ -138,48 +138,6 @@ td {
 								<td><%=item.getReg_date()%></td>
 								<td>
 									<button type="submit" class="btn btn-danger" onclick='./RemoveMainItem?id=${itemNo }&status=신상품'>상품 내리기</button>
-								</td>
-							</tr>
-							<%
-								}
-							%>
-						</table>
-						</form>
-					</div>
-				</div>
-			</div>
-			<div class="accordion-item">
-				<h2 class="accordion-header" id="headingOne">
-					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">주요 공지사항 ${M_NoticeList.size() }개</button>
-				</h2>
-				<div id="collapseOne" class="accordion-collapse collapse show"
-					aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-					<div class="accordion-body">
-						<form action="./RemoveMainNotice?" method="post">
-						<table class="table table-striped">
-							<tr>
-								<th></th>
-								<th>공지사항 번호</th>
-								<th>제목</th>
-								<th>작성자</th>
-								<th>등록일</th>
-								<th>추가여부</th>
-							</tr>
-							<%
-								ArrayList<NoticeDTO> M_NoticeList = (ArrayList<NoticeDTO>) request.getAttribute("M_NoticeList");
-							for (int i = 0; i < M_NoticeList.size(); i++) {
-								NoticeDTO item = M_NoticeList.get(i);
-							%>
-							<input type="hidden" name="noticeNo" value="<%=item.getNoticeNo()%>">
-							<tr>
-								<td></td>
-								<td><%=item.getNoticeNo()%></td>
-								<td><%=item.getSubject()%></td>
-								<td><%=item.getPname()%></td>
-								<td><fmt:formatDate value="<%=item.getReg_date()%>" pattern="yyyy-MM-dd HH:mm" /></td>
-								<td>
-									<button type="submit" class="btn btn-danger"
-										onclick='./RemoveMainNotice?noticeNo=${noticeNo }'>공지 내리기</button>
 								</td>
 							</tr>
 							<%
