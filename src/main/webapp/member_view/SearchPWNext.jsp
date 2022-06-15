@@ -9,6 +9,7 @@
 
 <main class="text-center form-signin">
 	<form action="Authentication" name = "frm" method="post">
+	<input type="hidden" value="<%=session.getAttribute("userID") %>" name="user_id" >
 		<h1 class="h3 mb-3 fw-normal">아이디 <br> <%=session.getAttribute("userID") %><br><br>이메일 입력<br></h1>
 			<div class="form-floating">
 		        <input type="text" name="email" class="form-control" id="email" placeholder="이메일">

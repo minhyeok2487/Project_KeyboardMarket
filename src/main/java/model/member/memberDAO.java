@@ -139,6 +139,31 @@ public class memberDAO {
 		
 		return 0;
 	}
+	
+	public int checkIDEmail(String userID, String email) {
+		
+		sql = "SELECT count(*) FROM member WHERE user_id = ? and email = ?";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setString(1, userID);
+			ptmt.setString(2, email);
+
+			rs = ptmt.executeQuery();
+
+			rs.next(); 
+			
+			return rs.getInt(1);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return 0;
+	}
 
 	public memberDTO memberLogin(memberDTO dto) {
 		memberDTO res = null;
