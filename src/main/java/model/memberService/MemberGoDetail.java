@@ -45,7 +45,7 @@ public class MemberGoDetail implements Service {
 			request.setAttribute("goUrl", "./GoGoDetail");
 			request.setAttribute("mainUrl", "/member_view/alert");
 		}else {
-			msg = "로그인 실패";
+			msg = "인증 실패";
 			request.setAttribute("msg", msg);
 			request.setAttribute("goUrl", "../mainpage/MainService");
 			request.setAttribute("mainUrl", "/member_view/alert");
