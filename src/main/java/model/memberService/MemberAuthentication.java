@@ -35,7 +35,15 @@ public class MemberAuthentication implements Service {
         String email = request.getParameter("email");
         int emailCheck = new memberDAO().emailchk(email);
         boolean flag = true;
+        String userID = "";
         
+        if(userFrom.getAttribute("userID") != null) {
+        		userID = (String) userFrom.getAttribute("userID");
+        }
+        
+        ArrayList<memberDTO> memberList = new memberDAO().allList();
+        
+        int chkIDPW = new memberDAO().checkIDEmail(userID, email);
         
         if(from.equals("signUp") && emailCheck>0) {
     			msg = "이미 존재하는 이메일 입니다";
@@ -52,9 +60,12 @@ public class MemberAuthentication implements Service {
 			request.setAttribute("msg", msg);
 			request.setAttribute("goUrl", "./Login");
 			request.setAttribute("mainUrl", "/member_view/alert");
+	    }else if(from.equals("searchPW") && chkIDPW==0) {
+	    		msg = "일치하는 회원이 없습니다";
+			request.setAttribute("msg", msg);
+			request.setAttribute("goUrl", "./Login");
+			request.setAttribute("mainUrl", "/member_view/alert");
 	    }else {
-	        
-			ArrayList<memberDTO> memberList = new memberDAO().allList();
 			
 			for(memberDTO dto : memberList) {
 				if(email.equals(dto.getEmail())) {
