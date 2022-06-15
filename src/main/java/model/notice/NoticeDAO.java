@@ -283,6 +283,27 @@ public class NoticeDAO {
 
 		return 0;
 	}
+	
+	public int postedCount() {
+		
+		sql = "select count(*) from notice where status = ?";
+		
+		try {
+			ptmt = con.prepareStatement(sql);
+			ptmt.setString(1, "게시");
+			rs = ptmt.executeQuery();
+			
+			rs.next();
+			
+			return rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return 0;
+	}
 
 	public ArrayList<NoticeDTO> Currentlist(String Status) {
 		ArrayList<NoticeDTO> res = new ArrayList<NoticeDTO>();

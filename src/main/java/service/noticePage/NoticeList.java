@@ -19,7 +19,7 @@ public class NoticeList implements Service {
 
 		NoticeDAO dao = new NoticeDAO();
 
-		int total = dao.postCount();
+		int total = dao.postedCount();
 
 		int pageTotal = total / limit;
 
