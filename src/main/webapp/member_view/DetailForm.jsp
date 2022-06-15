@@ -204,7 +204,7 @@
 			    return false;
 			}
 			
-			var regExpAddr2 = /^[가-힣a-zA-Z\d]{0,30}$/; //주소
+			var regExpAddr2 = /^[가-힣a-zA-Z\d\s]{0,30}$/; //주소
 			if(!regExpAddr2.test(uAddr2)){
 				alert("주소는 한글과 영어, 숫자만 입력 가능합니다. (최대 30글자)");
 				form.addr2.select;
