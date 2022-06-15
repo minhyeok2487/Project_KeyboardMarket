@@ -114,7 +114,6 @@ public class NoticeDAO {
 				dto.setContent(rs.getString("content"));
 				dto.setReg_date(rs.getTimestamp("reg_date"));
 				dto.setHits(rs.getInt("hits"));
-				dto.setUpfile(rs.getString("upfile"));
 			}
 
 		} catch (SQLException e) {
@@ -149,7 +148,6 @@ public class NoticeDAO {
 				dto.setContent(rs.getString("content"));
 				dto.setReg_date(rs.getTimestamp("reg_date"));
 				dto.setHits(rs.getInt("hits"));
-				dto.setUpfile(rs.getString("upfile"));
 			}
 			
 		} catch (SQLException e) {
@@ -164,7 +162,7 @@ public class NoticeDAO {
 
 	public void insert(NoticeDTO dto) {
 
-		sql = "insert into notice(subject, user_id, pname, content, upfile, hits, reg_date) values (?, ?, ?, ?, ?, 0, now())";
+		sql = "insert into notice(subject, user_id, pname, content, hits, reg_date) values (?, ?, ?, ?, 0, now())";
 		
 		String xSubject = dto.subject;
 		xSubject = XssUtil.cleanXSS(xSubject);
@@ -178,7 +176,6 @@ public class NoticeDAO {
 			ptmt.setString(2, dto.user_id);
 			ptmt.setString(3, dto.pname);
 			ptmt.setString(4, xContent);
-			ptmt.setString(5, dto.upfile);
 			ptmt.executeUpdate();
 
 		} catch (SQLException e) {
