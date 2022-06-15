@@ -43,7 +43,7 @@ pageContext.setAttribute("memberNo", memberNo);
 <div class="mb-3">
 	<label for="exampleFormControlTextarea1" class="form-label">내용</label>
 	<textarea class="form-control" id="exampleFormControlTextarea1"
-		rows="3" disabled="disabled">${dto.comment }</textarea>
+		rows="20" disabled="disabled">${dto.comment }</textarea>
 </div>
 
 <c:if test="${inUser != null && inUser.user_id == dto.user_id }">

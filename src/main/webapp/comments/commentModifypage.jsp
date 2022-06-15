@@ -64,7 +64,7 @@ function checkEmpty() {
 	</div>
 	<div class="mb-3">
 		<label for="exampleFormControlTextarea1" class="form-label">내용</label>
-		<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="comment">${dto.comment }</textarea>
+		<textarea class="form-control" id="exampleFormControlTextarea1" rows="20" name="comment">${dto.comment }</textarea>
 	</div>
 		<div class="btn-group" role="group" aria-label="Basic example">
 	<button type="reset" class="btn btn-warning">초기화</button>

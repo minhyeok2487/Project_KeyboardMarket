@@ -40,7 +40,7 @@ pageContext.setAttribute("memberNo", memberNo);
 	<div class="mb-3">
 		<label for="validationServer02" class="form-label">내용</label>
 		<textarea class="form-control" id="exampleFormControlTextarea1"
-			rows="5" name="content" disabled="disabled">${dto.content }</textarea>
+			rows="20" name="content" disabled="disabled">${dto.content }</textarea>
 	</div>
 	<div class="btn-group" role="group" aria-label="Basic example">
 	<%
