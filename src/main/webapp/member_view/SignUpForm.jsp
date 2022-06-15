@@ -235,9 +235,9 @@
 		    return false;
 		}
 		
-		var regExpPw = /^[A-Za-z\d$@$!%*#?&]{4,15}$/; //최소 8자리, 최대 15자리.
+		var regExpPw = /^[A-Za-z\d$@$!%*#?&]{8,15}$/; //최소 8자리, 최대 15자리.
 		if(!regExpPw.test(userPw)){
-			alert("비밀번호는 영어,숫자,특수문자가 한글자 이상 들어가야 합니다. (최소 4글자, 최대 15글자)");
+			alert("비밀번호는 영어,숫자,특수문자가 한글자 이상 들어가야 합니다. (최소 8글자, 최대 15글자)");
 			form.user_pw.select;
 		    return false;
 		}
@@ -260,9 +260,9 @@
 		    return false;
 		}
 		
-		var regExpPw = /^[A-Za-z\d$@$!%*#?&]{4,15}$/; //최소 8자리, 최대 15자리.
+		var regExpPw = /^[A-Za-z\d$@$!%*#?&]{8,15}$/; //최소 8자리, 최대 15자리.
 		if(!regExpPw.test(userPw2)){
-			alert("비밀번호 확인에는 영어,숫자,특수문자가 한글자 이상 들어가야 합니다. (최소 4글자, 최대 15글자)");
+			alert("비밀번호 확인에는 영어,숫자,특수문자가 한글자 이상 들어가야 합니다. (최소 8글자, 최대 15글자)");
 			form.user_pw2.select;
 		    return false;
 		}
