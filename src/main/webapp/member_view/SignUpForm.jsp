@@ -40,7 +40,7 @@
 	    </div>
 	    <input type="hidden" name="idDuplication" value="idUncheck">
 	    <div style="margin-bottom:20px;">
-			<button class="w-100 btn btn-lg btn-primary" type="button" onclick="idTest" >아이디체크</button>
+			<button class="w-100 btn btn-lg btn-primary" type="button" onclick="idTest()" >아이디체크</button>
 		</div>
 	    <div class="form-floating">
 		    <input type="password" name="user_pw" class="form-control" id="user_pw" placeholder="비밀번호">
@@ -49,10 +49,6 @@
 		<div class="form-floating">
 		    <input type="password" name="user_pw2" class="form-control" id="user_pw2" placeholder="비밀번호 확인">
 		    <label for="user_pw2">비밀번호 확인</label>
-		</div>
-		<div class="form-floating">
-		    <input type="password" name="user_pw2" class="form-control" id="user_pw2" placeholder="비밀번호">
-		    <label for="user_pw2">비밀번호</label>
 		</div>
 		<div class="form-floating">
 	       <input type="text" name="name" class="form-control" id="name" placeholder="이름">
