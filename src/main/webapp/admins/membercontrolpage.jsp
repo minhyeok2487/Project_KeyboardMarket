@@ -99,18 +99,23 @@ button {
 				<td><fmt:formatDate value="<%=item.getReg_date()%>" pattern="yyyy-MM-dd" /></td>
 				<td><%=item.getStatus()%></td>
 				<td>
-					<p><a href="./MemberEdit?&memberNo=${memberNo }"><button class="btn btn-dark" type="button">사용자 정보 수정</button></a></p>
+					<p><a href="./MemberEdit?&memberNo=${memberNo }"><button class="btn btn-dark" type="button">회원 정보 수정</button></a></p>
 					<%
 						if(item.getStatus().equals("정지")){
 					%>
 						<p><a href="./MemberStatusChange?status=회원&memberNo=${memberNo }"><button class="btn btn-success" type="button">정지 해제</button></a></p>
 					<%			
-						} else {
+						} else if(item.getStatus().equals("회원")) {
 					%>
 						<p><a href="./MemberStatusChange?status=정지&memberNo=${memberNo }"><button class="btn btn-danger" type="button">사용자 정지</button></a></p>
 					<%
-						}
-					%>
+						} else if(item.getStatus().equals("탈퇴")) {
+							%>
+							<p><button class="btn btn-danger" type="button">탈퇴한 회원</button></p>
+						<%
+							}
+						%>
+				
 					<p><a href="./SearchMemberInfo?&memberNo=${memberNo }"><button class="btn btn-info" type="button">조회</button></a></p>
 				</td>
 			</tr>
