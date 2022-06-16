@@ -142,7 +142,7 @@ public class OrderSearch implements Service {
 		int total = 0;
 		for (OrderDTO price : mainList) {
 			if(price.getStatus().equals("주문완료") || price.getStatus().equals("배송완료") || price.getStatus().equals("배송중") || price.getStatus().equals("교환확인")) {
-				total += price.getPrice()*price.getSelect_count();
+				total += price.getPrice();
 			}
 			
 		}

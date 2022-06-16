@@ -24,20 +24,20 @@ pageContext.setAttribute("memberNo", memberNo);
 
 ArrayList<OrderDTO> totalOrderList = new ArrayList<OrderDTO>();
 
-ArrayList<OrderDTO> orderList = new OrderDAO().SearchMemberNolist("주문완료", memberNo);
+ArrayList<OrderDTO> orderList = new OrderDAO().SearchMemberNolist("%", memberNo);
 for (int i = 0; i < orderList.size(); i++){
 	totalOrderList.add(orderList.get(i));
 }
 
-ArrayList<OrderDTO> deliveryList = new OrderDAO().SearchMemberNolist("배송중", memberNo);
-for (int i = 0; i < deliveryList.size(); i++){
-	totalOrderList.add(deliveryList.get(i));
-}
+//ArrayList<OrderDTO> deliveryList = new OrderDAO().SearchMemberNolist("배송중", memberNo);
+//for (int i = 0; i < deliveryList.size(); i++){
+//	totalOrderList.add(deliveryList.get(i));
+//}
 
-ArrayList<OrderDTO> deliveryComList = new OrderDAO().SearchMemberNolist("배송완료", memberNo);
-for (int i = 0; i < deliveryComList.size(); i++){
-	totalOrderList.add(deliveryComList.get(i));
-}
+//ArrayList<OrderDTO> deliveryComList = new OrderDAO().SearchMemberNolist("배송완료", memberNo);
+//for (int i = 0; i < deliveryComList.size(); i++){
+//	totalOrderList.add(deliveryComList.get(i));
+//}
 %>
 
 <link href="../css/qna.css" rel="stylesheet" type="text/css">
@@ -85,11 +85,13 @@ for (int i = 0; i < deliveryComList.size(); i++){
 		<%
 		String ordered_num = null;
 		String itemName = null;
+		String status = null;
 		for (int i = 0; i < totalOrderList.size(); i++){
 			ordered_num = totalOrderList.get(i).getOrdered_num();
 			itemName = totalOrderList.get(i).getItem_name();
+			status = totalOrderList.get(i).getStatus();
 			%>
-			<option value="<%=ordered_num %>"> <%=ordered_num %> - <%=itemName %> </option>
+			<option value="<%=ordered_num %>"> <%=ordered_num %> - <%=itemName %> / <%=status %> </option>
 		<%
 		}
 		%>

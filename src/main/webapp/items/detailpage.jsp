@@ -37,7 +37,7 @@
 				<tr>
 					<th style="text-align: center;"><img src="<c:url value="/source/${dto.getItem_img1() }"/>"
 						alt="" width=350 height=370 /></th>
-					<td><input type="hidden" name="itemNo"
+					<td style="text-align: left !important;"><input type="hidden" name="itemNo"
 						value="${dto.getItemNo() }" />
 						<p>[상품번호 : ${dto.getItemNo() }]</p>
 						<p>[상품명 : ${dto.getItem_name() }]</p>
@@ -48,7 +48,7 @@
 						<p>[등록일 : ${dto.getReg_date() }]</p>
 						<p>[가격 : ${dto.getPrice() }]</p>
 						<p>[재고 : ${dto.getStock() }]</p></td>
-					<td>
+					<td style="text-align: left !important; vertical-align: top !important;">
 						<p>
 							<c:choose>
 								<c:when test="${dto.getStock() == 0 }">
@@ -82,10 +82,10 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="3"><img
+					<td style="text-align: left !important;" colspan="3"><img
 						src="<c:url value="/source/${dto.getItem_img2() }"/>"  style="width: 100%;"alt="" /></td>
 				</tr>
-			</table table-striped>
+			</table>
 		</form>
 	</div>
 

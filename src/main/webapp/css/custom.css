@@ -12,7 +12,7 @@
 
 .jb-smaller { font-size: smaller; color:gray;}
 .jb-larger { font-size: larger; }
-th {
+th, td {
 	vertical-align: middle !important;
 	text-align: center !important;
 }

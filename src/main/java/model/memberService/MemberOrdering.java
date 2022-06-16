@@ -22,7 +22,7 @@ public class MemberOrdering implements Service {
 		String msg = null;
 		String goUrl = "Order";
 		if (new OrderDAO().requestOrder(orderNum, res)) {
-			if (res.equals("취소확인")) {
+			if (res.equals("주문취소확인")) {
 				msg = "주문이 취소되었습니다.";
 				Cancel(orderNum);
 				new OrderDAO().requestRefund(orderNum);

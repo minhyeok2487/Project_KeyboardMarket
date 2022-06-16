@@ -127,7 +127,7 @@
 									}
 								} if(res){
 						%>
-									<td>
+									<td style="text-align: left !important;">
 									<c:set target="${Count}" property="name" value="<%=manufactor.get(i) %>"/>
 									<input type="checkbox" name="manufactor" value="<%=manufactor.get(i) %>"
 										onclick='getCheckboxValue(event)' checked> <%=manufactor.get(i) %> (<%=count %>)
@@ -135,7 +135,7 @@
 						<%
 								} else {
 						%>
-									<td>
+									<td style="text-align: left !important;">
 									<c:set target="${Count}" property="name" value="\<%=manufactor.get(i) %>"/>
 									<input type="checkbox" name="manufactor" value="<%=manufactor.get(i) %>"
 										onclick='getCheckboxValue(event)'> <%=manufactor.get(i) %> (<%=count %>)
@@ -146,7 +146,7 @@
 							} else {
 						%>
 							<c:forEach var="name" items="${manufactor }" varStatus="i">
-							<td>
+							<td style="text-align: left !important;">
 							<c:set target="${Count}" property="name" value="${name }"/>
 							<input type="checkbox" name="manufactor" value="${name}"
 								onclick='getCheckboxValue(event)'> ${name} (${Count.get(name) })
@@ -171,7 +171,7 @@
 									}
 								} if(res){
 						%>
-									<td>
+									<td style="text-align: left !important;">
 									<c:set target="${Count}" property="name" value="<%=category.get(i) %>"/>
 									<input type="checkbox" name="category" value="<%=category.get(i) %>"
 										onclick='getCheckboxValue(event)' checked> <%=category.get(i) %> (<%=count %>)
@@ -179,7 +179,7 @@
 						<%
 								} else {
 						%>
-									<td>
+									<td style="text-align: left !important;">
 									<c:set target="${Count}" property="name" value="\<%=category.get(i) %>"/>
 									<input type="checkbox" name="category" value="<%=category.get(i) %>"
 										onclick='getCheckboxValue(event)'> <%=category.get(i) %> (<%=count %>)
@@ -190,7 +190,7 @@
 							} else {
 						%>
 							<c:forEach var="name" items="${category }" varStatus="i">
-							<td> <c:set target="${Count}" property="name" value="${name }"/>
+							<td style="text-align: left !important;"><c:set target="${Count}" property="name" value="${name }"/>
 							<input type="checkbox" name="category" value="${name}"
 								onclick='getCheckboxValue(event)'> ${name} (${Count.get(name) })
 							</td>
@@ -214,7 +214,7 @@
 									}
 								} if(res){
 						%>
-									<td>
+									<td style="text-align: left !important;">
 									<c:set target="${Count}" property="name" value="<%=sw.get(i) %>"/>
 									<input type="checkbox" name="sw" value="<%=sw.get(i) %>"
 										onclick='getCheckboxValue(event)' checked> <%=sw.get(i) %> (<%=count %>)
@@ -222,7 +222,7 @@
 						<%
 								} else {
 						%>
-									<td>
+									<td style="text-align: left !important;">
 									<c:set target="${Count}" property="name" value="\<%=sw.get(i) %>"/>
 									<input type="checkbox" name="sw" value="<%=sw.get(i) %>"
 										onclick='getCheckboxValue(event)'> <%=sw.get(i) %> (<%=count %>)
@@ -233,7 +233,7 @@
 							} else {
 						%>
 							<c:forEach var="name" items="${sw }" varStatus="i">
-							<td> <c:set target="${Count}" property="name" value="${name }"/>
+							<td style="text-align: left !important;"> <c:set target="${Count}" property="name" value="${name }"/>
 							<input type="checkbox" name="sw" value="${name}"
 								onclick='getCheckboxValue(event)'> ${name} (${Count.get(name) })
 							</td>
@@ -246,7 +246,7 @@
 					<tr>
 						<th scope="row" style="text-align: center;">가격대</th>
 						<input type="hidden" name="prices" id="prices" value="전체">
-						<td colspan="4">
+						<td colspan="5" style="text-align: left !important;">
 							<% 
 								ArrayList<String> priceLange = (ArrayList<String>) request.getAttribute("priceLange");
 								for(int i = 0; i<priceLange.size(); i++){
@@ -269,7 +269,7 @@
 						<th style="text-align: center;"><button type="button" style="text-align:center;"
 								class="btn btn-outline-primary" onclick='location.href="../item/itemList";'>필터 초기화</button>
 						</th>
-						<td colspan="4" id="res"></td>
+						<td colspan="5" id="res"></td>
 						<td><button type="button" id="Submit"
 								class="btn btn-outline-primary" onclick='check()'>상세검색</button>
 						</td>

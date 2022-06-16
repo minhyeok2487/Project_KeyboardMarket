@@ -98,8 +98,8 @@ pageContext.setAttribute("memberNo", memberNo);
 	<li class="nav-item">
 		<form action="../item/SearchItem?" method="get"
 			class="d-flex justify-content-start" style="margin: 4px;">
-			<input class="form-control me-2" type="search" placeholder="제품 검색"
-				aria-label="Search" name="itemname">
+			<input class="form-control me-2" type="search" placeholder="상품 검색"
+				aria-label="Search" name="itemname" style="text-align: left !important">
 			<button class="btn btn-outline-success btn-sm" type="submit">Search</button>
 		</form>
 	</li>
