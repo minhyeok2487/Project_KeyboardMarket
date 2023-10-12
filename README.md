@@ -4,6 +4,7 @@
 현재 호스팅X
 http://qwe2487.cafe24.com/
 
+<img width="1127" alt="image" src="https://github.com/minhyeok2487/Project_KeyboardMarket/assets/76654360/e0369482-a43d-4797-8c05-38479310ac84">
 
 ![image](https://github.com/minhyeok2487/Project_KeyboardMarket/assets/76654360/9503f41b-a0e7-4c2b-ad10-32d0bdadd203)
 
